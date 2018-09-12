@@ -15,7 +15,7 @@ namespace PharamaStock
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
             //coucou
-            //c'est JUJUJUL
+            //c'est JUJUJUL1231321321
             //fdg
         }
     }
