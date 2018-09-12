@@ -16,6 +16,7 @@ namespace PharamaStock
             SetContentView(Resource.Layout.activity_main);
             //coucou
             //c'est JUJUJUL
+            //fdg
         }
     }
 }
