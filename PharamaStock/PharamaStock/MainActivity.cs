@@ -1,5 +1,6 @@
 ﻿using Android.App;
 using Android.OS;
+using Android.Views;
 using Android.Support.V7.App;
 using Android.Runtime;
 using Android.Widget;
@@ -13,15 +14,15 @@ namespace PharamaStock
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
-        TextView _dateDisplay;
-        Button _dateSelectButton;
+        //TextView _dateDisplay;
+        //Button _dateSelectButton;
 
 
         
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.activity_main);
+            //SetContentView(Resource.Layout.activity_main);
             
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
@@ -113,7 +114,7 @@ namespace PharamaStock
                 datepick.Visibility = Android.Views.ViewStates.Visible;
             };
 
-            datepick.DateChanged += (s, e) =>
+            datepick.Click += (s, e) =>
             {
                 date.Text = datepick.DateTime.ToLongDateString();
                 datepick.Visibility = Android.Views.ViewStates.Invisible;
