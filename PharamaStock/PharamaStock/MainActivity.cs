@@ -114,7 +114,7 @@ namespace PharamaStock
                 datepick.Visibility = Android.Views.ViewStates.Visible;
             };
 
-            datepick.Click += (s, e) =>
+            datepick.DateChanged += (s, e) =>
             {
                 date.Text = datepick.DateTime.ToLongDateString();
                 datepick.Visibility = Android.Views.ViewStates.Invisible;
