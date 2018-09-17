@@ -3228,8 +3228,23 @@ namespace PharamaStock
 			// aapt resource value: 0x7f090021
 			public const int password_toggle_content_description = 2131296289;
 			
-			// aapt resource value: 0x7f040000
-			public const int hello = 2130968576;
+			// aapt resource value: 0x7f090022
+			public const int path_password_eye = 2131296290;
+			
+			// aapt resource value: 0x7f090023
+			public const int path_password_eye_mask_strike_through = 2131296291;
+			
+			// aapt resource value: 0x7f090024
+			public const int path_password_eye_mask_visible = 2131296292;
+			
+			// aapt resource value: 0x7f090025
+			public const int path_password_strike_through = 2131296293;
+			
+			// aapt resource value: 0x7f090011
+			public const int search_menu_title = 2131296273;
+			
+			// aapt resource value: 0x7f090026
+			public const int status_bar_notification_info_overflow = 2131296294;
 			
 			static String()
 			{
