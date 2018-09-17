@@ -141,6 +141,7 @@ namespace PharamaStock
             var fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock_"+DateTime.Now.ToString("ddMMyyy") + ".csv";
 
             var csv = new StringBuilder();
+
             var newline = string.Format("{0},{1},{2},{3},{4}", numpat, codeGEF, lotnum, quant, date);
 
             csv.AppendLine(newline);
