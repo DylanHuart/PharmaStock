@@ -1,29 +1,28 @@
 ﻿using Android.App;
 using Android.OS;
+using Android.Views;
 using Android.Support.V7.App;
 using Android.Runtime;
 using Android.Widget;
 using System;
 using Android.Util;
+using System.IO;
+using System.Text;
 
 namespace PharamaStock
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
-        TextView _dateDisplay;
-        Button _dateSelectButton;
+        //TextView _dateDisplay;
+        //Button _dateSelectButton;
 
 
         
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.activity_main);
-
-            _dateDisplay = FindViewById<TextView>(Resource.Id.date_display);
-            _dateSelectButton = FindViewById<Button>(Resource.Id.date_select_button);
-            _dateSelectButton.Click += DateSelect_OnClick;
+            //SetContentView(Resource.Layout.activity_main);
             
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
@@ -66,8 +65,8 @@ namespace PharamaStock
             {
                 Text = "Lot numéro : "
             };
-            view.AddView(numLot);
-            EditText lot = new EditText(this)
+            view.AddView(numLot); 
+             EditText lot = new EditText(this)
             {
 
             };
@@ -80,8 +79,8 @@ namespace PharamaStock
             {
                 Text = "Quantité : "
             };
-            view.AddView(quantiteDelivree);
-            EditText quantite = new EditText(this)
+            view.AddView(quantiteDelivree); 
+             EditText quantite = new EditText(this)
             {
 
             };
@@ -97,22 +96,29 @@ namespace PharamaStock
             };
             view.AddView(date_display);
 
-            //EditText date = new EditText(this)
-            //{
-
-            //};
-            //date.SetSingleLine(true);
-            //view.AddView(date);
-            //this.SetContentView(view);
-            void DateSelect_OnClick(object sender, EventArgs eventArgs)
+            TextView date = new TextView(this)
             {
-                DatePickerFragment frag = DatePickerFragment.NewInstance(delegate (DateTime time)
-                {
-                    _dateDisplay.Text = time.ToLongDateString();
-                });
-                frag.Show(FragmentManager, DatePickerFragment.TAG);
-            }
-            base.OnCreate(savedInstanceState);
+                Text = DateTime.Now.ToLongDateString()
+
+            };
+            view.AddView(date);
+
+            DatePicker datepick = new DatePicker(this)
+            {
+                Visibility = Android.Views.ViewStates.Invisible
+            };
+            view.AddView(datepick);
+
+            date.Click += (s, e) =>
+            {
+                datepick.Visibility = Android.Views.ViewStates.Visible;
+            };
+
+            datepick.DateChanged += (s, e) =>
+            {
+                date.Text = datepick.DateTime.ToLongDateString();
+                datepick.Visibility = Android.Views.ViewStates.Invisible;
+            };
 
             //enregistre les données récoltées dans un fichier 
             Button Enregistrer = new Button(this)
@@ -121,8 +127,34 @@ namespace PharamaStock
 
             };
 
+            Enregistrer.Click += (s, e) =>
+            {
+                if(!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text))
+                CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text);
+            };
+
             view.AddView(Enregistrer);
             this.SetContentView(view);
+        }
+
+        public void CreateCSV(string numpat, string codeGEF, string lotnum, string quant, string date)
+        {
+            var fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock_"+DateTime.Now.ToString("ddMMyyy") + ".csv";
+
+            var csv = new StringBuilder();
+            var newline = string.Format("{0},{1},{2},{3},{4}", numpat, codeGEF, lotnum, quant, date);
+
+            csv.AppendLine(newline);
+
+            File.WriteAllText(fileName, csv.ToString());
+            //using (var fs = new FileStream(fileName, FileMode.OpenOrCreate))
+            //{
+            //    //Write your file here
+
+            //    fs.Write()
+            //}
+
+
         }
     }
     public class DatePickerFragment : DialogFragment,
@@ -159,5 +191,7 @@ namespace PharamaStock
             Log.Debug(TAG, selectedDate.ToLongDateString());
             _dateSelectedHandler(selectedDate);
         }
+
+        
     }
 }
