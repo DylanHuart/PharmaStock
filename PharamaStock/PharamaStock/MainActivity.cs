@@ -170,17 +170,13 @@ namespace PharamaStock
                 try
                 {
                     MailMessage mail = new MailMessage();
-                    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-                    mail.From = new MailAddress("from address here");
-                    mail.To.Add("to adress here");
+                    SmtpClient SmtpServer = new SmtpClient("casarray1-exch-chr.chrul.net", 25);
+                    mail.From = new MailAddress("PharmaStock@chru-lille.fr");
+                    mail.To.Add("julien.scemama@chru-lille.fr");
                     mail.Subject = "Message Subject";
                     mail.Body = "Message Body";
-                    SmtpServer.Port = 587;
-                    SmtpServer.Credentials = new System.Net.NetworkCredential("username", "password");
-                    SmtpServer.EnableSsl = true;
-                    ServicePointManager.ServerCertificateValidationCallback = delegate (object sender, X509Certificate certificate, X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors) {
-                        return true;
-                    };
+                    
+                    
                     SmtpServer.Send(mail);
                     Toast.MakeText(Application.Context, "Mail Send Sucessufully", ToastLength.Short).Show();
                 }
