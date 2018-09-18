@@ -8,10 +8,17 @@ using System;
 using Android.Util;
 using System.IO;
 using System.Text;
+using System.Net;
+using System.Net.Mail;
+using System.Net.Mime;
+using System.Threading;
+using System.ComponentModel;
+using System.Security.Cryptography.X509Certificates;
 
 namespace PharamaStock
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
+
     public class MainActivity : AppCompatActivity
     {
         //TextView _dateDisplay;
@@ -24,7 +31,7 @@ namespace PharamaStock
             base.OnCreate(savedInstanceState);
 
             // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.activity_main);
+            //SetContentView(Resource.Layout.activity_main);
             LinearLayout view = new LinearLayout(this)
             {
                 Orientation = Orientation.Vertical
@@ -69,8 +76,8 @@ namespace PharamaStock
             {
                 Text = "Lot numéro : "
             };
-            view.AddView(numLot); 
-             EditText lot = new EditText(this)
+            view.AddView(numLot);
+            EditText lot = new EditText(this)
             {
                  InputType = Android.Text.InputTypes.ClassNumber
 
@@ -84,8 +91,8 @@ namespace PharamaStock
             {
                 Text = "Quantité : "
             };
-            view.AddView(quantiteDelivree); 
-             EditText quantite = new EditText(this)
+            view.AddView(quantiteDelivree);
+            EditText quantite = new EditText(this)
             {
                  InputType = Android.Text.InputTypes.ClassNumber
 
@@ -110,18 +117,19 @@ namespace PharamaStock
             };
             //date.SetTypeface(null, Android.Graphics.TypefaceStyle.Bold);
             view.AddView(date);
-
             DatePicker datepick = new DatePicker(this)
             {
                 Visibility = Android.Views.ViewStates.Gone
             };
+
+
             view.AddView(datepick);
 
             date.Click += (s, e) =>
             {
                 datepick.Visibility = Android.Views.ViewStates.Visible;
             };
-
+            
             datepick.DateChanged += (s, e) =>
             {
                 date.Text = datepick.DateTime.ToLongDateString();
@@ -151,6 +159,41 @@ namespace PharamaStock
             };
 
             this.SetContentView(view);
+
+            //envoie la liste par email
+            Button Envoyer = new Button(this)
+            {
+                Text = "Envoyer"
+            };
+            Envoyer.Click += (s, e) =>
+            {
+                try
+                {
+                    MailMessage mail = new MailMessage();
+                    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                    mail.From = new MailAddress("from address here");
+                    mail.To.Add("to adress here");
+                    mail.Subject = "Message Subject";
+                    mail.Body = "Message Body";
+                    SmtpServer.Port = 587;
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("username", "password");
+                    SmtpServer.EnableSsl = true;
+                    ServicePointManager.ServerCertificateValidationCallback = delegate (object sender, X509Certificate certificate, X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors) {
+                        return true;
+                    };
+                    SmtpServer.Send(mail);
+                    Toast.MakeText(Application.Context, "Mail Send Sucessufully", ToastLength.Short).Show();
+                }
+
+                catch (Exception ex)
+                {
+                    Toast.MakeText(Application.Context, ex.ToString(), ToastLength.Long);
+                }
+            };
+            view.AddView(Envoyer);
+            this.SetContentView(view);
+
+
         }
 
         //Méthode de création du fichier CSV
@@ -172,41 +215,42 @@ namespace PharamaStock
             File.AppendAllText(fileName, newline + System.Environment.NewLine); // Ajout de la ligne contenant les champs
 
         }
-    }
-    public class DatePickerFragment : DialogFragment,
+        public class DatePickerFragment : DialogFragment,
                                   DatePickerDialog.IOnDateSetListener
-    {
-        // TAG can be any string of your choice.
-        public static readonly string TAG = "X:" + typeof(DatePickerFragment).Name.ToUpper();
-
-        // Initialize this value to prevent NullReferenceExceptions.
-        Action<DateTime> _dateSelectedHandler = delegate { };
-
-        public static DatePickerFragment NewInstance(Action<DateTime> onDateSelected)
         {
-            DatePickerFragment frag = new DatePickerFragment();
-            frag._dateSelectedHandler = onDateSelected;
-            return frag;
-        }
+            // TAG can be any string of your choice.
+            public static readonly string TAG = "X:" + typeof(DatePickerFragment).Name.ToUpper();
 
-        public override Dialog OnCreateDialog(Bundle savedInstanceState)
-        {
-            DateTime currently = DateTime.Now;
-            DatePickerDialog dialog = new DatePickerDialog(Activity,
-                                                           this,
-                                                           currently.Year,
-                                                           currently.Month - 1,
-                                                           currently.Day);
-            return dialog;
-        }
+            // Initialize this value to prevent NullReferenceExceptions.
+            Action<DateTime> _dateSelectedHandler = delegate { };
 
-        public void OnDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
-        {
-            // Note: monthOfYear is a value between 0 and 11, not 1 and 12!
-            DateTime selectedDate = new DateTime(year, monthOfYear + 1, dayOfMonth);
-            Log.Debug(TAG, selectedDate.ToLongDateString());
-            _dateSelectedHandler(selectedDate);
+            public static DatePickerFragment NewInstance(Action<DateTime> onDateSelected)
+            {
+                DatePickerFragment frag = new DatePickerFragment();
+                frag._dateSelectedHandler = onDateSelected;
+                return frag;
+            }
+
+            public override Dialog OnCreateDialog(Bundle savedInstanceState)
+            {
+                DateTime currently = DateTime.Now;
+                DatePickerDialog dialog = new DatePickerDialog(Activity,
+                                                               this,
+                                                               currently.Year,
+                                                               currently.Month - 1,
+                                                               currently.Day);
+                return dialog;
+            }
+
+            public void OnDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
+            {
+                // Note: monthOfYear is a value between 0 and 11, not 1 and 12!
+                DateTime selectedDate = new DateTime(year, monthOfYear + 1, dayOfMonth);
+                Log.Debug(TAG, selectedDate.ToLongDateString());
+                _dateSelectedHandler(selectedDate);
+            }
         }
+        
 
         
     }
