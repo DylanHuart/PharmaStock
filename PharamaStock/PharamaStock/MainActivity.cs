@@ -22,8 +22,7 @@ namespace PharamaStock
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            //SetContentView(Resource.Layout.activity_main);
-            
+
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
             LinearLayout view = new LinearLayout(this)
@@ -31,16 +30,20 @@ namespace PharamaStock
                 Orientation = Orientation.Vertical
             };
 
+
+
+
             //affiche le numéro du patient
             this.SetContentView(view);
             TextView numPatient = new TextView(this)
             {
                 Text = "Numéro du patient : "
+                
             };
             view.AddView(numPatient);
             EditText patient = new EditText(this)
             {
-
+                InputType = Android.Text.InputTypes.ClassNumber
             };
             patient.SetSingleLine(true);
             view.AddView(patient);
@@ -54,6 +57,7 @@ namespace PharamaStock
             view.AddView(codeGef);
             EditText gef = new EditText(this)
             {
+                InputType = Android.Text.InputTypes.ClassNumber
 
             };
             gef.SetSingleLine(true);
@@ -68,8 +72,9 @@ namespace PharamaStock
             view.AddView(numLot); 
              EditText lot = new EditText(this)
             {
+                 InputType = Android.Text.InputTypes.ClassNumber
 
-            };
+             };
             patient.SetSingleLine(true);
             view.AddView(lot);
             this.SetContentView(view);
@@ -82,8 +87,9 @@ namespace PharamaStock
             view.AddView(quantiteDelivree); 
              EditText quantite = new EditText(this)
             {
+                 InputType = Android.Text.InputTypes.ClassNumber
 
-            };
+             };
             quantite.SetSingleLine(true);
             view.AddView(quantite);
             this.SetContentView(view);
@@ -91,21 +97,23 @@ namespace PharamaStock
             //affiche la date de délivrance à la date du jour
             TextView date_display = new TextView(this)
             {
-                Text = "date"
+                Text = "Date : "
 
             };
             view.AddView(date_display);
 
             TextView date = new TextView(this)
             {
-                Text = DateTime.Now.ToLongDateString()
+                Text = DateTime.Now.ToLongDateString(),
+
 
             };
+            //date.SetTypeface(null, Android.Graphics.TypefaceStyle.Bold);
             view.AddView(date);
 
             DatePicker datepick = new DatePicker(this)
             {
-                Visibility = Android.Views.ViewStates.Invisible
+                Visibility = Android.Views.ViewStates.Gone
             };
             view.AddView(datepick);
 
@@ -117,7 +125,7 @@ namespace PharamaStock
             datepick.DateChanged += (s, e) =>
             {
                 date.Text = datepick.DateTime.ToLongDateString();
-                datepick.Visibility = Android.Views.ViewStates.Invisible;
+                datepick.Visibility = Android.Views.ViewStates.Gone;
             };
 
             //enregistre les données récoltées dans un fichier 
@@ -126,34 +134,42 @@ namespace PharamaStock
                 Text = "Enregistrer"
 
             };
+            view.AddView(Enregistrer);
 
             Enregistrer.Click += (s, e) =>
             {
+                //Création du fichier CSV
                 if(!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text))
                 CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text);
+
+                //Vide les champs d'entrée
+                quantite.Text = "";
+                lot.Text = "";
+                gef.Text = "";
+                patient.Text = "";
+
             };
 
-            view.AddView(Enregistrer);
             this.SetContentView(view);
         }
 
+        //Méthode de création du fichier CSV
         public void CreateCSV(string numpat, string codeGEF, string lotnum, string quant, string date)
         {
+            //Nom du fichier + Location
             var fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock_"+DateTime.Now.ToString("ddMMyyy") + ".csv";
 
-            var csv = new StringBuilder();
-            var newline = string.Format("{0},{1},{2},{3},{4}", numpat, codeGEF, lotnum, quant, date);
+            //Ligne à ajouter lors de l'enregistrement. Reprend les entrées des champs EditText
+            var newline = string.Format("{0};{1};{2};{3};{4}", numpat, codeGEF, lotnum, quant, date);
 
-            csv.AppendLine(newline);
-
-            File.WriteAllText(fileName, csv.ToString());
-            //using (var fs = new FileStream(fileName, FileMode.OpenOrCreate))
-            //{
-            //    //Write your file here
-
-            //    fs.Write()
-            //}
-
+            //Si le fichier n'existe pas, créer les entêtes et aller à la ligne. 
+            if (!File.Exists(fileName))
+            {
+                string header = "Numéro patient" + ";" + "code GEF" + ";" + "Numéro lot" + ";" + "Quantité" + ";" + "Date";
+                File.WriteAllText(fileName, header, Encoding.UTF8);       // Création de la ligne + Encodage pour les caractères spéciaux
+                File.AppendAllText(fileName, System.Environment.NewLine); // Aller à la ligne
+            }
+            File.AppendAllText(fileName, newline + System.Environment.NewLine); // Ajout de la ligne contenant les champs
 
         }
     }
