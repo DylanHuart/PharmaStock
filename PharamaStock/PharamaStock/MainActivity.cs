@@ -23,9 +23,11 @@ namespace PharamaStock
     {
         //TextView _dateDisplay;
         //Button _dateSelectButton;
+       
+        private SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com", 587);
 
+        MailMessage mail = new MailMessage();
 
-        
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -167,24 +169,36 @@ namespace PharamaStock
             };
             Envoyer.Click += (s, e) =>
             {
-                try
-                {
-                    MailMessage mail = new MailMessage();
-                    SmtpClient SmtpServer = new SmtpClient("casarray1-exch-chr.chrul.net", 25);
-                    mail.From = new MailAddress("PharmaStock@chru-lille.fr");
-                    mail.To.Add("julien.scemama@chru-lille.fr");
+                   // SmtpServer.UseDefaultCredentials = true;
+                SmtpServer.DeliveryMethod = SmtpDeliveryMethod.Network;
+                SmtpServer.EnableSsl = true;
+
+                    
+                 
+                    mail.From = new MailAddress("jolyrudypro@gmail.com");
+                    mail.To.Add("jolyrudy@msn.com");
                     mail.Subject = "Message Subject";
                     mail.Body = "Message Body";
-                    
-                    
-                    SmtpServer.Send(mail);
+
+
+                try
+                {
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("jolyrudypro@gamil.com", "joru59120");
+                    SmtpServer.EnableSsl = true;
+                    ServicePointManager.ServerCertificateValidationCallback = delegate (object sender, X509Certificate certificate, X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
+                    {
+                        return true;
+                    };
+                        SmtpServer.Send(mail);
                     Toast.MakeText(Application.Context, "Mail Send Sucessufully", ToastLength.Short).Show();
                 }
-
                 catch (Exception ex)
                 {
+
                     Toast.MakeText(Application.Context, ex.ToString(), ToastLength.Long);
                 }
+                   
+               
             };
             view.AddView(Envoyer);
             this.SetContentView(view);
