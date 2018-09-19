@@ -23,9 +23,9 @@ namespace PharamaStock
     {
         //TextView _dateDisplay;
         //Button _dateSelectButton;
+        string fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock_" + DateTime.Now.ToString("ddMMyyy") + ".csv";
 
 
-        
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -44,7 +44,7 @@ namespace PharamaStock
             this.SetContentView(view);
             TextView numPatient = new TextView(this)
             {
-                Text = "Numéro du patient : "
+                Text = "Patient n° : "
                 
             };
             view.AddView(numPatient);
@@ -74,7 +74,7 @@ namespace PharamaStock
             //affiche le numéro du lot
             TextView numLot = new TextView(this)
             {
-                Text = "Lot numéro : "
+                Text = "Lot n° : "
             };
             view.AddView(numLot);
             EditText lot = new EditText(this)
@@ -104,7 +104,7 @@ namespace PharamaStock
             //affiche la date de délivrance à la date du jour
             TextView date_display = new TextView(this)
             {
-                Text = "Date : "
+                Text = "Délivré le : "
 
             };
             view.AddView(date_display);
@@ -171,18 +171,21 @@ namespace PharamaStock
                 {
                     MailMessage mail = new MailMessage();
                     SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com",587);
-                    mail.From = new MailAddress("guillaume.verschave@gmail.com");
-                    mail.To.Add("guiguinero95@gmail.com");
-                    mail.Subject = "Message Subject";
-                    mail.Body = "Message Body";
+                    mail.From = new MailAddress("jolyrudypro@gmail.com");
+                    mail.To.Add("jolyrudy@msn.com");
+                    mail.Subject = "Document CSV";
+                    mail.Body = "Veuillez trouver ci joint le document récapitalif de la journée";
+                    System.Net.Mail.Attachment pj;
+                    pj = new Attachment(fileName);
+                    mail.Attachments.Add(pj);
                     SmtpServer.Port = 587;
-                    SmtpServer.Credentials = new System.Net.NetworkCredential("guillaume.verschave@gmail.com", "pwd");
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("jolyrudypro@gmail.com", "joru59120");
                     SmtpServer.EnableSsl = true;
                     ServicePointManager.ServerCertificateValidationCallback = delegate (object sender, X509Certificate certificate, X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors) {
                         return true;
                     };
                     SmtpServer.Send(mail);
-                    Toast.MakeText(Application.Context, "Mail Send Sucessufully", ToastLength.Short).Show();
+                    Toast.MakeText(Application.Context, "Mail envoyé", ToastLength.Short).Show();
                 }
 
                 catch (Exception ex)
@@ -200,7 +203,7 @@ namespace PharamaStock
         public void CreateCSV(string numpat, string codeGEF, string lotnum, string quant, string date)
         {
             //Nom du fichier + Location
-            var fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock_"+DateTime.Now.ToString("ddMMyyy") + ".csv";
+            string fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock_"+DateTime.Now.ToString("ddMMyyy") + ".csv";
 
             //Ligne à ajouter lors de l'enregistrement. Reprend les entrées des champs EditText
             var newline = string.Format("{0};{1};{2};{3};{4}", numpat, codeGEF, lotnum, quant, date);
@@ -208,13 +211,15 @@ namespace PharamaStock
             //Si le fichier n'existe pas, créer les entêtes et aller à la ligne. 
             if (!File.Exists(fileName))
             {
-                string header = "Numéro patient" + ";" + "code GEF" + ";" + "Numéro lot" + ";" + "Quantité" + ";" + "Date";
+                string header = "Patient n° :" + ";" + "code GEF :" + ";" + "Lot n° :" + ";" + "Quantité :" + ";" + "Délivré le :";
                 File.WriteAllText(fileName, header, Encoding.UTF8);       // Création de la ligne + Encodage pour les caractères spéciaux
                 File.AppendAllText(fileName, System.Environment.NewLine); // Aller à la ligne
             }
             File.AppendAllText(fileName, newline + System.Environment.NewLine); // Ajout de la ligne contenant les champs
-
+            Toast.MakeText(Application.Context, "Données enregistrées", ToastLength.Short).Show();
         }
+
+
         public class DatePickerFragment : DialogFragment,
                                   DatePickerDialog.IOnDateSetListener
         {
