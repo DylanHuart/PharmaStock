@@ -15,6 +15,9 @@ using System.Threading;
 using System.ComponentModel;
 using System.Security.Cryptography.X509Certificates;
 using Android.Content;
+using Android.Text;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PharamaStock
 {
@@ -26,24 +29,41 @@ namespace PharamaStock
             base.OnCreate(savedInstanceState);
 
             // Create your application here
+            LinearLayout view = new LinearLayout(this)
+            {
+                Orientation = Orientation.Vertical
+            };
+
+
+
             string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
             string[] fichiers = Directory.GetFiles(directory);
-            
+            //List<string> listefichiers = new List<string>();
+            //listefichiers = fichiers.OfType<string>().ToList();
 
 
+            Xamarin.Forms.ListView liste = new Xamarin.Forms.ListView();
 
-            TextView liste = new TextView(this)
+            liste.ItemsSource = new string[]
             {
-
+  "mono",
+  "monodroid",
+  "monotouch",
+  "monorail",
+  "monodevelop",
+  "monotone",
+  "monopoly",
+  "monomodal",
+  "mononucleosis"
             };
 
-            liste.Click += (s, e) =>
-            {
-            for (int i = 0; i < fichiers.Length; i++)
-                {
-                    liste.Text += fichiers[i] + "\n";
-                }
-            };
+
+
+
+
+
+
+            this.SetContentView(view);
 
         }
 
