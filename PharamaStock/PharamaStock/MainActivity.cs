@@ -170,13 +170,13 @@ namespace PharamaStock
                 try
                 {
                     MailMessage mail = new MailMessage();
-                    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-                    mail.From = new MailAddress("from address here");
-                    mail.To.Add("to adress here");
+                    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com",587);
+                    mail.From = new MailAddress("guillaume.verschave@gmail.com");
+                    mail.To.Add("guiguinero95@gmail.com");
                     mail.Subject = "Message Subject";
                     mail.Body = "Message Body";
                     SmtpServer.Port = 587;
-                    SmtpServer.Credentials = new System.Net.NetworkCredential("username", "password");
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("guillaume.verschave@gmail.com", "vetseajo1");
                     SmtpServer.EnableSsl = true;
                     ServicePointManager.ServerCertificateValidationCallback = delegate (object sender, X509Certificate certificate, X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors) {
                         return true;
