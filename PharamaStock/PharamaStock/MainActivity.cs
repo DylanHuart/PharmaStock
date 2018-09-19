@@ -14,6 +14,7 @@ using System.Net.Mime;
 using System.Threading;
 using System.ComponentModel;
 using System.Security.Cryptography.X509Certificates;
+using Android.Content;
 
 namespace PharamaStock
 {
@@ -167,17 +168,7 @@ namespace PharamaStock
             };
             Envoyer.Click += (s, e) =>
             {
-                   // SmtpServer.UseDefaultCredentials = true;
-                SmtpServer.DeliveryMethod = SmtpDeliveryMethod.Network;
-                SmtpServer.EnableSsl = true;
-
-                    
                  
-                    mail.From = new MailAddress("jolyrudypro@gmail.com");
-                    mail.To.Add("jolyrudy@msn.com");
-                    mail.Subject = "Message Subject";
-                    mail.Body = "Message Body";
-
 
                 try
                 {
@@ -205,20 +196,54 @@ namespace PharamaStock
 
                     Toast.MakeText(Application.Context, ex.ToString(), ToastLength.Long);
                 }
+
                    
                
             };
             view.AddView(Envoyer);
             this.SetContentView(view);
 
+            //Affiche l'historique de l'ensemble des fichiers
+            Button Historique = new Button(this)
+            {
+                Text = "Historique"
+
+            };
+            view.AddView(Historique);
+
+
+            TextView fichierstxt = new TextView(this)
+            {
+                Text = ""
+            };
+            view.AddView(fichierstxt);
+            this.SetContentView(view);
+
+
+            Historique.Click += (s, e) =>
+            {
+                Intent historiqueActivity = new Intent(this, typeof(Historique));
+                StartActivity(historiqueActivity);
+
+            };
+
 
         }
+        string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
 
         //Méthode de création du fichier CSV
         public void CreateCSV(string numpat, string codeGEF, string lotnum, string quant, string date)
         {
+
+            //Création d'un dossier
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+                Toast.MakeText(Application.Context, "Dossier Pharmastock créé", ToastLength.Short).Show();
+
+            }
             //Nom du fichier + Location
-            string fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock_"+DateTime.Now.ToString("ddMMyyy") + ".csv";
+            string fileName = directory + Java.IO.File.Separator + "Pharmastock_" +DateTime.Now.ToString("ddMMyyy") + ".csv";
 
             //Ligne à ajouter lors de l'enregistrement. Reprend les entrées des champs EditText
             var newline = string.Format("{0};{1};{2};{3};{4}", numpat, codeGEF, lotnum, quant, date);

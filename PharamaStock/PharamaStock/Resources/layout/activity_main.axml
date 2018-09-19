@@ -1,27 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<StackLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-	<TextView
-		android:text="Patient numéro :"
-		android:layout_width="381.0dp"
-		android:layout_height="wrap_content"
-		android:minWidth="25px"
-		android:minHeight="25px"
-		android:id="@+id/textViewNumPatient" />
-	<EditText
-		android:layout_width="290.5dp"
-		android:layout_height="35.5dp"
-		android:layout_below="@id/textViewNumPatient"
-		android:id="@+id/editNumPatient"
-		android:layout_marginRight="0.0dp" />
-	<TextView
-		android:text="Text"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_below="@id/editNumPatient"
-		android:id="@+id/textView1" />
-	
+<StackLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
 </StackLayout>
