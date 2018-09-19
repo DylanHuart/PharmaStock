@@ -176,7 +176,7 @@ namespace PharamaStock
                     mail.Subject = "Message Subject";
                     mail.Body = "Message Body";
                     SmtpServer.Port = 587;
-                    SmtpServer.Credentials = new System.Net.NetworkCredential("guillaume.verschave@gmail.com", "vetseajo1");
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("guillaume.verschave@gmail.com", "pwd");
                     SmtpServer.EnableSsl = true;
                     ServicePointManager.ServerCertificateValidationCallback = delegate (object sender, X509Certificate certificate, X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors) {
                         return true;
