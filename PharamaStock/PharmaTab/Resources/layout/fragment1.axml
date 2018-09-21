@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@drawable/Fond">
+	<EditText
+		android:hint="N° Patient"
+		android:layout_width="300dp"
+		android:layout_height="wrap_content"
+		android:id="@+id/editText1"
+		android:layout_marginRight="0dp"
+		android:layout_marginTop="0dp"
+		android:focusableInTouchMode="true"
+		android:textColor="#ffdfd6d6"
+		android:backgroundTint="#ffdfd6d6"
+		android:textColorHint="#ffdfd6d6" />
+	<Button
+		android:layout_width="32dp"
+		android:layout_height="32dp"
+		android:layout_marginTop="15dp"
+		android:layout_toRightOf="@id/editText1"
+		android:id="@+id/button1"
+		android:background="@drawable/photo"
+		android:drawableTop="@drawable/photo"
+		android:layout_marginLeft="20dp" />
+	<EditText
+		android:hint="Code GEF"
+		android:layout_width="300dp"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="45dp"
+		android:id="@+id/editText2"
+		android:layout_marginRight="0dp"
+		android:textColor="#ffdfd6d6"
+		android:backgroundTint="#ffdfd6d6"
+		android:textColorHint="#ffdfd6d6"/>
+	<Button
+		android:layout_width="32dp"
+		android:layout_height="32dp"
+		android:layout_marginTop="60dp"
+		android:layout_marginLeft="20dp"
+		android:layout_toRightOf="@id/editText2"
+		android:id="@+id/button2"
+		android:background="@drawable/photo"
+		android:drawableTop="@drawable/photo"/>
+	<EditText
+		android:hint="Quantité délivrée"
+		android:layout_width="300dp"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="90dp"
+		android:id="@+id/editText3"
+		android:layout_marginRight="0dp"
+		android:textColor="#ffdfd6d6"
+		android:backgroundTint="#ffdfd6d6"
+		android:textColorHint="#ffdfd6d6"/>
+	<Button
+		android:layout_width="32dp"
+		android:layout_height="32dp"
+		android:layout_marginTop="105dp"
+		android:layout_marginLeft="20dp"
+		android:layout_toRightOf="@id/editText3"
+		android:id="@+id/button3"
+		android:background="@drawable/photo"
+		android:drawableTop="@drawable/photo"/>
+	<EditText
+		android:hint="N° de lot"
+		android:layout_width="300dp"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="135dp"
+		android:id="@+id/editText4"
+		android:layout_marginRight="0dp"
+		android:textColor="#ffdfd6d6"
+		android:backgroundTint="#ffdfd6d6"
+		android:textColorHint="#ffdfd6d6"/>
+	<Button
+		android:layout_width="32dp"
+		android:layout_height="32dp"
+		android:layout_marginTop="150dp"
+		android:layout_marginLeft="20dp"
+		android:layout_toRightOf="@id/editText4"
+		android:id="@+id/button4"
+		android:background="@drawable/photo"
+		android:drawableTop="@drawable/photo"/>
+	<EditText
+		android:hint="Date de délivrance"
+		android:layout_width="300dp"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="180dp"
+		android:id="@+id/editText4"
+		android:layout_marginRight="0dp"
+		android:textColor="#ffdfd6d6"
+		android:backgroundTint="#ffdfd6d6"
+		android:textColorHint="#ffdfd6d6"/>
+	<Button
+		android:layout_width="32dp"
+		android:layout_height="32dp"
+		android:layout_marginTop="195dp"
+		android:layout_marginLeft="20dp"
+		android:layout_toRightOf="@id/editText4"
+		android:id="@+id/button4"
+		android:background="@drawable/calendar"
+		android:drawableTop="@drawable/calendar"/>
+	<ImageView
+		android:layout_width="100dp"
+		android:layout_height="76dp"
+		android:layout_marginTop="480dp"
+		android:id="@+id/imageView1"
+		android:background="@drawable/Logo" />
+	<ImageView
+		android:layout_width="80dp"
+		android:layout_height="76dp"
+		android:layout_marginLeft="260dp"
+		android:layout_marginTop="480dp"
+		android:id="@+id/imageView2"
+		android:background="@drawable/chu" />
+	<Button
+		android:layout_width="200dp"
+		android:layout_height="40dp"
+		android:layout_marginLeft="80dp"
+		android:layout_marginTop="270dp"
+		android:id="@+id/buttonenr"
+		android:background="@android:color/transparent"
+		android:drawableTop="@drawable/ENREGISTRER"/>
+	<Button
+		android:layout_width="200dp"
+		android:layout_height="40dp"
+		android:layout_marginLeft="80dp"
+		android:layout_marginTop="320dp"
+		android:id="@+id/buttonenr"
+		android:background="@android:color/transparent"
+		android:drawableTop="@drawable/Envoyer"/>
+	<Button
+		android:layout_width="142dp"
+		android:layout_height="50dp"
+		android:layout_marginTop="380dp"
+		android:layout_marginLeft="110dp"
+		android:id="@+id/buttonhist"
+		android:background="@android:color/transparent"
+		android:drawableTop="@drawable/Historique"
+		android:layout_marginBottom="93.0dp" />
+</RelativeLayout>
