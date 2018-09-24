@@ -18,7 +18,7 @@ using Android.Content;
 using Android.Text;
 using System.Collections.Generic;
 using System.Linq;
-using System.Collections.;
+
 
 namespace PharamaStock
 {
@@ -45,13 +45,10 @@ namespace PharamaStock
 
 
 
-            ListView liste = new ListView(this);
+            ListView liste = new ListView(this)
+            {
 
-
-            
-           
-
-            
+            };           
             view.AddView(liste);
 
             this.SetContentView(view);

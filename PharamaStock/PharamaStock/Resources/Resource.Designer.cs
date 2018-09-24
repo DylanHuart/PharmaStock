@@ -26,6 +26,10 @@ namespace PharamaStock
 		
 		public static void UpdateIdValues()
 		{
+			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::PharamaStock.Resource.Attribute.actionBarSize;
+			global::ZXing.Mobile.Resource.Id.contentFrame = global::PharamaStock.Resource.Id.contentFrame;
+			global::ZXing.Mobile.Resource.Layout.zxingscanneractivitylayout = global::PharamaStock.Resource.Layout.zxingscanneractivitylayout;
+			global::ZXing.Mobile.Resource.Layout.zxingscannerfragmentlayout = global::PharamaStock.Resource.Layout.zxingscannerfragmentlayout;
 		}
 		
 		public partial class Animation
@@ -2297,6 +2301,9 @@ namespace PharamaStock
 			// aapt resource value: 0x7f080078
 			public const int container = 2131230840;
 			
+			// aapt resource value: 0x7f08009b
+			public const int contentFrame = 2131230875;
+			
 			// aapt resource value: 0x7f08004e
 			public const int contentPanel = 2131230798;
 			
@@ -2414,8 +2421,8 @@ namespace PharamaStock
 			// aapt resource value: 0x7f080048
 			public const int list_item = 2131230792;
 			
-			// aapt resource value: 0x7f08009c
-			public const int masked = 2131230876;
+			// aapt resource value: 0x7f08009d
+			public const int masked = 2131230877;
 			
 			// aapt resource value: 0x7f08008a
 			public const int media_actions = 2131230858;
@@ -2645,8 +2652,8 @@ namespace PharamaStock
 			// aapt resource value: 0x7f08000e
 			public const int view_offset_helper = 2131230734;
 			
-			// aapt resource value: 0x7f08009b
-			public const int visible = 2131230875;
+			// aapt resource value: 0x7f08009c
+			public const int visible = 2131230876;
 			
 			// aapt resource value: 0x7f080027
 			public const int withText = 2131230759;
@@ -2889,6 +2896,12 @@ namespace PharamaStock
 			
 			// aapt resource value: 0x7f04003c
 			public const int support_simple_spinner_dropdown_item = 2130968636;
+			
+			// aapt resource value: 0x7f04003d
+			public const int zxingscanneractivitylayout = 2130968637;
+			
+			// aapt resource value: 0x7f04003e
+			public const int zxingscannerfragmentlayout = 2130968638;
 			
 			static Layout()
 			{

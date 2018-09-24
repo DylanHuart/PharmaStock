@@ -1,8 +1,6 @@
 ﻿using Android.App;
 using Android.OS;
-using Android.Views;
 using Android.Support.V7.App;
-using Android.Runtime;
 using Android.Widget;
 using System;
 using Android.Util;
@@ -10,11 +8,13 @@ using System.IO;
 using System.Text;
 using System.Net;
 using System.Net.Mail;
-using System.Net.Mime;
-using System.Threading;
-using System.ComponentModel;
 using System.Security.Cryptography.X509Certificates;
 using Android.Content;
+using Android.Content.PM;
+
+
+
+
 
 namespace PharamaStock
 {
@@ -25,24 +25,28 @@ namespace PharamaStock
         //TextView _dateDisplay;
         //Button _dateSelectButton;
         string fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock_" + DateTime.Now.ToString("ddMMyyy") + ".csv";
+        
 
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
+
             base.OnCreate(savedInstanceState);
 
             // Set our view from the "main" layout resource
             //SetContentView(Resource.Layout.activity_main);
             LinearLayout view = new LinearLayout(this)
+            
+
             {
                 Orientation = Orientation.Vertical
             };
 
-
+            this.SetContentView(view);
 
 
             //affiche le numéro du patient
-            this.SetContentView(view);
+
             TextView numPatient = new TextView(this)
             {
                 Text = "Patient n° : "
@@ -83,7 +87,7 @@ namespace PharamaStock
                  InputType = Android.Text.InputTypes.ClassNumber
 
              };
-            patient.SetSingleLine(true);
+            lot.SetSingleLine(true);
             view.AddView(lot);
             this.SetContentView(view);
 
@@ -102,28 +106,24 @@ namespace PharamaStock
             view.AddView(quantite);
             this.SetContentView(view);
 
-            //affiche la date de délivrance à la date du jour
+            //affiche la date de délivrence à la date du jour
             TextView date_display = new TextView(this)
             {
                 Text = "Délivré le : "
 
             };
             view.AddView(date_display);
-
             TextView date = new TextView(this)
             {
                 Text = DateTime.Now.ToLongDateString(),
 
 
             };
-            //date.SetTypeface(null, Android.Graphics.TypefaceStyle.Bold);
             view.AddView(date);
             DatePicker datepick = new DatePicker(this)
             {
                 Visibility = Android.Views.ViewStates.Gone
             };
-
-
             view.AddView(datepick);
 
             date.Click += (s, e) =>
@@ -158,7 +158,6 @@ namespace PharamaStock
                 patient.Text = "";
 
             };
-
             this.SetContentView(view);
 
             //envoie la liste par email
@@ -228,8 +227,27 @@ namespace PharamaStock
             };
 
 
+
+            Button scanButton = new Button(this)
+            {
+                Text = "Scanner"
+            };
+            view.AddView(scanButton);
+            scanButton.Click += async(sender, args) =>
+            {
+                
+
+            };
+
+
         }
         string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+            ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
 
         //Méthode de création du fichier CSV
         public void CreateCSV(string numpat, string codeGEF, string lotnum, string quant, string date)
@@ -297,6 +315,9 @@ namespace PharamaStock
         }
         
 
-        
+
+
+
+
     }
 }
