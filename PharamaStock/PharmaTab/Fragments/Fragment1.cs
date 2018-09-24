@@ -2,6 +2,7 @@ using Android.OS;
 using Android.Support.V4.App;
 using Android.Views;
 
+
 namespace PharmaTab.Fragments
 {
     public class Fragment1 : Fragment
@@ -23,7 +24,7 @@ namespace PharmaTab.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var ignored = base.OnCreateView(inflater, container, savedInstanceState);
-
+            
             
             return inflater.Inflate(Resource.Layout.fragment1, null);
 
