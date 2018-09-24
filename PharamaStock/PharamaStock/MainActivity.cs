@@ -11,6 +11,7 @@ using System.Text;
 
 namespace PharamaStock
 {
+//Theme = "@style/Theme.Design.Light.NoActionBar"
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
@@ -21,11 +22,29 @@ namespace PharamaStock
         
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);
-            //SetContentView(Resource.Layout.activity_main);
             
+            base.OnCreate(savedInstanceState);
+            ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
+            Android.App.ActionBar.Tab tab = ActionBar.NewTab();
+            tab.SetIcon(Resource.Drawable.MANUEL);
+            tab.TabSelected += (sender, args) => {
+                // Do something when tab is selected
+            };
+            ActionBar.AddTab(tab);
+
+            tab = ActionBar.NewTab();
+            tab.SetIcon(Resource.Drawable.AUTO);
+            tab.TabSelected += (sender, args) =>
+            {
+                // Do something when tab is selected
+            };
+            ActionBar.AddTab(tab);
+            //SetContentView(Resource.Layout.activity_main);
+
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
+
+
             LinearLayout view = new LinearLayout(this)
             {
                 Orientation = Orientation.Vertical
@@ -65,8 +84,8 @@ namespace PharamaStock
             {
                 Text = "Lot numéro : "
             };
-            view.AddView(numLot); 
-             EditText lot = new EditText(this)
+            view.AddView(numLot);
+            EditText lot = new EditText(this)
             {
 
             };
@@ -79,8 +98,8 @@ namespace PharamaStock
             {
                 Text = "Quantité : "
             };
-            view.AddView(quantiteDelivree); 
-             EditText quantite = new EditText(this)
+            view.AddView(quantiteDelivree);
+            EditText quantite = new EditText(this)
             {
 
             };
@@ -114,27 +133,32 @@ namespace PharamaStock
                 datepick.Visibility = Android.Views.ViewStates.Visible;
             };
 
+            date.Click += (s, e) =>
+            {
+                datepick.Visibility = Android.Views.ViewStates.Visible;
+            };
+
             datepick.DateChanged += (s, e) =>
             {
                 date.Text = datepick.DateTime.ToLongDateString();
                 datepick.Visibility = Android.Views.ViewStates.Invisible;
             };
 
-            //enregistre les données récoltées dans un fichier 
-            Button Enregistrer = new Button(this)
-            {
-                Text = "Enregistrer"
+            ////enregistre les données récoltées dans un fichier 
+            //Button Enregistrer = new Button(this)
+            //{
+            //    Text = "Enregistrer"
 
-            };
+            //};
 
-            Enregistrer.Click += (s, e) =>
-            {
-                if(!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text))
-                CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text);
-            };
+            //Enregistrer.Click += (s, e) =>
+            //{
+            //    if(!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text))
+            //    CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text);
+            //};
 
-            view.AddView(Enregistrer);
-            this.SetContentView(view);
+            //view.AddView(Enregistrer);
+           // this.SetContentView(view);
         }
 
         public void CreateCSV(string numpat, string codeGEF, string lotnum, string quant, string date)
