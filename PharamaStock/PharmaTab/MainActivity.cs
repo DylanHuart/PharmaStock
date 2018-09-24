@@ -11,6 +11,8 @@ using PharmaTab.Fragments;
 
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
+using System.Text;
+using System.IO;
 
 namespace PharmaTab
 {
@@ -40,6 +42,33 @@ namespace PharmaTab
             
             tabs.SetupWithViewPager(pager);
             pager.OffscreenPageLimit = 3;
+
+            Button savebt = FindViewById<Button>(Resource.Id.buttonenr);
+
+            savebt.Click += (s,e)  =>
+            {
+
+            };
+        }
+
+        public void CreateCSV(string numpat, string codeGEF, string lotnum, string quant, string date)
+        {
+            var fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock_" + DateTime.Now.ToString("ddMMyyy") + ".csv";
+
+            var csv = new StringBuilder();
+
+            var newline = string.Format("{0},{1},{2},{3},{4}", numpat, codeGEF, lotnum, quant, date);
+
+            csv.AppendLine(newline);
+
+            File.WriteAllText(fileName, csv.ToString());
+            //using (var fs = new FileStream(fileName, FileMode.OpenOrCreate))
+            //{
+            //    //Write your file here
+
+            //    fs.Write()
+            //}
+
 
         }
 
