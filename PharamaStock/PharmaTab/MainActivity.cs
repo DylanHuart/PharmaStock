@@ -53,85 +53,85 @@ namespace PharmaTab
 
             
 
-            EditText patient = FindViewById<EditText>(Resource.Id.numpat);
-            EditText gef = FindViewById<EditText>(Resource.Id.codgef);
-            EditText lot = FindViewById<EditText>(Resource.Id.numlot);
-            EditText quantite = FindViewById<EditText>(Resource.Id.qtedel);
-            EditText date = FindViewById<EditText>(Resource.Id.datedel);
-            DatePicker datepick = FindViewById<DatePicker>(Resource.Id.datePicker1);
+           // EditText patient = FindViewById<EditText>(Resource.Id.numpat);
+           // EditText gef = FindViewById<EditText>(Resource.Id.codgef);
+           // EditText lot = FindViewById<EditText>(Resource.Id.numlot);
+           // EditText quantite = FindViewById<EditText>(Resource.Id.qtedel);
+           // EditText date = FindViewById<EditText>(Resource.Id.datedel);
+           // DatePicker datepick = FindViewById<DatePicker>(Resource.Id.datePicker1);
 
-            Button savebt = FindViewById<Button>(Resource.Id.buttonenr);
-            Button selectdate = FindViewById<Button>(Resource.Id.button4);
-            Button send = FindViewById<Button>(Resource.Id.buttonenv);
-            Button historique = FindViewById<Button>(Resource.Id.buttonhist);
+           // Button savebt = FindViewById<Button>(Resource.Id.buttonenr);
+           // Button selectdate = FindViewById<Button>(Resource.Id.button4);
+           // Button send = FindViewById<Button>(Resource.Id.buttonenv);
+           // Button historique = FindViewById<Button>(Resource.Id.buttonhist);
             
-           // datepick.Visibility = Android.Views.ViewStates.Gone;
+           //// datepick.Visibility = Android.Views.ViewStates.Gone;
 
-            selectdate.Click += Button_Click;
-            savebt.Click += Button_Click;
-            send.Click += Button_Click;
-            historique.Click += Button_Click;
+           // selectdate.Click += Button_Click;
+           // savebt.Click += Button_Click;
+           // send.Click += Button_Click;
+           // historique.Click += Button_Click;
 
-            void Button_Click(object sender, EventArgs e)
-            {
-                Button btn = (Button)sender;
-                switch (btn.Id)
-                {
-                    case Resource.Id.button4: //select date
-                        datepick.Visibility = ViewStates.Visible;
-                        break;
-                    case Resource.Id.buttonenr:     //enregistrer csv
-                        //Création du fichier CSV
-                        if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text))
-                            CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text);
+           // void Button_Click(object sender, EventArgs e)
+           // {
+           //     Button btn = (Button)sender;
+           //     switch (btn.Id)
+           //     {
+           //         case Resource.Id.button4: //select date
+           //             datepick.Visibility = ViewStates.Visible;
+           //             break;
+           //         case Resource.Id.buttonenr:     //enregistrer csv
+           //             //Création du fichier CSV
+           //             if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text))
+           //                 CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text);
 
-                        //Vide les champs d'entrée
-                        quantite.Text = "";
-                        lot.Text = "";
-                        gef.Text = "";
-                        patient.Text = "";
-                        break;
-                    case Resource.Id.buttonenv: //envoyer mail
-                        try
-                        {
-                            MailMessage mail = new MailMessage();
-                            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com", 587);
-                            mail.From = new MailAddress("jolyrudypro@gmail.com");
-                            mail.To.Add("jolyrudy@msn.com");
-                            mail.Subject = "Document CSV";
-                            mail.Body = "Veuillez trouver ci joint le document récapitalif de la journée";
-                            System.Net.Mail.Attachment pj;
-                            pj = new Attachment(fileName);
-                            mail.Attachments.Add(pj);
-                            SmtpServer.Port = 587;
-                            SmtpServer.Credentials = new System.Net.NetworkCredential("jolyrudypro@gmail.com", "joru59120");
-                            SmtpServer.EnableSsl = true;
-                            ServicePointManager.ServerCertificateValidationCallback = delegate (object sende, X509Certificate certificate, X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
-                            {
-                                return true;
-                            };
-                            SmtpServer.Send(mail);
-                            Toast.MakeText(Application.Context, "Mail envoyé", ToastLength.Short).Show();
-                        }
-                        catch (Exception ex)
-                        {
+           //             //Vide les champs d'entrée
+           //             quantite.Text = "";
+           //             lot.Text = "";
+           //             gef.Text = "";
+           //             patient.Text = "";
+           //             break;
+           //         case Resource.Id.buttonenv: //envoyer mail
+           //             try
+           //             {
+           //                 MailMessage mail = new MailMessage();
+           //                 SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com", 587);
+           //                 mail.From = new MailAddress("jolyrudypro@gmail.com");
+           //                 mail.To.Add("jolyrudy@msn.com");
+           //                 mail.Subject = "Document CSV";
+           //                 mail.Body = "Veuillez trouver ci joint le document récapitalif de la journée";
+           //                 System.Net.Mail.Attachment pj;
+           //                 pj = new Attachment(fileName);
+           //                 mail.Attachments.Add(pj);
+           //                 SmtpServer.Port = 587;
+           //                 SmtpServer.Credentials = new System.Net.NetworkCredential("jolyrudypro@gmail.com", "joru59120");
+           //                 SmtpServer.EnableSsl = true;
+           //                 ServicePointManager.ServerCertificateValidationCallback = delegate (object sende, X509Certificate certificate, X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
+           //                 {
+           //                     return true;
+           //                 };
+           //                 SmtpServer.Send(mail);
+           //                 Toast.MakeText(Application.Context, "Mail envoyé", ToastLength.Short).Show();
+           //             }
+           //             catch (Exception ex)
+           //             {
 
-                            Toast.MakeText(Application.Context, ex.ToString(), ToastLength.Long);
-                        }
-                        break;
-                    case Resource.Id.buttonhist:    //historique
-                        //Intent historiqueActivity = new Intent(this, typeof(historique));
-                        //StartActivity(historiqueActivity);
-                        Toast.MakeText(Application.Context, "Historique", ToastLength.Long);
-                        break;
-                }
-            }
+           //                 Toast.MakeText(Application.Context, ex.ToString(), ToastLength.Long);
+           //             }
+           //             break;
+           //         case Resource.Id.buttonhist:    //historique
+           //             //Intent historiqueActivity = new Intent(this, typeof(historique));
+           //             //StartActivity(historiqueActivity);
+           //             Toast.MakeText(Application.Context, "Historique", ToastLength.Long);
+           //             break;
+           //     }
+           // }
             
-            datepick.DateChanged += (s, e) =>
-            {
-                date.Text = datepick.DateTime.ToLongDateString();
-                datepick.Visibility = Android.Views.ViewStates.Gone;
-            };
+           // datepick.DateChanged += (s, e) =>
+           // {
+           //     date.Text = datepick.DateTime.ToLongDateString();
+           //     datepick.Visibility = Android.Views.ViewStates.Gone;
+           // };
         }
 
         string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
