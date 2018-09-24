@@ -2081,85 +2081,121 @@ namespace PharamaStock
 			public const int abc_vector_test = 2130837586;
 			
 			// aapt resource value: 0x7f020053
-			public const int avd_hide_password = 2130837587;
-			
-			// aapt resource value: 0x7f020068
-			public const int avd_hide_password_1 = 2130837608;
-			
-			// aapt resource value: 0x7f020069
-			public const int avd_hide_password_2 = 2130837609;
-			
-			// aapt resource value: 0x7f02006a
-			public const int avd_hide_password_3 = 2130837610;
+			public const int AUTO = 2130837587;
 			
 			// aapt resource value: 0x7f020054
-			public const int avd_show_password = 2130837588;
-			
-			// aapt resource value: 0x7f02006b
-			public const int avd_show_password_1 = 2130837611;
-			
-			// aapt resource value: 0x7f02006c
-			public const int avd_show_password_2 = 2130837612;
-			
-			// aapt resource value: 0x7f02006d
-			public const int avd_show_password_3 = 2130837613;
+			public const int AUTO_selection = 2130837588;
 			
 			// aapt resource value: 0x7f020055
-			public const int design_bottom_navigation_item_background = 2130837589;
+			public const int avd_hide_password = 2130837589;
+			
+			// aapt resource value: 0x7f020074
+			public const int avd_hide_password_1 = 2130837620;
+			
+			// aapt resource value: 0x7f020075
+			public const int avd_hide_password_2 = 2130837621;
+			
+			// aapt resource value: 0x7f020076
+			public const int avd_hide_password_3 = 2130837622;
 			
 			// aapt resource value: 0x7f020056
-			public const int design_fab_background = 2130837590;
+			public const int avd_show_password = 2130837590;
+			
+			// aapt resource value: 0x7f020077
+			public const int avd_show_password_1 = 2130837623;
+			
+			// aapt resource value: 0x7f020078
+			public const int avd_show_password_2 = 2130837624;
+			
+			// aapt resource value: 0x7f020079
+			public const int avd_show_password_3 = 2130837625;
 			
 			// aapt resource value: 0x7f020057
-			public const int design_ic_visibility = 2130837591;
+			public const int calendar = 2130837591;
 			
 			// aapt resource value: 0x7f020058
-			public const int design_ic_visibility_off = 2130837592;
+			public const int design_bottom_navigation_item_background = 2130837592;
 			
 			// aapt resource value: 0x7f020059
-			public const int design_password_eye = 2130837593;
+			public const int design_fab_background = 2130837593;
 			
 			// aapt resource value: 0x7f02005a
-			public const int design_snackbar_background = 2130837594;
+			public const int design_ic_visibility = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
-			public const int navigation_empty_icon = 2130837595;
+			public const int design_ic_visibility_off = 2130837595;
 			
 			// aapt resource value: 0x7f02005c
-			public const int notification_action_background = 2130837596;
+			public const int design_password_eye = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int notification_bg = 2130837597;
+			public const int design_snackbar_background = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
-			public const int notification_bg_low = 2130837598;
+			public const int ENREGISTRER = 2130837598;
 			
 			// aapt resource value: 0x7f02005f
-			public const int notification_bg_low_normal = 2130837599;
+			public const int ENVOYER = 2130837599;
 			
 			// aapt resource value: 0x7f020060
-			public const int notification_bg_low_pressed = 2130837600;
+			public const int Fond = 2130837600;
 			
 			// aapt resource value: 0x7f020061
-			public const int notification_bg_normal = 2130837601;
+			public const int fondtab = 2130837601;
 			
 			// aapt resource value: 0x7f020062
-			public const int notification_bg_normal_pressed = 2130837602;
+			public const int Historique = 2130837602;
 			
 			// aapt resource value: 0x7f020063
-			public const int notification_icon_background = 2130837603;
-			
-			// aapt resource value: 0x7f020066
-			public const int notification_template_icon_bg = 2130837606;
-			
-			// aapt resource value: 0x7f020067
-			public const int notification_template_icon_low_bg = 2130837607;
+			public const int Logo = 2130837603;
 			
 			// aapt resource value: 0x7f020064
-			public const int notification_tile_bg = 2130837604;
+			public const int MANUEL = 2130837604;
 			
 			// aapt resource value: 0x7f020065
-			public const int notify_panel_notification_icon_bg = 2130837605;
+			public const int MANUEL_selection = 2130837605;
+			
+			// aapt resource value: 0x7f020066
+			public const int navigation_empty_icon = 2130837606;
+			
+			// aapt resource value: 0x7f020067
+			public const int notification_action_background = 2130837607;
+			
+			// aapt resource value: 0x7f020068
+			public const int notification_bg = 2130837608;
+			
+			// aapt resource value: 0x7f020069
+			public const int notification_bg_low = 2130837609;
+			
+			// aapt resource value: 0x7f02006a
+			public const int notification_bg_low_normal = 2130837610;
+			
+			// aapt resource value: 0x7f02006b
+			public const int notification_bg_low_pressed = 2130837611;
+			
+			// aapt resource value: 0x7f02006c
+			public const int notification_bg_normal = 2130837612;
+			
+			// aapt resource value: 0x7f02006d
+			public const int notification_bg_normal_pressed = 2130837613;
+			
+			// aapt resource value: 0x7f02006e
+			public const int notification_icon_background = 2130837614;
+			
+			// aapt resource value: 0x7f020072
+			public const int notification_template_icon_bg = 2130837618;
+			
+			// aapt resource value: 0x7f020073
+			public const int notification_template_icon_low_bg = 2130837619;
+			
+			// aapt resource value: 0x7f02006f
+			public const int notification_tile_bg = 2130837615;
+			
+			// aapt resource value: 0x7f020070
+			public const int notify_panel_notification_icon_bg = 2130837616;
+			
+			// aapt resource value: 0x7f020071
+			public const int photo = 2130837617;
 			
 			static Drawable()
 			{
@@ -2174,8 +2210,13 @@ namespace PharamaStock
 		public partial class Id
 		{
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0b0085
 			public const int action0 = 2131427461;
+=======
+			// aapt resource value: 0x7f080090
+			public const int action0 = 2131230864;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f0b0064
 			public const int action_bar = 2131427428;
@@ -2198,17 +2239,30 @@ namespace PharamaStock
 			// aapt resource value: 0x7f0b0041
 			public const int action_bar_title = 2131427393;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0b0082
 			public const int action_container = 2131427458;
+=======
+			// aapt resource value: 0x7f08008d
+			public const int action_container = 2131230861;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f0b0065
 			public const int action_context_bar = 2131427429;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0b0089
 			public const int action_divider = 2131427465;
 			
 			// aapt resource value: 0x7f0b0083
 			public const int action_image = 2131427459;
+=======
+			// aapt resource value: 0x7f080094
+			public const int action_divider = 2131230868;
+			
+			// aapt resource value: 0x7f08008e
+			public const int action_image = 2131230862;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f0b0007
 			public const int action_menu_divider = 2131427335;
@@ -2225,11 +2279,19 @@ namespace PharamaStock
 			// aapt resource value: 0x7f0b0043
 			public const int action_mode_close_button = 2131427395;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0b0084
 			public const int action_text = 2131427460;
 			
 			// aapt resource value: 0x7f0b0092
 			public const int actions = 2131427474;
+=======
+			// aapt resource value: 0x7f08008f
+			public const int action_text = 2131230863;
+			
+			// aapt resource value: 0x7f08009d
+			public const int actions = 2131230877;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f0b0044
 			public const int activity_chooser_view_content = 2131427396;
@@ -2255,11 +2317,37 @@ namespace PharamaStock
 			// aapt resource value: 0x7f0b0015
 			public const int bottom = 2131427349;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0b004b
 			public const int buttonPanel = 2131427403;
 			
 			// aapt resource value: 0x7f0b0086
 			public const int cancel_action = 2131427462;
+=======
+			// aapt resource value: 0x7f080082
+			public const int button1 = 2131230850;
+			
+			// aapt resource value: 0x7f080084
+			public const int button2 = 2131230852;
+			
+			// aapt resource value: 0x7f080086
+			public const int button3 = 2131230854;
+			
+			// aapt resource value: 0x7f080088
+			public const int button4 = 2131230856;
+			
+			// aapt resource value: 0x7f08004b
+			public const int buttonPanel = 2131230795;
+			
+			// aapt resource value: 0x7f08008a
+			public const int buttonenr = 2131230858;
+			
+			// aapt resource value: 0x7f08008b
+			public const int buttonhist = 2131230859;
+			
+			// aapt resource value: 0x7f080091
+			public const int cancel_action = 2131230865;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f0b0016
 			public const int center = 2131427350;
@@ -2273,8 +2361,13 @@ namespace PharamaStock
 			// aapt resource value: 0x7f0b005b
 			public const int checkbox = 2131427419;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0b008e
 			public const int chronometer = 2131427470;
+=======
+			// aapt resource value: 0x7f080099
+			public const int chronometer = 2131230873;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f0b0022
 			public const int clip_horizontal = 2131427362;
@@ -2324,14 +2417,36 @@ namespace PharamaStock
 			// aapt resource value: 0x7f0b0066
 			public const int edit_query = 2131427430;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0b0019
 			public const int end = 2131427353;
+=======
+			// aapt resource value: 0x7f080081
+			public const int editText1 = 2131230849;
+			
+			// aapt resource value: 0x7f080083
+			public const int editText2 = 2131230851;
+			
+			// aapt resource value: 0x7f080085
+			public const int editText3 = 2131230853;
+			
+			// aapt resource value: 0x7f080087
+			public const int editText4 = 2131230855;
+			
+			// aapt resource value: 0x7f080066
+			public const int edit_query = 2131230822;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f0b0098
 			public const int end_padder = 2131427480;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0b000f
 			public const int enterAlways = 2131427343;
+=======
+			// aapt resource value: 0x7f0800a3
+			public const int end_padder = 2131230883;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f0b0010
 			public const int enterAlwaysCollapsed = 2131427344;
@@ -2369,8 +2484,13 @@ namespace PharamaStock
 			// aapt resource value: 0x7f0b0093
 			public const int icon_group = 2131427475;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0b003e
 			public const int ifRoom = 2131427390;
+=======
+			// aapt resource value: 0x7f08009e
+			public const int icon_group = 2131230878;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f0b0046
 			public const int image = 2131427398;
@@ -2378,8 +2498,16 @@ namespace PharamaStock
 			// aapt resource value: 0x7f0b008f
 			public const int info = 2131427471;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0b000e
 			public const int item_touch_helper_previous_elevation = 2131427342;
+=======
+			// aapt resource value: 0x7f080089
+			public const int imageView1 = 2131230857;
+			
+			// aapt resource value: 0x7f08009a
+			public const int info = 2131230874;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f0b0077
 			public const int largeLabel = 2131427447;
@@ -2390,11 +2518,19 @@ namespace PharamaStock
 			// aapt resource value: 0x7f0b0094
 			public const int line1 = 2131427476;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0b0096
 			public const int line3 = 2131427478;
 			
 			// aapt resource value: 0x7f0b0030
 			public const int listMode = 2131427376;
+=======
+			// aapt resource value: 0x7f08009f
+			public const int line1 = 2131230879;
+			
+			// aapt resource value: 0x7f0800a1
+			public const int line3 = 2131230881;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f0b0048
 			public const int list_item = 2131427400;
@@ -2402,11 +2538,19 @@ namespace PharamaStock
 			// aapt resource value: 0x7f0b009a
 			public const int masked = 2131427482;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0b0088
 			public const int media_actions = 2131427464;
 			
 			// aapt resource value: 0x7f0b003b
 			public const int middle = 2131427387;
+=======
+			// aapt resource value: 0x7f0800a5
+			public const int masked = 2131230885;
+			
+			// aapt resource value: 0x7f080093
+			public const int media_actions = 2131230867;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f0b0027
 			public const int mini = 2131427367;
@@ -2429,6 +2573,7 @@ namespace PharamaStock
 			// aapt resource value: 0x7f0b0091
 			public const int notification_background = 2131427473;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0b008b
 			public const int notification_main_column = 2131427467;
 			
@@ -2437,6 +2582,16 @@ namespace PharamaStock
 			
 			// aapt resource value: 0x7f0b0020
 			public const int parallax = 2131427360;
+=======
+			// aapt resource value: 0x7f08009c
+			public const int notification_background = 2131230876;
+			
+			// aapt resource value: 0x7f080096
+			public const int notification_main_column = 2131230870;
+			
+			// aapt resource value: 0x7f080095
+			public const int notification_main_column_container = 2131230869;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f0b004d
 			public const int parentPanel = 2131427405;
@@ -2459,11 +2614,19 @@ namespace PharamaStock
 			// aapt resource value: 0x7f0b0090
 			public const int right_icon = 2131427472;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0b008c
 			public const int right_side = 2131427468;
 			
 			// aapt resource value: 0x7f0b002c
 			public const int screen = 2131427372;
+=======
+			// aapt resource value: 0x7f08009b
+			public const int right_icon = 2131230875;
+			
+			// aapt resource value: 0x7f080097
+			public const int right_side = 2131230871;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f0b0012
 			public const int scroll = 2131427346;
@@ -2558,8 +2721,13 @@ namespace PharamaStock
 			// aapt resource value: 0x7f0b0087
 			public const int status_bar_latest_event_content = 2131427463;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0b005e
 			public const int submenuarrow = 2131427422;
+=======
+			// aapt resource value: 0x7f080092
+			public const int status_bar_latest_event_content = 2131230866;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f0b006f
 			public const int submit_area = 2131427439;
@@ -2570,11 +2738,22 @@ namespace PharamaStock
 			// aapt resource value: 0x7f0b0097
 			public const int text = 2131427479;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0b0095
 			public const int text2 = 2131427477;
 			
 			// aapt resource value: 0x7f0b0052
 			public const int textSpacerNoButtons = 2131427410;
+=======
+			// aapt resource value: 0x7f08008c
+			public const int tabWidget1 = 2131230860;
+			
+			// aapt resource value: 0x7f0800a2
+			public const int text = 2131230882;
+			
+			// aapt resource value: 0x7f0800a0
+			public const int text2 = 2131230880;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f0b0051
 			public const int textSpacerNoTitle = 2131427409;
@@ -2591,8 +2770,13 @@ namespace PharamaStock
 			// aapt resource value: 0x7f0b0000
 			public const int textinput_counter = 2131427328;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0b0001
 			public const int textinput_error = 2131427329;
+=======
+			// aapt resource value: 0x7f080098
+			public const int time = 2131230872;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f0b008d
 			public const int time = 2131427469;
@@ -2630,8 +2814,13 @@ namespace PharamaStock
 			// aapt resource value: 0x7f0b0002
 			public const int view_offset_helper = 2131427330;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0b0099
 			public const int visible = 2131427481;
+=======
+			// aapt resource value: 0x7f0800a4
+			public const int visible = 2131230884;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f0b0040
 			public const int withText = 2131427392;
@@ -2819,61 +3008,64 @@ namespace PharamaStock
 			public const int design_text_input_password_icon = 2130968617;
 			
 			// aapt resource value: 0x7f04002a
-			public const int notification_action = 2130968618;
+			public const int Fragment1 = 2130968618;
 			
 			// aapt resource value: 0x7f04002b
-			public const int notification_action_tombstone = 2130968619;
+			public const int notification_action = 2130968619;
 			
 			// aapt resource value: 0x7f04002c
-			public const int notification_media_action = 2130968620;
+			public const int notification_action_tombstone = 2130968620;
 			
 			// aapt resource value: 0x7f04002d
-			public const int notification_media_cancel_action = 2130968621;
+			public const int notification_media_action = 2130968621;
 			
 			// aapt resource value: 0x7f04002e
-			public const int notification_template_big_media = 2130968622;
+			public const int notification_media_cancel_action = 2130968622;
 			
 			// aapt resource value: 0x7f04002f
-			public const int notification_template_big_media_custom = 2130968623;
+			public const int notification_template_big_media = 2130968623;
 			
 			// aapt resource value: 0x7f040030
-			public const int notification_template_big_media_narrow = 2130968624;
+			public const int notification_template_big_media_custom = 2130968624;
 			
 			// aapt resource value: 0x7f040031
-			public const int notification_template_big_media_narrow_custom = 2130968625;
+			public const int notification_template_big_media_narrow = 2130968625;
 			
 			// aapt resource value: 0x7f040032
-			public const int notification_template_custom_big = 2130968626;
+			public const int notification_template_big_media_narrow_custom = 2130968626;
 			
 			// aapt resource value: 0x7f040033
-			public const int notification_template_icon_group = 2130968627;
+			public const int notification_template_custom_big = 2130968627;
 			
 			// aapt resource value: 0x7f040034
-			public const int notification_template_lines_media = 2130968628;
+			public const int notification_template_icon_group = 2130968628;
 			
 			// aapt resource value: 0x7f040035
-			public const int notification_template_media = 2130968629;
+			public const int notification_template_lines_media = 2130968629;
 			
 			// aapt resource value: 0x7f040036
-			public const int notification_template_media_custom = 2130968630;
+			public const int notification_template_media = 2130968630;
 			
 			// aapt resource value: 0x7f040037
-			public const int notification_template_part_chronometer = 2130968631;
+			public const int notification_template_media_custom = 2130968631;
 			
 			// aapt resource value: 0x7f040038
-			public const int notification_template_part_time = 2130968632;
+			public const int notification_template_part_chronometer = 2130968632;
 			
 			// aapt resource value: 0x7f040039
-			public const int select_dialog_item_material = 2130968633;
+			public const int notification_template_part_time = 2130968633;
 			
 			// aapt resource value: 0x7f04003a
-			public const int select_dialog_multichoice_material = 2130968634;
+			public const int select_dialog_item_material = 2130968634;
 			
 			// aapt resource value: 0x7f04003b
-			public const int select_dialog_singlechoice_material = 2130968635;
+			public const int select_dialog_multichoice_material = 2130968635;
 			
 			// aapt resource value: 0x7f04003c
-			public const int support_simple_spinner_dropdown_item = 2130968636;
+			public const int select_dialog_singlechoice_material = 2130968636;
+			
+			// aapt resource value: 0x7f04003d
+			public const int support_simple_spinner_dropdown_item = 2130968637;
 			
 			static Layout()
 			{
@@ -3052,6 +3244,7 @@ namespace PharamaStock
 		public partial class Style
 		{
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0700ba
 			public const int AlertDialog_AppCompat = 2131165370;
 			
@@ -3087,6 +3280,43 @@ namespace PharamaStock
 			
 			// aapt resource value: 0x7f0700c3
 			public const int Base_DialogWindowTitleBackground_AppCompat = 2131165379;
+=======
+			// aapt resource value: 0x7f0a009f
+			public const int AlertDialog_AppCompat = 2131361951;
+			
+			// aapt resource value: 0x7f0a00a0
+			public const int AlertDialog_AppCompat_Light = 2131361952;
+			
+			// aapt resource value: 0x7f0a00a1
+			public const int Animation_AppCompat_Dialog = 2131361953;
+			
+			// aapt resource value: 0x7f0a00a2
+			public const int Animation_AppCompat_DropDownUp = 2131361954;
+			
+			// aapt resource value: 0x7f0a0161
+			public const int Animation_Design_BottomSheetDialog = 2131362145;
+			
+			// aapt resource value: 0x7f0a017a
+			public const int AppTheme = 2131362170;
+			
+			// aapt resource value: 0x7f0a00a3
+			public const int Base_AlertDialog_AppCompat = 2131361955;
+			
+			// aapt resource value: 0x7f0a00a4
+			public const int Base_AlertDialog_AppCompat_Light = 2131361956;
+			
+			// aapt resource value: 0x7f0a00a5
+			public const int Base_Animation_AppCompat_Dialog = 2131361957;
+			
+			// aapt resource value: 0x7f0a00a6
+			public const int Base_Animation_AppCompat_DropDownUp = 2131361958;
+			
+			// aapt resource value: 0x7f0a00a7
+			public const int Base_DialogWindowTitle_AppCompat = 2131361959;
+			
+			// aapt resource value: 0x7f0a00a8
+			public const int Base_DialogWindowTitleBackground_AppCompat = 2131361960;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f07005a
 			public const int Base_TextAppearance_AppCompat = 2131165274;
@@ -3142,8 +3372,13 @@ namespace PharamaStock
 			// aapt resource value: 0x7f070067
 			public const int Base_TextAppearance_AppCompat_Menu = 2131165287;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0700c4
 			public const int Base_TextAppearance_AppCompat_SearchResult = 2131165380;
+=======
+			// aapt resource value: 0x7f0a00a9
+			public const int Base_TextAppearance_AppCompat_SearchResult = 2131361961;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f070068
 			public const int Base_TextAppearance_AppCompat_SearchResult_Subtitle = 2131165288;
@@ -3202,8 +3437,13 @@ namespace PharamaStock
 			// aapt resource value: 0x7f0700b0
 			public const int Base_TextAppearance_AppCompat_Widget_Button_Inverse = 2131165360;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0700c5
 			public const int Base_TextAppearance_AppCompat_Widget_DropDownItem = 2131165381;
+=======
+			// aapt resource value: 0x7f0a00aa
+			public const int Base_TextAppearance_AppCompat_Widget_DropDownItem = 2131361962;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f070074
 			public const int Base_TextAppearance_AppCompat_Widget_PopupMenu_Header = 2131165300;
@@ -3220,8 +3460,13 @@ namespace PharamaStock
 			// aapt resource value: 0x7f070078
 			public const int Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem = 2131165304;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0700c6
 			public const int Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item = 2131165382;
+=======
+			// aapt resource value: 0x7f0a00ab
+			public const int Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item = 2131361963;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f070079
 			public const int Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle = 2131165305;
@@ -3232,8 +3477,13 @@ namespace PharamaStock
 			// aapt resource value: 0x7f07007b
 			public const int Base_Theme_AppCompat = 2131165307;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0700c7
 			public const int Base_Theme_AppCompat_CompactMenu = 2131165383;
+=======
+			// aapt resource value: 0x7f0a00ac
+			public const int Base_Theme_AppCompat_CompactMenu = 2131361964;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f07002c
 			public const int Base_Theme_AppCompat_Dialog = 2131165228;
@@ -3241,8 +3491,13 @@ namespace PharamaStock
 			// aapt resource value: 0x7f07002d
 			public const int Base_Theme_AppCompat_Dialog_Alert = 2131165229;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0700c8
 			public const int Base_Theme_AppCompat_Dialog_FixedSize = 2131165384;
+=======
+			// aapt resource value: 0x7f0a00ad
+			public const int Base_Theme_AppCompat_Dialog_FixedSize = 2131361965;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f07002e
 			public const int Base_Theme_AppCompat_Dialog_MinWidth = 2131165230;
@@ -3253,8 +3508,13 @@ namespace PharamaStock
 			// aapt resource value: 0x7f07007c
 			public const int Base_Theme_AppCompat_Light = 2131165308;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0700c9
 			public const int Base_Theme_AppCompat_Light_DarkActionBar = 2131165385;
+=======
+			// aapt resource value: 0x7f0a00ae
+			public const int Base_Theme_AppCompat_Light_DarkActionBar = 2131361966;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f07002f
 			public const int Base_Theme_AppCompat_Light_Dialog = 2131165231;
@@ -3262,8 +3522,13 @@ namespace PharamaStock
 			// aapt resource value: 0x7f070030
 			public const int Base_Theme_AppCompat_Light_Dialog_Alert = 2131165232;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0700ca
 			public const int Base_Theme_AppCompat_Light_Dialog_FixedSize = 2131165386;
+=======
+			// aapt resource value: 0x7f0a00af
+			public const int Base_Theme_AppCompat_Light_Dialog_FixedSize = 2131361967;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f070031
 			public const int Base_Theme_AppCompat_Light_Dialog_MinWidth = 2131165233;
@@ -3271,6 +3536,7 @@ namespace PharamaStock
 			// aapt resource value: 0x7f07001d
 			public const int Base_Theme_AppCompat_Light_DialogWhenLarge = 2131165213;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0700cb
 			public const int Base_ThemeOverlay_AppCompat = 2131165387;
 			
@@ -3282,6 +3548,19 @@ namespace PharamaStock
 			
 			// aapt resource value: 0x7f0700ce
 			public const int Base_ThemeOverlay_AppCompat_Dark_ActionBar = 2131165390;
+=======
+			// aapt resource value: 0x7f0a00b0
+			public const int Base_ThemeOverlay_AppCompat = 2131361968;
+			
+			// aapt resource value: 0x7f0a00b1
+			public const int Base_ThemeOverlay_AppCompat_ActionBar = 2131361969;
+			
+			// aapt resource value: 0x7f0a00b2
+			public const int Base_ThemeOverlay_AppCompat_Dark = 2131361970;
+			
+			// aapt resource value: 0x7f0a00b3
+			public const int Base_ThemeOverlay_AppCompat_Dark_ActionBar = 2131361971;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f070032
 			public const int Base_ThemeOverlay_AppCompat_Dialog = 2131165234;
@@ -3289,8 +3568,13 @@ namespace PharamaStock
 			// aapt resource value: 0x7f070033
 			public const int Base_ThemeOverlay_AppCompat_Dialog_Alert = 2131165235;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0700cf
 			public const int Base_ThemeOverlay_AppCompat_Light = 2131165391;
+=======
+			// aapt resource value: 0x7f0a00b4
+			public const int Base_ThemeOverlay_AppCompat_Light = 2131361972;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f070034
 			public const int Base_V11_Theme_AppCompat_Dialog = 2131165236;
@@ -3334,6 +3618,7 @@ namespace PharamaStock
 			// aapt resource value: 0x7f0700b2
 			public const int Base_V23_Theme_AppCompat_Light = 2131165362;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0700d0
 			public const int Base_V7_Theme_AppCompat = 2131165392;
 			
@@ -3363,6 +3648,37 @@ namespace PharamaStock
 			
 			// aapt resource value: 0x7f0700d9
 			public const int Base_Widget_AppCompat_ActionBar_TabBar = 2131165401;
+=======
+			// aapt resource value: 0x7f0a00b5
+			public const int Base_V7_Theme_AppCompat = 2131361973;
+			
+			// aapt resource value: 0x7f0a00b6
+			public const int Base_V7_Theme_AppCompat_Dialog = 2131361974;
+			
+			// aapt resource value: 0x7f0a00b7
+			public const int Base_V7_Theme_AppCompat_Light = 2131361975;
+			
+			// aapt resource value: 0x7f0a00b8
+			public const int Base_V7_Theme_AppCompat_Light_Dialog = 2131361976;
+			
+			// aapt resource value: 0x7f0a00b9
+			public const int Base_V7_ThemeOverlay_AppCompat_Dialog = 2131361977;
+			
+			// aapt resource value: 0x7f0a00ba
+			public const int Base_V7_Widget_AppCompat_AutoCompleteTextView = 2131361978;
+			
+			// aapt resource value: 0x7f0a00bb
+			public const int Base_V7_Widget_AppCompat_EditText = 2131361979;
+			
+			// aapt resource value: 0x7f0a00bc
+			public const int Base_Widget_AppCompat_ActionBar = 2131361980;
+			
+			// aapt resource value: 0x7f0a00bd
+			public const int Base_Widget_AppCompat_ActionBar_Solid = 2131361981;
+			
+			// aapt resource value: 0x7f0a00be
+			public const int Base_Widget_AppCompat_ActionBar_TabBar = 2131361982;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f070082
 			public const int Base_Widget_AppCompat_ActionBar_TabText = 2131165314;
@@ -3379,11 +3695,19 @@ namespace PharamaStock
 			// aapt resource value: 0x7f070086
 			public const int Base_Widget_AppCompat_ActionButton_Overflow = 2131165318;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0700da
 			public const int Base_Widget_AppCompat_ActionMode = 2131165402;
 			
 			// aapt resource value: 0x7f0700db
 			public const int Base_Widget_AppCompat_ActivityChooserView = 2131165403;
+=======
+			// aapt resource value: 0x7f0a00bf
+			public const int Base_Widget_AppCompat_ActionMode = 2131361983;
+			
+			// aapt resource value: 0x7f0a00c0
+			public const int Base_Widget_AppCompat_ActivityChooserView = 2131361984;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f070040
 			public const int Base_Widget_AppCompat_AutoCompleteTextView = 2131165248;
@@ -3397,8 +3721,13 @@ namespace PharamaStock
 			// aapt resource value: 0x7f070089
 			public const int Base_Widget_AppCompat_Button_Borderless_Colored = 2131165321;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0700dc
 			public const int Base_Widget_AppCompat_Button_ButtonBar_AlertDialog = 2131165404;
+=======
+			// aapt resource value: 0x7f0a00c1
+			public const int Base_Widget_AppCompat_Button_ButtonBar_AlertDialog = 2131361985;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f0700b3
 			public const int Base_Widget_AppCompat_Button_Colored = 2131165363;
@@ -3409,8 +3738,13 @@ namespace PharamaStock
 			// aapt resource value: 0x7f07008b
 			public const int Base_Widget_AppCompat_ButtonBar = 2131165323;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0700dd
 			public const int Base_Widget_AppCompat_ButtonBar_AlertDialog = 2131165405;
+=======
+			// aapt resource value: 0x7f0a00c2
+			public const int Base_Widget_AppCompat_ButtonBar_AlertDialog = 2131361986;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f07008c
 			public const int Base_Widget_AppCompat_CompoundButton_CheckBox = 2131165324;
@@ -3418,14 +3752,24 @@ namespace PharamaStock
 			// aapt resource value: 0x7f07008d
 			public const int Base_Widget_AppCompat_CompoundButton_RadioButton = 2131165325;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0700de
 			public const int Base_Widget_AppCompat_CompoundButton_Switch = 2131165406;
+=======
+			// aapt resource value: 0x7f0a00c3
+			public const int Base_Widget_AppCompat_CompoundButton_Switch = 2131361987;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f07001b
 			public const int Base_Widget_AppCompat_DrawerArrowToggle = 2131165211;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0700df
 			public const int Base_Widget_AppCompat_DrawerArrowToggle_Common = 2131165407;
+=======
+			// aapt resource value: 0x7f0a00c4
+			public const int Base_Widget_AppCompat_DrawerArrowToggle_Common = 2131361988;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f07008e
 			public const int Base_Widget_AppCompat_DropDownItem_Spinner = 2131165326;
@@ -3436,6 +3780,7 @@ namespace PharamaStock
 			// aapt resource value: 0x7f07008f
 			public const int Base_Widget_AppCompat_ImageButton = 2131165327;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0700e0
 			public const int Base_Widget_AppCompat_Light_ActionBar = 2131165408;
 			
@@ -3444,6 +3789,16 @@ namespace PharamaStock
 			
 			// aapt resource value: 0x7f0700e2
 			public const int Base_Widget_AppCompat_Light_ActionBar_TabBar = 2131165410;
+=======
+			// aapt resource value: 0x7f0a00c5
+			public const int Base_Widget_AppCompat_Light_ActionBar = 2131361989;
+			
+			// aapt resource value: 0x7f0a00c6
+			public const int Base_Widget_AppCompat_Light_ActionBar_Solid = 2131361990;
+			
+			// aapt resource value: 0x7f0a00c7
+			public const int Base_Widget_AppCompat_Light_ActionBar_TabBar = 2131361991;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f070090
 			public const int Base_Widget_AppCompat_Light_ActionBar_TabText = 2131165328;
@@ -3460,8 +3815,13 @@ namespace PharamaStock
 			// aapt resource value: 0x7f070094
 			public const int Base_Widget_AppCompat_Light_PopupMenu_Overflow = 2131165332;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0700e3
 			public const int Base_Widget_AppCompat_ListMenuView = 2131165411;
+=======
+			// aapt resource value: 0x7f0a00c8
+			public const int Base_Widget_AppCompat_ListMenuView = 2131361992;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f070095
 			public const int Base_Widget_AppCompat_ListPopupWindow = 2131165333;
@@ -3481,8 +3841,13 @@ namespace PharamaStock
 			// aapt resource value: 0x7f07009a
 			public const int Base_Widget_AppCompat_PopupMenu_Overflow = 2131165338;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0700e4
 			public const int Base_Widget_AppCompat_PopupWindow = 2131165412;
+=======
+			// aapt resource value: 0x7f0a00c9
+			public const int Base_Widget_AppCompat_PopupWindow = 2131361993;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f070037
 			public const int Base_Widget_AppCompat_ProgressBar = 2131165239;
@@ -3499,17 +3864,30 @@ namespace PharamaStock
 			// aapt resource value: 0x7f0700b5
 			public const int Base_Widget_AppCompat_RatingBar_Small = 2131165365;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0700e5
 			public const int Base_Widget_AppCompat_SearchView = 2131165413;
 			
 			// aapt resource value: 0x7f0700e6
 			public const int Base_Widget_AppCompat_SearchView_ActionBar = 2131165414;
+=======
+			// aapt resource value: 0x7f0a00ca
+			public const int Base_Widget_AppCompat_SearchView = 2131361994;
+			
+			// aapt resource value: 0x7f0a00cb
+			public const int Base_Widget_AppCompat_SearchView_ActionBar = 2131361995;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f07009c
 			public const int Base_Widget_AppCompat_SeekBar = 2131165340;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0700e7
 			public const int Base_Widget_AppCompat_SeekBar_Discrete = 2131165415;
+=======
+			// aapt resource value: 0x7f0a00cc
+			public const int Base_Widget_AppCompat_SeekBar_Discrete = 2131361996;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f07009d
 			public const int Base_Widget_AppCompat_Spinner = 2131165341;
@@ -3520,17 +3898,30 @@ namespace PharamaStock
 			// aapt resource value: 0x7f07009e
 			public const int Base_Widget_AppCompat_TextView_SpinnerItem = 2131165342;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0700e8
 			public const int Base_Widget_AppCompat_Toolbar = 2131165416;
+=======
+			// aapt resource value: 0x7f0a00cd
+			public const int Base_Widget_AppCompat_Toolbar = 2131361997;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f07009f
 			public const int Base_Widget_AppCompat_Toolbar_Button_Navigation = 2131165343;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f070003
 			public const int Base_Widget_Design_AppBarLayout = 2131165187;
 			
 			// aapt resource value: 0x7f070004
 			public const int Base_Widget_Design_TabLayout = 2131165188;
+=======
+			// aapt resource value: 0x7f0a0162
+			public const int Base_Widget_Design_AppBarLayout = 2131362146;
+			
+			// aapt resource value: 0x7f0a0163
+			public const int Base_Widget_Design_TabLayout = 2131362147;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f070039
 			public const int Platform_AppCompat = 2131165241;
@@ -3565,8 +3956,19 @@ namespace PharamaStock
 			// aapt resource value: 0x7f0700a4
 			public const int Platform_V21_AppCompat_Light = 2131165348;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0700b8
 			public const int Platform_V25_AppCompat = 2131165368;
+=======
+			// aapt resource value: 0x7f0a009d
+			public const int Platform_V25_AppCompat = 2131361949;
+			
+			// aapt resource value: 0x7f0a009e
+			public const int Platform_V25_AppCompat_Light = 2131361950;
+			
+			// aapt resource value: 0x7f0a0022
+			public const int Platform_Widget_AppCompat_Spinner = 2131361826;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f0700b9
 			public const int Platform_V25_AppCompat_Light = 2131165369;
@@ -3610,6 +4012,7 @@ namespace PharamaStock
 			// aapt resource value: 0x7f070057
 			public const int RtlOverlay_Widget_AppCompat_SearchView_MagIcon = 2131165271;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f070058
 			public const int RtlUnderlay_Widget_AppCompat_ActionButton = 2131165272;
 			
@@ -3669,6 +4072,67 @@ namespace PharamaStock
 			
 			// aapt resource value: 0x7f0700fa
 			public const int TextAppearance_AppCompat_Medium = 2131165434;
+=======
+			// aapt resource value: 0x7f0a00ce
+			public const int TextAppearance_AppCompat = 2131361998;
+			
+			// aapt resource value: 0x7f0a00cf
+			public const int TextAppearance_AppCompat_Body1 = 2131361999;
+			
+			// aapt resource value: 0x7f0a00d0
+			public const int TextAppearance_AppCompat_Body2 = 2131362000;
+			
+			// aapt resource value: 0x7f0a00d1
+			public const int TextAppearance_AppCompat_Button = 2131362001;
+			
+			// aapt resource value: 0x7f0a00d2
+			public const int TextAppearance_AppCompat_Caption = 2131362002;
+			
+			// aapt resource value: 0x7f0a00d3
+			public const int TextAppearance_AppCompat_Display1 = 2131362003;
+			
+			// aapt resource value: 0x7f0a00d4
+			public const int TextAppearance_AppCompat_Display2 = 2131362004;
+			
+			// aapt resource value: 0x7f0a00d5
+			public const int TextAppearance_AppCompat_Display3 = 2131362005;
+			
+			// aapt resource value: 0x7f0a00d6
+			public const int TextAppearance_AppCompat_Display4 = 2131362006;
+			
+			// aapt resource value: 0x7f0a00d7
+			public const int TextAppearance_AppCompat_Headline = 2131362007;
+			
+			// aapt resource value: 0x7f0a00d8
+			public const int TextAppearance_AppCompat_Inverse = 2131362008;
+			
+			// aapt resource value: 0x7f0a00d9
+			public const int TextAppearance_AppCompat_Large = 2131362009;
+			
+			// aapt resource value: 0x7f0a00da
+			public const int TextAppearance_AppCompat_Large_Inverse = 2131362010;
+			
+			// aapt resource value: 0x7f0a00db
+			public const int TextAppearance_AppCompat_Light_SearchResult_Subtitle = 2131362011;
+			
+			// aapt resource value: 0x7f0a00dc
+			public const int TextAppearance_AppCompat_Light_SearchResult_Title = 2131362012;
+			
+			// aapt resource value: 0x7f0a00dd
+			public const int TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = 2131362013;
+			
+			// aapt resource value: 0x7f0a00de
+			public const int TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = 2131362014;
+			
+			// aapt resource value: 0x7f0a00df
+			public const int TextAppearance_AppCompat_Medium = 2131362015;
+			
+			// aapt resource value: 0x7f0a00e0
+			public const int TextAppearance_AppCompat_Medium_Inverse = 2131362016;
+			
+			// aapt resource value: 0x7f0a00e1
+			public const int TextAppearance_AppCompat_Menu = 2131362017;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f0700fb
 			public const int TextAppearance_AppCompat_Medium_Inverse = 2131165435;
@@ -3679,11 +4143,19 @@ namespace PharamaStock
 			// aapt resource value: 0x7f070045
 			public const int TextAppearance_AppCompat_Notification = 2131165253;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0700a5
 			public const int TextAppearance_AppCompat_Notification_Info = 2131165349;
 			
 			// aapt resource value: 0x7f0700a6
 			public const int TextAppearance_AppCompat_Notification_Info_Media = 2131165350;
+=======
+			// aapt resource value: 0x7f0a00e2
+			public const int TextAppearance_AppCompat_Notification_Line2 = 2131362018;
+			
+			// aapt resource value: 0x7f0a00e3
+			public const int TextAppearance_AppCompat_Notification_Line2_Media = 2131362019;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f0700fd
 			public const int TextAppearance_AppCompat_Notification_Line2 = 2131165437;
@@ -3706,6 +4178,7 @@ namespace PharamaStock
 			// aapt resource value: 0x7f0700aa
 			public const int TextAppearance_AppCompat_Notification_Title_Media = 2131165354;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f0700ff
 			public const int TextAppearance_AppCompat_SearchResult_Subtitle = 2131165439;
 			
@@ -3807,6 +4280,109 @@ namespace PharamaStock
 			
 			// aapt resource value: 0x7f07000b
 			public const int TextAppearance_Design_Tab = 2131165195;
+=======
+			// aapt resource value: 0x7f0a00e4
+			public const int TextAppearance_AppCompat_SearchResult_Subtitle = 2131362020;
+			
+			// aapt resource value: 0x7f0a00e5
+			public const int TextAppearance_AppCompat_SearchResult_Title = 2131362021;
+			
+			// aapt resource value: 0x7f0a00e6
+			public const int TextAppearance_AppCompat_Small = 2131362022;
+			
+			// aapt resource value: 0x7f0a00e7
+			public const int TextAppearance_AppCompat_Small_Inverse = 2131362023;
+			
+			// aapt resource value: 0x7f0a00e8
+			public const int TextAppearance_AppCompat_Subhead = 2131362024;
+			
+			// aapt resource value: 0x7f0a00e9
+			public const int TextAppearance_AppCompat_Subhead_Inverse = 2131362025;
+			
+			// aapt resource value: 0x7f0a00ea
+			public const int TextAppearance_AppCompat_Title = 2131362026;
+			
+			// aapt resource value: 0x7f0a00eb
+			public const int TextAppearance_AppCompat_Title_Inverse = 2131362027;
+			
+			// aapt resource value: 0x7f0a00ec
+			public const int TextAppearance_AppCompat_Widget_ActionBar_Menu = 2131362028;
+			
+			// aapt resource value: 0x7f0a00ed
+			public const int TextAppearance_AppCompat_Widget_ActionBar_Subtitle = 2131362029;
+			
+			// aapt resource value: 0x7f0a00ee
+			public const int TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = 2131362030;
+			
+			// aapt resource value: 0x7f0a00ef
+			public const int TextAppearance_AppCompat_Widget_ActionBar_Title = 2131362031;
+			
+			// aapt resource value: 0x7f0a00f0
+			public const int TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = 2131362032;
+			
+			// aapt resource value: 0x7f0a00f1
+			public const int TextAppearance_AppCompat_Widget_ActionMode_Subtitle = 2131362033;
+			
+			// aapt resource value: 0x7f0a00f2
+			public const int TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse = 2131362034;
+			
+			// aapt resource value: 0x7f0a00f3
+			public const int TextAppearance_AppCompat_Widget_ActionMode_Title = 2131362035;
+			
+			// aapt resource value: 0x7f0a00f4
+			public const int TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse = 2131362036;
+			
+			// aapt resource value: 0x7f0a00f5
+			public const int TextAppearance_AppCompat_Widget_Button = 2131362037;
+			
+			// aapt resource value: 0x7f0a00f6
+			public const int TextAppearance_AppCompat_Widget_Button_Borderless_Colored = 2131362038;
+			
+			// aapt resource value: 0x7f0a00f7
+			public const int TextAppearance_AppCompat_Widget_Button_Colored = 2131362039;
+			
+			// aapt resource value: 0x7f0a00f8
+			public const int TextAppearance_AppCompat_Widget_Button_Inverse = 2131362040;
+			
+			// aapt resource value: 0x7f0a00f9
+			public const int TextAppearance_AppCompat_Widget_DropDownItem = 2131362041;
+			
+			// aapt resource value: 0x7f0a00fa
+			public const int TextAppearance_AppCompat_Widget_PopupMenu_Header = 2131362042;
+			
+			// aapt resource value: 0x7f0a00fb
+			public const int TextAppearance_AppCompat_Widget_PopupMenu_Large = 2131362043;
+			
+			// aapt resource value: 0x7f0a00fc
+			public const int TextAppearance_AppCompat_Widget_PopupMenu_Small = 2131362044;
+			
+			// aapt resource value: 0x7f0a00fd
+			public const int TextAppearance_AppCompat_Widget_Switch = 2131362045;
+			
+			// aapt resource value: 0x7f0a00fe
+			public const int TextAppearance_AppCompat_Widget_TextView_SpinnerItem = 2131362046;
+			
+			// aapt resource value: 0x7f0a0164
+			public const int TextAppearance_Design_CollapsingToolbar_Expanded = 2131362148;
+			
+			// aapt resource value: 0x7f0a0165
+			public const int TextAppearance_Design_Counter = 2131362149;
+			
+			// aapt resource value: 0x7f0a0166
+			public const int TextAppearance_Design_Counter_Overflow = 2131362150;
+			
+			// aapt resource value: 0x7f0a0167
+			public const int TextAppearance_Design_Error = 2131362151;
+			
+			// aapt resource value: 0x7f0a0168
+			public const int TextAppearance_Design_Hint = 2131362152;
+			
+			// aapt resource value: 0x7f0a0169
+			public const int TextAppearance_Design_Snackbar_Message = 2131362153;
+			
+			// aapt resource value: 0x7f0a016a
+			public const int TextAppearance_Design_Tab = 2131362154;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f070047
 			public const int TextAppearance_StatusBar_EventContent = 2131165255;
@@ -3823,6 +4399,7 @@ namespace PharamaStock
 			// aapt resource value: 0x7f07004b
 			public const int TextAppearance_StatusBar_EventContent_Title = 2131165259;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f07011a
 			public const int TextAppearance_Widget_AppCompat_ExpandedMenu_Item = 2131165466;
 			
@@ -3837,6 +4414,22 @@ namespace PharamaStock
 			
 			// aapt resource value: 0x7f07011e
 			public const int Theme_AppCompat_CompactMenu = 2131165470;
+=======
+			// aapt resource value: 0x7f0a00ff
+			public const int TextAppearance_Widget_AppCompat_ExpandedMenu_Item = 2131362047;
+			
+			// aapt resource value: 0x7f0a0100
+			public const int TextAppearance_Widget_AppCompat_Toolbar_Subtitle = 2131362048;
+			
+			// aapt resource value: 0x7f0a0101
+			public const int TextAppearance_Widget_AppCompat_Toolbar_Title = 2131362049;
+			
+			// aapt resource value: 0x7f0a0102
+			public const int Theme_AppCompat = 2131362050;
+			
+			// aapt resource value: 0x7f0a0103
+			public const int Theme_AppCompat_CompactMenu = 2131362051;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f07001f
 			public const int Theme_AppCompat_DayNight = 2131165215;
@@ -3859,6 +4452,7 @@ namespace PharamaStock
 			// aapt resource value: 0x7f070025
 			public const int Theme_AppCompat_DayNight_NoActionBar = 2131165221;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f07011f
 			public const int Theme_AppCompat_Dialog = 2131165471;
 			
@@ -4092,6 +4686,241 @@ namespace PharamaStock
 			
 			// aapt resource value: 0x7f070166
 			public const int Widget_AppCompat_ListView_Menu = 2131165542;
+=======
+			// aapt resource value: 0x7f0a0104
+			public const int Theme_AppCompat_Dialog = 2131362052;
+			
+			// aapt resource value: 0x7f0a0105
+			public const int Theme_AppCompat_Dialog_Alert = 2131362053;
+			
+			// aapt resource value: 0x7f0a0106
+			public const int Theme_AppCompat_Dialog_MinWidth = 2131362054;
+			
+			// aapt resource value: 0x7f0a0107
+			public const int Theme_AppCompat_DialogWhenLarge = 2131362055;
+			
+			// aapt resource value: 0x7f0a0108
+			public const int Theme_AppCompat_Light = 2131362056;
+			
+			// aapt resource value: 0x7f0a0109
+			public const int Theme_AppCompat_Light_DarkActionBar = 2131362057;
+			
+			// aapt resource value: 0x7f0a010a
+			public const int Theme_AppCompat_Light_Dialog = 2131362058;
+			
+			// aapt resource value: 0x7f0a010b
+			public const int Theme_AppCompat_Light_Dialog_Alert = 2131362059;
+			
+			// aapt resource value: 0x7f0a010c
+			public const int Theme_AppCompat_Light_Dialog_MinWidth = 2131362060;
+			
+			// aapt resource value: 0x7f0a010d
+			public const int Theme_AppCompat_Light_DialogWhenLarge = 2131362061;
+			
+			// aapt resource value: 0x7f0a010e
+			public const int Theme_AppCompat_Light_NoActionBar = 2131362062;
+			
+			// aapt resource value: 0x7f0a010f
+			public const int Theme_AppCompat_NoActionBar = 2131362063;
+			
+			// aapt resource value: 0x7f0a016b
+			public const int Theme_Design = 2131362155;
+			
+			// aapt resource value: 0x7f0a016c
+			public const int Theme_Design_BottomSheetDialog = 2131362156;
+			
+			// aapt resource value: 0x7f0a016d
+			public const int Theme_Design_Light = 2131362157;
+			
+			// aapt resource value: 0x7f0a016e
+			public const int Theme_Design_Light_BottomSheetDialog = 2131362158;
+			
+			// aapt resource value: 0x7f0a016f
+			public const int Theme_Design_Light_NoActionBar = 2131362159;
+			
+			// aapt resource value: 0x7f0a0170
+			public const int Theme_Design_NoActionBar = 2131362160;
+			
+			// aapt resource value: 0x7f0a0110
+			public const int ThemeOverlay_AppCompat = 2131362064;
+			
+			// aapt resource value: 0x7f0a0111
+			public const int ThemeOverlay_AppCompat_ActionBar = 2131362065;
+			
+			// aapt resource value: 0x7f0a0112
+			public const int ThemeOverlay_AppCompat_Dark = 2131362066;
+			
+			// aapt resource value: 0x7f0a0113
+			public const int ThemeOverlay_AppCompat_Dark_ActionBar = 2131362067;
+			
+			// aapt resource value: 0x7f0a0114
+			public const int ThemeOverlay_AppCompat_Dialog = 2131362068;
+			
+			// aapt resource value: 0x7f0a0115
+			public const int ThemeOverlay_AppCompat_Dialog_Alert = 2131362069;
+			
+			// aapt resource value: 0x7f0a0116
+			public const int ThemeOverlay_AppCompat_Light = 2131362070;
+			
+			// aapt resource value: 0x7f0a0117
+			public const int Widget_AppCompat_ActionBar = 2131362071;
+			
+			// aapt resource value: 0x7f0a0118
+			public const int Widget_AppCompat_ActionBar_Solid = 2131362072;
+			
+			// aapt resource value: 0x7f0a0119
+			public const int Widget_AppCompat_ActionBar_TabBar = 2131362073;
+			
+			// aapt resource value: 0x7f0a011a
+			public const int Widget_AppCompat_ActionBar_TabText = 2131362074;
+			
+			// aapt resource value: 0x7f0a011b
+			public const int Widget_AppCompat_ActionBar_TabView = 2131362075;
+			
+			// aapt resource value: 0x7f0a011c
+			public const int Widget_AppCompat_ActionButton = 2131362076;
+			
+			// aapt resource value: 0x7f0a011d
+			public const int Widget_AppCompat_ActionButton_CloseMode = 2131362077;
+			
+			// aapt resource value: 0x7f0a011e
+			public const int Widget_AppCompat_ActionButton_Overflow = 2131362078;
+			
+			// aapt resource value: 0x7f0a011f
+			public const int Widget_AppCompat_ActionMode = 2131362079;
+			
+			// aapt resource value: 0x7f0a0120
+			public const int Widget_AppCompat_ActivityChooserView = 2131362080;
+			
+			// aapt resource value: 0x7f0a0121
+			public const int Widget_AppCompat_AutoCompleteTextView = 2131362081;
+			
+			// aapt resource value: 0x7f0a0122
+			public const int Widget_AppCompat_Button = 2131362082;
+			
+			// aapt resource value: 0x7f0a0123
+			public const int Widget_AppCompat_Button_Borderless = 2131362083;
+			
+			// aapt resource value: 0x7f0a0124
+			public const int Widget_AppCompat_Button_Borderless_Colored = 2131362084;
+			
+			// aapt resource value: 0x7f0a0125
+			public const int Widget_AppCompat_Button_ButtonBar_AlertDialog = 2131362085;
+			
+			// aapt resource value: 0x7f0a0126
+			public const int Widget_AppCompat_Button_Colored = 2131362086;
+			
+			// aapt resource value: 0x7f0a0127
+			public const int Widget_AppCompat_Button_Small = 2131362087;
+			
+			// aapt resource value: 0x7f0a0128
+			public const int Widget_AppCompat_ButtonBar = 2131362088;
+			
+			// aapt resource value: 0x7f0a0129
+			public const int Widget_AppCompat_ButtonBar_AlertDialog = 2131362089;
+			
+			// aapt resource value: 0x7f0a012a
+			public const int Widget_AppCompat_CompoundButton_CheckBox = 2131362090;
+			
+			// aapt resource value: 0x7f0a012b
+			public const int Widget_AppCompat_CompoundButton_RadioButton = 2131362091;
+			
+			// aapt resource value: 0x7f0a012c
+			public const int Widget_AppCompat_CompoundButton_Switch = 2131362092;
+			
+			// aapt resource value: 0x7f0a012d
+			public const int Widget_AppCompat_DrawerArrowToggle = 2131362093;
+			
+			// aapt resource value: 0x7f0a012e
+			public const int Widget_AppCompat_DropDownItem_Spinner = 2131362094;
+			
+			// aapt resource value: 0x7f0a012f
+			public const int Widget_AppCompat_EditText = 2131362095;
+			
+			// aapt resource value: 0x7f0a0130
+			public const int Widget_AppCompat_ImageButton = 2131362096;
+			
+			// aapt resource value: 0x7f0a0131
+			public const int Widget_AppCompat_Light_ActionBar = 2131362097;
+			
+			// aapt resource value: 0x7f0a0132
+			public const int Widget_AppCompat_Light_ActionBar_Solid = 2131362098;
+			
+			// aapt resource value: 0x7f0a0133
+			public const int Widget_AppCompat_Light_ActionBar_Solid_Inverse = 2131362099;
+			
+			// aapt resource value: 0x7f0a0134
+			public const int Widget_AppCompat_Light_ActionBar_TabBar = 2131362100;
+			
+			// aapt resource value: 0x7f0a0135
+			public const int Widget_AppCompat_Light_ActionBar_TabBar_Inverse = 2131362101;
+			
+			// aapt resource value: 0x7f0a0136
+			public const int Widget_AppCompat_Light_ActionBar_TabText = 2131362102;
+			
+			// aapt resource value: 0x7f0a0137
+			public const int Widget_AppCompat_Light_ActionBar_TabText_Inverse = 2131362103;
+			
+			// aapt resource value: 0x7f0a0138
+			public const int Widget_AppCompat_Light_ActionBar_TabView = 2131362104;
+			
+			// aapt resource value: 0x7f0a0139
+			public const int Widget_AppCompat_Light_ActionBar_TabView_Inverse = 2131362105;
+			
+			// aapt resource value: 0x7f0a013a
+			public const int Widget_AppCompat_Light_ActionButton = 2131362106;
+			
+			// aapt resource value: 0x7f0a013b
+			public const int Widget_AppCompat_Light_ActionButton_CloseMode = 2131362107;
+			
+			// aapt resource value: 0x7f0a013c
+			public const int Widget_AppCompat_Light_ActionButton_Overflow = 2131362108;
+			
+			// aapt resource value: 0x7f0a013d
+			public const int Widget_AppCompat_Light_ActionMode_Inverse = 2131362109;
+			
+			// aapt resource value: 0x7f0a013e
+			public const int Widget_AppCompat_Light_ActivityChooserView = 2131362110;
+			
+			// aapt resource value: 0x7f0a013f
+			public const int Widget_AppCompat_Light_AutoCompleteTextView = 2131362111;
+			
+			// aapt resource value: 0x7f0a0140
+			public const int Widget_AppCompat_Light_DropDownItem_Spinner = 2131362112;
+			
+			// aapt resource value: 0x7f0a0141
+			public const int Widget_AppCompat_Light_ListPopupWindow = 2131362113;
+			
+			// aapt resource value: 0x7f0a0142
+			public const int Widget_AppCompat_Light_ListView_DropDown = 2131362114;
+			
+			// aapt resource value: 0x7f0a0143
+			public const int Widget_AppCompat_Light_PopupMenu = 2131362115;
+			
+			// aapt resource value: 0x7f0a0144
+			public const int Widget_AppCompat_Light_PopupMenu_Overflow = 2131362116;
+			
+			// aapt resource value: 0x7f0a0145
+			public const int Widget_AppCompat_Light_SearchView = 2131362117;
+			
+			// aapt resource value: 0x7f0a0146
+			public const int Widget_AppCompat_Light_Spinner_DropDown_ActionBar = 2131362118;
+			
+			// aapt resource value: 0x7f0a0147
+			public const int Widget_AppCompat_ListMenuView = 2131362119;
+			
+			// aapt resource value: 0x7f0a0148
+			public const int Widget_AppCompat_ListPopupWindow = 2131362120;
+			
+			// aapt resource value: 0x7f0a0149
+			public const int Widget_AppCompat_ListView = 2131362121;
+			
+			// aapt resource value: 0x7f0a014a
+			public const int Widget_AppCompat_ListView_DropDown = 2131362122;
+			
+			// aapt resource value: 0x7f0a014b
+			public const int Widget_AppCompat_ListView_Menu = 2131362123;
+>>>>>>> Branche-Julien
 			
 			// aapt resource value: 0x7f0700ab
 			public const int Widget_AppCompat_NotificationActionContainer = 2131165355;
@@ -4099,6 +4928,7 @@ namespace PharamaStock
 			// aapt resource value: 0x7f0700ac
 			public const int Widget_AppCompat_NotificationActionText = 2131165356;
 			
+<<<<<<< HEAD
 			// aapt resource value: 0x7f070167
 			public const int Widget_AppCompat_PopupMenu = 2131165543;
 			
@@ -4188,6 +5018,97 @@ namespace PharamaStock
 			
 			// aapt resource value: 0x7f07001a
 			public const int Widget_Design_TextInputLayout = 2131165210;
+=======
+			// aapt resource value: 0x7f0a014c
+			public const int Widget_AppCompat_PopupMenu = 2131362124;
+			
+			// aapt resource value: 0x7f0a014d
+			public const int Widget_AppCompat_PopupMenu_Overflow = 2131362125;
+			
+			// aapt resource value: 0x7f0a014e
+			public const int Widget_AppCompat_PopupWindow = 2131362126;
+			
+			// aapt resource value: 0x7f0a014f
+			public const int Widget_AppCompat_ProgressBar = 2131362127;
+			
+			// aapt resource value: 0x7f0a0150
+			public const int Widget_AppCompat_ProgressBar_Horizontal = 2131362128;
+			
+			// aapt resource value: 0x7f0a0151
+			public const int Widget_AppCompat_RatingBar = 2131362129;
+			
+			// aapt resource value: 0x7f0a0152
+			public const int Widget_AppCompat_RatingBar_Indicator = 2131362130;
+			
+			// aapt resource value: 0x7f0a0153
+			public const int Widget_AppCompat_RatingBar_Small = 2131362131;
+			
+			// aapt resource value: 0x7f0a0154
+			public const int Widget_AppCompat_SearchView = 2131362132;
+			
+			// aapt resource value: 0x7f0a0155
+			public const int Widget_AppCompat_SearchView_ActionBar = 2131362133;
+			
+			// aapt resource value: 0x7f0a0156
+			public const int Widget_AppCompat_SeekBar = 2131362134;
+			
+			// aapt resource value: 0x7f0a0157
+			public const int Widget_AppCompat_SeekBar_Discrete = 2131362135;
+			
+			// aapt resource value: 0x7f0a0158
+			public const int Widget_AppCompat_Spinner = 2131362136;
+			
+			// aapt resource value: 0x7f0a0159
+			public const int Widget_AppCompat_Spinner_DropDown = 2131362137;
+			
+			// aapt resource value: 0x7f0a015a
+			public const int Widget_AppCompat_Spinner_DropDown_ActionBar = 2131362138;
+			
+			// aapt resource value: 0x7f0a015b
+			public const int Widget_AppCompat_Spinner_Underlined = 2131362139;
+			
+			// aapt resource value: 0x7f0a015c
+			public const int Widget_AppCompat_TextView_SpinnerItem = 2131362140;
+			
+			// aapt resource value: 0x7f0a015d
+			public const int Widget_AppCompat_Toolbar = 2131362141;
+			
+			// aapt resource value: 0x7f0a015e
+			public const int Widget_AppCompat_Toolbar_Button_Navigation = 2131362142;
+			
+			// aapt resource value: 0x7f0a0160
+			public const int Widget_Design_AppBarLayout = 2131362144;
+			
+			// aapt resource value: 0x7f0a0171
+			public const int Widget_Design_BottomNavigationView = 2131362161;
+			
+			// aapt resource value: 0x7f0a0172
+			public const int Widget_Design_BottomSheet_Modal = 2131362162;
+			
+			// aapt resource value: 0x7f0a0173
+			public const int Widget_Design_CollapsingToolbar = 2131362163;
+			
+			// aapt resource value: 0x7f0a0174
+			public const int Widget_Design_CoordinatorLayout = 2131362164;
+			
+			// aapt resource value: 0x7f0a0175
+			public const int Widget_Design_FloatingActionButton = 2131362165;
+			
+			// aapt resource value: 0x7f0a0176
+			public const int Widget_Design_NavigationView = 2131362166;
+			
+			// aapt resource value: 0x7f0a0177
+			public const int Widget_Design_ScrimInsetsFrameLayout = 2131362167;
+			
+			// aapt resource value: 0x7f0a0178
+			public const int Widget_Design_Snackbar = 2131362168;
+			
+			// aapt resource value: 0x7f0a015f
+			public const int Widget_Design_TabLayout = 2131362143;
+			
+			// aapt resource value: 0x7f0a0179
+			public const int Widget_Design_TextInputLayout = 2131362169;
+>>>>>>> Branche-Julien
 			
 			static Style()
 			{
