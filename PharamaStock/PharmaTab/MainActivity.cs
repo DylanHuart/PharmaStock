@@ -18,7 +18,6 @@ using System.Net.Mail;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using Android.Content.PM;
-using Plugin.Permissions;
 using Android;
 using Android.Support.V4.Content;
 
@@ -55,7 +54,7 @@ namespace PharmaTab
             }
             else
             {
-                Toast.MakeText(this, "Permission accordée", ToastLength.Short);
+                Toast.MakeText(Application.Context, "Permission accordée", ToastLength.Short).Show();
             }
 
             adapter = new TabsAdapter(this, SupportFragmentManager);
@@ -74,13 +73,13 @@ namespace PharmaTab
             EditText lot = FindViewById<EditText>(Resource.Id.numlot);
             EditText quantite = FindViewById<EditText>(Resource.Id.qtedel);
             EditText date = FindViewById<EditText>(Resource.Id.datedel);
-            DatePicker datepick = FindViewById<DatePicker>(Resource.Id.datePicker1);
+           // DatePicker datepick = FindViewById<DatePicker>(Resource.Id.datePicker1);
             Button savebt = FindViewById<Button>(Resource.Id.buttonenr);
             Button selectdate = FindViewById<Button>(Resource.Id.button5);
             Button send = FindViewById<Button>(Resource.Id.buttonenv);
             Button historique = FindViewById<Button>(Resource.Id.buttonhist);
 
-            datepick.Visibility = Android.Views.ViewStates.Gone;
+            //datepick.Visibility = Android.Views.ViewStates.Gone;
 
             selectdate.Click += Button_Click;
             savebt.Click += Button_Click;
@@ -93,7 +92,7 @@ namespace PharmaTab
                 switch (btn.Id)
                 {
                     case Resource.Id.button5: //select date
-                        datepick.Visibility = ViewStates.Visible;
+                        //datepick.Visibility = ViewStates.Visible;
                         break;
                     case Resource.Id.buttonenr:     //enregistrer csv
                                                     //Création du fichier CSV
@@ -142,19 +141,13 @@ namespace PharmaTab
                 }
             }
 
-            datepick.DateChanged += (s, e) =>
-            {
-                date.Text = datepick.DateTime.ToLongDateString();
-                datepick.Visibility = Android.Views.ViewStates.Gone;
-            };
+            //datepick.DateChanged += (s, e) =>
+            //{
+            //    date.Text = datepick.DateTime.ToLongDateString();
+            //    datepick.Visibility = Android.Views.ViewStates.Gone;
+            //};
         }
 
-
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
-        {
-            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
 
 
         //Lieu de stockage
