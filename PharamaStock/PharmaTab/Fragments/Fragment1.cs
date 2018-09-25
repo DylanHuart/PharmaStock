@@ -10,6 +10,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading.Tasks;
 using ZXing;
 using ZXing.Mobile;
 
@@ -17,7 +18,7 @@ namespace PharmaTab.Fragments
 {
     public class Fragment1 : Android.Support.V4.App.Fragment
     {
-        string fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock_" + DateTime.Now.ToString("ddMMyyy") + ".csv";
+        
         
 
         public override void OnCreate(Bundle savedInstanceState)
@@ -33,7 +34,7 @@ namespace PharmaTab.Fragments
             var frag1 = new Fragment1 { Arguments = new Bundle() };
             return frag1;
         }
-
+        string fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock" + Java.IO.File.Separator + "Pharmastock_" + DateTime.Now.ToString("ddMMyyy") + ".csv";
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -54,12 +55,32 @@ namespace PharmaTab.Fragments
             Button scan2 = view.FindViewById<Button>(Resource.Id.button2);
             Button scan3 = view.FindViewById<Button>(Resource.Id.button3);
             Button scan4 = view.FindViewById<Button>(Resource.Id.button4);
-
-
-
+            
             MobileBarcodeScanner scanner;
+            
+            scan1.Click += (s, e) =>
+            {
+                Scan(s,e);
+            };
+            scan2.Click += (s, e) =>
+            {
+                Scan(s, e);
+            };
+            scan3.Click += (s, e) =>
+            {
+                Scan(s, e);
+            };
+            scan4.Click += (s, e) =>
+            {
+                Scan(s, e);
+            };
 
-            scan1.Click += async (s, e) =>
+            selectdate.Click += Button_Click;
+            savebt.Click += Button_Click;
+            send.Click += Button_Click;
+            historique.Click += Button_Click;
+
+            async Task Scan(object s,EventArgs e)
             {
                 MobileBarcodeScanner.Initialize(Activity.Application);
 
@@ -67,30 +88,35 @@ namespace PharmaTab.Fragments
 
                 var result = await scanner.Scan();
 
+                Button btn = (Button)s;
                 if (result == null)
                 {
                     return;
                 }
-
                 else
                 {
-                    patient.Text = result.Text;
+                    switch (btn.Id)
+                    {
+                        case Resource.Id.button1:
+                            patient.Text = result.Text;
+                            break;
+                        case Resource.Id.button2:
+                            gef.Text = result.Text;
+                            break;
+                        case Resource.Id.button3:
+                            quantite.Text = result.Text;
+                            break;
+                        case Resource.Id.button4:
+                            lot.Text = result.Text;
+                            break;
+                    }
                 }
-            };
-            scan2.Click += openscan;
-            scan3.Click += openscan;
-            scan4.Click += openscan;
-            
-            selectdate.Click += Button_Click;
-            savebt.Click += Button_Click;
-            send.Click += Button_Click;
-            historique.Click += Button_Click;
 
-
-            void openscan(object sender,EventArgs e)
-            {
-                Toast.MakeText(this.Context,"Coin", ToastLength.Long);
+                return;
             }
+
+            
+
             void Button_Click(object sender, EventArgs e)
             {
                 Button btn = (Button)sender;
@@ -147,7 +173,6 @@ namespace PharmaTab.Fragments
                         break;
                 }
             }
-
             
             return view;
 
@@ -161,13 +186,11 @@ namespace PharmaTab.Fragments
         //Méthode de création du fichier CSV
         public void CreateCSV(string numpat, string codeGEF, string lotnum, string quant, string date)
         {
-
             //Création d'un dossier
             if (!Directory.Exists(directory))
             {
                 Directory.CreateDirectory(directory);
                 Toast.MakeText(Application.Context, "Dossier Pharmastock créé", ToastLength.Short).Show();
-
             }
             //Nom du fichier + Location
 
