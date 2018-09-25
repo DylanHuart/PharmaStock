@@ -51,10 +51,8 @@ namespace PharmaTab
             if (ContextCompat.CheckSelfPermission(this, permission) != Permission.Granted)
             {
                 ActivityCompat.RequestPermissions(this, new String[] { Manifest.Permission.WriteExternalStorage }, 0);
-            }
-            else
-            {
                 Toast.MakeText(Application.Context, "Permission accordée", ToastLength.Short).Show();
+
             }
 
             adapter = new TabsAdapter(this, SupportFragmentManager);
