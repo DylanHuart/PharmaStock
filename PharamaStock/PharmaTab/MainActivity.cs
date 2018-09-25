@@ -40,7 +40,6 @@ namespace PharmaTab
                 SetSupportActionBar(toolbar);
                 SupportActionBar.SetDisplayHomeAsUpEnabled(false);
                 SupportActionBar.SetHomeButtonEnabled(false);
-
             }
 
             adapter = new TabsAdapter(this, SupportFragmentManager);
@@ -50,13 +49,8 @@ namespace PharmaTab
             
             tabs.SetupWithViewPager(pager);
             pager.OffscreenPageLimit = 3;
-            
-
-
         }
-
-       
-      
+        
         class TabsAdapter : FragmentStatePagerAdapter
         {
             string[] titles;
