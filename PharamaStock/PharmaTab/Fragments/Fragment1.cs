@@ -1,6 +1,8 @@
+using Android;
 using Android.App;
 using Android.OS;
 using Android.Support.V4.App;
+using Android.Support.V4.Content;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
@@ -26,7 +28,6 @@ namespace PharmaTab.Fragments
             base.OnCreate(savedInstanceState);
 
             // Create your fragment here
-            
         }
 
         public static Fragment1 NewInstance()
@@ -38,6 +39,8 @@ namespace PharmaTab.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
+
+           
             var ignored = base.OnCreateView(inflater, container, savedInstanceState);
             var view = inflater.Inflate(Resource.Layout.fragment1, null);
             
@@ -49,7 +52,7 @@ namespace PharmaTab.Fragments
 
             Button savebt = view.FindViewById<Button>(Resource.Id.buttonenr);
             Button selectdate = view.FindViewById<Button>(Resource.Id.button5);
-            Button send = view.FindViewById<Button>(Resource.Id.buttonenv);
+            //Button send = view.FindViewById<Button>(Resource.Id.buttonenv);
             Button historique = view.FindViewById<Button>(Resource.Id.buttonhist);
             Button scan1 = view.FindViewById<Button>(Resource.Id.button1);
             Button scan2 = view.FindViewById<Button>(Resource.Id.button2);
@@ -77,7 +80,7 @@ namespace PharmaTab.Fragments
 
             selectdate.Click += Button_Click;
             savebt.Click += Button_Click;
-            send.Click += Button_Click;
+            //send.Click += Button_Click;
             historique.Click += Button_Click;
 
             async Task Scan(object s,EventArgs e)
@@ -138,34 +141,34 @@ namespace PharmaTab.Fragments
                         gef.Text = "";
                         patient.Text = "";
                         break;
-                    case Resource.Id.buttonenv: //envoyer mail
-                        try
-                        {
-                            MailMessage mail = new MailMessage();
-                            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com", 587);
-                            mail.From = new MailAddress("jolyrudypro@gmail.com");
-                            mail.To.Add("jolyrudy@msn.com");
-                            mail.Subject = "Document CSV";
-                            mail.Body = "Veuillez trouver ci joint le document récapitalif de la journée";
-                            System.Net.Mail.Attachment pj;
-                            pj = new Attachment(fileName);
-                            mail.Attachments.Add(pj);
-                            SmtpServer.Port = 587;
-                            SmtpServer.Credentials = new System.Net.NetworkCredential("jolyrudypro@gmail.com", "joru59120");
-                            SmtpServer.EnableSsl = true;
-                            ServicePointManager.ServerCertificateValidationCallback = delegate (object sende, X509Certificate certificate, X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
-                            {
-                                return true;
-                            };
-                            SmtpServer.Send(mail);
-                            Toast.MakeText(Application.Context, "Mail envoyé", ToastLength.Short).Show();
-                        }
-                        catch (Exception ex)
-                        {
+                    //case Resource.Id.buttonenv: //envoyer mail
+                    //    try
+                    //    {
+                    //        MailMessage mail = new MailMessage();
+                    //        SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com", 587);
+                    //        mail.From = new MailAddress("jolyrudypro@gmail.com");
+                    //        mail.To.Add("jolyrudy@msn.com");
+                    //        mail.Subject = "Document CSV";
+                    //        mail.Body = "Veuillez trouver ci joint le document récapitalif de la journée";
+                    //        System.Net.Mail.Attachment pj;
+                    //        pj = new Attachment(fileName);
+                    //        mail.Attachments.Add(pj);
+                    //        SmtpServer.Port = 587;
+                    //        SmtpServer.Credentials = new System.Net.NetworkCredential("jolyrudypro@gmail.com", "joru59120");
+                    //        SmtpServer.EnableSsl = true;
+                    //        ServicePointManager.ServerCertificateValidationCallback = delegate (object sende, X509Certificate certificate, X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
+                    //        {
+                    //            return true;
+                    //        };
+                    //        SmtpServer.Send(mail);
+                    //        Toast.MakeText(Application.Context, "Mail envoyé", ToastLength.Short).Show();
+                    //    }
+                    //    catch (Exception ex)
+                    //    {
 
-                            Toast.MakeText(Application.Context, ex.ToString(), ToastLength.Long);
-                        }
-                        break;
+                    //        Toast.MakeText(Application.Context, ex.ToString(), ToastLength.Long);
+                    //    }
+                    //    break;
                     case Resource.Id.buttonhist:    //historique
                                                     //Intent historiqueActivity = new Intent(this, typeof(historique));
                                                     //StartActivity(historiqueActivity);
@@ -181,6 +184,9 @@ namespace PharmaTab.Fragments
                 date.Text = e.Date.ToLongDateString();
             }
         }
+
+
+
         string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
 
         //Méthode de création du fichier CSV
