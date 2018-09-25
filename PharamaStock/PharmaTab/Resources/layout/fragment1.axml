@@ -140,9 +140,4 @@
 		android:background="@android:color/transparent"
 		android:drawableTop="@drawable/Historique"
 		android:layout_marginBottom="93.0dp" />
-	<DatePicker
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_above="@id/button5"
-		android:id="@+id/datePicker1"/>
 </RelativeLayout>

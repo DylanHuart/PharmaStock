@@ -219,7 +219,7 @@ namespace PharmaTab
                 _dateSelectedHandler(selectedDate);
             }
         }
-
+        
         class TabsAdapter : FragmentStatePagerAdapter
         {
             string[] titles;
