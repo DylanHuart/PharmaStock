@@ -142,9 +142,6 @@
     <AndroidResource Include="Resources\values\strings.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Icon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Properties\AndroidManifest.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -169,11 +166,14 @@
     <AndroidResource Include="Resources\drawable\Fond.jpg" />
     <AndroidResource Include="Resources\drawable\fondtab.jpg" />
     <AndroidResource Include="Resources\drawable\Historique.png" />
-    <AndroidResource Include="Resources\drawable\Logo.png" />
     <AndroidResource Include="Resources\drawable\MANUEL.jpg" />
     <AndroidResource Include="Resources\drawable\MANUEL_selection.jpg" />
     <AndroidResource Include="Resources\drawable\photo.png" />
     <AndroidResource Include="Resources\drawable\chu.png" />
+    <AndroidResource Include="Resources\drawable\CHR.png" />
+    <AndroidResource Include="Resources\drawable\Icon.png" />
+    <AndroidResource Include="Resources\drawable\deletext.png" />
+    <AndroidResource Include="Resources\drawable\Logo12.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

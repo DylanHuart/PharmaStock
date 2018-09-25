@@ -1,4 +1,5 @@
 using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Support.V4.App;
 using Android.Util;
@@ -49,7 +50,6 @@ namespace PharmaTab.Fragments
 
             Button savebt = view.FindViewById<Button>(Resource.Id.buttonenr);
             Button selectdate = view.FindViewById<Button>(Resource.Id.button5);
-            Button send = view.FindViewById<Button>(Resource.Id.buttonenv);
             Button historique = view.FindViewById<Button>(Resource.Id.buttonhist);
             Button scan1 = view.FindViewById<Button>(Resource.Id.button1);
             Button scan2 = view.FindViewById<Button>(Resource.Id.button2);
@@ -77,7 +77,6 @@ namespace PharmaTab.Fragments
 
             selectdate.Click += Button_Click;
             savebt.Click += Button_Click;
-            send.Click += Button_Click;
             historique.Click += Button_Click;
 
             async Task Scan(object s,EventArgs e)
@@ -130,7 +129,7 @@ namespace PharmaTab.Fragments
                     case Resource.Id.buttonenr:     //enregistrer csv
                                                     //Création du fichier CSV
                         if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text))
-                            CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text);
+                            CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text,matricule.Text);
 
                         //Vide les champs d'entrée
                         quantite.Text = "";
@@ -138,38 +137,10 @@ namespace PharmaTab.Fragments
                         gef.Text = "";
                         patient.Text = "";
                         break;
-                    case Resource.Id.buttonenv: //envoyer mail
-                        try
-                        {
-                            MailMessage mail = new MailMessage();
-                            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com", 587);
-                            mail.From = new MailAddress("jolyrudypro@gmail.com");
-                            mail.To.Add("jolyrudy@msn.com");
-                            mail.Subject = "Document CSV";
-                            mail.Body = "Veuillez trouver ci joint le document récapitalif de la journée";
-                            System.Net.Mail.Attachment pj;
-                            pj = new Attachment(fileName);
-                            mail.Attachments.Add(pj);
-                            SmtpServer.Port = 587;
-                            SmtpServer.Credentials = new System.Net.NetworkCredential("jolyrudypro@gmail.com", "joru59120");
-                            SmtpServer.EnableSsl = true;
-                            ServicePointManager.ServerCertificateValidationCallback = delegate (object sende, X509Certificate certificate, X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
-                            {
-                                return true;
-                            };
-                            SmtpServer.Send(mail);
-                            Toast.MakeText(Application.Context, "Mail envoyé", ToastLength.Short).Show();
-                        }
-                        catch (Exception ex)
-                        {
-
-                            Toast.MakeText(Application.Context, ex.ToString(), ToastLength.Long);
-                        }
-                        break;
                     case Resource.Id.buttonhist:    //historique
-                                                    //Intent historiqueActivity = new Intent(this, typeof(historique));
-                                                    //StartActivity(historiqueActivity);
-                        Toast.MakeText(Application.Context, "Historique", ToastLength.Long);
+                        //Intent historiqueActivity = new Intent(this.Context, typeof(historique));
+                        //StartActivity(historiqueActivity);
+                        Toast.MakeText(Application.Context, "Historique", ToastLength.Long).Show();
                         break;
                 }
             }
@@ -184,7 +155,7 @@ namespace PharmaTab.Fragments
         string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
 
         //Méthode de création du fichier CSV
-        public void CreateCSV(string numpat, string codeGEF, string lotnum, string quant, string date)
+        public void CreateCSV(string numpat, string codeGEF, string lotnum, string quant, string date,string matricule)
         {
             //Création d'un dossier
             if (!Directory.Exists(directory))
@@ -195,12 +166,12 @@ namespace PharmaTab.Fragments
             //Nom du fichier + Location
 
             //Ligne à ajouter lors de l'enregistrement. Reprend les entrées des champs EditText
-            var newline = string.Format("{0};{1};{2};{3};{4}", numpat, codeGEF, lotnum, quant, date);
+            var newline = string.Format("{0};{1};{2};{3};{4};{5}", numpat, codeGEF, lotnum, quant, date,matricule);
 
             //Si le fichier n'existe pas, créer les entêtes et aller à la ligne. 
             if (!File.Exists(fileName))
             {
-                string header = "Patient n° :" + ";" + "code GEF :" + ";" + "Lot n° :" + ";" + "Quantité :" + ";" + "Délivré le :";
+                string header = "Patient n° :" + ";" + "code GEF :" + ";" + "Lot n° :" + ";" + "Quantité :" + ";" + "Délivré le :" + "Matricule :";
                 File.WriteAllText(fileName, header, Encoding.UTF8);       // Création de la ligne + Encodage pour les caractères spéciaux
                 File.AppendAllText(fileName, System.Environment.NewLine); // Aller à la ligne
             }

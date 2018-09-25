@@ -25,11 +25,13 @@ namespace PharmaTab
   
     public class MainActivity : AppCompatActivity
     {
-
-        string fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock_" + DateTime.Now.ToString("ddMMyyy") + ".csv";
         ViewPager pager;
         TabsAdapter adapter;
 
+        protected override void OnStart()
+        {
+            base.OnStart();
+        }
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
