@@ -17,6 +17,7 @@ using Android.Util;
 using System.Net.Mail;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
+using Android;
 
 namespace PharmaTab
 {
@@ -42,6 +43,8 @@ namespace PharmaTab
                 SupportActionBar.SetHomeButtonEnabled(false);
             }
 
+            var permissions = Manifest.Permission.WriteExternalStorage;
+            //if (OnRequestPermissionsResult(Application.Context, permissions))
             adapter = new TabsAdapter(this, SupportFragmentManager);
             pager = FindViewById<ViewPager>(Resource.Id.pager);
             var tabs = FindViewById<TabLayout>(Resource.Id.tabs);

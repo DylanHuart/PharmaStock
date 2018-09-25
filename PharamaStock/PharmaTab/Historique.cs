@@ -33,7 +33,7 @@ namespace PharmaTab
 
             ListView liste = new ListView(this)
             {
-
+                
             };
             view.AddView(liste);
 
