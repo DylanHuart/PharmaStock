@@ -99,7 +99,7 @@
 		android:layout_marginTop="195dp"
 		android:layout_marginLeft="20dp"
 		android:layout_toRightOf="@id/datedel"
-		android:id="@+id/button4"
+		android:id="@+id/button5"
 		android:background="@drawable/calendar"
 		android:drawableTop="@drawable/calendar"/>
 	<ImageView
@@ -140,9 +140,4 @@
 		android:background="@android:color/transparent"
 		android:drawableTop="@drawable/Historique"
 		android:layout_marginBottom="93.0dp" />
-	<DatePicker
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_above="@id/button4"
-		android:id="@+id/datePicker1" />
 </RelativeLayout>
