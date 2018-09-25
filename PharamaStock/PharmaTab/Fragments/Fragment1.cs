@@ -1,18 +1,12 @@
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Support.V4.App;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
 using System;
 using System.IO;
-using System.Net;
-using System.Net.Mail;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using ZXing;
 using ZXing.Mobile;
 
 namespace PharmaTab.Fragments
@@ -77,6 +71,7 @@ namespace PharmaTab.Fragments
 
             selectdate.Click += Button_Click;
             savebt.Click += Button_Click;
+            
             historique.Click += Button_Click;
 
             async Task Scan(object s,EventArgs e)
@@ -138,9 +133,9 @@ namespace PharmaTab.Fragments
                         patient.Text = "";
                         break;
                     case Resource.Id.buttonhist:    //historique
-                        //Intent historiqueActivity = new Intent(this.Context, typeof(historique));
-                        //StartActivity(historiqueActivity);
-                        Toast.MakeText(Application.Context, "Historique", ToastLength.Long).Show();
+                        Intent historiqueActivity = new Intent(this.Context, typeof(Historique));
+                        StartActivity(historiqueActivity);
+                        Toast.MakeText(Application.Context, "Historique", ToastLength.Long);
                         break;
                 }
             }

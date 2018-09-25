@@ -25,6 +25,8 @@ namespace PharmaTab
   
     public class MainActivity : AppCompatActivity
     {
+
+       
         ViewPager pager;
         TabsAdapter adapter;
 
