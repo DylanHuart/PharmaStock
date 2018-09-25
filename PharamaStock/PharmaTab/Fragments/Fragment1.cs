@@ -41,6 +41,8 @@ namespace PharmaTab.Fragments
             EditText lot = view.FindViewById<EditText>(Resource.Id.numlot);
             EditText quantite = view.FindViewById<EditText>(Resource.Id.qtedel);
             EditText date = view.FindViewById<EditText>(Resource.Id.datedel);
+            EditText matricule = new EditText(this.Context);
+            matricule.Text = "admin";
 
             Button savebt = view.FindViewById<Button>(Resource.Id.buttonenr);
             Button selectdate = view.FindViewById<Button>(Resource.Id.button5);
@@ -76,13 +78,40 @@ namespace PharmaTab.Fragments
 
             async Task Scan(object s,EventArgs e)
             {
-                MobileBarcodeScanner.Initialize(Activity.Application);
-
-                scanner = new MobileBarcodeScanner();
-
-                var result = await scanner.Scan();
-
                 Button btn = (Button)s;
+                var toptext = "";
+                switch (btn.Id)
+                {
+                    case Resource.Id.button1:
+                        toptext = "N° du patient";
+                        break;
+                    case Resource.Id.button2:
+                        toptext = "Code GEF";
+                        break;
+                    case Resource.Id.button3:
+                        toptext = "Quantité délivrée";
+                        break;
+                    case Resource.Id.button4:
+                        toptext = "N° du lot";
+                        break;
+                }
+
+                MobileBarcodeScanner.Initialize(Activity.Application);
+                var options = new MobileBarcodeScanningOptions
+                {
+                    AutoRotate = false,
+                    UseFrontCameraIfAvailable = false
+                };
+                scanner = new MobileBarcodeScanner()
+                {
+                    CancelButtonText = "Annuler",
+                    FlashButtonText = "Flash",
+                    TopText = toptext
+                };
+
+                var result = await scanner.Scan(options);
+
+                
                 if (result == null)
                 {
                     return;

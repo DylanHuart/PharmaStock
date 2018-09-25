@@ -29,11 +29,7 @@ namespace PharmaTab
        
         ViewPager pager;
         TabsAdapter adapter;
-
-        protected override void OnStart()
-        {
-            base.OnStart();
-        }
+        
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
