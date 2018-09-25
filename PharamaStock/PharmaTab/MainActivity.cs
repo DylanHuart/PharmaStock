@@ -8,7 +8,6 @@ using Android.OS;
 using Android.Support.V4.App;
 using Android.Support.V4.View;
 using PharmaTab.Fragments;
-
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using System.Text;
@@ -49,13 +48,7 @@ namespace PharmaTab
             // Afficher une boîte de dialogue pour accorder l'autorisation
             var permission = Manifest.Permission.WriteExternalStorage;
             if (ContextCompat.CheckSelfPermission(this, permission) != Permission.Granted)
-            {
-                ActivityCompat.RequestPermissions(this, new String[] { Manifest.Permission.WriteExternalStorage }, 0);
-            }
-            else
-            {
-                Toast.MakeText(Application.Context, "Permission accordée", ToastLength.Short).Show();
-            }
+                    ActivityCompat.RequestPermissions(this, new String[] { Manifest.Permission.WriteExternalStorage }, 0);
 
             adapter = new TabsAdapter(this, SupportFragmentManager);
             pager = FindViewById<ViewPager>(Resource.Id.pager);
