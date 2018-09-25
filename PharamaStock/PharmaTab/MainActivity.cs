@@ -17,6 +17,8 @@ using Android.Util;
 using System.Net.Mail;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
+using Android;
+using Android.Support.V4.Content;
 
 namespace PharmaTab
 {
@@ -41,6 +43,13 @@ namespace PharmaTab
                 SupportActionBar.SetDisplayHomeAsUpEnabled(false);
                 SupportActionBar.SetHomeButtonEnabled(false);
             }
+
+            // Affiche une boîte de dialogue pour accorder l'autorisation d'accès au stockage
+            var permissionSto = Manifest.Permission.WriteExternalStorage;
+            var permissionCam = Manifest.Permission.Camera;
+
+            if (ContextCompat.CheckSelfPermission(this, permissionSto) != Android.Content.PM.Permission.Granted || ContextCompat.CheckSelfPermission(this, permissionCam) != Android.Content.PM.Permission.Granted)
+                ActivityCompat.RequestPermissions(this, new String[] { Manifest.Permission.WriteExternalStorage, Manifest.Permission.Camera, Manifest.Permission.ReadExternalStorage }, 0);
 
             adapter = new TabsAdapter(this, SupportFragmentManager);
             pager = FindViewById<ViewPager>(Resource.Id.pager);
