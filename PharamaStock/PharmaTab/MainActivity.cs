@@ -17,6 +17,10 @@ using Android.Util;
 using System.Net.Mail;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
+using Android.Content.PM;
+using Plugin.Permissions;
+using Android;
+using Android.Support.V4.Content;
 
 namespace PharmaTab
 {
@@ -32,6 +36,7 @@ namespace PharmaTab
 
         protected override void OnCreate(Bundle bundle)
         {
+
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.main);
             var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
@@ -40,6 +45,17 @@ namespace PharmaTab
                 SetSupportActionBar(toolbar);
                 SupportActionBar.SetDisplayHomeAsUpEnabled(false);
                 SupportActionBar.SetHomeButtonEnabled(false);
+            }
+
+            // Afficher une boîte de dialogue pour accorder l'autorisation
+            var permission = Manifest.Permission.WriteExternalStorage;
+            if (ContextCompat.CheckSelfPermission(this, permission) != Permission.Granted)
+            {
+                ActivityCompat.RequestPermissions(this, new String[] { Manifest.Permission.WriteExternalStorage }, 0);
+            }
+            else
+            {
+                Toast.MakeText(this, "Permission accordée", ToastLength.Short);
             }
 
             adapter = new TabsAdapter(this, SupportFragmentManager);
@@ -134,6 +150,11 @@ namespace PharmaTab
         }
 
 
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        {
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
 
 
         //Lieu de stockage
