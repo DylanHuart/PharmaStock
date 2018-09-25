@@ -26,6 +26,7 @@ namespace PharmaTab
 		
 		public static void UpdateIdValues()
 		{
+			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::PharmaTab.Resource.Attribute.actionBarSize;
 			global::ZXing.Mobile.Resource.Id.contentFrame = global::PharmaTab.Resource.Id.contentFrame;
 			global::ZXing.Mobile.Resource.Layout.zxingscanneractivitylayout = global::PharmaTab.Resource.Layout.zxingscanneractivitylayout;
 			global::ZXing.Mobile.Resource.Layout.zxingscannerfragmentlayout = global::PharmaTab.Resource.Layout.zxingscannerfragmentlayout;
