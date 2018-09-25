@@ -30,38 +30,26 @@ namespace PharamaStock
 
         protected override void OnCreate(Bundle bundle)
         {
-            TabLayoutResource = Resource.Layout.Tabbar;
-            ToolbarResource = Resource.Layout.Toolbar;
-
-            base.OnCreate(bundle);
-
-            global::Xamarin.Forms.Forms.Init(this, bundle);
-
-            LoadApplication(new App());
-
-            // Set our view from the "main" layout resource
+            base.OnCreate(savedInstanceState);
             //SetContentView(Resource.Layout.activity_main);
-            LinearLayout view = new LinearLayout(this)
             
-
+            // Set our view from the "main" layout resource
+            SetContentView(Resource.Layout.activity_main);
+            LinearLayout view = new LinearLayout(this)
             {
                 Orientation = Orientation.Vertical
             };
 
-            this.SetContentView(view);
-
-
             //affiche le numéro du patient
-
+            this.SetContentView(view);
             TextView numPatient = new TextView(this)
             {
-                Text = "Patient n° : "
-                
+                Text = "Numéro du patient : "
             };
             view.AddView(numPatient);
             EditText patient = new EditText(this)
             {
-                InputType = Android.Text.InputTypes.ClassNumber
+
             };
             patient.SetSingleLine(true);
             view.AddView(patient);
@@ -75,25 +63,23 @@ namespace PharamaStock
             view.AddView(codeGef);
             EditText gef = new EditText(this)
             {
-                InputType = Android.Text.InputTypes.ClassNumber
 
-            };
-            gef.SetSingleLine(true);
-            view.AddView(gef);
-            this.SetContentView(view);
+            //};
+            //patient.SetSingleLine(true);
+            //view.AddView(patient);
+            //this.SetContentView(view);
 
             //affiche le numéro du lot
             TextView numLot = new TextView(this)
             {
-                Text = "Lot n° : "
+                Text = "Lot numéro : "
             };
-            view.AddView(numLot);
-            EditText lot = new EditText(this)
+            view.AddView(numLot); 
+             EditText lot = new EditText(this)
             {
-                 InputType = Android.Text.InputTypes.ClassNumber
 
-             };
-            lot.SetSingleLine(true);
+            };
+            patient.SetSingleLine(true);
             view.AddView(lot);
             this.SetContentView(view);
 
@@ -102,33 +88,33 @@ namespace PharamaStock
             {
                 Text = "Quantité : "
             };
-            view.AddView(quantiteDelivree);
-            EditText quantite = new EditText(this)
+            view.AddView(quantiteDelivree); 
+             EditText quantite = new EditText(this)
             {
-                 InputType = Android.Text.InputTypes.ClassNumber
 
-             };
+            };
             quantite.SetSingleLine(true);
             view.AddView(quantite);
             this.SetContentView(view);
 
-            //affiche la date de délivrence à la date du jour
+            //affiche la date de délivrance à la date du jour
             TextView date_display = new TextView(this)
             {
-                Text = "Délivré le : "
+                Text = "date"
 
             };
             view.AddView(date_display);
+
             TextView date = new TextView(this)
             {
-                Text = DateTime.Now.ToLongDateString(),
-
+                Text = DateTime.Now.ToLongDateString()
 
             };
             view.AddView(date);
+
             DatePicker datepick = new DatePicker(this)
             {
-                Visibility = Android.Views.ViewStates.Gone
+                Visibility = Android.Views.ViewStates.Invisible
             };
             view.AddView(datepick);
 
@@ -136,71 +122,29 @@ namespace PharamaStock
             {
                 datepick.Visibility = Android.Views.ViewStates.Visible;
             };
-            
+
             datepick.DateChanged += (s, e) =>
             {
                 date.Text = datepick.DateTime.ToLongDateString();
-                datepick.Visibility = Android.Views.ViewStates.Gone;
+                datepick.Visibility = Android.Views.ViewStates.Invisible;
             };
 
-            //enregistre les données récoltées dans un fichier 
-            Button Enregistrer = new Button(this)
-            {
-                Text = "Enregistrer"
+            ////enregistre les données récoltées dans un fichier 
+            //Button Enregistrer = new Button(this)
+            //{
+            //    Text = "Enregistrer"
 
             };
-            view.AddView(Enregistrer);
 
             Enregistrer.Click += (s, e) =>
             {
-                //Création du fichier CSV
                 if(!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text))
                 CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text);
-
-                //Vide les champs d'entrée
-                quantite.Text = "";
-                lot.Text = "";
-                gef.Text = "";
-                patient.Text = "";
-
             };
+
+            view.AddView(Enregistrer);
             this.SetContentView(view);
-
-            //envoie la liste par email
-            Button Envoyer = new Button(this)
-            {
-                Text = "Envoyer"
-            };
-            Envoyer.Click += (s, e) =>
-            {
-                 
-
-                try
-                {
-                    MailMessage mail = new MailMessage();
-                    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com",587);
-                    mail.From = new MailAddress("jolyrudypro@gmail.com");
-                    mail.To.Add("jolyrudy@msn.com");
-                    mail.Subject = "Document CSV";
-                    mail.Body = "Veuillez trouver ci joint le document récapitalif de la journée";
-                    System.Net.Mail.Attachment pj;
-                    pj = new Attachment(fileName);
-                    mail.Attachments.Add(pj);
-                    SmtpServer.Port = 587;
-                    SmtpServer.Credentials = new System.Net.NetworkCredential("jolyrudypro@gmail.com", "joru59120");
-                    SmtpServer.EnableSsl = true;
-                    ServicePointManager.ServerCertificateValidationCallback = delegate (object sender, X509Certificate certificate, X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
-                    {
-                        return true;
-                    };
-                    SmtpServer.Send(mail);
-                    Toast.MakeText(Application.Context, "Mail envoyé", ToastLength.Short).Show();
-                }
-                catch (Exception ex)
-                {
-
-                    Toast.MakeText(Application.Context, ex.ToString(), ToastLength.Long);
-                }
+        }
 
                    
                
