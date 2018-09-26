@@ -191,6 +191,9 @@
     <AndroidResource Include="Resources\drawable\MANUEL_selection.jpg" />
     <AndroidResource Include="Resources\drawable\photo.png" />
     <AndroidResource Include="Resources\drawable\chu.png" />
+    <AndroidResource Include="Resources\layout\Historique.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

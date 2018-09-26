@@ -135,6 +135,7 @@ namespace PharmaTab.Fragments
                     case Resource.Id.buttonhist:    //historique
                         Intent historiqueActivity = new Intent(this.Context, typeof(Historique));
                         StartActivity(historiqueActivity);
+                        
                         Toast.MakeText(Application.Context, "Historique", ToastLength.Long);
                         break;
                 }
