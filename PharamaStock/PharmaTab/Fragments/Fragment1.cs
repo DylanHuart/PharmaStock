@@ -147,7 +147,7 @@ namespace PharmaTab.Fragments
                 {
                     case Resource.Id.button5: //select date
                         DatePickerDialog datepick = new DatePickerDialog(this.Context, OnDateSet, DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-                        datepick.DatePicker.MinDate = DateTime.Today.Millisecond;
+                        datepick.DatePicker.DateTime = DateTime.Today;
                         datepick.Show();
                         break;
                     case Resource.Id.buttonenr:     //enregistrer csv

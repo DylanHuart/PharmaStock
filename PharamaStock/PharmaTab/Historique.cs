@@ -1,160 +1,90 @@
-﻿using Android.App;
+﻿using Android;
+using Android.App;
 using Android.Content;
-using Android.Net;
 using Android.OS;
-using Android.Widget;
+using Android.Support.Design.Widget;
+using Android.Support.V4.App;
+using Android.Support.V4.Content;
+using Android.Support.V4.View;
+using Android.Support.V7.App;
+using PharmaTab.Fragments;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 
 namespace PharmaTab
 {
     [Activity(Label = "Historique")]
     
-    public class Historique : Activity
+    public class Historique : AppCompatActivity
     {
-        
+        ViewPager pager;
+        TabsAdapter adapter;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-            // Create your application here
-            LinearLayout view = new LinearLayout(this)
+            SetContentView(Resource.Layout.main);
+            var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+            if (toolbar != null)
             {
-                Orientation = Orientation.Vertical
-            };
+                SetSupportActionBar(toolbar);
+                SupportActionBar.SetDisplayHomeAsUpEnabled(false);
+                SupportActionBar.SetHomeButtonEnabled(false);
+            }
 
+            // Affiche une boîte de dialogue pour accorder l'autorisation d'accès au stockage
+            var permissionSto = Manifest.Permission.WriteExternalStorage;
+            var permissionCam = Manifest.Permission.Camera;
 
+            if (ContextCompat.CheckSelfPermission(this, permissionSto) != Android.Content.PM.Permission.Granted || ContextCompat.CheckSelfPermission(this, permissionCam) != Android.Content.PM.Permission.Granted)
+                ActivityCompat.RequestPermissions(this, new String[] { Manifest.Permission.WriteExternalStorage, Manifest.Permission.Camera, Manifest.Permission.ReadExternalStorage }, 0);
 
-            string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
-            string[] fichiers = Directory.GetFiles(directory);
-            //List<string> listefichiers = new List<string>();
-            //listefichiers = fichiers.OfType<string>().ToList();
-            ArrayAdapter<string> fichiersAdapter;
-            fichiersAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, fichiers);
+            adapter = new TabsAdapter(this, SupportFragmentManager);
+            pager = FindViewById<ViewPager>(Resource.Id.pager);
+            var tabs = FindViewById<TabLayout>(Resource.Id.tabs);
+            pager.Adapter = adapter;
 
-            //TextView details = new TextView(this)
-            //{
-            //    Text = "Patient n° :" + ";" + "code GEF :" + ";" + "Lot n° :" + ";" + "Quantité :" + ";" + "Délivré le :"
-            //};
-            ListView listehisto = new ListView(this);
-            view.AddView(listehisto);
-            listehisto.SetAdapter(fichiersAdapter);
-
-            listehisto.ItemClick += Listehisto_ItemClick;
-
-            void Listehisto_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
-            {
-              
-            };
-            view.AddView(liste);
-
-            
-
-            liste.ItemClick += (s, e) =>
-            {
-
-                Java.IO.File file = new Java.IO.File(e.ToString());
-                Intent intent = new Intent();
-                intent.AddFlags(ActivityFlags.NewTask);
-                intent.SetAction(Intent.ActionView);
-                string type = getMIMEType(file);
-                intent.SetDataAndType(Uri.FromFile(file), type);
-                StartActivity(intent);
-            };
-
-            this.SetContentView(view);
-
+            tabs.SetupWithViewPager(pager);
+            pager.OffscreenPageLimit = 3;
         }
-
-        private string getMIMEType(Java.IO.File file)
+        class TabsAdapter : FragmentStatePagerAdapter
         {
-            string type = "*/*";
-            string fName = file.Name;
-            int dotIndex = fName.LastIndexOf(".");
-            if (dotIndex < 0)
+            string[] titles;
+
+            public override int Count
             {
-                return type;
+                get
+                {
+                    return titles.Length;
+                }
             }
-            // get the file extension
-            string end = fName.Substring(dotIndex, fName.Length).ToLower();
-            if (end == "") return type;
-            //from MIME_MapTable to get the respond type  
-            for (int i = 0; i < MIME_MapTable.Length; i++)
+
+            public TabsAdapter(Context context, Android.Support.V4.App.FragmentManager fm) : base(fm)
             {
-                if (end.Equals(MIME_MapTable[i, 0]))
-                    type = MIME_MapTable[i, 1];
+                titles = context.Resources.GetTextArray(Resource.Array.sections);
             }
-            return type;
+
+            public override Java.Lang.ICharSequence GetPageTitleFormatted(int position)
+            {
+                return new Java.Lang.String(titles[position]);
+            }
+
+            public override Android.Support.V4.App.Fragment GetItem(int position)
+            {
+                switch (position)
+                {
+                    case 0:
+                        return Fragment3.NewInstance();
+                    case 1:
+                        return Fragment4.NewInstance();
+                }
+                return null;
+            }
+
+            public override int GetItemPosition(Java.Lang.Object frag)
+            {
+                return PositionNone;
+            }
         }
-        public string[,] MIME_MapTable = new string[,] {
-
-            {".3gp",    "video/3gpp"},
-            {".apk",    "application/vnd.android.package-archive"},
-            {".asf",    "video/x-ms-asf"},
-            {".avi",    "video/x-msvideo"},
-            {".bin",    "application/octet-stream"},
-            {".bmp",      "image/bmp"},
-            {".c",        "text/plain"},
-            {".class",    "application/octet-stream"},
-            {".conf",    "text/plain"},
-            {".cpp",    "text/plain"},
-            {".doc",    "application/msword"},
-            {".exe",    "application/octet-stream"},
-            {".gif",    "image/gif"},
-            {".gtar",    "application/x-gtar"},
-            {".gz",        "application/x-gzip"},
-            {".h",        "text/plain"},
-            {".htm",    "text/html"},
-            {".html",    "text/html"},
-            {".jar",    "application/java-archive"},
-            {".java",    "text/plain"},
-            {".jpeg",    "image/jpeg"},
-            {".jpg",    "image/jpeg"},
-            {".js",        "application/x-javascript"},
-            {".log",    "text/plain"},
-            {".m3u",    "audio/x-mpegurl"},
-            {".m4a",    "audio/mp4a-latm"},
-            {".m4b",    "audio/mp4a-latm"},
-            {".m4p",    "audio/mp4a-latm"},
-            {".m4u",    "video/vnd.mpegurl"},
-            {".m4v",    "video/x-m4v"},
-            {".mov",    "video/quicktime"},
-            {".mp2",    "audio/x-mpeg"},
-            {".mp3",    "audio/x-mpeg"},
-            {".mp4",    "video/mp4"},
-            {".mpc",    "application/vnd.mpohun.certificate"},
-            {".mpe",    "video/mpeg"},
-            {".mpeg",    "video/mpeg"},
-            {".mpg",    "video/mpeg"},
-            {".mpg4",    "video/mp4"},
-            {".mpga",    "audio/mpeg"},
-            {".msg",    "application/vnd.ms-outlook"},
-            {".ogg",    "audio/ogg"},
-            {".pdf",    "application/pdf"},
-            {".png",    "image/png"},
-            {".pps",    "application/vnd.ms-powerpoint"},
-            {".ppt",    "application/vnd.ms-powerpoint"},
-            {".prop",    "text/plain"},
-            {".rar",    "application/x-rar-compressed"},
-            {".rc",        "text/plain"},
-            {".rmvb",    "audio/x-pn-realaudio"},
-            {".rtf",    "application/rtf"},
-            {".sh",        "text/plain"},
-            {".tar",    "application/x-tar"},
-            {".tgz",    "application/x-compressed"},
-            {".txt",    "text/plain"},
-            {".wav",    "audio/x-wav"},
-            {".wma",    "audio/x-ms-wma"},
-            {".wmv",    "audio/x-ms-wmv"},
-            {".wps",    "application/vnd.ms-works"},  
-            //{".xml",    "text/xml"},  
-            {".xml",    "text/plain"},
-            {".z",        "application/x-compress"},
-            {".zip",    "application/zip"},
-            {"",        "*/*"}
-
-    };
     }
 }
