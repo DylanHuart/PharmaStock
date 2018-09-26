@@ -41,6 +41,8 @@ namespace PharmaTab.Fragments
             EditText lot = view.FindViewById<EditText>(Resource.Id.numlot);
             EditText quantite = view.FindViewById<EditText>(Resource.Id.qtedel);
             EditText date = view.FindViewById<EditText>(Resource.Id.datedel);
+            EditText matricule = new EditText(this.Context);
+            matricule.Text = "admin";
 
             Button savebt = view.FindViewById<Button>(Resource.Id.buttonenr);
             Button selectdate = view.FindViewById<Button>(Resource.Id.button5);
@@ -76,13 +78,40 @@ namespace PharmaTab.Fragments
 
             async Task Scan(object s,EventArgs e)
             {
-                MobileBarcodeScanner.Initialize(Activity.Application);
-
-                scanner = new MobileBarcodeScanner();
-
-                var result = await scanner.Scan();
-
                 Button btn = (Button)s;
+                var toptext = "";
+                switch (btn.Id)
+                {
+                    case Resource.Id.button1:
+                        toptext = "N° du patient";
+                        break;
+                    case Resource.Id.button2:
+                        toptext = "Code GEF";
+                        break;
+                    case Resource.Id.button3:
+                        toptext = "Quantité délivrée";
+                        break;
+                    case Resource.Id.button4:
+                        toptext = "N° du lot";
+                        break;
+                }
+
+                MobileBarcodeScanner.Initialize(Activity.Application);
+                var options = new MobileBarcodeScanningOptions
+                {
+                    AutoRotate = false,
+                    UseFrontCameraIfAvailable = false
+                };
+                scanner = new MobileBarcodeScanner()
+                {
+                    CancelButtonText = "Annuler",
+                    FlashButtonText = "Flash",
+                    TopText = toptext
+                };
+
+                var result = await scanner.Scan(options);
+
+                
                 if (result == null)
                 {
                     return;
@@ -118,13 +147,13 @@ namespace PharmaTab.Fragments
                 {
                     case Resource.Id.button5: //select date
                         DatePickerDialog datepick = new DatePickerDialog(this.Context, OnDateSet, DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-                        datepick.DatePicker.MinDate = DateTime.Today.Millisecond;
+                        datepick.DatePicker.DateTime = DateTime.Today;
                         datepick.Show();
                         break;
                     case Resource.Id.buttonenr:     //enregistrer csv
                                                     //Création du fichier CSV
                         if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text))
-                            CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text);
+                            CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text,matricule.Text);
 
                         //Vide les champs d'entrée
                         quantite.Text = "";
@@ -151,7 +180,7 @@ namespace PharmaTab.Fragments
         string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
 
         //Méthode de création du fichier CSV
-        public void CreateCSV(string numpat, string codeGEF, string lotnum, string quant, string date)
+        public void CreateCSV(string numpat, string codeGEF, string lotnum, string quant, string date,string matricule)
         {
             //Création d'un dossier
             if (!Directory.Exists(directory))
@@ -162,12 +191,12 @@ namespace PharmaTab.Fragments
             //Nom du fichier + Location
 
             //Ligne à ajouter lors de l'enregistrement. Reprend les entrées des champs EditText
-            var newline = string.Format("{0};{1};{2};{3};{4}", numpat, codeGEF, lotnum, quant, date );
+            var newline = string.Format("{0};{1};{2};{3};{4};{5}", numpat, codeGEF, lotnum, quant, date,matricule);
 
             //Si le fichier n'existe pas, créer les entêtes et aller à la ligne. 
             if (!File.Exists(fileName))
             {
-                string header = "Patient n° :" + ";" + "code GEF :" + ";" + "Lot n° :" + ";" + "Quantité :" + ";" + "Délivré le :" + ";" + "Matricule :";
+                string header = "Patient n° :" + ";" + "code GEF :" + ";" + "Lot n° :" + ";" + "Quantité :" + ";" + "Délivré le :" + "Matricule :";
                 File.WriteAllText(fileName, header, Encoding.UTF8);       // Création de la ligne + Encodage pour les caractères spéciaux
                 File.AppendAllText(fileName, System.Environment.NewLine); // Aller à la ligne
             }

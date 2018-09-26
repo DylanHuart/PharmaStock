@@ -11,6 +11,7 @@ using PharmaTab.Fragments;
 
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
+using Android.Support.V7.Content;
 using System.Text;
 using System.IO;
 using Android.Util;
@@ -31,7 +32,7 @@ namespace PharmaTab
        
         ViewPager pager;
         TabsAdapter adapter;
-
+        
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -58,6 +59,8 @@ namespace PharmaTab
             
             tabs.SetupWithViewPager(pager);
             pager.OffscreenPageLimit = 3;
+
+            
         }
         
         class TabsAdapter : FragmentStatePagerAdapter
