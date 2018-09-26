@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@drawable/Fondlogin">
+	
+	<EditText
+		android:hint="Matricule"
+		android:layout_width="250dp"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="50dp"
+		android:layout_marginTop="200dp"
+		android:id="@+id/idmatr"
+		android:textColor="#ffdfd6d6"
+		android:backgroundTint="#ffdfd6d6"
+		android:textColorHint="#ffdfd6d6"/>
+	<EditText
+		android:hint="Mot de passe"
+		android:layout_width="250dp"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="50dp"
+		android:layout_marginTop="270dp"
+		android:id="@+id/idmdp"
+		android:textColor="#ffdfd6d6"
+		android:backgroundTint="#ffdfd6d6"
+		android:textColorHint="#ffdfd6d6"/>
+	<Button
+		android:layout_width="200dp"
+		android:layout_height="40dp"
+		android:layout_marginLeft="80dp"
+		android:layout_marginTop="400dp"
+		android:id="@+id/buttonco"
+		android:background="@android:color/transparent"
+		android:drawableTop="@drawable/CONNEXION"/>
+</RelativeLayout>

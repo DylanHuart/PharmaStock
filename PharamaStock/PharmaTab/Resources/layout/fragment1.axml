@@ -5,7 +5,7 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="@drawable/Fond">
+	android:background="@drawable/Fonddneutre">
 	<EditText
 		android:hint="N° Patient"
 		android:layout_width="300dp"
@@ -102,19 +102,6 @@
 		android:id="@+id/button5"
 		android:background="@drawable/calendar"
 		android:drawableTop="@drawable/calendar"/>
-	<ImageView
-		android:layout_width="100dp"
-		android:layout_height="100dp"
-		android:layout_marginTop="480dp"
-		android:id="@+id/imageView1"
-		android:background="@drawable/Logo12" />
-	<ImageView
-		android:layout_width="80dp"
-		android:layout_height="76dp"
-		android:layout_marginLeft="260dp"
-		android:layout_marginTop="480dp"
-		android:id="@+id/imageView2"
-		android:background="@drawable/CHR" />
 	<Button
 		android:layout_width="200dp"
 		android:layout_height="40dp"
@@ -124,7 +111,7 @@
 		android:background="@android:color/transparent"
 		android:drawableTop="@drawable/ENREGISTRER"/>
 	<Button
-		android:layout_width="142dp"
+		android:layout_width="145dp"
 		android:layout_height="50dp"
 		android:layout_marginTop="340dp"
 		android:layout_marginLeft="110dp"

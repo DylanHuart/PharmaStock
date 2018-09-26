@@ -23,7 +23,7 @@ using Android.Support.V4.Content;
 
 namespace PharmaTab
 {
-    [Activity(Label = "@string/app_name", MainLauncher = true, LaunchMode = Android.Content.PM.LaunchMode.SingleTop, Icon = "@drawable/icon")]
+    [Activity(Label = "@string/app_name", MainLauncher = false, LaunchMode = Android.Content.PM.LaunchMode.SingleTop, Icon = "@drawable/icon")]
 
   
     public class MainActivity : AppCompatActivity
