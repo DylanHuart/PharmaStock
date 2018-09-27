@@ -1,24 +1,9 @@
-﻿using System;
-using Android.App;
-using Android.Content;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+﻿using Android.App;
 using Android.OS;
-using Android.Support.V4.App;
-using Android.Support.V4.View;
-using PharmaTab.Fragments;
-using Android.Support.Design.Widget;
 using Android.Support.V7.App;
-using Android.Support.V7.Content;
-using System.Text;
-using Android.Util;
-using System.Net.Mail;
-using System.Net;
-using System.Security.Cryptography.X509Certificates;
-using Android;
-using Android.Support.V4.Content;
+using Android.Widget;
 using Plugin.SecureStorage;
+using Android.Views;
 
 namespace PharmaTab
 {
@@ -27,27 +12,49 @@ namespace PharmaTab
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            //CrossSecureStorage.Current.SetValue("SessionToken", "admin");
-            //CrossSecureStorage.Current.SetValue("passwordToken", "admin");
+            CrossSecureStorage.Current.SetValue("AdminToken", "admin");
+            CrossSecureStorage.Current.SetValue("AdmpwdToken", "admin");
 
+            CrossSecureStorage.Current.SetValue("SessionToken", "01682286");
+            CrossSecureStorage.Current.SetValue("passwordToken", "recette0");
 
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Loginlayout);
             // Create your application here
             
 
-            Button connexion = FindViewById<Button>(Resource.Id.buttonco);
+            ImageButton connexion = FindViewById<ImageButton>(Resource.Id.buttonco);
             EditText username = FindViewById<EditText>(Resource.Id.idmatr);
             EditText password = FindViewById<EditText>(Resource.Id.idmdp);
 
+            password.KeyPress += (object sender, View.KeyEventArgs e) => {
+                e.Handled = false;
+                if (e.Event.Action == KeyEventActions.Down && e.KeyCode == Keycode.Enter)
+                {
+                    e.Handled = true;
+                    connexion.PerformClick();
+                }
+            };
 
             connexion.Click += (s, e) =>
             {
+                var AdminToken = CrossSecureStorage.Current.GetValue("AdminToken");
+                var AdmpwdToken = CrossSecureStorage.Current.GetValue("AdmpwdToken");
+
                 var sessionToken = CrossSecureStorage.Current.GetValue("SessionToken");
                 var passwordToken = CrossSecureStorage.Current.GetValue("passwordToken");
 
-                if (username.Text == sessionToken && password.Text == passwordToken)
+                if (username.Text == sessionToken || username.Text == AdminToken && password.Text == passwordToken || password.Text == AdmpwdToken)
                 {
+                    if(username.Text == "admin")
+                    {
+                        Settings.Adminstate = "admin";
+                    }
+                    else
+                    {
+                        Settings.Adminstate = "";
+                    }
+                    Settings.Username = username.Text;
                     Toast.MakeText(Application.Context, "Connexion réussie !", ToastLength.Long);
                     StartActivity(typeof(MainActivity));
                 }

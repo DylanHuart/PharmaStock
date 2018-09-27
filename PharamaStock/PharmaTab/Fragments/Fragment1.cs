@@ -13,15 +13,10 @@ namespace PharmaTab.Fragments
 {
     public class Fragment1 : Android.Support.V4.App.Fragment
     {
-        
-        
-
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
             // Create your fragment here
-            
         }
 
         public static Fragment1 NewInstance()
@@ -42,16 +37,26 @@ namespace PharmaTab.Fragments
             EditText quantite = view.FindViewById<EditText>(Resource.Id.qtedel);
             EditText date = view.FindViewById<EditText>(Resource.Id.datedel);
             EditText matricule = new EditText(this.Context);
-            matricule.Text = "admin";
-
-            Button savebt = view.FindViewById<Button>(Resource.Id.buttonenr);
-            Button selectdate = view.FindViewById<Button>(Resource.Id.button5);
-            Button historique = view.FindViewById<Button>(Resource.Id.buttonhist);
-            Button scan1 = view.FindViewById<Button>(Resource.Id.button1);
-            Button scan2 = view.FindViewById<Button>(Resource.Id.button2);
-            Button scan3 = view.FindViewById<Button>(Resource.Id.button3);
-            Button scan4 = view.FindViewById<Button>(Resource.Id.button4);
+            matricule.Text = Settings.Username;
             
+            ImageButton savebt = view.FindViewById<ImageButton>(Resource.Id.buttonenr);
+            ImageButton selectdate = view.FindViewById<ImageButton>(Resource.Id.button5);
+            ImageButton historique = view.FindViewById<ImageButton>(Resource.Id.buttonhist);
+            ImageButton scan1 = view.FindViewById<ImageButton>(Resource.Id.button1);
+            ImageButton scan2 = view.FindViewById<ImageButton>(Resource.Id.button2);
+            ImageButton scan3 = view.FindViewById<ImageButton>(Resource.Id.button3);
+            ImageButton scan4 = view.FindViewById<ImageButton>(Resource.Id.button4);
+            ImageButton settings = view.FindViewById<ImageButton>(Resource.Id.buttonsettings);
+
+            if (Settings.Adminstate == "admin")
+            {
+                settings.Visibility = ViewStates.Visible;
+            }
+            else
+            {
+                settings.Visibility = ViewStates.Invisible;
+            }
+
             MobileBarcodeScanner scanner;
             
             scan1.Click += (s, e) =>
@@ -78,7 +83,7 @@ namespace PharmaTab.Fragments
 
             async Task Scan(object s,EventArgs e)
             {
-                Button btn = (Button)s;
+                ImageButton btn = (ImageButton)s;
                 var toptext = "";
                 switch (btn.Id)
                 {
@@ -142,11 +147,12 @@ namespace PharmaTab.Fragments
 
             void Button_Click(object sender, EventArgs e)
             {
-                Button btn = (Button)sender;
+                ImageButton btn = (ImageButton)sender;
                 switch (btn.Id)
                 {
                     case Resource.Id.button5: //select date
-                        DatePickerDialog datepick = new DatePickerDialog(this.Context, OnDateSet, DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+                        DatePickerDialog datepick = new DatePickerDialog(this.Context,AlertDialog.ThemeDeviceDefaultLight, OnDateSet, DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+                       
                         datepick.DatePicker.DateTime = DateTime.Today;
                         datepick.Show();
                         break;

@@ -16,7 +16,10 @@
 		android:id="@+id/idmatr"
 		android:textColor="#ffdfd6d6"
 		android:backgroundTint="#ffdfd6d6"
-		android:textColorHint="#ffdfd6d6"/>
+		android:textColorHint="#ffdfd6d6"
+		android:singleLine="true"
+		android:lines="1"
+		android:maxLines="1"/>
 	<EditText
 		android:hint="Mot de passe"
 		android:layout_width="250dp"
@@ -26,13 +29,17 @@
 		android:id="@+id/idmdp"
 		android:textColor="#ffdfd6d6"
 		android:backgroundTint="#ffdfd6d6"
-		android:textColorHint="#ffdfd6d6"/>
-	<Button
+		android:textColorHint="#ffdfd6d6"
+		android:inputType="textPassword"
+		android:singleLine="true"
+		android:lines="1"
+		android:maxLines="1"	/>
+	<ImageButton
 		android:layout_width="200dp"
 		android:layout_height="40dp"
 		android:layout_marginLeft="80dp"
 		android:layout_marginTop="400dp"
 		android:id="@+id/buttonco"
 		android:background="@android:color/transparent"
-		android:drawableTop="@drawable/CONNEXION"/>
+		android:src="@drawable/CONNEXIOn"/>
 </RelativeLayout>

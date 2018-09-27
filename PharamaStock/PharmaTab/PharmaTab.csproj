@@ -220,7 +220,6 @@
     <AndroidResource Include="Resources\drawable\CHR.png" />
     <AndroidResource Include="Resources\drawable\Icon.png" />
     <AndroidResource Include="Resources\drawable\deletext.png" />
-    <AndroidResource Include="Resources\drawable\Logo12.png" />
     <AndroidResource Include="Resources\drawable\CONNEXION.PNG" />
     <AndroidResource Include="Resources\drawable\fondlogin.jpg" />
     <AndroidResource Include="Resources\drawable\fondchoix.jpg" />
@@ -242,6 +241,8 @@
     <AndroidResource Include="Resources\layout\Loginlayout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\drawable\settings.png" />
+    <AndroidResource Include="Resources\drawable\Suivant.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
