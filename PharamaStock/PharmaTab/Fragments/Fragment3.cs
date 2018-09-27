@@ -45,7 +45,7 @@ namespace PharmaTab.Fragments
 
 
 
-            
+
 
             string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
             string[] fichiers = Directory.GetFiles(directory);
@@ -55,22 +55,22 @@ namespace PharmaTab.Fragments
 
             List<string> fichierstxt = new List<string>();
             foreach (var item in fichiers)
-                fichierstxt.Add("Fichier du "+ File.GetCreationTime(item));
+                fichierstxt.Add("Fichier du " + File.GetCreationTime(item));
 
             ArrayAdapter<string> fichierstxtAdapter = new ArrayAdapter<string>(this.Context, Android.Resource.Layout.SimpleListItemActivated1, fichierstxt);
-               
 
 
-            
+
+
             ListView listehisto = view.FindViewById<ListView>(Resource.Id.listehisto);
             listehisto.SetAdapter(fichierstxtAdapter);
 
-            
+
 
             // Valeur par défaut des items en false
             for (int i = 0; i < listehisto.Count; i++)
                 listehisto.SetItemChecked(i, false);
-            
+
 
             Button btnOuvrir = view.FindViewById<Button>(Resource.Id.button2);
             Button btnSuppr = view.FindViewById<Button>(Resource.Id.button1);
@@ -80,11 +80,9 @@ namespace PharmaTab.Fragments
 
             void BtnOuvrir_Click(object sender, EventArgs e)
             {
-
-                try
+                if (listehisto.CheckedItemCount == 1)
                 {
-
-               var position = listehisto.CheckedItemPositions;
+                    var position = listehisto.CheckedItemPositions;
 
                     Java.IO.File file = new Java.IO.File(fichiersAdapter.GetItem(position.IndexOfValue(true)));
                     Intent intent = new Intent();
@@ -94,16 +92,27 @@ namespace PharmaTab.Fragments
                     intent.SetDataAndType(FileProvider.GetUriForFile(this.Context, this.Activity.PackageName + ".fileprovider", file), "text/csv");// "application/vnd.ms-excel");
                     StartActivity(intent);
                 }
-                catch (Exception ex)
+                else
                 {
-                    Toast.MakeText(Application.Context, ex.Message, ToastLength.Long);
+                    Android.App.AlertDialog.Builder dialog = new AlertDialog.Builder(this.Context);
+                    AlertDialog alert = dialog.Create();
+                    alert.SetTitle("Attention");
+                    alert.SetMessage("Veuillez sélectionner un fichier à ouvrir");
+                    alert.SetButton("OK", (c, ev) =>
+                    {
+                            // Ok button click task  
+                    });
+                    alert.Show();
                 }
             }
+        
 
 
 
 
-            void BtnSuppr_Click(object sender, EventArgs e)
+        void BtnSuppr_Click(object sender, EventArgs e)
+        {
+            if (listehisto.CheckedItemCount > 0)
             {
                 var position = listehisto.CheckedItemPositions;
                 AlertDialog.Builder alert = new AlertDialog.Builder(this.Context);
@@ -117,7 +126,6 @@ namespace PharmaTab.Fragments
                         {
                             File.Delete(fichiers[i]);
                         }
-
                     }
                     Intent historiqueActivity = new Intent(this.Context, typeof(Historique));
                     StartActivity(historiqueActivity);
@@ -134,7 +142,21 @@ namespace PharmaTab.Fragments
                 Dialog dialog = alert.Create();
                 dialog.Show();
             }
+            else
+            {
+                Android.App.AlertDialog.Builder dialog = new AlertDialog.Builder(this.Context);
+                AlertDialog alert = dialog.Create();
+                alert.SetTitle("Attention");
+                alert.SetMessage("Veuillez sélectionner un ou plusieurs fichiers à supprimer");
+                alert.SetButton("OK", (c, ev) =>
+                {
+                        // Ok button click task  
+                    });
+                alert.Show();
+            }
+        }
+
             return view;
         }
-    }
+}
 }
