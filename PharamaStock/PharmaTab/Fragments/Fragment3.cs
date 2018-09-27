@@ -1,36 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Android.App;
 using Android.Content;
-using Android.Net;
 using Android.OS;
 using Android.Widget;
-using System;
 using Android.Support.V4.Content;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Util;
 using Android.Views;
-using Android.Widget;
+
 
 namespace PharmaTab.Fragments
 {
     public class Fragment3 : Android.Support.V4.App.Fragment
     {
+
         public override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);
-
-            // Create your fragment here
+            base.OnCreate(savedInstanceState);          
         }
 
+        //On instancie le fragment3 qui sert a afficher la page Historique
         public static Fragment3 NewInstance()
         {
             var frag3 = new Fragment3 { Arguments = new Bundle() };
@@ -42,54 +31,116 @@ namespace PharmaTab.Fragments
             var ignored = base.OnCreateView(inflater, container, savedInstanceState);
             var view = inflater.Inflate(Resource.Layout.fragment3, null);
 
-            // Create your application here
-            LinearLayout vieww = new LinearLayout(this.Context)
-            {
-                Orientation = Orientation.Vertical
-            };
-
-            
-
+            //On créer la variable qui va donner la direction des fichiers dans le stockage interne de l'appareil
             string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
+
+            //On créer un tableau qui contient les chemins d'accès aux fichiers du dossier
             string[] fichiers = Directory.GetFiles(directory);
-            //List<string> listefichiers = new List<string>();
-            //listefichiers = fichiers.OfType<string>().ToList();
-            ArrayAdapter<string> fichiersAdapter;
-            fichiersAdapter = new ArrayAdapter<string>(this.Context, Android.Resource.Layout.SimpleListItem1, fichiers);
 
-            //TextView details = new TextView(this)
-            //{
-            //    Text = "Patient n° :" + ";" + "code GEF :" + ";" + "Lot n° :" + ";" + "Quantité :" + ";" + "Délivré le :"
-            //};
-            ListView listehisto = new ListView(this.Context);
-            vieww.AddView(listehisto);
-            listehisto.SetAdapter(fichiersAdapter);
+            //On créer une liste qui va afficher une ligne personnalisée pour chaque éléments du tableau
+            List<string> fichierstxt = new List<string>();
+            foreach (var item in fichiers)
+                fichierstxt.Add("Fichier du " + File.GetCreationTime(item));
 
-            listehisto.ItemClick += Listehisto_ItemClick;
+            //On met en place les "adapters" qui prennent en charge les éléments du tableau et de la liste
+            ArrayAdapter<string> fichiersAdapter = new ArrayAdapter<string>(this.Context, Android.Resource.Layout.SimpleListItemActivated1, fichiers);
+            ArrayAdapter<string> fichierstxtAdapter = new ArrayAdapter<string>(this.Context, Android.Resource.Layout.SimpleListItemActivated1, fichierstxt);
 
-            void Listehisto_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+            //On appelle la liste view présente dans fragment3.axml
+            ListView listehisto = view.FindViewById<ListView>(Resource.Id.listehisto);
+
+            //On associe l'adapter à la liste view
+            listehisto.Adapter = fichierstxtAdapter;
+
+            // Valeur par défaut des items en false
+            for (int i = 0; i < listehisto.Count; i++)
+                listehisto.SetItemChecked(i, false);
+
+            //On appelle les boutons ouvrir et supprimer de fragment3.axml et on déclare la méthode utilisée lors de l'évement Click
+            Button btnOuvrir = view.FindViewById<Button>(Resource.Id.button2);
+            btnOuvrir.Click += BtnOuvrir_Click;
+            Button btnSuppr = view.FindViewById<Button>(Resource.Id.button1);
+            btnSuppr.Click += BtnSuppr_Click;
+
+            //On créer la méthode qui va ouvrir le fichier sélectionné avec Excel
+            void BtnOuvrir_Click(object sender, EventArgs e)
             {
-                try
+                if (listehisto.CheckedItemCount == 1)
                 {
-                    Java.IO.File file = new Java.IO.File(fichiersAdapter.GetItem(e.Position));
+                    var position = listehisto.CheckedItemPositions;
+
+                    Java.IO.File file = new Java.IO.File(fichiersAdapter.GetItem(position.IndexOfValue(true)));
                     Intent intent = new Intent();
                     intent.AddFlags(ActivityFlags.NewTask);
                     intent.AddFlags(ActivityFlags.GrantReadUriPermission);
                     intent.SetAction(Intent.ActionView);
-                    //string type = getMIMEType(file);
                     intent.SetDataAndType(FileProvider.GetUriForFile(this.Context, this.Activity.PackageName + ".fileprovider", file), "text/csv");// "application/vnd.ms-excel");
                     StartActivity(intent);
                 }
-                catch (Exception ex)
+                else
                 {
-                    Toast.MakeText(Application.Context, ex.Message, ToastLength.Long);
+                    Android.App.AlertDialog.Builder dialog = new AlertDialog.Builder(this.Context);
+                    AlertDialog alert = dialog.Create();
+                    alert.SetTitle("Attention");
+                    alert.SetMessage("Veuillez sélectionner un fichier à ouvrir");
+                    alert.SetButton("OK", (c, ev) =>
+                    {
+                          
+                    });
+                    alert.Show();
                 }
-            };
+            }
+        
 
 
-            //this.SetContentView(vieww);
 
-            return view;
+            //On créer une méthode qui va supprimer le ou les fichiers sélectionnés
+            void BtnSuppr_Click(object sender, EventArgs e)
+            {
+                if (listehisto.CheckedItemCount > 0)
+                {
+                    var position = listehisto.CheckedItemPositions;
+                    AlertDialog.Builder alert = new AlertDialog.Builder(this.Context);
+                    alert.SetTitle("Suppression");
+                    alert.SetMessage("Voulez-vous vraiment supprimer ?");
+                    alert.SetPositiveButton("Supprimer", (senderAlert, args) =>
+                    {
+                        for (int i = 0; i < listehisto.Count; i++)
+                        {
+                            if (position.ValueAt(i) == true)
+                            {
+                                File.Delete(fichiers[i]);
+                            }
+                        }
+                        Intent historiqueActivity = new Intent(this.Context, typeof(Historique));
+                        StartActivity(historiqueActivity);
+
+                        Toast.MakeText(this.Context, "Supprimé !", ToastLength.Short).Show();
+
+                    });
+
+                    alert.SetNegativeButton("Annuler", (senderAlert, args) =>
+                    {
+                        Toast.MakeText(this.Context, "Annulé !", ToastLength.Short).Show();
+                    });
+
+                    Dialog dialog = alert.Create();
+                    dialog.Show();
+                }
+                else
+                {
+                    Android.App.AlertDialog.Builder dialog = new AlertDialog.Builder(this.Context);
+                    AlertDialog alert = dialog.Create();
+                    alert.SetTitle("Attention");
+                    alert.SetMessage("Veuillez sélectionner un ou plusieurs fichiers à supprimer");
+                    alert.SetButton("OK", (c, ev) =>
+                    {                        
+                    });
+                    alert.Show();
+                }
+            }
+
+           return view;
         }
     }
 }

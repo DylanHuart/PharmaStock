@@ -59,21 +59,21 @@ namespace PharmaTab.Fragments
 
             MobileBarcodeScanner scanner;
             
-            scan1.Click += (s, e) =>
+            scan1.Click += async (s, e) =>
             {
-                Scan(s,e);
+                await Scan(s, e);
             };
-            scan2.Click += (s, e) =>
+            scan2.Click += async (s, e) =>
             {
-                Scan(s, e);
+                await Scan(s, e);
             };
-            scan3.Click += (s, e) =>
+            scan3.Click += async (s, e) =>
             {
-                Scan(s, e);
+                await Scan(s, e);
             };
-            scan4.Click += (s, e) =>
+            scan4.Click += async (s, e) =>
             {
-                Scan(s, e);
+                await Scan(s, e);
             };
 
             selectdate.Click += Button_Click;
@@ -170,6 +170,7 @@ namespace PharmaTab.Fragments
                     case Resource.Id.buttonhist:    //historique
                         Intent historiqueActivity = new Intent(this.Context, typeof(Historique));
                         StartActivity(historiqueActivity);
+                        
                         Toast.MakeText(Application.Context, "Historique", ToastLength.Long);
                         break;
                 }
