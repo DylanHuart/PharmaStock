@@ -3147,8 +3147,8 @@ namespace PharmaTab
 			// aapt resource value: 0x7f090037
 			public const int SYM = 2131296311;
 			
-			// aapt resource value: 0x7f0900c9
-			public const int action0 = 2131296457;
+			// aapt resource value: 0x7f0900ca
+			public const int action0 = 2131296458;
 			
 			// aapt resource value: 0x7f09007c
 			public const int action_bar = 2131296380;
@@ -3171,17 +3171,17 @@ namespace PharmaTab
 			// aapt resource value: 0x7f09005a
 			public const int action_bar_title = 2131296346;
 			
-			// aapt resource value: 0x7f0900c6
-			public const int action_container = 2131296454;
+			// aapt resource value: 0x7f0900c7
+			public const int action_container = 2131296455;
 			
 			// aapt resource value: 0x7f09007d
 			public const int action_context_bar = 2131296381;
 			
-			// aapt resource value: 0x7f0900cd
-			public const int action_divider = 2131296461;
+			// aapt resource value: 0x7f0900ce
+			public const int action_divider = 2131296462;
 			
-			// aapt resource value: 0x7f0900c7
-			public const int action_image = 2131296455;
+			// aapt resource value: 0x7f0900c8
+			public const int action_image = 2131296456;
 			
 			// aapt resource value: 0x7f090003
 			public const int action_menu_divider = 2131296259;
@@ -3198,11 +3198,11 @@ namespace PharmaTab
 			// aapt resource value: 0x7f09005c
 			public const int action_mode_close_button = 2131296348;
 			
-			// aapt resource value: 0x7f0900c8
-			public const int action_text = 2131296456;
+			// aapt resource value: 0x7f0900c9
+			public const int action_text = 2131296457;
 			
-			// aapt resource value: 0x7f0900d6
-			public const int actions = 2131296470;
+			// aapt resource value: 0x7f0900d7
+			public const int actions = 2131296471;
 			
 			// aapt resource value: 0x7f09005d
 			public const int activity_chooser_view_content = 2131296349;
@@ -3219,8 +3219,8 @@ namespace PharmaTab
 			// aapt resource value: 0x7f090038
 			public const int always = 2131296312;
 			
-			// aapt resource value: 0x7f0900a8
-			public const int appbar = 2131296424;
+			// aapt resource value: 0x7f0900a9
+			public const int appbar = 2131296425;
 			
 			// aapt resource value: 0x7f090056
 			public const int async = 2131296342;
@@ -3261,8 +3261,8 @@ namespace PharmaTab
 			// aapt resource value: 0x7f0900a6
 			public const int buttonhist = 2131296422;
 			
-			// aapt resource value: 0x7f0900ca
-			public const int cancel_action = 2131296458;
+			// aapt resource value: 0x7f0900cb
+			public const int cancel_action = 2131296459;
 			
 			// aapt resource value: 0x7f090045
 			public const int center = 2131296325;
@@ -3276,8 +3276,8 @@ namespace PharmaTab
 			// aapt resource value: 0x7f090073
 			public const int checkbox = 2131296371;
 			
-			// aapt resource value: 0x7f0900d2
-			public const int chronometer = 2131296466;
+			// aapt resource value: 0x7f0900d3
+			public const int chronometer = 2131296467;
 			
 			// aapt resource value: 0x7f09004e
 			public const int clip_horizontal = 2131296334;
@@ -3294,8 +3294,8 @@ namespace PharmaTab
 			// aapt resource value: 0x7f09008d
 			public const int container = 2131296397;
 			
-			// aapt resource value: 0x7f0900db
-			public const int contentFrame = 2131296475;
+			// aapt resource value: 0x7f0900dc
+			public const int contentFrame = 2131296476;
 			
 			// aapt resource value: 0x7f090066
 			public const int contentPanel = 2131296358;
@@ -3342,8 +3342,8 @@ namespace PharmaTab
 			// aapt resource value: 0x7f090030
 			public const int end = 2131296304;
 			
-			// aapt resource value: 0x7f0900d8
-			public const int end_padder = 2131296472;
+			// aapt resource value: 0x7f0900d9
+			public const int end_padder = 2131296473;
 			
 			// aapt resource value: 0x7f09003f
 			public const int enterAlways = 2131296319;
@@ -3387,8 +3387,8 @@ namespace PharmaTab
 			// aapt resource value: 0x7f090062
 			public const int icon = 2131296354;
 			
-			// aapt resource value: 0x7f0900d7
-			public const int icon_group = 2131296471;
+			// aapt resource value: 0x7f0900d8
+			public const int icon_group = 2131296472;
 			
 			// aapt resource value: 0x7f09003a
 			public const int ifRoom = 2131296314;
@@ -3402,8 +3402,8 @@ namespace PharmaTab
 			// aapt resource value: 0x7f0900a4
 			public const int imageView2 = 2131296420;
 			
-			// aapt resource value: 0x7f0900d3
-			public const int info = 2131296467;
+			// aapt resource value: 0x7f0900d4
+			public const int info = 2131296468;
 			
 			// aapt resource value: 0x7f090059
 			public const int italic = 2131296345;
@@ -3430,16 +3430,19 @@ namespace PharmaTab
 			public const int list_item = 2131296353;
 			
 			// aapt resource value: 0x7f0900a7
-			public const int main_content = 2131296423;
+			public const int listehisto = 2131296423;
 			
-			// aapt resource value: 0x7f0900dd
-			public const int masked = 2131296477;
+			// aapt resource value: 0x7f0900a8
+			public const int main_content = 2131296424;
 			
-			// aapt resource value: 0x7f0900cc
-			public const int media_actions = 2131296460;
+			// aapt resource value: 0x7f0900de
+			public const int masked = 2131296478;
 			
-			// aapt resource value: 0x7f0900da
-			public const int message = 2131296474;
+			// aapt resource value: 0x7f0900cd
+			public const int media_actions = 2131296461;
+			
+			// aapt resource value: 0x7f0900db
+			public const int message = 2131296475;
 			
 			// aapt resource value: 0x7f090031
 			public const int middle = 2131296305;
@@ -3447,80 +3450,80 @@ namespace PharmaTab
 			// aapt resource value: 0x7f090053
 			public const int mini = 2131296339;
 			
-			// aapt resource value: 0x7f0900b8
-			public const int mr_art = 2131296440;
-			
-			// aapt resource value: 0x7f0900ad
-			public const int mr_chooser_list = 2131296429;
-			
-			// aapt resource value: 0x7f0900b0
-			public const int mr_chooser_route_desc = 2131296432;
+			// aapt resource value: 0x7f0900b9
+			public const int mr_art = 2131296441;
 			
 			// aapt resource value: 0x7f0900ae
-			public const int mr_chooser_route_icon = 2131296430;
-			
-			// aapt resource value: 0x7f0900af
-			public const int mr_chooser_route_name = 2131296431;
-			
-			// aapt resource value: 0x7f0900ac
-			public const int mr_chooser_title = 2131296428;
-			
-			// aapt resource value: 0x7f0900b5
-			public const int mr_close = 2131296437;
-			
-			// aapt resource value: 0x7f0900bb
-			public const int mr_control_divider = 2131296443;
-			
-			// aapt resource value: 0x7f0900c1
-			public const int mr_control_playback_ctrl = 2131296449;
-			
-			// aapt resource value: 0x7f0900c4
-			public const int mr_control_subtitle = 2131296452;
-			
-			// aapt resource value: 0x7f0900c3
-			public const int mr_control_title = 2131296451;
-			
-			// aapt resource value: 0x7f0900c2
-			public const int mr_control_title_container = 2131296450;
-			
-			// aapt resource value: 0x7f0900b6
-			public const int mr_custom_control = 2131296438;
-			
-			// aapt resource value: 0x7f0900b7
-			public const int mr_default_control = 2131296439;
-			
-			// aapt resource value: 0x7f0900b2
-			public const int mr_dialog_area = 2131296434;
+			public const int mr_chooser_list = 2131296430;
 			
 			// aapt resource value: 0x7f0900b1
-			public const int mr_expandable_area = 2131296433;
+			public const int mr_chooser_route_desc = 2131296433;
 			
-			// aapt resource value: 0x7f0900c5
-			public const int mr_group_expand_collapse = 2131296453;
+			// aapt resource value: 0x7f0900af
+			public const int mr_chooser_route_icon = 2131296431;
 			
-			// aapt resource value: 0x7f0900b9
-			public const int mr_media_main_control = 2131296441;
+			// aapt resource value: 0x7f0900b0
+			public const int mr_chooser_route_name = 2131296432;
 			
-			// aapt resource value: 0x7f0900b4
-			public const int mr_name = 2131296436;
+			// aapt resource value: 0x7f0900ad
+			public const int mr_chooser_title = 2131296429;
 			
-			// aapt resource value: 0x7f0900ba
-			public const int mr_playback_control = 2131296442;
-			
-			// aapt resource value: 0x7f0900b3
-			public const int mr_title_bar = 2131296435;
+			// aapt resource value: 0x7f0900b6
+			public const int mr_close = 2131296438;
 			
 			// aapt resource value: 0x7f0900bc
-			public const int mr_volume_control = 2131296444;
+			public const int mr_control_divider = 2131296444;
+			
+			// aapt resource value: 0x7f0900c2
+			public const int mr_control_playback_ctrl = 2131296450;
+			
+			// aapt resource value: 0x7f0900c5
+			public const int mr_control_subtitle = 2131296453;
+			
+			// aapt resource value: 0x7f0900c4
+			public const int mr_control_title = 2131296452;
+			
+			// aapt resource value: 0x7f0900c3
+			public const int mr_control_title_container = 2131296451;
+			
+			// aapt resource value: 0x7f0900b7
+			public const int mr_custom_control = 2131296439;
+			
+			// aapt resource value: 0x7f0900b8
+			public const int mr_default_control = 2131296440;
+			
+			// aapt resource value: 0x7f0900b3
+			public const int mr_dialog_area = 2131296435;
+			
+			// aapt resource value: 0x7f0900b2
+			public const int mr_expandable_area = 2131296434;
+			
+			// aapt resource value: 0x7f0900c6
+			public const int mr_group_expand_collapse = 2131296454;
+			
+			// aapt resource value: 0x7f0900ba
+			public const int mr_media_main_control = 2131296442;
+			
+			// aapt resource value: 0x7f0900b5
+			public const int mr_name = 2131296437;
+			
+			// aapt resource value: 0x7f0900bb
+			public const int mr_playback_control = 2131296443;
+			
+			// aapt resource value: 0x7f0900b4
+			public const int mr_title_bar = 2131296436;
 			
 			// aapt resource value: 0x7f0900bd
-			public const int mr_volume_group_list = 2131296445;
+			public const int mr_volume_control = 2131296445;
 			
-			// aapt resource value: 0x7f0900bf
-			public const int mr_volume_item_icon = 2131296447;
+			// aapt resource value: 0x7f0900be
+			public const int mr_volume_group_list = 2131296446;
 			
 			// aapt resource value: 0x7f0900c0
-			public const int mr_volume_slider = 2131296448;
+			public const int mr_volume_item_icon = 2131296448;
+			
+			// aapt resource value: 0x7f0900c1
+			public const int mr_volume_slider = 2131296449;
 			
 			// aapt resource value: 0x7f090028
 			public const int multiply = 2131296296;
@@ -3537,14 +3540,14 @@ namespace PharmaTab
 			// aapt resource value: 0x7f09001e
 			public const int normal = 2131296286;
 			
-			// aapt resource value: 0x7f0900d5
-			public const int notification_background = 2131296469;
+			// aapt resource value: 0x7f0900d6
+			public const int notification_background = 2131296470;
+			
+			// aapt resource value: 0x7f0900d0
+			public const int notification_main_column = 2131296464;
 			
 			// aapt resource value: 0x7f0900cf
-			public const int notification_main_column = 2131296463;
-			
-			// aapt resource value: 0x7f0900ce
-			public const int notification_main_column_container = 2131296462;
+			public const int notification_main_column_container = 2131296463;
 			
 			// aapt resource value: 0x7f09009f
 			public const int numlot = 2131296415;
@@ -3552,8 +3555,8 @@ namespace PharmaTab
 			// aapt resource value: 0x7f090099
 			public const int numpat = 2131296409;
 			
-			// aapt resource value: 0x7f0900aa
-			public const int pager = 2131296426;
+			// aapt resource value: 0x7f0900ab
+			public const int pager = 2131296427;
 			
 			// aapt resource value: 0x7f09004c
 			public const int parallax = 2131296332;
@@ -3582,11 +3585,11 @@ namespace PharmaTab
 			// aapt resource value: 0x7f09004a
 			public const int right = 2131296330;
 			
-			// aapt resource value: 0x7f0900d4
-			public const int right_icon = 2131296468;
+			// aapt resource value: 0x7f0900d5
+			public const int right_icon = 2131296469;
 			
-			// aapt resource value: 0x7f0900d0
-			public const int right_side = 2131296464;
+			// aapt resource value: 0x7f0900d1
+			public const int right_side = 2131296465;
 			
 			// aapt resource value: 0x7f09000c
 			public const int save_image_matrix = 2131296268;
@@ -3666,8 +3669,8 @@ namespace PharmaTab
 			// aapt resource value: 0x7f090092
 			public const int snackbar_action = 2131296402;
 			
-			// aapt resource value: 0x7f0900ab
-			public const int snackbar_layout = 2131296427;
+			// aapt resource value: 0x7f0900ac
+			public const int snackbar_layout = 2131296428;
 			
 			// aapt resource value: 0x7f090091
 			public const int snackbar_text = 2131296401;
@@ -3693,8 +3696,8 @@ namespace PharmaTab
 			// aapt resource value: 0x7f09004b
 			public const int start = 2131296331;
 			
-			// aapt resource value: 0x7f0900cb
-			public const int status_bar_latest_event_content = 2131296459;
+			// aapt resource value: 0x7f0900cc
+			public const int status_bar_latest_event_content = 2131296460;
 			
 			// aapt resource value: 0x7f090076
 			public const int submenuarrow = 2131296374;
@@ -3705,8 +3708,8 @@ namespace PharmaTab
 			// aapt resource value: 0x7f09001f
 			public const int tabMode = 2131296287;
 			
-			// aapt resource value: 0x7f0900a9
-			public const int tabs = 2131296425;
+			// aapt resource value: 0x7f0900aa
+			public const int tabs = 2131296426;
 			
 			// aapt resource value: 0x7f090019
 			public const int tag_transition_group = 2131296281;
@@ -3732,8 +3735,8 @@ namespace PharmaTab
 			// aapt resource value: 0x7f090015
 			public const int textinput_error = 2131296277;
 			
-			// aapt resource value: 0x7f0900d1
-			public const int time = 2131296465;
+			// aapt resource value: 0x7f0900d2
+			public const int time = 2131296466;
 			
 			// aapt resource value: 0x7f09001c
 			public const int title = 2131296284;
@@ -3744,8 +3747,8 @@ namespace PharmaTab
 			// aapt resource value: 0x7f09006f
 			public const int title_template = 2131296367;
 			
-			// aapt resource value: 0x7f0900d9
-			public const int toolbar = 2131296473;
+			// aapt resource value: 0x7f0900da
+			public const int toolbar = 2131296474;
 			
 			// aapt resource value: 0x7f09003e
 			public const int top = 2131296318;
@@ -3783,11 +3786,11 @@ namespace PharmaTab
 			// aapt resource value: 0x7f090016
 			public const int view_offset_helper = 2131296278;
 			
-			// aapt resource value: 0x7f0900dc
-			public const int visible = 2131296476;
+			// aapt resource value: 0x7f0900dd
+			public const int visible = 2131296477;
 			
-			// aapt resource value: 0x7f0900be
-			public const int volume_item_container = 2131296446;
+			// aapt resource value: 0x7f0900bf
+			public const int volume_item_container = 2131296447;
 			
 			// aapt resource value: 0x7f09003c
 			public const int withText = 2131296316;
