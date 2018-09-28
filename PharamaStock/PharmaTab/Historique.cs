@@ -61,7 +61,7 @@ namespace PharmaTab
 
             public TabsAdapter(Context context, Android.Support.V4.App.FragmentManager fm) : base(fm)
             {
-                titles = context.Resources.GetTextArray(Resource.Array.sections);
+                titles = context.Resources.GetTextArray(Resource.Array.histsections);
             }
 
             public override Java.Lang.ICharSequence GetPageTitleFormatted(int position)

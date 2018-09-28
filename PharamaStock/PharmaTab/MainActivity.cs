@@ -23,7 +23,7 @@ using Android.Support.V4.Content;
 
 namespace PharmaTab
 {
-    [Activity(Label = "@string/app_name", MainLauncher = true, LaunchMode = Android.Content.PM.LaunchMode.SingleTop, Icon = "@drawable/icon")]
+    [Activity(Label = "@string/app_name", MainLauncher = false, LaunchMode = Android.Content.PM.LaunchMode.SingleTop, Icon = "@drawable/icon")]
 
   
     public class MainActivity : AppCompatActivity
@@ -32,7 +32,9 @@ namespace PharmaTab
        
         ViewPager pager;
         TabsAdapter adapter;
-        
+        TabLayout tabs;
+
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -54,15 +56,30 @@ namespace PharmaTab
 
             adapter = new TabsAdapter(this, SupportFragmentManager);
             pager = FindViewById<ViewPager>(Resource.Id.pager);
-            var tabs = FindViewById<TabLayout>(Resource.Id.tabs);
-            pager.Adapter = adapter;
             
+            pager.Adapter = adapter;
+            tabs = FindViewById<TabLayout>(Resource.Id.tabs);
             tabs.SetupWithViewPager(pager);
             pager.OffscreenPageLimit = 3;
 
             
         }
-        
+
+        //public override bool OnKeyDown(Keycode keyCode, KeyEvent e)
+        //{
+        //    if (e.KeyCode == Keycode.Back)
+        //    {
+        //        if(tabs.SelectedTabPosition == 1)
+        //        {
+        //            TabLayout.Tab firsttab = tabs.GetTabAt(0);
+        //            firsttab.Select();
+        //        }
+        //        // Transition your Fragments here
+        //    }
+
+        //    return base.OnKeyDown(keyCode, e);
+       // }
+
         class TabsAdapter : FragmentStatePagerAdapter
         {
             string[] titles;
