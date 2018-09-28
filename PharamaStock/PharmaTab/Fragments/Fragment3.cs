@@ -26,6 +26,11 @@ namespace PharmaTab.Fragments
             return frag3;
         }
 
+        private void Clear()
+        {
+
+        }
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var ignored = base.OnCreateView(inflater, container, savedInstanceState);
@@ -109,9 +114,14 @@ namespace PharmaTab.Fragments
                         {
                             if (position.ValueAt(i) == true)
                             {
+                                fichiersAdapter.Remove(i);
+                                fichierstxtAdapter.Remove(i);
                                 File.Delete(fichiers[i]);
+                                
                             }
                         }
+
+
                         Intent historiqueActivity = new Intent(this.Context, typeof(Historique));
                         StartActivity(historiqueActivity);
 
