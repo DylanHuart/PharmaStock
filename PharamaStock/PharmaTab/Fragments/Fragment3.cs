@@ -73,8 +73,6 @@ namespace PharmaTab.Fragments
                     fichierstxt.Add("Fichier du " + File.GetCreationTime(item));
 
                 fichierstxtAdapter.AddAll(fichierstxt);
-
-
             }
 
 
@@ -83,7 +81,6 @@ namespace PharmaTab.Fragments
             btnOuvrir.Click += BtnOuvrir_Click;
             Button btnSuppr = view.FindViewById<Button>(Resource.Id.button1);
             btnSuppr.Click += BtnSuppr_Click;
-
 
 
 
@@ -110,7 +107,6 @@ namespace PharmaTab.Fragments
                     alert.SetMessage("Veuillez sélectionner un fichier à ouvrir");
                     alert.SetButton("OK", (c, ev) =>
                     {
-                          
                     });
                     alert.Show();
                 }
@@ -134,9 +130,7 @@ namespace PharmaTab.Fragments
                         {
                             if (position.ValueAt(i) == true)
                             {
-
                                 File.Delete(fichiers[i]);
-                                
                             }
                         }
 
@@ -152,7 +146,7 @@ namespace PharmaTab.Fragments
                     Dialog dialog = alert.Create();
                     dialog.Show();
                 }
-                else if (listehisto.CheckedItemCount <= 0)
+                else 
                 {
                     Android.App.AlertDialog.Builder dialog = new AlertDialog.Builder(this.Context);
                     AlertDialog alert = dialog.Create();
@@ -164,7 +158,6 @@ namespace PharmaTab.Fragments
                     alert.Show();
                 }
             }
-
            return view;
         }
     }
