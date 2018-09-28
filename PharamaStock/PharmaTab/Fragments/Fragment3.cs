@@ -7,7 +7,7 @@ using Android.Widget;
 using Android.Support.V4.Content;
 using System.IO;
 using Android.Views;
-
+using System.Linq;
 
 namespace PharmaTab.Fragments
 {
@@ -26,10 +26,6 @@ namespace PharmaTab.Fragments
             return frag3;
         }
 
-        private void Clear()
-        {
-
-        }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -40,7 +36,7 @@ namespace PharmaTab.Fragments
             string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
 
             //On créer un tableau qui contient les chemins d'accès aux fichiers du dossier
-            string[] fichiers = Directory.GetFiles(directory);
+            List<string> fichiers = Directory.GetFiles(directory).ToList();
 
             //On créer une liste qui va afficher une ligne personnalisée pour chaque éléments du tableau
             List<string> fichierstxt = new List<string>();
@@ -61,11 +57,35 @@ namespace PharmaTab.Fragments
             for (int i = 0; i < listehisto.Count; i++)
                 listehisto.SetItemChecked(i, false);
 
+
+
+            //Méthode pour rafraîchir la liste et déselectionner les éléments
+            void ClearList()
+            {
+                for (int i = 0; i < listehisto.Count; i++)
+                    listehisto.SetItemChecked(i, false);
+                fichierstxtAdapter.Clear();
+                fichierstxt.Clear();
+                fichiers.Clear();
+                fichiers = Directory.GetFiles(directory).ToList();
+
+                foreach (var item in fichiers)
+                    fichierstxt.Add("Fichier du " + File.GetCreationTime(item));
+
+                fichierstxtAdapter.AddAll(fichierstxt);
+
+
+            }
+
+
             //On appelle les boutons ouvrir et supprimer de fragment3.axml et on déclare la méthode utilisée lors de l'évement Click
             Button btnOuvrir = view.FindViewById<Button>(Resource.Id.button2);
             btnOuvrir.Click += BtnOuvrir_Click;
             Button btnSuppr = view.FindViewById<Button>(Resource.Id.button1);
             btnSuppr.Click += BtnSuppr_Click;
+
+
+
 
             //On créer la méthode qui va ouvrir le fichier sélectionné avec Excel
             void BtnOuvrir_Click(object sender, EventArgs e)
@@ -114,19 +134,14 @@ namespace PharmaTab.Fragments
                         {
                             if (position.ValueAt(i) == true)
                             {
-                                fichiersAdapter.Remove(i);
-                                fichierstxtAdapter.Remove(i);
+
                                 File.Delete(fichiers[i]);
                                 
                             }
                         }
 
-
-                        Intent historiqueActivity = new Intent(this.Context, typeof(Historique));
-                        StartActivity(historiqueActivity);
-
                         Toast.MakeText(this.Context, "Supprimé !", ToastLength.Short).Show();
-
+                        ClearList();
                     });
 
                     alert.SetNegativeButton("Annuler", (senderAlert, args) =>
@@ -137,7 +152,7 @@ namespace PharmaTab.Fragments
                     Dialog dialog = alert.Create();
                     dialog.Show();
                 }
-                else
+                else if (listehisto.CheckedItemCount <= 0)
                 {
                     Android.App.AlertDialog.Builder dialog = new AlertDialog.Builder(this.Context);
                     AlertDialog alert = dialog.Create();
