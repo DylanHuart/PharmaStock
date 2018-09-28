@@ -19,6 +19,7 @@ using Android.Text;
 using System.Collections.Generic;
 using System.Linq;
 
+
 namespace PharamaStock
 {
     [Activity(Label = "Historique")]
@@ -38,30 +39,17 @@ namespace PharamaStock
 
             string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
             string[] fichiers = Directory.GetFiles(directory);
-            //List<string> listefichiers = new List<string>();
-            //listefichiers = fichiers.OfType<string>().ToList();
+            List<string> listefichiers = new List<string>();
+            listefichiers = fichiers.OfType<string>().ToList();
 
 
-            Xamarin.Forms.ListView liste = new Xamarin.Forms.ListView();
 
-            liste.ItemsSource = new string[]
+
+            ListView liste = new ListView(this)
             {
-  "mono",
-  "monodroid",
-  "monotouch",
-  "monorail",
-  "monodevelop",
-  "monotone",
-  "monopoly",
-  "monomodal",
-  "mononucleosis"
-            };
 
-
-
-
-
-
+            };           
+            view.AddView(liste);
 
             this.SetContentView(view);
 
