@@ -1,23 +1,12 @@
 ﻿using System;
 using Android.App;
 using Android.Content;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
 using Android.Support.V4.App;
 using Android.Support.V4.View;
 using PharmaTab.Fragments;
-
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
-using Android.Support.V7.Content;
-using System.Text;
-using System.IO;
-using Android.Util;
-using System.Net.Mail;
-using System.Net;
-using System.Security.Cryptography.X509Certificates;
 using Android;
 using Android.Support.V4.Content;
 
@@ -65,21 +54,7 @@ namespace PharmaTab
             
         }
 
-        //public override bool OnKeyDown(Keycode keyCode, KeyEvent e)
-        //{
-        //    if (e.KeyCode == Keycode.Back)
-        //    {
-        //        if(tabs.SelectedTabPosition == 1)
-        //        {
-        //            TabLayout.Tab firsttab = tabs.GetTabAt(0);
-        //            firsttab.Select();
-        //        }
-        //        // Transition your Fragments here
-        //    }
-
-        //    return base.OnKeyDown(keyCode, e);
-       // }
-
+        
         class TabsAdapter : FragmentStatePagerAdapter
         {
             string[] titles;

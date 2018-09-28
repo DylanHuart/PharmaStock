@@ -3,15 +3,10 @@ using Android.Views;
 using Android.Widget;
 using ZXing.Mobile;
 using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Views;
-using Android.Widget;
 using System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-using ZXing.Mobile;
 using Android.Support.Design.Widget;
 
 namespace PharmaTab.Fragments
@@ -41,7 +36,7 @@ namespace PharmaTab.Fragments
 
            
 
-            tabs.TabSelected += (s, e) =>
+            tabs.TabSelected += async (s, e) =>
             {
                 
                 var tab = e.Tab;
@@ -49,26 +44,26 @@ namespace PharmaTab.Fragments
                 if(text == "Auto")
                 {
                     toptext = "N° du patient";
-                    Scan();
+                    await Scan();
                 }
             };
 
-            numpat.AfterTextChanged += (s, e) =>
+            numpat.AfterTextChanged += async (s, e) =>
             {
                 toptext = "Code GEF";
-                Scan();
+                await Scan();
             };
 
-            gef.AfterTextChanged += (s, e) =>
+            gef.AfterTextChanged += async (s, e) =>
             {
                 toptext = "Quantité délivrée";
-                Scan();
+                await Scan();
             };
 
-            qte.AfterTextChanged += (s, e) =>
+            qte.AfterTextChanged += async (s, e) =>
             {
                 toptext = "N° du lot";
-                Scan();
+                await Scan();
             };
 
             lot.TextChanged += (s, e) =>
