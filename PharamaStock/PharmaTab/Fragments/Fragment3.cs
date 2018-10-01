@@ -36,7 +36,16 @@ namespace PharmaTab.Fragments
             string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
 
             //On créer un tableau qui contient les chemins d'accès aux fichiers du dossier
-            List<string> fichiers = Directory.GetFiles(directory).ToList();
+            List<string> fichiers = new List<string>();
+            try
+            {
+                fichiers = Directory.GetFiles(directory).ToList();
+            }
+            catch (Exception)
+            {
+
+               
+            }
 
             //On créer une liste qui va afficher une ligne personnalisée pour chaque éléments du tableau
             List<string> fichierstxt = new List<string>();
