@@ -37,8 +37,10 @@ namespace PharmaTab.Fragments
             EditText quantite = view.FindViewById<EditText>(Resource.Id.qtedel);
             EditText date = view.FindViewById<EditText>(Resource.Id.datedel);
             EditText matricule = new EditText(this.Context);
+
             //le matricule reste celui indiqué en page de connection
             matricule.Text = Settings.Username;
+
             //création des variables des ImageButton de fragment1.axml
             ImageButton savebt = view.FindViewById<ImageButton>(Resource.Id.buttonenr);
             ImageButton selectdate = view.FindViewById<ImageButton>(Resource.Id.button5);
@@ -49,6 +51,7 @@ namespace PharmaTab.Fragments
             ImageButton scan4 = view.FindViewById<ImageButton>(Resource.Id.button4);
             ImageButton settings = view.FindViewById<ImageButton>(Resource.Id.buttonsettings);
             ImageButton suivant = view.FindViewById<ImageButton>(Resource.Id.buttonnext);
+
             //Evenement d'acces aux pages
             if (Settings.Adminstate == "admin")
             {

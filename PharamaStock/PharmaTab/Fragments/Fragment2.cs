@@ -12,6 +12,7 @@ using Android.Support.Design.Widget;
 namespace PharmaTab.Fragments
 {
     /// <summary>
+    /// Mode automatique:
     /// Cette partie va permettre d'enregistrer les informations
     /// relevées par scanner automatiquement
     /// </summary>
@@ -71,7 +72,8 @@ namespace PharmaTab.Fragments
                 if (!string.IsNullOrEmpty(numpat.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(qte.Text))
                     CreateCSV(numpat.Text, gef.Text, lot.Text, qte.Text, DateTime.Now.Date.ToString("dd/MM/yyyy"), Settings.Username);
 
-                numpat.Text = numpat.Text;              
+                numpat.Text = numpat.Text; 
+               
             };
         }
 
