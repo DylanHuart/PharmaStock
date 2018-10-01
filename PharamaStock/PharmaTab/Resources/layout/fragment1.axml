@@ -128,6 +128,14 @@
 	<ImageButton
 		android:layout_width="60dp"
 		android:layout_height="80dp"
+		android:layout_marginTop="460dp"
+		android:layout_marginLeft="150dp"
+		android:id="@+id/buttonsettings"
+		android:background="@android:color/transparent"
+		android:src="@drawable/resetbt"/>
+	<ImageButton
+		android:layout_width="60dp"
+		android:layout_height="80dp"
 		android:layout_marginTop="540dp"
 		android:layout_marginLeft="160dp"
 		android:id="@+id/buttonsettings"

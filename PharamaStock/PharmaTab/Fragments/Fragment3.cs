@@ -36,7 +36,7 @@ namespace PharmaTab.Fragments
 
             //On créer un tableau qui contient les chemins d'accès aux fichiers du dossier
             string[] fichiers = Directory.GetFiles(directory);
-
+            
             //On créer une liste qui va afficher une ligne personnalisée pour chaque éléments du tableau
             List<string> fichierstxt = new List<string>();
             foreach (var item in fichiers)
