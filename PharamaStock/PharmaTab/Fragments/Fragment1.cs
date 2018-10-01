@@ -47,6 +47,7 @@ namespace PharmaTab.Fragments
             ImageButton scan3 = view.FindViewById<ImageButton>(Resource.Id.button3);
             ImageButton scan4 = view.FindViewById<ImageButton>(Resource.Id.button4);
             ImageButton settings = view.FindViewById<ImageButton>(Resource.Id.buttonsettings);
+            ImageButton suivant = view.FindViewById<ImageButton>(Resource.Id.buttonnext);
 
             if (Settings.Adminstate == "admin")
             {
@@ -78,7 +79,7 @@ namespace PharmaTab.Fragments
 
             selectdate.Click += Button_Click;
             savebt.Click += Button_Click;
-            
+            suivant.Click += Button_Click;
             historique.Click += Button_Click;
 
             async Task Scan(object s,EventArgs e)
@@ -162,11 +163,25 @@ namespace PharmaTab.Fragments
                             CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text,matricule.Text);
 
                         //Vide les champs d'entrée
+                       
                         quantite.Text = "";
                         lot.Text = "";
                         gef.Text = "";
                         patient.Text = "";
                         break;
+
+                    case Resource.Id.buttonnext:  //suivant
+
+                        if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text))
+                            CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text, matricule.Text);
+                        //Vide les champs d'entrée
+
+                        quantite.Text = "";
+                        lot.Text = "";
+                        gef.Text = "";
+                        //patient.Text = "";
+                        break;
+
                     case Resource.Id.buttonhist:    //historique
                         Intent historiqueActivity = new Intent(this.Context, typeof(Historique));
                         StartActivity(historiqueActivity);
@@ -209,5 +224,29 @@ namespace PharmaTab.Fragments
             File.AppendAllText(fileName, newline + System.Environment.NewLine); // Ajout de la ligne contenant les champs
             Toast.MakeText(Application.Context, "Données enregistrées", ToastLength.Short).Show();
         }
+        //public void CreateCSV2(string codeGEF, string lotnum, string quant, string date, string matricule)
+        //{
+        //    //Création d'un dossier
+        //    //if (!Directory.Exists(directory))
+        //    if (Directory.Exists(directory))
+        //    {
+        //        Directory.CreateDirectory(directory);
+        //        Toast.MakeText(Application.Context, "Dossier Pharmastock créé", ToastLength.Short).Show();
+        //    }
+        //    //Nom du fichier + Location
+
+        //    //Ligne à ajouter lors de l'enregistrement. Reprend les entrées des champs EditText
+        //    var newline = string.Format("{1};{2};{3};{4};{5}",codeGEF, lotnum, quant, date, matricule);
+
+        //    //Si le fichier n'existe pas, créer les entêtes et aller à la ligne. 
+        //    if (!File.Exists(fileName))
+        //    {
+        //        string header = "code GEF :" + ";" + "Lot n° :" + ";" + "Quantité :" + ";" + "Délivré le :" + "Matricule :";
+        //        File.WriteAllText(fileName, header, Encoding.UTF8);       // Création de la ligne + Encodage pour les caractères spéciaux
+        //        File.AppendAllText(fileName, System.Environment.NewLine); // Aller à la ligne
+        //    }
+        //    File.AppendAllText(fileName, newline + System.Environment.NewLine); // Ajout de la ligne contenant les champs
+        //    Toast.MakeText(Application.Context, "Données enregistrées", ToastLength.Short).Show();
+        //}
     }
 }
