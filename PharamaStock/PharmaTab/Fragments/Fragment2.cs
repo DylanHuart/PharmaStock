@@ -13,7 +13,7 @@ namespace PharmaTab.Fragments
 {
     /// <summary>
     /// Cette partie va permettre d'enregistrer les informations
-    /// relevées par sanner automatiquement
+    /// relevées par scanner automatiquement
     /// </summary>
     public class Fragment2 : Android.Support.V4.App.Fragment
     {
