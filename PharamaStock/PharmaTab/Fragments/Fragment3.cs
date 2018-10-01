@@ -16,7 +16,7 @@ namespace PharmaTab.Fragments
 
         public override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);          
+            base.OnCreate(savedInstanceState);
         }
 
         //On instancie le fragment3 qui sert a afficher la page Historique
@@ -113,7 +113,7 @@ namespace PharmaTab.Fragments
                     
                 }
             }
-        
+
 
 
 
@@ -148,19 +148,66 @@ namespace PharmaTab.Fragments
                     Dialog dialog = alert.Create();
                     dialog.Show();
                 }
-                else 
+                else
                 {
                     Android.App.AlertDialog.Builder dialog = new AlertDialog.Builder(this.Context);
                     AlertDialog alert = dialog.Create();
                     alert.SetTitle("Attention");
                     alert.SetMessage("Veuillez sélectionner un ou plusieurs fichiers à supprimer");
                     alert.SetButton("OK", (c, ev) =>
-                    {                        
+                    {
                     });
                     alert.Show();
                 }
             }
-           return view;
+
+
+            // MODIFICATION
+
+            Button modif = view.FindViewById<Button>(Resource.Id.btnModif);
+            modif.Click += Modif_Click;
+
+            void Modif_Click(object sender, EventArgs e)
+            {
+                var position = listehisto.CheckedItemPositions;
+                string path = fichiersAdapter.GetItem(position.IndexOfValue(true)).ToString();
+
+                using (var reader = new StreamReader(path))
+                {
+                    List<string> listA = new List<string>();
+                    List<string> listB = new List<string>();
+                    List<string> listC = new List<string>();
+                    List<string> listD = new List<string>();
+                    List<string> listE = new List<string>();
+                    List<string> listF = new List<string>();
+
+
+                    while (!reader.EndOfStream)
+                    {
+                        var line = reader.ReadLine();
+                        var values = line.Split(';');
+
+                        listA.Add(values[0]);
+                        listB.Add(values[1]);
+                        listC.Add(values[2]);
+                        listD.Add(values[3]);
+                        listE.Add(values[4]);
+                        listF.Add(values[5]);
+
+                    }
+                }
+
+
+            }
+
+
+
+
+
+
+            return view;
         }
+
+
     }
 }
