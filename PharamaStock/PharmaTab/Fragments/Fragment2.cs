@@ -11,10 +11,13 @@ using Android.Support.Design.Widget;
 
 namespace PharmaTab.Fragments
 {
+    /// <summary>
+    /// Cette partie va permettre d'enregistrer les informations
+    /// relevées par scanner automatiquement
+    /// </summary>
     public class Fragment2 : Android.Support.V4.App.Fragment
     {
         string toptext = "";
-
         string fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock" + Java.IO.File.Separator + "Pharmastock_" + DateTime.Now.ToString("ddMMyyy") + ".csv";
 
         TextView numpat = new TextView(Application.Context);
@@ -31,16 +34,13 @@ namespace PharmaTab.Fragments
         public override void OnStart()
         {
             base.OnStart();
-
             var tabs = Activity.FindViewById<TabLayout>(Resource.Id.tabs);
 
-           
-
             tabs.TabSelected += async (s, e) =>
-            {
-                
+            {              
                 var tab = e.Tab;
                 var text =tab.Text;
+
                 if(text == "Auto")
                 {
                     toptext = "N° du patient";
@@ -71,12 +71,9 @@ namespace PharmaTab.Fragments
                 if (!string.IsNullOrEmpty(numpat.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(qte.Text))
                     CreateCSV(numpat.Text, gef.Text, lot.Text, qte.Text, DateTime.Now.Date.ToString("dd/MM/yyyy"), Settings.Username);
 
-
-                numpat.Text = numpat.Text;
-                
+                numpat.Text = numpat.Text;              
             };
         }
-
 
         string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
 
@@ -105,16 +102,17 @@ namespace PharmaTab.Fragments
             Toast.MakeText(Application.Context, "Données enregistrées", ToastLength.Short).Show();
         }
 
-
         async Task Scan()
         {
             MobileBarcodeScanner scanner;
             MobileBarcodeScanner.Initialize(Activity.Application);
+
             var options = new MobileBarcodeScanningOptions
             {
                 AutoRotate = false,
                 UseFrontCameraIfAvailable = false
             };
+
             scanner = new MobileBarcodeScanner()
             {
                 CancelButtonText = "Annuler",
@@ -123,7 +121,6 @@ namespace PharmaTab.Fragments
             };
 
             var result = await scanner.Scan(options);
-
 
             if (result == null)
             {
@@ -147,10 +144,8 @@ namespace PharmaTab.Fragments
                         break;
                 }
             }
-
             return;
         }
-
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {

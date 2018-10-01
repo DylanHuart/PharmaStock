@@ -30,15 +30,16 @@ namespace PharmaTab.Fragments
         {
             var ignored = base.OnCreateView(inflater, container, savedInstanceState);
             var view = inflater.Inflate(Resource.Layout.fragment1, null);
-            
+            //création des variables des EditText de fragment1.axml
             EditText patient = view.FindViewById<EditText>(Resource.Id.numpat);
             EditText gef = view.FindViewById<EditText>(Resource.Id.codgef);
             EditText lot = view.FindViewById<EditText>(Resource.Id.numlot);
             EditText quantite = view.FindViewById<EditText>(Resource.Id.qtedel);
             EditText date = view.FindViewById<EditText>(Resource.Id.datedel);
             EditText matricule = new EditText(this.Context);
+            //le matricule reste celui indiqué en page de connection
             matricule.Text = Settings.Username;
-            
+            //création des variables des ImageButton de fragment1.axml
             ImageButton savebt = view.FindViewById<ImageButton>(Resource.Id.buttonenr);
             ImageButton selectdate = view.FindViewById<ImageButton>(Resource.Id.button5);
             ImageButton historique = view.FindViewById<ImageButton>(Resource.Id.buttonhist);
@@ -47,7 +48,8 @@ namespace PharmaTab.Fragments
             ImageButton scan3 = view.FindViewById<ImageButton>(Resource.Id.button3);
             ImageButton scan4 = view.FindViewById<ImageButton>(Resource.Id.button4);
             ImageButton settings = view.FindViewById<ImageButton>(Resource.Id.buttonsettings);
-
+            ImageButton suivant = view.FindViewById<ImageButton>(Resource.Id.buttonnext);
+            //Evenement d'acces aux pages
             if (Settings.Adminstate == "admin")
             {
                 settings.Visibility = ViewStates.Visible;
@@ -56,9 +58,8 @@ namespace PharmaTab.Fragments
             {
                 settings.Visibility = ViewStates.Invisible;
             }
-
-            MobileBarcodeScanner scanner;
-            
+            //Evenements d'affichage du scanner
+            MobileBarcodeScanner scanner;           
             scan1.Click += async (s, e) =>
             {
                 await Scan(s, e);
@@ -76,11 +77,12 @@ namespace PharmaTab.Fragments
                 await Scan(s, e);
             };
 
-            selectdate.Click += Button_Click;
-            savebt.Click += Button_Click;
-            
-            historique.Click += Button_Click;
+            selectdate.Click += Button_Click;//Evenement bouton "Date"
+            savebt.Click += Button_Click;//Evenement bouton "Enregistrer"
+            suivant.Click += Button_Click;//Evenement bouton "Suivant"
+            historique.Click += Button_Click;//Evenement bouton "Historique"
 
+            //Méthode d'affichage dans les zones de texte par le biais du scanner
             async Task Scan(object s,EventArgs e)
             {
                 ImageButton btn = (ImageButton)s;
@@ -144,7 +146,7 @@ namespace PharmaTab.Fragments
             }
 
             
-
+            //Méthode dd fonction des boutons
             void Button_Click(object sender, EventArgs e)
             {
                 ImageButton btn = (ImageButton)sender;
@@ -161,13 +163,27 @@ namespace PharmaTab.Fragments
                         if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text))
                             CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text,matricule.Text);
 
-                        //Vide les champs d'entrée
+                        //Vide les champs d'entrée                       
                         quantite.Text = "";
                         lot.Text = "";
                         gef.Text = "";
                         patient.Text = "";
                         break;
+
+                    case Resource.Id.buttonnext:  //suivant
+
+                        if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text))
+                            CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text, matricule.Text);
+
+                        //Vide les champs d'entrée sauf celui patient
+                        quantite.Text = "";
+                        lot.Text = "";
+                        gef.Text = "";
+                        //patient.Text = "";
+                        break;
+
                     case Resource.Id.buttonhist:    //historique
+
                         Intent historiqueActivity = new Intent(this.Context, typeof(Historique));
                         StartActivity(historiqueActivity);
                         
@@ -208,6 +224,6 @@ namespace PharmaTab.Fragments
             }
             File.AppendAllText(fileName, newline + System.Environment.NewLine); // Ajout de la ligne contenant les champs
             Toast.MakeText(Application.Context, "Données enregistrées", ToastLength.Short).Show();
-        }
+        }      
     }
 }
