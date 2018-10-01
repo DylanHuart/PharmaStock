@@ -1,32 +1,21 @@
-using Android;
 using Android.App;
+using Android.Content;
 using Android.OS;
-using Android.Support.V4.App;
-using Android.Support.V4.Content;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
 using System;
 using System.IO;
-using System.Net;
-using System.Net.Mail;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using ZXing;
 using ZXing.Mobile;
 
 namespace PharmaTab.Fragments
 {
     public class Fragment1 : Android.Support.V4.App.Fragment
     {
-        
-        
-
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
             // Create your fragment here
         }
 
@@ -39,8 +28,6 @@ namespace PharmaTab.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-
-           
             var ignored = base.OnCreateView(inflater, container, savedInstanceState);
             var view = inflater.Inflate(Resource.Layout.fragment1, null);
             
@@ -49,49 +36,87 @@ namespace PharmaTab.Fragments
             EditText lot = view.FindViewById<EditText>(Resource.Id.numlot);
             EditText quantite = view.FindViewById<EditText>(Resource.Id.qtedel);
             EditText date = view.FindViewById<EditText>(Resource.Id.datedel);
-
-            Button savebt = view.FindViewById<Button>(Resource.Id.buttonenr);
-            Button selectdate = view.FindViewById<Button>(Resource.Id.button5);
-            //Button send = view.FindViewById<Button>(Resource.Id.buttonenv);
-            Button historique = view.FindViewById<Button>(Resource.Id.buttonhist);
-            Button scan1 = view.FindViewById<Button>(Resource.Id.button1);
-            Button scan2 = view.FindViewById<Button>(Resource.Id.button2);
-            Button scan3 = view.FindViewById<Button>(Resource.Id.button3);
-            Button scan4 = view.FindViewById<Button>(Resource.Id.button4);
+            EditText matricule = new EditText(this.Context);
+            matricule.Text = Settings.Username;
             
+            ImageButton savebt = view.FindViewById<ImageButton>(Resource.Id.buttonenr);
+            ImageButton selectdate = view.FindViewById<ImageButton>(Resource.Id.button5);
+            ImageButton historique = view.FindViewById<ImageButton>(Resource.Id.buttonhist);
+            ImageButton scan1 = view.FindViewById<ImageButton>(Resource.Id.button1);
+            ImageButton scan2 = view.FindViewById<ImageButton>(Resource.Id.button2);
+            ImageButton scan3 = view.FindViewById<ImageButton>(Resource.Id.button3);
+            ImageButton scan4 = view.FindViewById<ImageButton>(Resource.Id.button4);
+            ImageButton settings = view.FindViewById<ImageButton>(Resource.Id.buttonsettings);
+
+            if (Settings.Adminstate == "admin")
+            {
+                settings.Visibility = ViewStates.Visible;
+            }
+            else
+            {
+                settings.Visibility = ViewStates.Invisible;
+            }
+
             MobileBarcodeScanner scanner;
             
-            scan1.Click += (s, e) =>
+            scan1.Click += async (s, e) =>
             {
-                Scan(s,e);
+                await Scan(s, e);
             };
-            scan2.Click += (s, e) =>
+            scan2.Click += async (s, e) =>
             {
-                Scan(s, e);
+                await Scan(s, e);
             };
-            scan3.Click += (s, e) =>
+            scan3.Click += async (s, e) =>
             {
-                Scan(s, e);
+                await Scan(s, e);
             };
-            scan4.Click += (s, e) =>
+            scan4.Click += async (s, e) =>
             {
-                Scan(s, e);
+                await Scan(s, e);
             };
 
             selectdate.Click += Button_Click;
             savebt.Click += Button_Click;
-            //send.Click += Button_Click;
+            
             historique.Click += Button_Click;
 
             async Task Scan(object s,EventArgs e)
             {
+                ImageButton btn = (ImageButton)s;
+                var toptext = "";
+                switch (btn.Id)
+                {
+                    case Resource.Id.button1:
+                        toptext = "N° du patient";
+                        break;
+                    case Resource.Id.button2:
+                        toptext = "Code GEF";
+                        break;
+                    case Resource.Id.button3:
+                        toptext = "Quantité délivrée";
+                        break;
+                    case Resource.Id.button4:
+                        toptext = "N° du lot";
+                        break;
+                }
+
                 MobileBarcodeScanner.Initialize(Activity.Application);
+                var options = new MobileBarcodeScanningOptions
+                {
+                    AutoRotate = false,
+                    UseFrontCameraIfAvailable = false
+                };
+                scanner = new MobileBarcodeScanner()
+                {
+                    CancelButtonText = "Annuler",
+                    FlashButtonText = "Flash",
+                    TopText = toptext
+                };
 
-                scanner = new MobileBarcodeScanner();
+                var result = await scanner.Scan(options);
 
-                var result = await scanner.Scan();
-
-                Button btn = (Button)s;
+                
                 if (result == null)
                 {
                     return;
@@ -122,18 +147,19 @@ namespace PharmaTab.Fragments
 
             void Button_Click(object sender, EventArgs e)
             {
-                Button btn = (Button)sender;
+                ImageButton btn = (ImageButton)sender;
                 switch (btn.Id)
                 {
                     case Resource.Id.button5: //select date
-                        DatePickerDialog datepick = new DatePickerDialog(this.Context, OnDateSet, DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-                        datepick.DatePicker.MinDate = DateTime.Today.Millisecond;
+                        DatePickerDialog datepick = new DatePickerDialog(this.Context,AlertDialog.ThemeDeviceDefaultLight, OnDateSet, DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+                       
+                        datepick.DatePicker.DateTime = DateTime.Today;
                         datepick.Show();
                         break;
                     case Resource.Id.buttonenr:     //enregistrer csv
                                                     //Création du fichier CSV
                         if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text))
-                            CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text);
+                            CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text,matricule.Text);
 
                         //Vide les champs d'entrée
                         quantite.Text = "";
@@ -141,37 +167,10 @@ namespace PharmaTab.Fragments
                         gef.Text = "";
                         patient.Text = "";
                         break;
-                    //case Resource.Id.buttonenv: //envoyer mail
-                    //    try
-                    //    {
-                    //        MailMessage mail = new MailMessage();
-                    //        SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com", 587);
-                    //        mail.From = new MailAddress("jolyrudypro@gmail.com");
-                    //        mail.To.Add("jolyrudy@msn.com");
-                    //        mail.Subject = "Document CSV";
-                    //        mail.Body = "Veuillez trouver ci joint le document récapitalif de la journée";
-                    //        System.Net.Mail.Attachment pj;
-                    //        pj = new Attachment(fileName);
-                    //        mail.Attachments.Add(pj);
-                    //        SmtpServer.Port = 587;
-                    //        SmtpServer.Credentials = new System.Net.NetworkCredential("jolyrudypro@gmail.com", "joru59120");
-                    //        SmtpServer.EnableSsl = true;
-                    //        ServicePointManager.ServerCertificateValidationCallback = delegate (object sende, X509Certificate certificate, X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
-                    //        {
-                    //            return true;
-                    //        };
-                    //        SmtpServer.Send(mail);
-                    //        Toast.MakeText(Application.Context, "Mail envoyé", ToastLength.Short).Show();
-                    //    }
-                    //    catch (Exception ex)
-                    //    {
-
-                    //        Toast.MakeText(Application.Context, ex.ToString(), ToastLength.Long);
-                    //    }
-                    //    break;
                     case Resource.Id.buttonhist:    //historique
-                                                    //Intent historiqueActivity = new Intent(this, typeof(historique));
-                                                    //StartActivity(historiqueActivity);
+                        Intent historiqueActivity = new Intent(this.Context, typeof(Historique));
+                        StartActivity(historiqueActivity);
+                        
                         Toast.MakeText(Application.Context, "Historique", ToastLength.Long);
                         break;
                 }
@@ -184,13 +183,10 @@ namespace PharmaTab.Fragments
                 date.Text = e.Date.ToLongDateString();
             }
         }
-
-
-
         string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
 
         //Méthode de création du fichier CSV
-        public void CreateCSV(string numpat, string codeGEF, string lotnum, string quant, string date)
+        public void CreateCSV(string numpat, string codeGEF, string lotnum, string quant, string date,string matricule)
         {
             //Création d'un dossier
             if (!Directory.Exists(directory))
@@ -201,12 +197,12 @@ namespace PharmaTab.Fragments
             //Nom du fichier + Location
 
             //Ligne à ajouter lors de l'enregistrement. Reprend les entrées des champs EditText
-            var newline = string.Format("{0};{1};{2};{3};{4}", numpat, codeGEF, lotnum, quant, date);
+            var newline = string.Format("{0};{1};{2};{3};{4};{5}", numpat, codeGEF, lotnum, quant, date,matricule);
 
             //Si le fichier n'existe pas, créer les entêtes et aller à la ligne. 
             if (!File.Exists(fileName))
             {
-                string header = "Patient n° :" + ";" + "code GEF :" + ";" + "Lot n° :" + ";" + "Quantité :" + ";" + "Délivré le :";
+                string header = "Patient n° :" + ";" + "code GEF :" + ";" + "Lot n° :" + ";" + "Quantité :" + ";" + "Délivré le :" + "Matricule :";
                 File.WriteAllText(fileName, header, Encoding.UTF8);       // Création de la ligne + Encodage pour les caractères spéciaux
                 File.AppendAllText(fileName, System.Environment.NewLine); // Aller à la ligne
             }
