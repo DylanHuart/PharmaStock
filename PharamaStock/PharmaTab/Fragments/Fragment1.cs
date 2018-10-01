@@ -39,7 +39,7 @@ namespace PharmaTab.Fragments
             EditText matricule = new EditText(this.Context);
             //le matricule reste celui indiqué en page de connection
             matricule.Text = Settings.Username;
-            
+            //création des variables des ImageButton de fragment1.axml
             ImageButton savebt = view.FindViewById<ImageButton>(Resource.Id.buttonenr);
             ImageButton selectdate = view.FindViewById<ImageButton>(Resource.Id.button5);
             ImageButton historique = view.FindViewById<ImageButton>(Resource.Id.buttonhist);
