@@ -24,6 +24,7 @@ namespace PharmaTab.Fragments
         TextView numpat = new TextView(Application.Context);
         TextView gef = new TextView(Application.Context);
         TextView qte = new TextView(Application.Context);
+        int quant = 0;
         TextView lot = new TextView(Application.Context);
 
         public static Fragment2 NewInstance()
@@ -139,7 +140,7 @@ namespace PharmaTab.Fragments
                         gef.Text = result.Text;
                         break;
                     case "Quantité délivrée":
-                        qte.Text = result.Text;
+                        qte.Text = (quant++).ToString();
                         break;
                     case "N° du lot":
                         lot.Text = result.Text;
