@@ -51,7 +51,7 @@ namespace PharmaTab.Fragments
             ImageButton scan4 = view.FindViewById<ImageButton>(Resource.Id.button4);
             ImageButton settings = view.FindViewById<ImageButton>(Resource.Id.buttonsettings);
             ImageButton suivant = view.FindViewById<ImageButton>(Resource.Id.buttonnext);
-
+            ImageButton raz = view.FindViewById<ImageButton>(Resource.Id.buttonreset);
             //Evenement d'acces aux pages
             if (Settings.Adminstate == "admin")
             {
@@ -84,6 +84,7 @@ namespace PharmaTab.Fragments
             savebt.Click += Button_Click;//Evenement bouton "Enregistrer"
             suivant.Click += Button_Click;//Evenement bouton "Suivant"
             historique.Click += Button_Click;//Evenement bouton "Historique"
+            raz.Click += Button_Click;//Evenement button " RAZ "
 
             //Méthode d'affichage dans les zones de texte par le biais du scanner
             async Task Scan(object s,EventArgs e)
@@ -192,6 +193,32 @@ namespace PharmaTab.Fragments
                         
                         Toast.MakeText(Application.Context, "Historique", ToastLength.Long);
                         break;
+
+                    case Resource.Id.buttonreset:  //RAZ
+
+                        Android.App.AlertDialog.Builder dialog = new AlertDialog.Builder(this.Context);
+                        AlertDialog alert = dialog.Create();
+                        alert.SetTitle("Attention");
+                        alert.SetMessage("Etes vous sur de vouloir réinitialiser ? ");
+                        alert.SetButton("OK", (c, ev) =>
+                        {
+                            //Vide les champs d'entrée sauf celui patient
+                            date.Text = "";
+                            quantite.Text = "";
+                            lot.Text = "";
+                            gef.Text = "";
+                            patient.Text = "";
+                        });
+                        alert.SetButton2("Annuler", (c, ev) =>
+                        {
+                            
+                        });
+                        
+                        alert.Show();
+
+                        
+                        break;
+
                 }
             }
             

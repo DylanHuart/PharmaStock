@@ -101,14 +101,7 @@ namespace PharmaTab.Fragments
                 }
                 else
                 {
-                    Android.App.AlertDialog.Builder dialog = new AlertDialog.Builder(this.Context);
-                    AlertDialog alert = dialog.Create();
-                    alert.SetTitle("Attention");
-                    alert.SetMessage("Veuillez sélectionner un fichier à ouvrir");
-                    alert.SetButton("OK", (c, ev) =>
-                    {
-                    });
-                    alert.Show();
+                    
                 }
             }
         
