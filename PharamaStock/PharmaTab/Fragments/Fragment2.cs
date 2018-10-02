@@ -37,45 +37,73 @@ namespace PharmaTab.Fragments
         {
             base.OnStart();
             var tabs = Activity.FindViewById<TabLayout>(Resource.Id.tabs);
-
-            tabs.TabSelected += async (s, e) =>
-            {
-                var tab = e.Tab;
-                var text = tab.Text;
-
-                if (text == "Auto")
+           
+            
+                tabs.TabSelected += async (s, e) =>
                 {
-                    toptext = "N° du patient";
+                    var tab = e.Tab;
+                    var text = tab.Text;
+
+                    if (text == "Auto")
+                    {
+                        toptext = "N° du patient";
+                        await Scan();
+                    }
+                };
+
+                numpat.AfterTextChanged += async (s, e) =>
+                {
+                    toptext = "Code GEF";
                     await Scan();
-                }
-            };
+                };
 
-            numpat.AfterTextChanged += async (s, e) =>
-            {
-                toptext = "Code GEF";
-                await Scan();
-            };
+                gef.AfterTextChanged += async (s, e) =>
+                {
+                    toptext = "Quantité délivrée";
+                    await Scan();
+                };
 
-            gef.AfterTextChanged += async (s, e) =>
-            {
-                toptext = "Quantité délivrée";
-                await Scan();
-            };
+                qte.AfterTextChanged += async (s, e) =>
+                {
+                    toptext = "N° du lot";
+                    await Scan();
+                };
 
-            qte.AfterTextChanged += async (s, e) =>
-            {
-                toptext = "N° du lot";
-                await Scan();
-            };
+                lot.TextChanged+= (s, e) =>
+                {
+                    if (!string.IsNullOrEmpty(numpat.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(qte.Text))
+                        CreateCSV(numpat.Text, gef.Text, lot.Text, qte.Text, DateTime.Now.Date.ToString("dd/MM/yyyy"), Settings.Username);
 
-            lot.AfterTextChanged +=  (s, e) =>
-            {
-                if (!string.IsNullOrEmpty(numpat.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(qte.Text))
-                    CreateCSV(numpat.Text, gef.Text, lot.Text, qte.Text, DateTime.Now.Date.ToString("dd/MM/yyyy"), Settings.Username);
-                //numpat.Text = numpat.Text;       
 
-               
-            };
+                    Android.App.AlertDialog.Builder dialog = new AlertDialog.Builder(this.Context);
+                    AlertDialog alert = dialog.Create();
+                    alert.SetTitle("Attention");
+                    alert.SetMessage("Voulez vous effectuer un nouvel enregistrement sur le même patient ? ");
+                    alert.SetButton("OK", (c, ev) =>
+                    {
+                       
+                        numpat.Text = numpat.Text;
+                    });
+
+                    alert.SetButton2("Patient suivant", (c, ev) =>
+                    {
+                        
+                        NewInstance();
+                        
+                    });
+
+                    alert.Show();
+
+                    
+                };
+            
+           
+            
+                
+            
+            
+
+
         }
             //Nom du fichier + Location
 
@@ -113,11 +141,12 @@ namespace PharmaTab.Fragments
             var options = new MobileBarcodeScanningOptions
             {
                 AutoRotate = false,
-                UseFrontCameraIfAvailable = false,
-                DelayBetweenAnalyzingFrames = 1500,
-                InitialDelayBeforeAnalyzingFrames = 1000
+                UseFrontCameraIfAvailable = false ,
+                DelayBetweenContinuousScans =1500 ,
                 
+
             };
+            
 
             scanner = new MobileBarcodeScanner()
             {
@@ -150,7 +179,9 @@ namespace PharmaTab.Fragments
                         break;
 
                 }
+
             }
+            ////scanner.Cancel();
             return;
         }
 
