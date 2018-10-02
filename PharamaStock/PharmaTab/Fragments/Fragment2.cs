@@ -24,7 +24,6 @@ namespace PharmaTab.Fragments
         TextView numpat = new TextView(Application.Context);
         TextView gef = new TextView(Application.Context);
         TextView qte = new TextView(Application.Context);
-        int quant = 0;
         TextView lot = new TextView(Application.Context);
 
         public static Fragment2 NewInstance()
@@ -41,7 +40,7 @@ namespace PharmaTab.Fragments
             tabs.TabSelected += async (s, e) =>
             {              
                 var tab = e.Tab;
-                var text =tab.Text;
+                var text = tab.Text;
 
                 if(text == "Auto")
                 {
@@ -68,15 +67,17 @@ namespace PharmaTab.Fragments
                 await Scan();
             };
 
-            lot.TextChanged += (s, e) =>
+            lot.TextChanged +=  (s, e) =>
             {
                 if (!string.IsNullOrEmpty(numpat.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(qte.Text))
                     CreateCSV(numpat.Text, gef.Text, lot.Text, qte.Text, DateTime.Now.Date.ToString("dd/MM/yyyy"), Settings.Username);
 
                 numpat.Text = numpat.Text; 
+
                
             };
         }
+            //Nom du fichier + Location
 
         string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
 
@@ -89,7 +90,6 @@ namespace PharmaTab.Fragments
                 Directory.CreateDirectory(directory);
                 Toast.MakeText(Application.Context, "Dossier Pharmastock créé", ToastLength.Short).Show();
             }
-            //Nom du fichier + Location
 
             //Ligne à ajouter lors de l'enregistrement. Reprend les entrées des champs EditText
             var newline = string.Format("{0};{1};{2};{3};{4};{5}", numpat, codeGEF, lotnum, quant, date, matricule);
@@ -113,7 +113,9 @@ namespace PharmaTab.Fragments
             var options = new MobileBarcodeScanningOptions
             {
                 AutoRotate = false,
-                UseFrontCameraIfAvailable = false
+                UseFrontCameraIfAvailable = false,
+                DelayBetweenAnalyzingFrames = 1500
+                
             };
 
             scanner = new MobileBarcodeScanner()
@@ -140,11 +142,12 @@ namespace PharmaTab.Fragments
                         gef.Text = result.Text;
                         break;
                     case "Quantité délivrée":
-                        qte.Text = (quant++).ToString();
+                        qte.Text = result.Text;
                         break;
                     case "N° du lot":
                         lot.Text = result.Text;
                         break;
+
                 }
             }
             return;
