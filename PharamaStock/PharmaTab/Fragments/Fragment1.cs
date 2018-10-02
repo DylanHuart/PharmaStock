@@ -4,7 +4,9 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ZXing.Mobile;
@@ -213,8 +215,8 @@ namespace PharmaTab.Fragments
                             alert.SetMessage("Les champs de texte seront vidés");
                             alert.SetButton("OK", (c, ev) =>
                             {
-                            //Vide les champs
-                            date.Text = "";
+                                //Vide les champs
+                                date.Text = "";
                                 quantite.Text = "";
                                 lot.Text = "";
                                 gef.Text = "";
@@ -223,8 +225,8 @@ namespace PharmaTab.Fragments
                             });
                             alert.SetButton2("Annuler", (c, ev) =>
                             {
-                            //Ne rien faire
-                        });
+                                //Ne rien faire
+                            });
                             alert.Show();
                         }
 
@@ -256,18 +258,61 @@ namespace PharmaTab.Fragments
 
             //Ligne à ajouter lors de l'enregistrement. Reprend les entrées des champs EditText
             var newline = string.Format("{0};{1};{2};{3};{4};{5}", numpat, codeGEF, lotnum, quant, date, matricule);
-
+            var gef = string.Format(codeGEF);
+            var lot = string.Format(lotnum);
+            var patient = string.Format(numpat);
             //Si le fichier n'existe pas, créer les entêtes et aller à la ligne. 
             if (!File.Exists(fileName))
             {
                 string header = "Patient n° :" + ";" + "code GEF :" + ";" + "Lot n° :" + ";" + "Quantité :" + ";" + "Délivré le :" + ";" + "Matricule :";
                 File.WriteAllText(fileName, header, Encoding.UTF8);       // Création de la ligne + Encodage pour les caractères spéciaux
                 File.AppendAllText(fileName, System.Environment.NewLine); // Aller à la ligne
-                Toast.MakeText(Application.Context, "Nouveau fichier créé pour la date du jour", ToastLength.Short).Show();
+                File.AppendAllText(fileName, newline + System.Environment.NewLine); // Ajout de la ligne contenant les champs
 
+                Toast.MakeText(Application.Context, "Nouveau fichier créé pour la date du jour", ToastLength.Short).Show();
             }
-            File.AppendAllText(fileName, newline + System.Environment.NewLine); // Ajout de la ligne contenant les champs
-            Toast.MakeText(Application.Context, "Données enregistrées", ToastLength.Short).Show();
+
+            bool newlinetrue = true;
+            string[] lines = File.ReadLines(fileName).ToArray<string>();
+
+            for (int i=1; i<lines.Length; i++)
+            {
+                List<string> listItems = lines[i].Split(';').ToList();
+
+
+                if (listItems[0] == patient && listItems[1] == gef && listItems[2] == lot)
+                {
+                    Toast.MakeText(Application.Context, "Cette ligne existe déjà", ToastLength.Short).Show();
+                    newlinetrue = false;
+                    break;
+                }
+            }
+            if (newlinetrue)
+            {
+                File.AppendAllText(fileName, newline + System.Environment.NewLine); // Ajout de la ligne contenant les champs
+                Toast.MakeText(Application.Context, "Données enregistrées", ToastLength.Short).Show();
+            }
         }
+
+
+
+
+        //if (ExistsLine(gef) == true)
+        //{
+        //    Toast.MakeText(Application.Context, "Cette ligne existe déjà", ToastLength.Short).Show();
+        //}
+        //else
+        //{
+        //    File.AppendAllText(fileName, newline + System.Environment.NewLine); // Ajout de la ligne contenant les champs
+        //    Toast.MakeText(Application.Context, "Données enregistrées", ToastLength.Short).Show();
+        //}
+
+
+
+        //File.AppendAllText(fileName, newline + System.Environment.NewLine); // Ajout de la ligne contenant les champs
+        //Toast.MakeText(Application.Context, "Données enregistrées", ToastLength.Short).Show();
     }
+
+
+
 }
