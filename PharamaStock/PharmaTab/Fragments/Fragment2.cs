@@ -45,8 +45,6 @@ namespace PharmaTab.Fragments
 
                     if (text == "Auto")
                     {
-
-                        
                         toptext = "N° du patient";
                         await Scan();
                         Toast.MakeText(Application.Context, "Patient sélectionné", ToastLength.Short).Show();
@@ -93,23 +91,10 @@ namespace PharmaTab.Fragments
                     {
                         if (!string.IsNullOrEmpty(numpat.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(qte.Text))
                             CreateCSV(numpat.Text, gef.Text, lot.Text, qte.Text, DateTime.Now.Date.ToString("dd/MM/yyyy"), Settings.Username);
-
-                        
                     });
-                    
-
                     alert.Show();
-                   
-
-                    
                 };
             
-
-
-
-
-
-
 
         }
             //Nom du fichier + Location
@@ -150,8 +135,6 @@ namespace PharmaTab.Fragments
                 AutoRotate = false,
                 UseFrontCameraIfAvailable = false ,
                 DelayBetweenContinuousScans =1500 ,
-                
-
             };
             
 
@@ -188,7 +171,6 @@ namespace PharmaTab.Fragments
                 }
 
             }
-            ////scanner.Cancel();
             return;
         }
 
