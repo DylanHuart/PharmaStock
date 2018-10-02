@@ -20,6 +20,7 @@ namespace PharmaTab.Fragments
     {
         string toptext = "";
         string fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock" + Java.IO.File.Separator + "Pharmastock_" + DateTime.Now.ToString("ddMMyyy") + ".csv";
+        bool patient = true;
 
         TextView numpat = new TextView(Application.Context);
         TextView gef = new TextView(Application.Context);
@@ -38,11 +39,11 @@ namespace PharmaTab.Fragments
             var tabs = Activity.FindViewById<TabLayout>(Resource.Id.tabs);
 
             tabs.TabSelected += async (s, e) =>
-            {              
+            {
                 var tab = e.Tab;
                 var text = tab.Text;
 
-                if(text == "Auto")
+                if (text == "Auto")
                 {
                     toptext = "N° du patient";
                     await Scan();
@@ -67,12 +68,11 @@ namespace PharmaTab.Fragments
                 await Scan();
             };
 
-            lot.TextChanged +=  (s, e) =>
+            lot.AfterTextChanged +=  (s, e) =>
             {
                 if (!string.IsNullOrEmpty(numpat.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(qte.Text))
                     CreateCSV(numpat.Text, gef.Text, lot.Text, qte.Text, DateTime.Now.Date.ToString("dd/MM/yyyy"), Settings.Username);
-
-                numpat.Text = numpat.Text; 
+                //numpat.Text = numpat.Text;       
 
                
             };
@@ -114,7 +114,8 @@ namespace PharmaTab.Fragments
             {
                 AutoRotate = false,
                 UseFrontCameraIfAvailable = false,
-                DelayBetweenAnalyzingFrames = 1500
+                DelayBetweenAnalyzingFrames = 1500,
+                InitialDelayBeforeAnalyzingFrames = 1000
                 
             };
 

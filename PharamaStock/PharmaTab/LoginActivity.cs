@@ -68,12 +68,12 @@ namespace PharmaTab
                         Settings.Adminstate = "";
                     }
                     Settings.Username = username.Text;
-                    Toast.MakeText(Application.Context, "Connexion réussie !", ToastLength.Long);
+                    Toast.MakeText(Application.Context, "Connexion réussie !", ToastLength.Long).Show();
                     StartActivity(typeof(MainActivity));
                 }
                 else
                 {
-                    Toast.MakeText(Application.Context, "Echec de la connexion, vérifiez vos identifiants !", ToastLength.Long);
+                    Toast.MakeText(Application.Context, "Echec de la connexion, vérifiez vos identifiants !", ToastLength.Long).Show();
                 }
             };
         }
