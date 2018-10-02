@@ -258,6 +258,7 @@ namespace PharmaTab.Fragments
             var newline = string.Format("{0};{1};{2};{3};{4};{5}", numpat, codeGEF, lotnum, quant, date, matricule);
             var gef = string.Format(codeGEF);
             var lot = string.Format(lotnum);
+            var patient = string.Format(numpat);
 
             //Si le fichier n'existe pas, créer le fichier et les entêtes et aller à la ligne, puis ajouter la ligne 
             if (!File.Exists(fileName))
@@ -269,7 +270,7 @@ namespace PharmaTab.Fragments
                 Toast.MakeText(Application.Context, "Nouveau fichier créé pour la date du jour", ToastLength.Short).Show();
             }
             //Si le code gef et le numéro du lot sont les mêmes, erreur
-            if (File.ReadAllText(fileName).Contains(gef) && File.ReadAllText(fileName).Contains(lot))
+            if (File.ReadAllText(fileName).Contains(gef) && File.ReadAllText(fileName).Contains(lot) && File.ReadAllText(fileName).Contains(patient))
             {
                 Toast.MakeText(Application.Context, "Cette livraison existe déjà dans le fichier du jour", ToastLength.Long).Show();
             }
