@@ -20,7 +20,7 @@ namespace PharmaTab.Fragments
     {
         string toptext = "";
         string fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock" + Java.IO.File.Separator + "Pharmastock_" + DateTime.Now.ToString("ddMMyyy") + ".csv";
-        bool patient = true;
+        
 
         TextView numpat = new TextView(Application.Context);
         TextView gef = new TextView(Application.Context);
