@@ -32,22 +32,19 @@ namespace PharmaTab.Fragments
             var ignored = base.OnCreateView(inflater, container, savedInstanceState);
             var view = inflater.Inflate(Resource.Layout.fragment3, null);
 
-            //On créer la variable qui va donner la direction des fichiers dans le stockage interne de l'appareil
+            //On crée la variable qui va donner la direction des fichiers dans le stockage interne de l'appareil
             string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
 
-            //On créer un tableau qui contient les chemins d'accès aux fichiers du dossier
+            //On crée un tableau qui contient les chemins d'accès aux fichiers du dossier
             List<string> fichiers = new List<string>();
             try
             {
                 fichiers = Directory.GetFiles(directory).ToList();
             }
             catch (Exception)
-            {
+            { }
 
-               
-            }
-
-            //On créer une liste qui va afficher une ligne personnalisée pour chaque éléments du tableau
+            //On crée une liste qui va afficher une ligne personnalisée pour chaque éléments du tableau
             List<string> fichierstxt = new List<string>();
             foreach (var item in fichiers)
                 fichierstxt.Add("Fichier du " + File.GetCreationTime(item));
@@ -69,10 +66,11 @@ namespace PharmaTab.Fragments
 
 
             //Méthode pour rafraîchir la liste et déselectionner les éléments
-            void ClearList()
+            void RefreshList()
             {
                 for (int i = 0; i < listehisto.Count; i++)
                     listehisto.SetItemChecked(i, false);
+
                 fichierstxtAdapter.Clear();
                 fichierstxt.Clear();
                 fichiers.Clear();
@@ -93,7 +91,7 @@ namespace PharmaTab.Fragments
 
 
 
-            //On créer la méthode qui va ouvrir le fichier sélectionné avec Excel
+            //On crée la méthode qui va ouvrir le fichier sélectionné avec Excel
             void BtnOuvrir_Click(object sender, EventArgs e)
             {
                 if (listehisto.CheckedItemCount == 1)
@@ -108,16 +106,12 @@ namespace PharmaTab.Fragments
                     intent.SetDataAndType(FileProvider.GetUriForFile(this.Context, this.Activity.PackageName + ".fileprovider", file), "text/csv");// "application/vnd.ms-excel");
                     StartActivity(intent);
                 }
-                else
-                {
-                    
-                }
             }
 
 
 
 
-            //On créer une méthode qui va supprimer le ou les fichiers sélectionnés
+            //On crée une méthode qui va supprimer le ou les fichiers sélectionnés
             void BtnSuppr_Click(object sender, EventArgs e)
             {
                 if (listehisto.CheckedItemCount > 0)
@@ -135,9 +129,8 @@ namespace PharmaTab.Fragments
                                 File.Delete(fichiers[i]);
                             }
                         }
-
+                        RefreshList();
                         Toast.MakeText(this.Context, "Supprimé !", ToastLength.Short).Show();
-                        ClearList();
                     });
 
                     alert.SetNegativeButton("Annuler", (senderAlert, args) =>
@@ -149,21 +142,9 @@ namespace PharmaTab.Fragments
                     dialog.Show();
                 }
                 else
-                {
-                    Android.App.AlertDialog.Builder dialog = new AlertDialog.Builder(this.Context);
-                    AlertDialog alert = dialog.Create();
-                    alert.SetTitle("Attention");
-                    alert.SetMessage("Veuillez sélectionner un ou plusieurs fichiers à supprimer");
-                    alert.SetButton("OK", (c, ev) =>
-                    {
-                    });
-                    alert.Show();
-                }
+                    Toast.MakeText(this.Context, "Veuillez sélectionner un ou plusieurs fichiers à supprimer.", ToastLength.Long).Show();
             }
-
             return view;
         }
-
-
     }
 }
