@@ -106,6 +106,8 @@ namespace PharmaTab.Fragments
                     intent.SetDataAndType(FileProvider.GetUriForFile(this.Context, this.Activity.PackageName + ".fileprovider", file), "text/csv");// "application/vnd.ms-excel");
                     StartActivity(intent);
                 }
+                else
+                    Toast.MakeText(Application.Context, "Veuillez sélectionner un fichier à ouvrir", ToastLength.Short).Show();
             }
 
 

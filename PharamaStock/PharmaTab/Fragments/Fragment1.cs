@@ -34,27 +34,27 @@ namespace PharmaTab.Fragments
             var view = inflater.Inflate(Resource.Layout.fragment1, null);
 
             //création des variables des EditText de fragment1.axml
-            EditText patient    = view.FindViewById<EditText>(Resource.Id.numpat);
-            EditText gef        = view.FindViewById<EditText>(Resource.Id.codgef);
-            EditText lot        = view.FindViewById<EditText>(Resource.Id.numlot);
-            EditText quantite   = view.FindViewById<EditText>(Resource.Id.qtedel);
-            EditText date       = view.FindViewById<EditText>(Resource.Id.datedel);
-            EditText matricule  = new EditText(this.Context);
+            EditText patient = view.FindViewById<EditText>(Resource.Id.numpat);
+            EditText gef = view.FindViewById<EditText>(Resource.Id.codgef);
+            EditText lot = view.FindViewById<EditText>(Resource.Id.numlot);
+            EditText quantite = view.FindViewById<EditText>(Resource.Id.qtedel);
+            EditText date = view.FindViewById<EditText>(Resource.Id.datedel);
+            EditText matricule = new EditText(this.Context);
 
             //le matricule reste celui indiqué en page de connexion
             matricule.Text = Settings.Username;
 
             //création des variables des ImageButton de fragment1.axml
-            ImageButton savebt      = view.FindViewById<ImageButton>(Resource.Id.buttonenr);
-            ImageButton selectdate  = view.FindViewById<ImageButton>(Resource.Id.button5);
-            ImageButton historique  = view.FindViewById<ImageButton>(Resource.Id.buttonhist);
-            ImageButton scan1       = view.FindViewById<ImageButton>(Resource.Id.button1);
-            ImageButton scan2       = view.FindViewById<ImageButton>(Resource.Id.button2);
-            ImageButton scan3       = view.FindViewById<ImageButton>(Resource.Id.button3);
-            ImageButton scan4       = view.FindViewById<ImageButton>(Resource.Id.button4);
-            ImageButton settings    = view.FindViewById<ImageButton>(Resource.Id.buttonsettings);
-            ImageButton suivant     = view.FindViewById<ImageButton>(Resource.Id.buttonnext);
-            ImageButton raz         = view.FindViewById<ImageButton>(Resource.Id.buttonreset);
+            ImageButton savebt = view.FindViewById<ImageButton>(Resource.Id.buttonenr);
+            ImageButton selectdate = view.FindViewById<ImageButton>(Resource.Id.button5);
+            ImageButton historique = view.FindViewById<ImageButton>(Resource.Id.buttonhist);
+            ImageButton scan1 = view.FindViewById<ImageButton>(Resource.Id.button1);
+            ImageButton scan2 = view.FindViewById<ImageButton>(Resource.Id.button2);
+            ImageButton scan3 = view.FindViewById<ImageButton>(Resource.Id.button3);
+            ImageButton scan4 = view.FindViewById<ImageButton>(Resource.Id.button4);
+            ImageButton settings = view.FindViewById<ImageButton>(Resource.Id.buttonsettings);
+            ImageButton suivant = view.FindViewById<ImageButton>(Resource.Id.buttonnext);
+            ImageButton raz = view.FindViewById<ImageButton>(Resource.Id.buttonreset);
 
             //Evenement d'acces aux pages
             if (Settings.Adminstate == "admin")
@@ -67,7 +67,7 @@ namespace PharmaTab.Fragments
             }
 
             //Evenements d'affichage du scanner lors des clics sur les boutons
-            MobileBarcodeScanner scanner;           
+            MobileBarcodeScanner scanner;
             scan1.Click += async (s, e) =>
             {
                 await Scan(s, e);
@@ -93,7 +93,7 @@ namespace PharmaTab.Fragments
             raz.Click += Button_Click;          //Evenement bouton "RAZ"
 
             //Méthode d'affichage dans les zones de texte par le biais du scanner
-            async Task Scan(object s,EventArgs e)
+            async Task Scan(object s, EventArgs e)
             {
                 ImageButton btn = (ImageButton)s;
                 var toptext = "";
@@ -128,7 +128,7 @@ namespace PharmaTab.Fragments
                 //Cette variable attend un scan pour obtenir la valeur lue dans le code barre
                 var result = await scanner.Scan(options);
 
-                
+
                 if (result == null)
                 {
                     return;
@@ -155,7 +155,7 @@ namespace PharmaTab.Fragments
                 return;
             }
 
-            
+
             //Méthode dd fonction des boutons
             void Button_Click(object sender, EventArgs e)
             {
@@ -163,9 +163,9 @@ namespace PharmaTab.Fragments
                 switch (btn.Id)
                 {
                     // Affiche un calendrier en dialogue pour y sélectionner la date
-                    case Resource.Id.button5: 
-                        DatePickerDialog datepick = new DatePickerDialog(this.Context,AlertDialog.ThemeDeviceDefaultLight, OnDateSet, DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-                       
+                    case Resource.Id.button5:
+                        DatePickerDialog datepick = new DatePickerDialog(this.Context, AlertDialog.ThemeDeviceDefaultLight, OnDateSet, DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+
                         datepick.DatePicker.DateTime = DateTime.Today;
                         datepick.Show();
                         break;
@@ -185,7 +185,7 @@ namespace PharmaTab.Fragments
                         break;
 
                     //Enregistre les champs textes sous format CSV, mais garde le numéro du patient
-                    case Resource.Id.buttonnext:  
+                    case Resource.Id.buttonnext:
                         if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text))
                             CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text, matricule.Text);
                         else
@@ -205,34 +205,38 @@ namespace PharmaTab.Fragments
 
                     //Vide tous les champs textes selon la réponse à l'alerte
                     case Resource.Id.buttonreset:
-                        Android.App.AlertDialog.Builder dialog = new AlertDialog.Builder(this.Context);
-                        AlertDialog alert = dialog.Create();
-                        alert.SetTitle("Attention");
-                        alert.SetMessage("Les champs de texte seront vidés");
-                        alert.SetButton("OK", (c, ev) =>
+                        if (!string.IsNullOrEmpty(patient.Text) || !string.IsNullOrEmpty(gef.Text) || !string.IsNullOrEmpty(lot.Text) || !string.IsNullOrEmpty(quantite.Text) || !string.IsNullOrEmpty(date.Text))
                         {
-                            //Vide les champs
-                            date.Text = "";
-                            quantite.Text = "";
-                            lot.Text = "";
-                            gef.Text = "";
-                            patient.Text = "";
-                            Toast.MakeText(Application.Context, "Champs réinitialisés", ToastLength.Short).Show();
-                        });
-                        alert.SetButton2("Annuler", (c, ev) =>
-                        {
-                            //Ne rien faire
-                        });
-                        alert.Show();
+                            Android.App.AlertDialog.Builder dialog = new AlertDialog.Builder(this.Context);
+                            AlertDialog alert = dialog.Create();
+                            alert.SetTitle("Attention");
+                            alert.SetMessage("Les champs de texte seront vidés");
+                            alert.SetButton("OK", (c, ev) =>
+                            {
+                                //Vide les champs
+                                date.Text = "";
+                                quantite.Text = "";
+                                lot.Text = "";
+                                gef.Text = "";
+                                patient.Text = "";
+                                Toast.MakeText(Application.Context, "Champs réinitialisés", ToastLength.Short).Show();
+                            });
+                            alert.SetButton2("Annuler", (c, ev) =>
+                            {
+                                //Ne rien faire
+                            });
+                            alert.Show();
+                        }
+
                         break;
 
                 }
             }
-            
+
             return view;
 
             //La valeur du champ texte date est la valeur choisie sur le calendrier
-            void OnDateSet(object sender, DatePickerDialog.DateSetEventArgs e) 
+            void OnDateSet(object sender, DatePickerDialog.DateSetEventArgs e)
             {
                 date.Text = e.Date.ToLongDateString();
             }
@@ -241,7 +245,7 @@ namespace PharmaTab.Fragments
         string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
 
         //Méthode de création du fichier CSV
-        public void CreateCSV(string numpat, string codeGEF, string lotnum, string quant, string date,string matricule)
+        public void CreateCSV(string numpat, string codeGEF, string lotnum, string quant, string date, string matricule)
         {
             //Création d'un dossier
             if (!Directory.Exists(directory))
@@ -251,19 +255,30 @@ namespace PharmaTab.Fragments
             }
 
             //Ligne à ajouter lors de l'enregistrement. Reprend les entrées des champs EditText
-            var newline = string.Format("{0};{1};{2};{3};{4};{5}", numpat, codeGEF, lotnum, quant, date,matricule);
+            var newline = string.Format("{0};{1};{2};{3};{4};{5}", numpat, codeGEF, lotnum, quant, date, matricule);
+            var gef = string.Format(codeGEF);
+            var lot = string.Format(lotnum);
 
-            //Si le fichier n'existe pas, créer les entêtes et aller à la ligne. 
+            //Si le fichier n'existe pas, créer le fichier et les entêtes et aller à la ligne, puis ajouter la ligne 
             if (!File.Exists(fileName))
             {
-                string header = "Patient n° :" + ";" + "code GEF :" + ";" + "Lot n° :" + ";" + "Quantité :" + ";" + "Délivré le :" +";"+ "Matricule :";
+                string header = "Patient n° :" + ";" + "code GEF :" + ";" + "Lot n° :" + ";" + "Quantité :" + ";" + "Délivré le :" + ";" + "Matricule :";
                 File.WriteAllText(fileName, header, Encoding.UTF8);       // Création de la ligne + Encodage pour les caractères spéciaux
                 File.AppendAllText(fileName, System.Environment.NewLine); // Aller à la ligne
+                File.AppendAllText(fileName, newline + System.Environment.NewLine); // Ajout de la ligne contenant les champs
                 Toast.MakeText(Application.Context, "Nouveau fichier créé pour la date du jour", ToastLength.Short).Show();
-
             }
-            File.AppendAllText(fileName, newline + System.Environment.NewLine); // Ajout de la ligne contenant les champs
-            Toast.MakeText(Application.Context, "Données enregistrées", ToastLength.Short).Show();
-        }      
+            //Si le code gef et le numéro du lot sont les mêmes, erreur
+            if (File.ReadAllText(fileName).Contains(gef) && File.ReadAllText(fileName).Contains(lot))
+            {
+                Toast.MakeText(Application.Context, "Cette livraison existe déjà dans le fichier du jour", ToastLength.Long).Show();
+            }
+            //Ajout de la ligne contenant les champs
+            else
+            {
+                File.AppendAllText(fileName, newline + System.Environment.NewLine); 
+                Toast.MakeText(Application.Context, "Données enregistrées", ToastLength.Short).Show();
+            }
+        }
     }
 }
