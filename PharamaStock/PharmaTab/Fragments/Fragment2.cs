@@ -45,8 +45,11 @@ namespace PharmaTab.Fragments
 
                     if (text == "Auto")
                     {
+
+                        
                         toptext = "N° du patient";
                         await Scan();
+                        Toast.MakeText(Application.Context, "Patient sélectionné", ToastLength.Short).Show();
                     }
                 };
 
@@ -54,53 +57,58 @@ namespace PharmaTab.Fragments
                 {
                     toptext = "Code GEF";
                     await Scan();
+                    Toast.MakeText(Application.Context, "Code GEF sélectionné", ToastLength.Short).Show();
                 };
 
                 gef.AfterTextChanged += async (s, e) =>
                 {
                     toptext = "Quantité délivrée";
                     await Scan();
+                    Toast.MakeText(Application.Context, "Quantité sélectionnée", ToastLength.Short).Show();
                 };
 
                 qte.AfterTextChanged += async (s, e) =>
                 {
                     toptext = "N° du lot";
                     await Scan();
+                    Toast.MakeText(Application.Context, "numéro de lot sélectionné", ToastLength.Short).Show();
+                    
                 };
 
-                lot.TextChanged+= (s, e) =>
+                lot.TextChanged+=(s, e) =>
                 {
-                    if (!string.IsNullOrEmpty(numpat.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(qte.Text))
-                        CreateCSV(numpat.Text, gef.Text, lot.Text, qte.Text, DateTime.Now.Date.ToString("dd/MM/yyyy"), Settings.Username);
-
-
+                    
                     Android.App.AlertDialog.Builder dialog = new AlertDialog.Builder(this.Context);
                     AlertDialog alert = dialog.Create();
                     alert.SetTitle("Attention");
                     alert.SetMessage("Voulez vous effectuer un nouvel enregistrement sur le même patient ? ");
                     alert.SetButton("OK", (c, ev) =>
                     {
-                       
+                        if (!string.IsNullOrEmpty(numpat.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(qte.Text))
+                            CreateCSV(numpat.Text, gef.Text, lot.Text, qte.Text, DateTime.Now.Date.ToString("dd/MM/yyyy"), Settings.Username);
                         numpat.Text = numpat.Text;
                     });
 
                     alert.SetButton2("Patient suivant", (c, ev) =>
                     {
-                        
-                        NewInstance();
+                        if (!string.IsNullOrEmpty(numpat.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(qte.Text))
+                            CreateCSV(numpat.Text, gef.Text, lot.Text, qte.Text, DateTime.Now.Date.ToString("dd/MM/yyyy"), Settings.Username);
+
                         
                     });
+                    
 
                     alert.Show();
+                   
 
                     
                 };
             
-           
-            
-                
-            
-            
+
+
+
+
+
 
 
         }
@@ -124,7 +132,7 @@ namespace PharmaTab.Fragments
             //Si le fichier n'existe pas, créer les entêtes et aller à la ligne. 
             if (!File.Exists(fileName))
             {
-                string header = "Patient n° :" + ";" + "code GEF :" + ";" + "Lot n° :" + ";" + "Quantité :" + ";" + "Délivré le :" + "Matricule :";
+                string header = "Patient n° :" + ";" + "code GEF :" + ";" + "Lot n° :" + ";" + "Quantité :" + ";" + "Délivré le :" + ";" + "Matricule :";
                 File.WriteAllText(fileName, header, Encoding.UTF8);       // Création de la ligne + Encodage pour les caractères spéciaux
                 File.AppendAllText(fileName, System.Environment.NewLine); // Aller à la ligne
             }
