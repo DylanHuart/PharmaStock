@@ -73,7 +73,7 @@ namespace PharmaTab
                 }
                 else
                 {
-                    Toast.MakeText(Application.Context, "Echec de la connexion, vérifiez vos identifiants !", ToastLength.Short).Show();
+                    Toast.MakeText(Application.Context, "Echec de la connexion, vérifiez vos identifiants !", ToastLength.Long).Show();
                 }
             };
         }
