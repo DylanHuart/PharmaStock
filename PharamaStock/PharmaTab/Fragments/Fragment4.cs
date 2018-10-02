@@ -1,24 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Android.App;
-using Android.Content;
-using Android.Net;
-using Android.OS;
-using Android.Widget;
-using System;
-using Android.Support.V4.Content;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Util;
+﻿using Android.OS;
 using Android.Views;
-using Android.Widget;
 
 namespace PharmaTab.Fragments
 {

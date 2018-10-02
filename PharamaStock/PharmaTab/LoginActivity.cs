@@ -7,7 +7,7 @@ using Android.Views;
 
 namespace PharmaTab
 {
-    [Activity(Label = "PharmaTrack", MainLauncher = true, LaunchMode = Android.Content.PM.LaunchMode.SingleTop, Icon = "@drawable/icon")]
+    [Activity(Label = "PharmaTrack")] //, MainLauncher = true, LaunchMode = Android.Content.PM.LaunchMode.SingleTop, Icon = "@drawable/icon")]
     public class LoginActivity : AppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)

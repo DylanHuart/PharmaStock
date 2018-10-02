@@ -34,4 +34,10 @@
     <!-- Support library compatibility -->
     <item name="elevation">0dp</item>
   </style>
+
+  <style name="Theme.Splash" parent ="Theme.AppCompat.Light.NoActionBar">
+    <item name="android:windowBackground">@drawable/splash_screen</item>
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowFullscreen">true</item>
+  </style>
 </resources>

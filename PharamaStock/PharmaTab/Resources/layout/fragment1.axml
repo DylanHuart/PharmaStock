@@ -130,7 +130,7 @@
 		android:layout_height="80dp"
 		android:layout_marginTop="460dp"
 		android:layout_marginLeft="150dp"
-		android:id="@+id/buttonsettings"
+		android:id="@+id/buttonreset"
 		android:background="@android:color/transparent"
 		android:src="@drawable/resetbt"/>
 	<ImageButton

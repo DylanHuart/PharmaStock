@@ -134,7 +134,8 @@ namespace PharmaTab.Fragments
                     alert.SetTitle("Attention");
                     alert.SetMessage("Veuillez sélectionner un ou plusieurs fichiers à supprimer");
                     alert.SetButton("OK", (c, ev) =>
-                    {                        
+                    {          
+                        
                     });
                     alert.Show();
                 }

@@ -18,7 +18,10 @@ namespace PharmaTab.Fragments
             base.OnCreate(savedInstanceState);
             // Create your fragment here
         }
-
+        public interface IBackButtonListener
+        {
+            void OnBackPressed();
+        }
         public static Fragment1 NewInstance()
         {
             var frag1 = new Fragment1 { Arguments = new Bundle() };
@@ -26,6 +29,7 @@ namespace PharmaTab.Fragments
         }
         string fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock" + Java.IO.File.Separator + "Pharmastock_" + DateTime.Now.ToString("ddMMyyy") + ".csv";
 
+       
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var ignored = base.OnCreateView(inflater, container, savedInstanceState);
@@ -48,14 +52,14 @@ namespace PharmaTab.Fragments
             ImageButton scan4 = view.FindViewById<ImageButton>(Resource.Id.button4);
             ImageButton settings = view.FindViewById<ImageButton>(Resource.Id.buttonsettings);
 
-            if (Settings.Adminstate == "admin")
-            {
-                settings.Visibility = ViewStates.Visible;
-            }
-            else
-            {
+            //if (Settings.Adminstate == "admin")
+            //{
+            //    settings.Visibility = ViewStates.Visible;
+            //}
+            //else
+            //{
                 settings.Visibility = ViewStates.Invisible;
-            }
+            //}
 
             MobileBarcodeScanner scanner;
             
