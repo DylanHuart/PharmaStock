@@ -261,20 +261,19 @@ namespace PharmaTab.Fragments
             var gef = string.Format(codeGEF);
             var lot = string.Format(lotnum);
             var patient = string.Format(numpat);
+            bool newlinetrue = true;
+
             //Si le fichier n'existe pas, créer les entêtes et aller à la ligne. 
             if (!File.Exists(fileName))
             {
                 string header = "Patient n° :" + ";" + "code GEF :" + ";" + "Lot n° :" + ";" + "Quantité :" + ";" + "Délivré le :" + ";" + "Matricule :";
                 File.WriteAllText(fileName, header, Encoding.UTF8);       // Création de la ligne + Encodage pour les caractères spéciaux
                 File.AppendAllText(fileName, System.Environment.NewLine); // Aller à la ligne
-                File.AppendAllText(fileName, newline + System.Environment.NewLine); // Ajout de la ligne contenant les champs
-
                 Toast.MakeText(Application.Context, "Nouveau fichier créé pour la date du jour", ToastLength.Short).Show();
             }
 
-            bool newlinetrue = true;
-            string[] lines = File.ReadLines(fileName).ToArray<string>();
 
+            string[] lines = File.ReadLines(fileName).ToArray<string>();
             for (int i=1; i<lines.Length; i++)
             {
                 List<string> listItems = lines[i].Split(';').ToList();
