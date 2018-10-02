@@ -103,7 +103,7 @@ namespace PharmaTab.Fragments
         }
 
 
-        string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
+        //string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
 
         //Méthode de création du fichier CSV
         public void CreateCSV(string numpat, string codeGEF, string lotnum, string quant, string date, string matricule)
@@ -137,10 +137,10 @@ namespace PharmaTab.Fragments
             var options = new MobileBarcodeScanningOptions
             {
                 AutoRotate = false,
-                UseFrontCameraIfAvailable = false ,
-                DelayBetweenContinuousScans =1500 ,
+                UseFrontCameraIfAvailable = false,
+                DelayBetweenContinuousScans = 1500,
             };
-            
+
 
             scanner = new MobileBarcodeScanner()
             {
@@ -150,12 +150,13 @@ namespace PharmaTab.Fragments
             };
 
             var result = await scanner.Scan(options);
-            
+
             if (result == null)
             {
                 return "";
             }
-            
 
+            return result.Text;
+        }
     }
 }
