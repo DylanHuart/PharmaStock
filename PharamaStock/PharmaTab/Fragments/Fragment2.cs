@@ -11,10 +11,14 @@ using ZXing.Mobile;
 
 namespace PharmaTab.Fragments
 {
+    /// <summary>
+    /// Mode automatique:
+    /// Cette partie va permettre d'enregistrer les informations
+    /// relevées par scanner automatiquement
+    /// </summary>
     public class Fragment2 : Android.Support.V4.App.Fragment
     {
         string toptext = "";
-
         string fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock" + Java.IO.File.Separator + "Pharmastock_" + DateTime.Now.ToString("ddMMyyy") + ".csv";
 
         EditText patient = new EditText(Application.Context);
@@ -98,7 +102,8 @@ namespace PharmaTab.Fragments
             return view;
         }
 
-        
+
+        string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
 
         //Méthode de création du fichier CSV
         public void CreateCSV(string numpat, string codeGEF, string lotnum, string quant, string date, string matricule)
@@ -109,7 +114,6 @@ namespace PharmaTab.Fragments
                 Directory.CreateDirectory(directory);
                 Toast.MakeText(Application.Context, "Dossier Pharmastock créé", ToastLength.Short).Show();
             }
-            //Nom du fichier + Location
 
             //Ligne à ajouter lors de l'enregistrement. Reprend les entrées des champs EditText
             var newline = string.Format("{0};{1};{2};{3};{4};{5}", numpat, codeGEF, lotnum, quant, date, matricule);
@@ -117,7 +121,7 @@ namespace PharmaTab.Fragments
             //Si le fichier n'existe pas, créer les entêtes et aller à la ligne. 
             if (!File.Exists(fileName))
             {
-                string header = "Patient n° :" + ";" + "code GEF :" + ";" + "Lot n° :" + ";" + "Quantité :" + ";" + "Délivré le :" + "Matricule :";
+                string header = "Patient n° :" + ";" + "code GEF :" + ";" + "Lot n° :" + ";" + "Quantité :" + ";" + "Délivré le :" + ";" + "Matricule :";
                 File.WriteAllText(fileName, header, Encoding.UTF8);       // Création de la ligne + Encodage pour les caractères spéciaux
                 File.AppendAllText(fileName, System.Environment.NewLine); // Aller à la ligne
             }
@@ -129,12 +133,15 @@ namespace PharmaTab.Fragments
         {
             MobileBarcodeScanner scanner;
             MobileBarcodeScanner.Initialize(Activity.Application);
+
             var options = new MobileBarcodeScanningOptions
             {
                 AutoRotate = false,
-                UseFrontCameraIfAvailable = false,
-
+                UseFrontCameraIfAvailable = false ,
+                DelayBetweenContinuousScans =1500 ,
             };
+            
+
             scanner = new MobileBarcodeScanner()
             {
                 CancelButtonText = "Annuler",
@@ -148,9 +155,7 @@ namespace PharmaTab.Fragments
             {
                 return "";
             }
-
-            return resultscan = result.Text;
-        }
+            
 
     }
 }

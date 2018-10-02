@@ -12,6 +12,7 @@ namespace PharmaTab
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            //On appelle les classe du using plugin.SecureStorage
             CrossSecureStorage.Current.SetValue("AdminToken", "admin");
             CrossSecureStorage.Current.SetValue("AdmpwdToken", "admin");
 
@@ -20,13 +21,25 @@ namespace PharmaTab
 
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Loginlayout);
-            // Create your application here
+           
             
-
+            //On créer des variables en appelant les ID de LoginLayout.axml            
             ImageButton connexion = FindViewById<ImageButton>(Resource.Id.buttonco);
             EditText username = FindViewById<EditText>(Resource.Id.idmatr);
             EditText password = FindViewById<EditText>(Resource.Id.idmdp);
 
+
+
+            //
+            //DEBUG//
+            username.Text = "admin";
+            password.Text = "admin";
+            //DEBUG//
+            //
+
+
+
+            //On créer l'évenment password du Edit Text de LoginLayout.axml
             password.KeyPress += (object sender, View.KeyEventArgs e) => {
                 e.Handled = false;
                 if (e.Event.Action == KeyEventActions.Down && e.KeyCode == Keycode.Enter)
@@ -35,7 +48,7 @@ namespace PharmaTab
                     connexion.PerformClick();
                 }
             };
-
+            //On créer l'évenement connexion de l'image button de LoginLayout.axml
             connexion.Click += (s, e) =>
             {
                 var AdminToken = CrossSecureStorage.Current.GetValue("AdminToken");
@@ -55,12 +68,12 @@ namespace PharmaTab
                         Settings.Adminstate = "";
                     }
                     Settings.Username = username.Text;
-                    Toast.MakeText(Application.Context, "Connexion réussie !", ToastLength.Long);
+                    Toast.MakeText(Application.Context, "Connexion réussie !", ToastLength.Long).Show();
                     StartActivity(typeof(MainActivity));
                 }
                 else
                 {
-                    Toast.MakeText(Application.Context, "Echec de la connexion, vérifiez vos identifiants !", ToastLength.Long);
+                    Toast.MakeText(Application.Context, "Echec de la connexion, vérifiez vos identifiants !", ToastLength.Long).Show();
                 }
             };
         }

@@ -7,7 +7,7 @@ using Android.Widget;
 using Android.Support.V4.Content;
 using System.IO;
 using Android.Views;
-
+using System.Linq;
 
 namespace PharmaTab.Fragments
 {
@@ -16,7 +16,7 @@ namespace PharmaTab.Fragments
 
         public override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);          
+            base.OnCreate(savedInstanceState);
         }
 
         //On instancie le fragment3 qui sert a afficher la page Historique
@@ -26,18 +26,25 @@ namespace PharmaTab.Fragments
             return frag3;
         }
 
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var ignored = base.OnCreateView(inflater, container, savedInstanceState);
             var view = inflater.Inflate(Resource.Layout.fragment3, null);
 
-            //On créer la variable qui va donner la direction des fichiers dans le stockage interne de l'appareil
+            //On crée la variable qui va donner la direction des fichiers dans le stockage interne de l'appareil
             string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
 
-            //On créer un tableau qui contient les chemins d'accès aux fichiers du dossier
-            string[] fichiers = Directory.GetFiles(directory);
-            
-            //On créer une liste qui va afficher une ligne personnalisée pour chaque éléments du tableau
+            //On crée un tableau qui contient les chemins d'accès aux fichiers du dossier
+            List<string> fichiers = new List<string>();
+            try
+            {
+                fichiers = Directory.GetFiles(directory).ToList();
+            }
+            catch (Exception)
+            { }
+
+            //On crée une liste qui va afficher une ligne personnalisée pour chaque éléments du tableau
             List<string> fichierstxt = new List<string>();
             foreach (var item in fichiers)
                 fichierstxt.Add("Fichier du " + File.GetCreationTime(item));
@@ -56,13 +63,35 @@ namespace PharmaTab.Fragments
             for (int i = 0; i < listehisto.Count; i++)
                 listehisto.SetItemChecked(i, false);
 
+
+
+            //Méthode pour rafraîchir la liste et déselectionner les éléments
+            void RefreshList()
+            {
+                for (int i = 0; i < listehisto.Count; i++)
+                    listehisto.SetItemChecked(i, false);
+
+                fichierstxtAdapter.Clear();
+                fichierstxt.Clear();
+                fichiers.Clear();
+                fichiers = Directory.GetFiles(directory).ToList();
+
+                foreach (var item in fichiers)
+                    fichierstxt.Add("Fichier du " + File.GetCreationTime(item));
+
+                fichierstxtAdapter.AddAll(fichierstxt);
+            }
+
+
             //On appelle les boutons ouvrir et supprimer de fragment3.axml et on déclare la méthode utilisée lors de l'évement Click
             Button btnOuvrir = view.FindViewById<Button>(Resource.Id.button2);
             btnOuvrir.Click += BtnOuvrir_Click;
             Button btnSuppr = view.FindViewById<Button>(Resource.Id.button1);
             btnSuppr.Click += BtnSuppr_Click;
 
-            //On créer la méthode qui va ouvrir le fichier sélectionné avec Excel
+
+
+            //On crée la méthode qui va ouvrir le fichier sélectionné avec Excel
             void BtnOuvrir_Click(object sender, EventArgs e)
             {
                 if (listehisto.CheckedItemCount == 1)
@@ -78,23 +107,13 @@ namespace PharmaTab.Fragments
                     StartActivity(intent);
                 }
                 else
-                {
-                    Android.App.AlertDialog.Builder dialog = new AlertDialog.Builder(this.Context);
-                    AlertDialog alert = dialog.Create();
-                    alert.SetTitle("Attention");
-                    alert.SetMessage("Veuillez sélectionner un fichier à ouvrir");
-                    alert.SetButton("OK", (c, ev) =>
-                    {
-                          
-                    });
-                    alert.Show();
-                }
+                    Toast.MakeText(Application.Context, "Veuillez sélectionner un fichier à ouvrir", ToastLength.Short).Show();
             }
-        
 
 
 
-            //On créer une méthode qui va supprimer le ou les fichiers sélectionnés
+
+            //On crée une méthode qui va supprimer le ou les fichiers sélectionnés
             void BtnSuppr_Click(object sender, EventArgs e)
             {
                 if (listehisto.CheckedItemCount > 0)
@@ -112,11 +131,8 @@ namespace PharmaTab.Fragments
                                 File.Delete(fichiers[i]);
                             }
                         }
-                        Intent historiqueActivity = new Intent(this.Context, typeof(Historique));
-                        StartActivity(historiqueActivity);
-
+                        RefreshList();
                         Toast.MakeText(this.Context, "Supprimé !", ToastLength.Short).Show();
-
                     });
 
                     alert.SetNegativeButton("Annuler", (senderAlert, args) =>
@@ -128,20 +144,9 @@ namespace PharmaTab.Fragments
                     dialog.Show();
                 }
                 else
-                {
-                    Android.App.AlertDialog.Builder dialog = new AlertDialog.Builder(this.Context);
-                    AlertDialog alert = dialog.Create();
-                    alert.SetTitle("Attention");
-                    alert.SetMessage("Veuillez sélectionner un ou plusieurs fichiers à supprimer");
-                    alert.SetButton("OK", (c, ev) =>
-                    {          
-                        
-                    });
-                    alert.Show();
-                }
+                    Toast.MakeText(this.Context, "Veuillez sélectionner un ou plusieurs fichiers à supprimer.", ToastLength.Long).Show();
             }
-
-           return view;
+            return view;
         }
     }
 }

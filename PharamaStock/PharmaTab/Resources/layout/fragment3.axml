@@ -34,9 +34,6 @@
 		android:layout_marginRight="20dp"
 		android:id="@+id/button1"
 		android:layout_toRightOf="@id/button2"
-		android:layout_below="@id/listehisto" 
+		android:layout_below="@id/listehisto"/>
 	 />
-
-	 />
-
 </RelativeLayout>

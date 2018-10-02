@@ -24,6 +24,7 @@ namespace PharamaStock
     {
         //TextView _dateDisplay;
         //Button _dateSelectButton;
+        Xamarin.Forms.DependencyService.Register<SettingsManager>();
         string fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock_" + DateTime.Now.ToString("ddMMyyy") + ".csv";
 
 
