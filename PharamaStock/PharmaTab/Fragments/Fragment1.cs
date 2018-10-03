@@ -53,7 +53,6 @@ namespace PharmaTab.Fragments
             ImageButton scan1 = view.FindViewById<ImageButton>(Resource.Id.button1);
             ImageButton scan2 = view.FindViewById<ImageButton>(Resource.Id.button2);
             ImageButton scan3 = view.FindViewById<ImageButton>(Resource.Id.button3);
-            ImageButton scan4 = view.FindViewById<ImageButton>(Resource.Id.button4);
             ImageButton settings = view.FindViewById<ImageButton>(Resource.Id.buttonsettings);
             ImageButton suivant = view.FindViewById<ImageButton>(Resource.Id.buttonnext);
             ImageButton raz = view.FindViewById<ImageButton>(Resource.Id.buttonreset);
@@ -83,10 +82,6 @@ namespace PharmaTab.Fragments
                 await Scan(s, e);
 
             };
-            scan4.Click += async (s, e) =>
-            {
-                await Scan(s, e);
-            };
 
             selectdate.Click += Button_Click;   //Evenement bouton "Date"
             savebt.Click += Button_Click;       //Evenement bouton "Enregistrer"
@@ -108,9 +103,6 @@ namespace PharmaTab.Fragments
                         toptext = "Code GEF";
                         break;
                     case Resource.Id.button3:
-                        toptext = "Quantité délivrée";
-                        break;
-                    case Resource.Id.button4:
                         toptext = "N° du lot";
                         break;
                 }
@@ -146,9 +138,6 @@ namespace PharmaTab.Fragments
                             gef.Text = result.Text;
                             break;
                         case Resource.Id.button3:
-                            quantite.Text = result.Text;
-                            break;
-                        case Resource.Id.button4:
                             lot.Text = result.Text;
                             break;
                     }
