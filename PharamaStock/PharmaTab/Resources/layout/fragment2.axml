@@ -6,4 +6,82 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:background="@drawable/Fonddneutre">
+	<EditText
+		android:hint="N° Patient"
+		android:layout_width="300dp"
+		android:layout_height="wrap_content"
+		android:id="@+id/numpat2"
+		android:layout_marginLeft="20dp"
+		android:layout_marginTop="5dp"
+		android:focusableInTouchMode="true"
+		android:textColor="#ffdfd6d6"
+		android:backgroundTint="#ffdfd6d6"
+		android:textColorHint="#ffdfd6d6" />
+	<EditText
+		android:hint="Code GEF"
+		android:layout_width="300dp"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="50dp"
+		android:id="@+id/codgef2"
+		android:layout_marginLeft="20dp"
+		android:textColor="#ffdfd6d6"
+		android:backgroundTint="#ffdfd6d6"
+		android:textColorHint="#ffdfd6d6"/>
+	<EditText
+		android:hint="Quantité délivrée"
+		android:layout_width="300dp"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="140dp"
+		android:id="@+id/qtedel2"
+		android:inputType="number"
+		android:layout_marginLeft="20dp"
+		android:textColor="#ffdfd6d6"
+		android:backgroundTint="#ffdfd6d6"
+		android:textColorHint="#ffdfd6d6"/>
+	<EditText
+		android:hint="N° de lot"
+		android:layout_width="300dp"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="95dp"
+		android:id="@+id/numlot2"
+		android:layout_marginLeft="20dp"
+		android:textColor="#ffdfd6d6"
+		android:backgroundTint="#ffdfd6d6"
+		android:textColorHint="#ffdfd6d6"/>
+	<EditText
+		android:hint="Date de délivrance"
+		android:layout_width="300dp"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="185dp"
+		android:id="@+id/datedel2"
+		
+		android:editable="false"
+		android:layout_marginLeft="20dp"
+		android:textColor="#ffdfd6d6"
+		android:backgroundTint="#ffdfd6d6"
+		android:textColorHint="#ffdfd6d6"/>
+	<ImageButton
+		android:layout_width="200dp"
+		android:layout_height="40dp"
+		android:layout_marginLeft="50dp"
+		android:layout_marginTop="300dp"
+		android:id="@+id/buttonenr2"
+		android:background="@android:color/transparent"
+		android:src="@drawable/ENREGISTRER"/>
+	<ImageButton
+		android:layout_width="80dp"
+		android:layout_height="80dp"
+		android:layout_marginLeft="270dp"
+		android:layout_marginTop="280dp"
+		android:id="@+id/buttonnext2"
+		android:background="@android:color/transparent"
+		android:src="@drawable/Suivant"/>
+	<ImageButton
+		android:layout_width="60dp"
+		android:layout_height="80dp"
+		android:layout_marginTop="460dp"
+		android:layout_marginLeft="150dp"
+		android:id="@+id/buttonreset"
+		android:background="@android:color/transparent"
+		android:src="@drawable/resetbt"/>
 </RelativeLayout>

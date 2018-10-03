@@ -7,7 +7,7 @@ using Android.Views;
 
 namespace PharmaTab
 {
-    [Activity(Label = "PharmaTrack", MainLauncher = true, LaunchMode = Android.Content.PM.LaunchMode.SingleTop, Icon = "@drawable/icon")]
+    [Activity(Label = "PharmaTrack")] //, MainLauncher = true, LaunchMode = Android.Content.PM.LaunchMode.SingleTop, Icon = "@drawable/icon")]
     public class LoginActivity : AppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -27,18 +27,7 @@ namespace PharmaTab
             ImageButton connexion = FindViewById<ImageButton>(Resource.Id.buttonco);
             EditText username = FindViewById<EditText>(Resource.Id.idmatr);
             EditText password = FindViewById<EditText>(Resource.Id.idmdp);
-
-
-
-            //
-            //DEBUG//
-            username.Text = "admin";
-            password.Text = "admin";
-            //DEBUG//
-            //
-
-
-
+            
             //On créer l'évenment password du Edit Text de LoginLayout.axml
             password.KeyPress += (object sender, View.KeyEventArgs e) => {
                 e.Handled = false;
