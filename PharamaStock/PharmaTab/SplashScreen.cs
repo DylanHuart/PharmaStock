@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PharmaTab
 {
-    [Activity(MainLauncher = true, Theme = "@style/Theme.Splash", NoHistory = true)]
+    [Activity(Label = "PharmaTrack", MainLauncher = true, Theme = "@style/Theme.Splash", NoHistory = true)]
     public class SplashScreen : AppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
