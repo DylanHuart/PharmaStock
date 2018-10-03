@@ -4,7 +4,9 @@ using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ZXing.Mobile;
@@ -136,8 +138,9 @@ namespace PharmaTab.Fragments
 
             lot.TextChanged += (s, e) =>
             {
-                    if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text))
-                        CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, DateTime.Now.Date.ToString("dd/MM/yyyy"), Settings.Username);
+
+                //if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text))
+                //    CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, DateTime.Now.Date.ToString("dd/MM/yyyy"), Settings.Username);
             };
 
             return view;
@@ -153,11 +156,15 @@ namespace PharmaTab.Fragments
             if (!Directory.Exists(directory))
             {
                 Directory.CreateDirectory(directory);
-                Toast.MakeText(Application.Context, "Dossier Pharmastock créé", ToastLength.Short).Show();
+                Toast.MakeText(Application.Context, "Dossier Pharmastock créé à la racine du stockage", ToastLength.Short).Show();
             }
 
             //Ligne à ajouter lors de l'enregistrement. Reprend les entrées des champs EditText
             var newline = string.Format("{0};{1};{2};{3};{4};{5}", numpat, codeGEF, lotnum, quant, date, matricule);
+            var gef = string.Format(codeGEF);
+            var lot = string.Format(lotnum);
+            var patient = string.Format(numpat);
+            bool newlinetrue = true;
 
             //Si le fichier n'existe pas, créer les entêtes et aller à la ligne. 
             if (!File.Exists(fileName))
@@ -165,9 +172,30 @@ namespace PharmaTab.Fragments
                 string header = "Patient n° :" + ";" + "code GEF :" + ";" + "Lot n° :" + ";" + "Quantité :" + ";" + "Délivré le :" + ";" + "Matricule :";
                 File.WriteAllText(fileName, header, Encoding.UTF8);       // Création de la ligne + Encodage pour les caractères spéciaux
                 File.AppendAllText(fileName, System.Environment.NewLine); // Aller à la ligne
+                Toast.MakeText(Application.Context, "Nouveau fichier créé pour la date du jour", ToastLength.Short).Show();
             }
-            File.AppendAllText(fileName, newline + System.Environment.NewLine); // Ajout de la ligne contenant les champs
-            Toast.MakeText(Application.Context, "Données enregistrées", ToastLength.Short).Show();
+
+
+
+            //Vérification des lignes. Stocke le fichier csv dans un tableau, split dans une liste les éléments et compare.
+            string[] lines = File.ReadLines(fileName).ToArray<string>();
+            for (int i = 1; i < lines.Length; i++) //commence à 1 pour passer le header
+            {
+                List<string> listItems = lines[i].Split(';').ToList();
+
+
+                if (listItems[0] == patient && listItems[1] == gef && listItems[2] == lot)
+                {
+                    Toast.MakeText(Application.Context, "Cette commande existe déjà", ToastLength.Short).Show();
+                    newlinetrue = false; //bool méthode
+                    break;
+                }
+            }
+            if (newlinetrue)
+            {
+                File.AppendAllText(fileName, newline + System.Environment.NewLine); // Ajout de la ligne contenant les champs
+                Toast.MakeText(Application.Context, "Données enregistrées", ToastLength.Short).Show();
+            }
         }
 
         async Task<string> Scan()
