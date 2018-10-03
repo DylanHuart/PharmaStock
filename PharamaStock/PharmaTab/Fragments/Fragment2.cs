@@ -4,7 +4,9 @@ using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ZXing.Mobile;
@@ -18,9 +20,15 @@ namespace PharmaTab.Fragments
     /// </summary>
     public class Fragment2 : Android.Support.V4.App.Fragment
     {
+        //Variables
         string toptext = "";
-        string fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock" + Java.IO.File.Separator + "Pharmastock_" + DateTime.Now.ToString("ddMMyyy") + ".csv";
+        string resultscan = "";
 
+        //Chemin d'accès au fichier
+        string fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock" + Java.IO.File.Separator + "Pharmastock_" + DateTime.Now.ToString("ddMMyyy") + ".csv";
+        string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
+
+        //création des variables des EditText de fragment1.axml
         EditText patient = new EditText(Application.Context);
         EditText gef = new EditText(Application.Context);
         EditText lot = new EditText(Application.Context);
@@ -28,37 +36,39 @@ namespace PharmaTab.Fragments
         EditText date = new EditText(Application.Context);
         EditText matricule = new EditText(Application.Context);
 
+        //création des variables des ImageButton de fragment1.axml
         ImageButton suivant = new ImageButton(Application.Context);
         ImageButton savebt = new ImageButton(Application.Context);
         ImageButton raz = new ImageButton(Application.Context); 
-        string resultscan = "";
+        
+        //On instancie le fragment 2
         public static Fragment2 NewInstance()
         {
             var frag2 = new Fragment2 { Arguments = new Bundle() };
             return frag2;
         }
-
-        string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
-
+        
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var ignored = base.OnCreateView(inflater, container, savedInstanceState);
             var view = inflater.Inflate(Resource.Layout.fragment2, null);
+            var tabs = Activity.FindViewById<TabLayout>(Resource.Id.tabs);
 
-             suivant = view.FindViewById<ImageButton>(Resource.Id.buttonnext2);
-             savebt = view.FindViewById<ImageButton>(Resource.Id.buttonenr2);
+            matricule = new EditText(this.Context);
+            matricule.Text = Settings.Username;
+
+            //création des variables des ImageButton de fragment2.axml
+            suivant = view.FindViewById<ImageButton>(Resource.Id.buttonnext2);
+            savebt = view.FindViewById<ImageButton>(Resource.Id.buttonenr2);
             raz = view.FindViewById<ImageButton>(Resource.Id.buttonreset);
-
+            //création des variables des EditText de fragment2.axml
             patient = view.FindViewById<EditText>(Resource.Id.numpat2);
             gef = view.FindViewById<EditText>(Resource.Id.codgef2);
             lot = view.FindViewById<EditText>(Resource.Id.numlot2);
             quantite = view.FindViewById<EditText>(Resource.Id.qtedel2);
             date = view.FindViewById<EditText>(Resource.Id.datedel2);
-            matricule = new EditText(this.Context);
-            matricule.Text = Settings.Username;
-
-            var tabs = Activity.FindViewById<TabLayout>(Resource.Id.tabs);
-
+        
+            //Méthode enregistrer
             savebt.Click += async (s, e) =>
             {
                 if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text))
@@ -77,6 +87,7 @@ namespace PharmaTab.Fragments
                 patient.Text = await task;
             };
 
+            //Méthode suivant
             suivant.Click += async (s, e) =>
             {
                 if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text))
@@ -94,6 +105,7 @@ namespace PharmaTab.Fragments
                 patient.Text = await task;
             };
 
+           //Méthode selection date de délivrance
             date.Click += (s, e) =>
             {
                 DatePickerDialog datepick = new DatePickerDialog(this.Context, AlertDialog.ThemeDeviceDefaultLight, OnDateSet, DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
@@ -106,7 +118,7 @@ namespace PharmaTab.Fragments
             {
                 date.Text = e.Date.ToLongDateString();
             }
-
+            //Méthode de sélection en mode automatique
             tabs.TabSelected += async (s, e) =>
             {
 
@@ -119,7 +131,7 @@ namespace PharmaTab.Fragments
                    patient.Text = await task;
                 }
              };
-
+            //lecture code barre suivant aprés écriture du code barre précèdent
             patient.AfterTextChanged += async (s, e) =>
             {
                 toptext = "Code GEF";
@@ -134,18 +146,15 @@ namespace PharmaTab.Fragments
                 Task<string> task = Scan();
                 lot.Text = await task;
             };
-
-            lot.TextChanged += (s, e) =>
-            {
-                    if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text))
-                        CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, DateTime.Now.Date.ToString("dd/MM/yyyy"), Settings.Username);
-            };
+            //Enregistrement sur csv après dernière lecture
+            //lot.TextChanged += (s, e) =>
+            //{
+            //        if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text))
+            //            CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, DateTime.Now.Date.ToString("dd/MM/yyyy"), Settings.Username);
+            //};
 
             return view;
         }
-
-
-        //string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
 
         //Méthode de création du fichier CSV
         public void CreateCSV(string numpat, string codeGEF, string lotnum, string quant, string date, string matricule)
@@ -154,11 +163,15 @@ namespace PharmaTab.Fragments
             if (!Directory.Exists(directory))
             {
                 Directory.CreateDirectory(directory);
-                Toast.MakeText(Application.Context, "Dossier Pharmastock créé", ToastLength.Short).Show();
+                Toast.MakeText(Application.Context, "Dossier Pharmastock créé à la racine du stockage", ToastLength.Short).Show();
             }
 
             //Ligne à ajouter lors de l'enregistrement. Reprend les entrées des champs EditText
             var newline = string.Format("{0};{1};{2};{3};{4};{5}", numpat, codeGEF, lotnum, quant, date, matricule);
+            var geftext = string.Format(codeGEF);
+            var lot = string.Format(lotnum);
+            var patient = string.Format(numpat);
+            bool newlinetrue = true;
 
             //Si le fichier n'existe pas, créer les entêtes et aller à la ligne. 
             if (!File.Exists(fileName))
@@ -166,11 +179,37 @@ namespace PharmaTab.Fragments
                 string header = "Patient n° :" + ";" + "code GEF :" + ";" + "Lot n° :" + ";" + "Quantité :" + ";" + "Délivré le :" + ";" + "Matricule :";
                 File.WriteAllText(fileName, header, Encoding.UTF8);       // Création de la ligne + Encodage pour les caractères spéciaux
                 File.AppendAllText(fileName, System.Environment.NewLine); // Aller à la ligne
+                Toast.MakeText(Application.Context, "Nouveau fichier créé pour la date du jour", ToastLength.Short).Show();
             }
-            File.AppendAllText(fileName, newline + System.Environment.NewLine); // Ajout de la ligne contenant les champs
-            Toast.MakeText(Application.Context, "Données enregistrées", ToastLength.Short).Show();
+
+            //Création d'un tableau qui évite les doublons
+            string[] lines = File.ReadLines(fileName).ToArray<string>();
+            for (int i = 1; i < lines.Length; i++)
+            {
+                List<string> listItems = lines[i].Split(';').ToList();
+
+
+                if (listItems[0] == patient && listItems[1] == geftext && listItems[2] == lot)
+                {
+                    Toast.MakeText(Application.Context, "Cette ligne existe déjà", ToastLength.Short).Show();
+                    newlinetrue = false;
+
+
+                    //Vide les champs d'entrée sauf celui patient
+                    toptext = "Code GEF";
+                    Task<string> task = Scan();
+                    gef.Text = task.Result;
+                    break;
+                }
+            }
+            if (newlinetrue)
+            {
+                File.AppendAllText(fileName, newline + System.Environment.NewLine); // Ajout de la ligne contenant les champs
+                Toast.MakeText(Application.Context, "Données enregistrées", ToastLength.Short).Show();
+            }
         }
 
+        //Méthode de création du scanner
         async Task<string> Scan()
         {
             MobileBarcodeScanner scanner;
@@ -184,9 +223,7 @@ namespace PharmaTab.Fragments
             };
 
             scanner = new MobileBarcodeScanner()
-            {
-                CancelButtonText = "Annuler",
-                FlashButtonText = "Flash",
+            {             
                 TopText = toptext
             };
 

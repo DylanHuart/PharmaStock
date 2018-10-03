@@ -122,7 +122,6 @@ namespace PharmaTab.Fragments
                 //Cette variable attend un scan pour obtenir la valeur lue dans le code barre
                 var result = await scanner.Scan(options);
 
-
                 if (result == null)
                 {
                     return;
@@ -261,7 +260,7 @@ namespace PharmaTab.Fragments
                 Toast.MakeText(Application.Context, "Nouveau fichier créé pour la date du jour", ToastLength.Short).Show();
             }
 
-
+            //Création d'un tableau qui évite les doublons
             string[] lines = File.ReadLines(fileName).ToArray<string>();
             for (int i=1; i<lines.Length; i++)
             {
@@ -283,22 +282,6 @@ namespace PharmaTab.Fragments
         }
 
 
-
-
-        //if (ExistsLine(gef) == true)
-        //{
-        //    Toast.MakeText(Application.Context, "Cette ligne existe déjà", ToastLength.Short).Show();
-        //}
-        //else
-        //{
-        //    File.AppendAllText(fileName, newline + System.Environment.NewLine); // Ajout de la ligne contenant les champs
-        //    Toast.MakeText(Application.Context, "Données enregistrées", ToastLength.Short).Show();
-        //}
-
-
-
-        //File.AppendAllText(fileName, newline + System.Environment.NewLine); // Ajout de la ligne contenant les champs
-        //Toast.MakeText(Application.Context, "Données enregistrées", ToastLength.Short).Show();
     }
 
 
