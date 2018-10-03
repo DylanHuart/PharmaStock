@@ -21,6 +21,8 @@ namespace PharmaTab.Fragments
         string toptext = "";
         string fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock" + Java.IO.File.Separator + "Pharmastock_" + DateTime.Now.ToString("ddMMyyy") + ".csv";
 
+        Task<string> task;
+
         EditText patient = new EditText(Application.Context);
         EditText gef = new EditText(Application.Context);
         EditText lot = new EditText(Application.Context);
@@ -31,7 +33,7 @@ namespace PharmaTab.Fragments
         ImageButton suivant = new ImageButton(Application.Context);
         ImageButton savebt = new ImageButton(Application.Context);
         ImageButton raz = new ImageButton(Application.Context); 
-        string resultscan = "";
+
         public static Fragment2 NewInstance()
         {
             var frag2 = new Fragment2 { Arguments = new Bundle() };
@@ -56,42 +58,37 @@ namespace PharmaTab.Fragments
             date = view.FindViewById<EditText>(Resource.Id.datedel2);
             matricule = new EditText(this.Context);
             matricule.Text = Settings.Username;
-
+            quantite.Text = "1";
             var tabs = Activity.FindViewById<TabLayout>(Resource.Id.tabs);
 
             savebt.Click += async (s, e) =>
             {
-                if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text))
+                if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text) || quantite.Text != "0")
                     CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text, matricule.Text);
                 else
                     Toast.MakeText(Application.Context, "Veuillez remplir les champs", ToastLength.Short).Show();
 
                 //Vide les champs d'entrée                       
-                quantite.Text = "";
-                lot.Text = "";
-                gef.Text = "";
-                patient.Text = "";
+                quantite.Text = "1";
 
                 toptext = "N° du patient";
-                Task<string> task = Scan();
+                task = Scan();
                 patient.Text = await task;
             };
 
             suivant.Click += async (s, e) =>
             {
-                if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text))
+                if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text) || quantite.Text != "0")
                     CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text, matricule.Text);
                 else
                     Toast.MakeText(Application.Context, "Veuillez remplir les champs", ToastLength.Short).Show();
 
                 //Vide les champs d'entrée sauf celui patient
-                quantite.Text = "";
-                lot.Text = "";
-                gef.Text = "";
-
-                toptext = "N° du patient";
-                Task<string> task = Scan();
-                patient.Text = await task;
+                quantite.Text = "1";
+                
+                toptext = "Code GEF";
+                task = Scan();
+                gef.Text = await task;
             };
 
             date.Click += (s, e) =>
@@ -115,7 +112,8 @@ namespace PharmaTab.Fragments
                if (text == "Auto")
                {
                    toptext = "N° du patient";
-                   Task<string> task = Scan();
+                   
+                   task = Scan();
                    patient.Text = await task;
                 }
              };
@@ -123,7 +121,7 @@ namespace PharmaTab.Fragments
             patient.AfterTextChanged += async (s, e) =>
             {
                 toptext = "Code GEF";
-                Task<string> task = Scan();
+                task = Scan();
                 gef.Text = await task;
             };
 
@@ -131,16 +129,10 @@ namespace PharmaTab.Fragments
             gef.AfterTextChanged += async (s, e) =>
             {
                 toptext = "Numéro de lot";
-                Task<string> task = Scan();
+                task = Scan();
                 lot.Text = await task;
             };
-
-            lot.TextChanged += (s, e) =>
-            {
-                    if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text))
-                        CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, DateTime.Now.Date.ToString("dd/MM/yyyy"), Settings.Username);
-            };
-
+            
             return view;
         }
 
