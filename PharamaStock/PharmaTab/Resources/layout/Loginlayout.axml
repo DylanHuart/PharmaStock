@@ -40,6 +40,6 @@
 		android:layout_marginLeft="80dp"
 		android:layout_marginTop="400dp"
 		android:id="@+id/buttonco"
-		android:background="@android:color/transparent"
-		android:src="@drawable/CONNEXIOn"/>
+		android:background="@drawable/btco"
+		/>
 </RelativeLayout>
