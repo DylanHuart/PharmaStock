@@ -1,13 +1,13 @@
+using Android.App;
 using Android.OS;
+using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
-using ZXing.Mobile;
-using Android.App;
 using System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-using Android.Support.Design.Widget;
+using ZXing.Mobile;
 
 namespace PharmaTab.Fragments
 {
@@ -21,85 +21,89 @@ namespace PharmaTab.Fragments
         string toptext = "";
         string fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock" + Java.IO.File.Separator + "Pharmastock_" + DateTime.Now.ToString("ddMMyyy") + ".csv";
 
-        TextView numpat = new TextView(Application.Context);
-        TextView gef = new TextView(Application.Context);
-        TextView qte = new TextView(Application.Context);
-        TextView lot = new TextView(Application.Context);
-
+        EditText patient = new EditText(Application.Context);
+        EditText gef = new EditText(Application.Context);
+        EditText lot = new EditText(Application.Context);
+        EditText quantite = new EditText(Application.Context);
+        EditText date = new EditText(Application.Context);
+        EditText matricule = new EditText(Application.Context);
+        string resultscan = "";
         public static Fragment2 NewInstance()
         {
             var frag2 = new Fragment2 { Arguments = new Bundle() };
             return frag2;
         }
-        
-        public override void OnStart()
-        {
-            base.OnStart();
-            var tabs = Activity.FindViewById<TabLayout>(Resource.Id.tabs);
-           
-            
-                tabs.TabSelected += async (s, e) =>
-                {
-                    var tab = e.Tab;
-                    var text = tab.Text;
-
-                    if (text == "Auto")
-                    {
-                        toptext = "N° du patient";
-                        await Scan();
-                        Toast.MakeText(Application.Context, "Patient sélectionné", ToastLength.Short).Show();
-                    }
-                };
-
-                numpat.AfterTextChanged += async (s, e) =>
-                {
-                    toptext = "Code GEF";
-                    await Scan();
-                    Toast.MakeText(Application.Context, "Code GEF sélectionné", ToastLength.Short).Show();
-                };
-
-                gef.AfterTextChanged += async (s, e) =>
-                {
-                    toptext = "Quantité délivrée";
-                    await Scan();
-                    Toast.MakeText(Application.Context, "Quantité sélectionnée", ToastLength.Short).Show();
-                };
-
-                qte.AfterTextChanged += async (s, e) =>
-                {
-                    toptext = "N° du lot";
-                    await Scan();
-                    Toast.MakeText(Application.Context, "numéro de lot sélectionné", ToastLength.Short).Show();
-                    
-                };
-
-                lot.TextChanged+=(s, e) =>
-                {
-                    
-                    Android.App.AlertDialog.Builder dialog = new AlertDialog.Builder(this.Context);
-                    AlertDialog alert = dialog.Create();
-                    alert.SetTitle("Attention");
-                    alert.SetMessage("Voulez vous effectuer un nouvel enregistrement sur le même patient ? ");
-                    alert.SetButton("OK", (c, ev) =>
-                    {
-                        if (!string.IsNullOrEmpty(numpat.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(qte.Text))
-                            CreateCSV(numpat.Text, gef.Text, lot.Text, qte.Text, DateTime.Now.Date.ToString("dd/MM/yyyy"), Settings.Username);
-                        numpat.Text = numpat.Text;
-                    });
-
-                    alert.SetButton2("Patient suivant", (c, ev) =>
-                    {
-                        if (!string.IsNullOrEmpty(numpat.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(qte.Text))
-                            CreateCSV(numpat.Text, gef.Text, lot.Text, qte.Text, DateTime.Now.Date.ToString("dd/MM/yyyy"), Settings.Username);
-                    });
-                    alert.Show();
-                };
-            
-
-        }
-            //Nom du fichier + Location
 
         string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
+
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {
+            var ignored = base.OnCreateView(inflater, container, savedInstanceState);
+            var view = inflater.Inflate(Resource.Layout.fragment2, null);
+
+            patient = view.FindViewById<EditText>(Resource.Id.numpat2);
+            gef = view.FindViewById<EditText>(Resource.Id.codgef2);
+            lot = view.FindViewById<EditText>(Resource.Id.numlot2);
+            quantite = view.FindViewById<EditText>(Resource.Id.qtedel2);
+            date = view.FindViewById<EditText>(Resource.Id.datedel2);
+            matricule = new EditText(this.Context);
+            matricule.Text = Settings.Username;
+
+            var tabs = Activity.FindViewById<TabLayout>(Resource.Id.tabs);
+
+
+            date.Click += (s, e) =>
+            {
+                DatePickerDialog datepick = new DatePickerDialog(this.Context, AlertDialog.ThemeDeviceDefaultLight, OnDateSet, DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+
+                datepick.DatePicker.DateTime = DateTime.Today;
+                datepick.Show();
+            };
+
+            void OnDateSet(object sender, DatePickerDialog.DateSetEventArgs e)
+            {
+                date.Text = e.Date.ToLongDateString();
+            }
+
+            tabs.TabSelected += async (s, e) =>
+            {
+
+               var tab = e.Tab;
+               var text = tab.Text;
+               if (text == "Auto")
+               {
+                   toptext = "N° du patient";
+                   Task<string> task = Scan();
+                   patient.Text = await task;
+                }
+             };
+
+            patient.AfterTextChanged += async (s, e) =>
+            {
+                toptext = "Code GEF";
+                Task<string> task = Scan();
+                gef.Text = await task;
+            };
+
+
+            gef.AfterTextChanged += async (s, e) =>
+            {
+                toptext = "Numéro de lot";
+                Task<string> task = Scan();
+                lot.Text = await task;
+            };
+
+            lot.TextChanged += (s, e) =>
+            {
+                    if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text))
+                        CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, DateTime.Now.Date.ToString("dd/MM/yyyy"), Settings.Username);
+            };
+
+            return view;
+        }
+
+
+        //string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
 
         //Méthode de création du fichier CSV
         public void CreateCSV(string numpat, string codeGEF, string lotnum, string quant, string date, string matricule)
@@ -125,7 +129,7 @@ namespace PharmaTab.Fragments
             Toast.MakeText(Application.Context, "Données enregistrées", ToastLength.Short).Show();
         }
 
-        async Task Scan()
+        async Task<string> Scan()
         {
             MobileBarcodeScanner scanner;
             MobileBarcodeScanner.Initialize(Activity.Application);
@@ -133,10 +137,10 @@ namespace PharmaTab.Fragments
             var options = new MobileBarcodeScanningOptions
             {
                 AutoRotate = false,
-                UseFrontCameraIfAvailable = false ,
-                DelayBetweenContinuousScans =1500 ,
+                UseFrontCameraIfAvailable = false,
+                DelayBetweenContinuousScans = 1500,
             };
-            
+
 
             scanner = new MobileBarcodeScanner()
             {
@@ -149,37 +153,10 @@ namespace PharmaTab.Fragments
 
             if (result == null)
             {
-                return;
+                return "";
             }
-            else
-            {
-                switch (toptext)
-                {
-                    case "N° du patient":
-                        numpat.Text = result.Text;
-                        break;
-                    case "Code GEF":
-                        gef.Text = result.Text;
-                        break;
-                    case "Quantité délivrée":
-                        qte.Text = result.Text;
-                        break;
-                    case "N° du lot":
-                        lot.Text = result.Text;
-                        break;
 
-                }
-
-            }
-            return;
-        }
-
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
-            var ignored = base.OnCreateView(inflater, container, savedInstanceState);
-            var view = inflater.Inflate(Resource.Layout.fragment2, null);
-            
-            return view;
+            return result.Text;
         }
     }
 }

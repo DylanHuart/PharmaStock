@@ -22,8 +22,7 @@ namespace PharmaTab
         ViewPager pager;
         TabsAdapter adapter;
         TabLayout tabs;
-
-
+        
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
