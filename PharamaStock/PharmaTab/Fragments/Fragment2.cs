@@ -27,6 +27,10 @@ namespace PharmaTab.Fragments
         EditText quantite = new EditText(Application.Context);
         EditText date = new EditText(Application.Context);
         EditText matricule = new EditText(Application.Context);
+
+        ImageButton suivant = new ImageButton(Application.Context);
+        ImageButton savebt = new ImageButton(Application.Context);
+        ImageButton raz = new ImageButton(Application.Context); 
         string resultscan = "";
         public static Fragment2 NewInstance()
         {
@@ -41,6 +45,10 @@ namespace PharmaTab.Fragments
             var ignored = base.OnCreateView(inflater, container, savedInstanceState);
             var view = inflater.Inflate(Resource.Layout.fragment2, null);
 
+             suivant = view.FindViewById<ImageButton>(Resource.Id.buttonnext2);
+             savebt = view.FindViewById<ImageButton>(Resource.Id.buttonenr2);
+            raz = view.FindViewById<ImageButton>(Resource.Id.buttonreset);
+
             patient = view.FindViewById<EditText>(Resource.Id.numpat2);
             gef = view.FindViewById<EditText>(Resource.Id.codgef2);
             lot = view.FindViewById<EditText>(Resource.Id.numlot2);
@@ -51,6 +59,40 @@ namespace PharmaTab.Fragments
 
             var tabs = Activity.FindViewById<TabLayout>(Resource.Id.tabs);
 
+            savebt.Click += async (s, e) =>
+            {
+                if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text))
+                    CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text, matricule.Text);
+                else
+                    Toast.MakeText(Application.Context, "Veuillez remplir les champs", ToastLength.Short).Show();
+
+                //Vide les champs d'entrée                       
+                quantite.Text = "";
+                lot.Text = "";
+                gef.Text = "";
+                patient.Text = "";
+
+                toptext = "N° du patient";
+                Task<string> task = Scan();
+                patient.Text = await task;
+            };
+
+            suivant.Click += async (s, e) =>
+            {
+                if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text))
+                    CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text, matricule.Text);
+                else
+                    Toast.MakeText(Application.Context, "Veuillez remplir les champs", ToastLength.Short).Show();
+
+                //Vide les champs d'entrée sauf celui patient
+                quantite.Text = "";
+                lot.Text = "";
+                gef.Text = "";
+
+                toptext = "N° du patient";
+                Task<string> task = Scan();
+                patient.Text = await task;
+            };
 
             date.Click += (s, e) =>
             {
@@ -140,7 +182,6 @@ namespace PharmaTab.Fragments
                 UseFrontCameraIfAvailable = false,
                 DelayBetweenContinuousScans = 1500,
             };
-
 
             scanner = new MobileBarcodeScanner()
             {

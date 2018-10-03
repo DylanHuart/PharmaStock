@@ -20,10 +20,7 @@ namespace PharmaTab.Fragments
             base.OnCreate(savedInstanceState);
             // Create your fragment here
         }
-        public interface IBackButtonListener
-        {
-            void OnBackPressed();
-        }
+
         public static Fragment1 NewInstance()
         {
             var frag1 = new Fragment1 { Arguments = new Bundle() };
@@ -33,7 +30,6 @@ namespace PharmaTab.Fragments
         //Chemin d'accès au fichier
         string fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock" + Java.IO.File.Separator + "Pharmastock_" + DateTime.Now.ToString("ddMMyyy") + ".csv";
 
-       
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var ignored = base.OnCreateView(inflater, container, savedInstanceState);
@@ -57,19 +53,19 @@ namespace PharmaTab.Fragments
             ImageButton scan1 = view.FindViewById<ImageButton>(Resource.Id.button1);
             ImageButton scan2 = view.FindViewById<ImageButton>(Resource.Id.button2);
             ImageButton scan3 = view.FindViewById<ImageButton>(Resource.Id.button3);
-            ImageButton scan4 = view.FindViewById<ImageButton>(Resource.Id.button4);
             ImageButton settings = view.FindViewById<ImageButton>(Resource.Id.buttonsettings);
             ImageButton suivant = view.FindViewById<ImageButton>(Resource.Id.buttonnext);
             ImageButton raz = view.FindViewById<ImageButton>(Resource.Id.buttonreset);
 
-            //if (Settings.Adminstate == "admin")
-            //{
-            //    settings.Visibility = ViewStates.Visible;
-            //}
-            //else
-            //{
+            //Evenement d'acces aux pages
+            if (Settings.Adminstate == "admin")
+            {
+                settings.Visibility = ViewStates.Visible;
+            }
+            else
+            {
                 settings.Visibility = ViewStates.Invisible;
-            //}
+            }
 
             //Evenements d'affichage du scanner lors des clics sur les boutons
             MobileBarcodeScanner scanner;
@@ -85,10 +81,6 @@ namespace PharmaTab.Fragments
             {
                 await Scan(s, e);
 
-            };
-            scan4.Click += async (s, e) =>
-            {
-                await Scan(s, e);
             };
 
             selectdate.Click += Button_Click;   //Evenement bouton "Date"
@@ -111,9 +103,6 @@ namespace PharmaTab.Fragments
                         toptext = "Code GEF";
                         break;
                     case Resource.Id.button3:
-                        toptext = "Quantité délivrée";
-                        break;
-                    case Resource.Id.button4:
                         toptext = "N° du lot";
                         break;
                 }
@@ -149,9 +138,6 @@ namespace PharmaTab.Fragments
                             gef.Text = result.Text;
                             break;
                         case Resource.Id.button3:
-                            quantite.Text = result.Text;
-                            break;
-                        case Resource.Id.button4:
                             lot.Text = result.Text;
                             break;
                     }

@@ -33,6 +33,7 @@
 		android:layout_height="wrap_content"
 		android:layout_marginTop="140dp"
 		android:id="@+id/qtedel2"
+		android:inputType="number"
 		android:layout_marginLeft="20dp"
 		android:textColor="#ffdfd6d6"
 		android:backgroundTint="#ffdfd6d6"
@@ -53,6 +54,8 @@
 		android:layout_height="wrap_content"
 		android:layout_marginTop="185dp"
 		android:id="@+id/datedel2"
+		
+		android:editable="false"
 		android:layout_marginLeft="20dp"
 		android:textColor="#ffdfd6d6"
 		android:backgroundTint="#ffdfd6d6"
@@ -62,7 +65,7 @@
 		android:layout_height="40dp"
 		android:layout_marginLeft="50dp"
 		android:layout_marginTop="300dp"
-		android:id="@+id/buttonenr"
+		android:id="@+id/buttonenr2"
 		android:background="@android:color/transparent"
 		android:src="@drawable/ENREGISTRER"/>
 	<ImageButton
@@ -70,7 +73,7 @@
 		android:layout_height="80dp"
 		android:layout_marginLeft="270dp"
 		android:layout_marginTop="280dp"
-		android:id="@+id/buttonnext"
+		android:id="@+id/buttonnext2"
 		android:background="@android:color/transparent"
 		android:src="@drawable/Suivant"/>
 	<ImageButton
@@ -78,7 +81,7 @@
 		android:layout_height="80dp"
 		android:layout_marginTop="460dp"
 		android:layout_marginLeft="150dp"
-		android:id="@+id/buttonsettings"
+		android:id="@+id/buttonreset"
 		android:background="@android:color/transparent"
 		android:src="@drawable/resetbt"/>
 </RelativeLayout>

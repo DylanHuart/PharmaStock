@@ -11,7 +11,7 @@
 		android:layout_width="300dp"
 		android:layout_height="wrap_content"
 		android:id="@+id/numpat"
-		android:layout_marginRight="0dp"
+		android:layout_marginLeft="5dp"
 		android:layout_marginTop="5dp"
 		android:focusableInTouchMode="true"
 		android:textColor="#ffdfd6d6"
@@ -21,18 +21,17 @@
 		android:layout_width="32dp"
 		android:layout_height="32dp"
 		android:layout_marginTop="20dp"
-		android:layout_toRightOf="@id/numpat"
+		android:layout_marginLeft="310dp"
 		android:id="@+id/button1"
 		android:src="@drawable/photo"
-		android:background="@android:color/transparent"
-		android:layout_marginLeft="20dp" />
+		android:background="@android:color/transparent" />
 	<EditText
 		android:hint="Code GEF"
 		android:layout_width="300dp"
 		android:layout_height="wrap_content"
 		android:layout_marginTop="50dp"
 		android:id="@+id/codgef"
-		android:layout_marginRight="0dp"
+		android:layout_marginLeft="5dp"
 		android:textColor="#ffdfd6d6"
 		android:backgroundTint="#ffdfd6d6"
 		android:textColorHint="#ffdfd6d6"/>
@@ -40,8 +39,7 @@
 		android:layout_width="32dp"
 		android:layout_height="32dp"
 		android:layout_marginTop="65dp"
-		android:layout_marginLeft="20dp"
-		android:layout_toRightOf="@id/codgef"
+		android:layout_marginLeft="310dp"
 		android:id="@+id/button2"
 		android:background="@android:color/transparent"
 		android:src="@drawable/photo"/>
@@ -49,9 +47,10 @@
 		android:hint="Quantité délivrée"
 		android:layout_width="300dp"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="95dp"
+		android:layout_marginTop="140dp"
 		android:id="@+id/qtedel"
-		android:layout_marginRight="0dp"
+		android:inputType="number"
+		android:layout_marginLeft="5dp"
 		android:textColor="#ffdfd6d6"
 		android:backgroundTint="#ffdfd6d6"
 		android:textColorHint="#ffdfd6d6"/>
@@ -59,8 +58,7 @@
 		android:layout_width="32dp"
 		android:layout_height="32dp"
 		android:layout_marginTop="110dp"
-		android:layout_marginLeft="20dp"
-		android:layout_toRightOf="@id/qtedel"
+		android:layout_marginLeft="310dp"
 		android:id="@+id/button3"
 		android:background="@android:color/transparent"
 		android:src="@drawable/photo"/>
@@ -68,28 +66,21 @@
 		android:hint="N° de lot"
 		android:layout_width="300dp"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="140dp"
+		android:layout_marginTop="95dp"
 		android:id="@+id/numlot"
-		android:layout_marginRight="0dp"
+		
+		android:layout_marginLeft="5dp"
 		android:textColor="#ffdfd6d6"
 		android:backgroundTint="#ffdfd6d6"
 		android:textColorHint="#ffdfd6d6"/>
-	<ImageButton
-		android:layout_width="32dp"
-		android:layout_height="32dp"
-		android:layout_marginTop="155dp"
-		android:layout_marginLeft="20dp"
-		android:layout_toRightOf="@id/numlot"
-		android:id="@+id/button4"
-		android:background="@android:color/transparent"
-		android:src="@drawable/photo"/>
 	<EditText
 		android:hint="Date de délivrance"
 		android:layout_width="300dp"
 		android:layout_height="wrap_content"
 		android:layout_marginTop="185dp"
+		
 		android:id="@+id/datedel"
-		android:layout_marginRight="0dp"
+		android:layout_marginLeft="5dp"
 		android:textColor="#ffdfd6d6"
 		android:backgroundTint="#ffdfd6d6"
 		android:textColorHint="#ffdfd6d6"/>
@@ -97,8 +88,7 @@
 		android:layout_width="32dp"
 		android:layout_height="32dp"
 		android:layout_marginTop="200dp"
-		android:layout_marginLeft="20dp"
-		android:layout_toRightOf="@id/datedel"
+		android:layout_marginLeft="310dp"
 		android:id="@+id/button5"
 		android:background="@android:color/transparent"
 		android:src="@drawable/calendar"/>
