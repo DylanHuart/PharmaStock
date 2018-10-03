@@ -184,9 +184,11 @@ namespace PharmaTab.Fragments
 
             //Création d'un tableau qui évite les doublons
             string[] lines = File.ReadLines(fileName).ToArray<string>();
+            List<string> listItems = new List<string>();
             for (int i = 1; i < lines.Length; i++)
             {
-                List<string> listItems = lines[i].Split(';').ToList();
+                listItems = lines[i].Split(';').ToList();
+            
 
 
                 if (listItems[0] == patient && listItems[1] == geftext && listItems[2] == lot)
@@ -198,9 +200,10 @@ namespace PharmaTab.Fragments
                     //Vide les champs d'entrée sauf celui patient
                     toptext = "Code GEF";
                     Task<string> task = Scan();
-                    gef.Text = task.Result;
+                    //gef.Text = task.Result;
                     break;
                 }
+
             }
             if (newlinetrue)
             {
