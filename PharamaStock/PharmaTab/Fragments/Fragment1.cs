@@ -197,6 +197,7 @@ namespace PharmaTab.Fragments
                         quantite.Text = "";
                         lot.Text = "";
                         gef.Text = "";
+                        gef.RequestFocus();
                         break;
 
                     //Affiche l'historique
@@ -273,8 +274,10 @@ namespace PharmaTab.Fragments
             }
 
 
+
+            //Vérification des lignes. Stocke le fichier csv dans un tableau, split dans une liste les éléments et compare.
             string[] lines = File.ReadLines(fileName).ToArray<string>();
-            for (int i=1; i<lines.Length; i++)
+            for (int i=1; i<lines.Length; i++) //commence à 1 pour passer le header
             {
                 List<string> listItems = lines[i].Split(';').ToList();
 
@@ -282,8 +285,8 @@ namespace PharmaTab.Fragments
                 if (listItems[0] == patient && listItems[1] == gef && listItems[2] == lot)
                 {
                     Toast.MakeText(Application.Context, "Cette commande existe déjà", ToastLength.Short).Show();
-                    newlinetrue = false;
-                    isLinePresent = true;
+                    newlinetrue = false; //bool méthode
+                    isLinePresent = true; //bool global
                     break;
                 }
             }
@@ -291,7 +294,7 @@ namespace PharmaTab.Fragments
             {
                 File.AppendAllText(fileName, newline + System.Environment.NewLine); // Ajout de la ligne contenant les champs
                 Toast.MakeText(Application.Context, "Données enregistrées", ToastLength.Short).Show();
-                isLinePresent = false;
+                isLinePresent = false; //bool global
             }
         }
     }
