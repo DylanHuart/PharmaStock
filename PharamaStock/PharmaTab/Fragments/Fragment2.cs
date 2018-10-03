@@ -134,6 +134,7 @@ namespace PharmaTab.Fragments
             //lecture code barre suivant aprés écriture du code barre précèdent
             patient.AfterTextChanged += async (s, e) =>
             {
+                //Vide les champs d'entrée sauf celui patient
                 toptext = "Code GEF";
                 Task<string> task = Scan();
                 gef.Text = await task;
@@ -195,12 +196,9 @@ namespace PharmaTab.Fragments
                 {
                     Toast.MakeText(Application.Context, "Cette ligne existe déjà", ToastLength.Short).Show();
                     newlinetrue = false;
-
-
-                    //Vide les champs d'entrée sauf celui patient
                     toptext = "Code GEF";
                     Task<string> task = Scan();
-                    //gef.Text = task.Result;
+                    gef.Text = task.Result;
                     break;
                 }
 
