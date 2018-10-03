@@ -31,7 +31,6 @@ namespace PharmaTab.Fragments
         ImageButton suivant = new ImageButton(Application.Context);
         ImageButton savebt = new ImageButton(Application.Context);
         ImageButton raz = new ImageButton(Application.Context); 
-        string resultscan = "";
         public static Fragment2 NewInstance()
         {
             var frag2 = new Fragment2 { Arguments = new Bundle() };

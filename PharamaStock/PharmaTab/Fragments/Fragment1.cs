@@ -29,7 +29,7 @@ namespace PharmaTab.Fragments
 
         //Chemin d'accès au fichier
         string fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock" + Java.IO.File.Separator + "Pharmastock_" + DateTime.Now.ToString("ddMMyyy") + ".csv";
-
+        bool isLinePresent;
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var ignored = base.OnCreateView(inflater, container, savedInstanceState);
@@ -168,11 +168,22 @@ namespace PharmaTab.Fragments
                         else
                             Toast.MakeText(Application.Context, "Veuillez remplir les champs", ToastLength.Short).Show();
 
-                        //Vide les champs d'entrée                       
-                        quantite.Text = "";
-                        lot.Text = "";
-                        gef.Text = "";
-                        patient.Text = "";
+                        if (isLinePresent)
+                        {
+                            quantite.Text = "";
+                            lot.Text = "";
+                            gef.Text = "";
+                            gef.RequestFocus();
+                        }
+                        else
+                        {
+                            //Vide les champs d'entrée                       
+                            quantite.Text = "";
+                            lot.Text = "";
+                            gef.Text = "";
+                            patient.Text = "";
+                            patient.RequestFocus();
+                        }
                         break;
 
                     //Enregistre les champs textes sous format CSV, mais garde le numéro du patient
@@ -270,8 +281,9 @@ namespace PharmaTab.Fragments
 
                 if (listItems[0] == patient && listItems[1] == gef && listItems[2] == lot)
                 {
-                    Toast.MakeText(Application.Context, "Cette ligne existe déjà", ToastLength.Short).Show();
+                    Toast.MakeText(Application.Context, "Cette commande existe déjà", ToastLength.Short).Show();
                     newlinetrue = false;
+                    isLinePresent = true;
                     break;
                 }
             }
@@ -279,28 +291,8 @@ namespace PharmaTab.Fragments
             {
                 File.AppendAllText(fileName, newline + System.Environment.NewLine); // Ajout de la ligne contenant les champs
                 Toast.MakeText(Application.Context, "Données enregistrées", ToastLength.Short).Show();
+                isLinePresent = false;
             }
         }
-
-
-
-
-        //if (ExistsLine(gef) == true)
-        //{
-        //    Toast.MakeText(Application.Context, "Cette ligne existe déjà", ToastLength.Short).Show();
-        //}
-        //else
-        //{
-        //    File.AppendAllText(fileName, newline + System.Environment.NewLine); // Ajout de la ligne contenant les champs
-        //    Toast.MakeText(Application.Context, "Données enregistrées", ToastLength.Short).Show();
-        //}
-
-
-
-        //File.AppendAllText(fileName, newline + System.Environment.NewLine); // Ajout de la ligne contenant les champs
-        //Toast.MakeText(Application.Context, "Données enregistrées", ToastLength.Short).Show();
     }
-
-
-
 }
