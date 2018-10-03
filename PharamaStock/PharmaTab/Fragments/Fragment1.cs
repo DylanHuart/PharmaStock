@@ -5,6 +5,7 @@ using Android.Views;
 using Android.Widget;
 using System;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ZXing.Mobile;
@@ -143,9 +144,9 @@ namespace PharmaTab.Fragments
                         case Resource.Id.button2:
                             gef.Text = result.Text;
                             break;
-                        case Resource.Id.button3:
-                            quantite.Text = result.Text;
-                            break;
+                        //case Resource.Id.button3:
+                            //quantite.Text = result.Text;
+                           // break;
                         case Resource.Id.button4:
                             lot.Text = result.Text;
                             break;
@@ -268,22 +269,16 @@ namespace PharmaTab.Fragments
                 File.AppendAllText(fileName, newline + System.Environment.NewLine); // Ajout de la ligne contenant les champs
                 Toast.MakeText(Application.Context, "Nouveau fichier créé pour la date du jour", ToastLength.Short).Show();
             }
-            else if (File.ReadAllText(fileName).Contains(pat))
+            else
             {
-                //Si le code gef et le numéro du lot sont les mêmes, erreur
 
-                Toast.MakeText(Application.Context, "Cette livraison existe déjà dans le fichier du jour", ToastLength.Long).Show();
+                //Ajout de la ligne contenant les champs
+
+                File.AppendAllText(fileName, newline + System.Environment.NewLine);
+                Toast.MakeText(Application.Context, "Données enregistrées", ToastLength.Short).Show();
+
             }
-            else if (!File.ReadAllText(fileName).Contains(pat) && File.ReadAllText(fileName).Contains(gef) && File.ReadAllText(fileName).Contains(lot))
-            {
-                //Si le code gef et le numéro du lot sont les mêmes, erreur
-
-                Toast.MakeText(Application.Context, "Cette livraison existe déjà dans le fichier du jour", ToastLength.Long).Show();
-            }
-            //Ajout de la ligne contenant les champs
-
-            File.AppendAllText(fileName, newline + System.Environment.NewLine);
-            Toast.MakeText(Application.Context, "Données enregistrées", ToastLength.Short).Show();
+            
         } 
         
     }
