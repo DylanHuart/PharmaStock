@@ -54,7 +54,7 @@
 		android:layout_height="wrap_content"
 		android:layout_marginTop="185dp"
 		android:id="@+id/datedel2"
-		
+		android:focusable="false"
 		android:editable="false"
 		android:layout_marginLeft="20dp"
 		android:textColor="#ffdfd6d6"
