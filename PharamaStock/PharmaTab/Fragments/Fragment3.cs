@@ -84,9 +84,9 @@ namespace PharmaTab.Fragments
 
 
             //On appelle les boutons ouvrir et supprimer de fragment3.axml et on déclare la méthode utilisée lors de l'évement Click
-            Button btnOuvrir = view.FindViewById<Button>(Resource.Id.button2);
+            ImageButton btnOuvrir = view.FindViewById<ImageButton>(Resource.Id.button2);
             btnOuvrir.Click += BtnOuvrir_Click;
-            Button btnSuppr = view.FindViewById<Button>(Resource.Id.button1);
+            ImageButton btnSuppr = view.FindViewById<ImageButton>(Resource.Id.button1);
             btnSuppr.Click += BtnSuppr_Click;
 
 
