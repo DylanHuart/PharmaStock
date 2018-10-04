@@ -18,22 +18,21 @@
 		android:id="@+id/listehisto"
 		android:choiceMode="multipleChoice" 
 		 />
-	<Button
-		android:text="Ouvrir"
-		android:layout_width="wrap_content"
+	<ImageButton
+		android:layout_width="130dp"
 		android:layout_height="wrap_content"
 		android:layout_marginLeft="20dp"
+		android:background="@drawable/openbt"
 		android:layout_below="@id/listehisto"
 		android:id="@+id/button2"
 	 />
-	<Button
-		android:text="Supprimer"
-		android:layout_width="wrap_content"
+	<ImageButton
+		android:layout_width="130dp"
 		android:layout_height="wrap_content"
-		android:layout_marginLeft="150dp"
+		android:layout_marginLeft="210dp"
 		android:layout_marginRight="20dp"
+		android:background="@drawable/delbt"
 		android:id="@+id/button1"
-		android:layout_toRightOf="@id/button2"
 		android:layout_below="@id/listehisto"/>
 	 />
 </RelativeLayout>
