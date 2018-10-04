@@ -1,5 +1,6 @@
 using Android.App;
 using Android.Content;
+using Android.Media;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
@@ -43,6 +44,7 @@ namespace PharmaTab.Fragments
             EditText date = view.FindViewById<EditText>(Resource.Id.datedel);
             EditText matricule = new EditText(this.Context);
 
+            quantite.Text = "1";
             //le matricule reste celui indiqué en page de connexion
             matricule.Text = Settings.Username;
 
@@ -58,14 +60,14 @@ namespace PharmaTab.Fragments
             ImageButton raz = view.FindViewById<ImageButton>(Resource.Id.buttonreset);
 
             //Evenement d'acces aux pages
-            if (Settings.Adminstate == "admin")
-            {
-                settings.Visibility = ViewStates.Visible;
-            }
-            else
-            {
+            //if (Settings.Adminstate == "admin")
+            //{
+            //    settings.Visibility = ViewStates.Visible;
+            //}
+            //else
+            //{
                 settings.Visibility = ViewStates.Invisible;
-            }
+            //}
 
             //Evenements d'affichage du scanner lors des clics sur les boutons
             MobileBarcodeScanner scanner;
@@ -121,7 +123,9 @@ namespace PharmaTab.Fragments
 
                 //Cette variable attend un scan pour obtenir la valeur lue dans le code barre
                 var result = await scanner.Scan(options);
-
+                Android.Media.Stream str = Android.Media.Stream.Music;
+                ToneGenerator tg = new ToneGenerator(str, 100);
+                tg.StartTone(Tone.PropBeep2);
 
                 if (result == null)
                 {
@@ -168,22 +172,11 @@ namespace PharmaTab.Fragments
                         else
                             Toast.MakeText(Application.Context, "Veuillez remplir les champs", ToastLength.Short).Show();
 
-                        if (isLinePresent)
-                        {
-                            quantite.Text = "";
-                            lot.Text = "";
-                            gef.Text = "";
-                            gef.RequestFocus();
-                        }
-                        else
-                        {
-                            //Vide les champs d'entrée                       
-                            quantite.Text = "";
-                            lot.Text = "";
-                            gef.Text = "";
-                            patient.Text = "";
-                            patient.RequestFocus();
-                        }
+                        //Vide les champs d'entrée                       
+                        quantite.Text = "1";
+                        lot.Text = "";
+                        gef.Text = "";
+                        patient.Text = "";
                         break;
 
                     //Enregistre les champs textes sous format CSV, mais garde le numéro du patient
@@ -194,7 +187,7 @@ namespace PharmaTab.Fragments
                             Toast.MakeText(Application.Context, "Veuillez remplir les champs", ToastLength.Short).Show();
 
                         //Vide les champs d'entrée sauf celui patient
-                        quantite.Text = "";
+                        quantite.Text = "1";
                         lot.Text = "";
                         gef.Text = "";
                         gef.RequestFocus();
@@ -208,7 +201,7 @@ namespace PharmaTab.Fragments
 
                     //Vide tous les champs textes selon la réponse à l'alerte
                     case Resource.Id.buttonreset:
-                        if (!string.IsNullOrEmpty(patient.Text) || !string.IsNullOrEmpty(gef.Text) || !string.IsNullOrEmpty(lot.Text) || !string.IsNullOrEmpty(quantite.Text) || !string.IsNullOrEmpty(date.Text))
+                        if (!string.IsNullOrEmpty(patient.Text) || !string.IsNullOrEmpty(gef.Text) || !string.IsNullOrEmpty(lot.Text) || !string.IsNullOrEmpty(quantite.Text) || quantite.Text != "0" || !string.IsNullOrEmpty(date.Text))
                         {
                             Android.App.AlertDialog.Builder dialog = new AlertDialog.Builder(this.Context);
                             AlertDialog alert = dialog.Create();
@@ -246,7 +239,7 @@ namespace PharmaTab.Fragments
         }
         //Nom du dossier + chemin
         string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
-
+        
         //Méthode de création du fichier CSV
         public void CreateCSV(string numpat, string codeGEF, string lotnum, string quant, string date, string matricule)
         {
@@ -268,14 +261,12 @@ namespace PharmaTab.Fragments
             if (!File.Exists(fileName))
             {
                 string header = "Patient n° :" + ";" + "code GEF :" + ";" + "Lot n° :" + ";" + "Quantité :" + ";" + "Délivré le :" + ";" + "Matricule :";
-                File.WriteAllText(fileName, header, Encoding.UTF8);       // Création de la ligne + Encodage pour les caractères spéciaux
+                File.WriteAllText(fileName, header, System.Text.Encoding.UTF8);       // Création de la ligne + Encodage pour les caractères spéciaux
                 File.AppendAllText(fileName, System.Environment.NewLine); // Aller à la ligne
                 Toast.MakeText(Application.Context, "Nouveau fichier créé pour la date du jour", ToastLength.Short).Show();
             }
 
-
-
-            //Vérification des lignes. Stocke le fichier csv dans un tableau, split dans une liste les éléments et compare.
+            //Création d'un tableau qui évite les doublons
             string[] lines = File.ReadLines(fileName).ToArray<string>();
             for (int i=1; i<lines.Length; i++) //commence à 1 pour passer le header
             {
@@ -297,5 +288,7 @@ namespace PharmaTab.Fragments
                 isLinePresent = false; //bool global
             }
         }
+
+
     }
 }

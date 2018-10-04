@@ -66,22 +66,20 @@
 		android:layout_marginLeft="50dp"
 		android:layout_marginTop="300dp"
 		android:id="@+id/buttonenr2"
-		android:background="@android:color/transparent"
-		android:src="@drawable/ENREGISTRER"/>
+		android:background="@drawable/btsave"/>
 	<ImageButton
 		android:layout_width="80dp"
-		android:layout_height="80dp"
+		android:layout_height="70dp"
 		android:layout_marginLeft="270dp"
-		android:layout_marginTop="280dp"
+		android:layout_marginTop="290dp"
 		android:id="@+id/buttonnext2"
-		android:background="@android:color/transparent"
-		android:src="@drawable/Suivant"/>
+		android:background="@drawable/btnext"/>
 	<ImageButton
 		android:layout_width="60dp"
-		android:layout_height="80dp"
-		android:layout_marginTop="460dp"
+		android:layout_height="60dp"
+		android:layout_marginTop="400dp"
 		android:layout_marginLeft="150dp"
 		android:id="@+id/buttonreset"
-		android:background="@android:color/transparent"
-		android:src="@drawable/resetbt"/>
+		android:background="@drawable/btreset"
+		/>
 </RelativeLayout>
