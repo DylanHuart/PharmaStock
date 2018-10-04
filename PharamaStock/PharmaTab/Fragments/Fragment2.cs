@@ -71,36 +71,76 @@ namespace PharmaTab.Fragments
             matricule = new EditText(this.Context);
             matricule.Text = Settings.Username;
             quantite.Text = "1";
-            var tabs = Activity.FindViewById<TabLayout>(Resource.Id.tabs);
+           
 
             savebt.Click += async (s, e) =>
             {
                 if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text) || quantite.Text != "0")
-                    CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text, matricule.Text);
+                {
+                    if (CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text, matricule.Text))
+                    {
+                        Toast.MakeText(Application.Context, "Cette ligne existe déjà", ToastLength.Short).Show();
+
+                        
+                    }
+                }
                 else
                     Toast.MakeText(Application.Context, "Veuillez remplir les champs", ToastLength.Short).Show();
-
-                //Vide les champs d'entrée                       
+                //Vide les champs d'entrée sauf celui patient
                 quantite.Text = "1";
 
                 toptext = "N° du patient";
                 task = Scan();
                 patient.Text = await task;
             };
+            //Méthode raz
+            raz.Click += (s, e) =>
+            {
+                if (!string.IsNullOrEmpty(patient.Text) || !string.IsNullOrEmpty(gef.Text) || !string.IsNullOrEmpty(lot.Text) || !string.IsNullOrEmpty(quantite.Text) || quantite.Text != "0" || !string.IsNullOrEmpty(date.Text))
+                {
+                    Android.App.AlertDialog.Builder dialog = new AlertDialog.Builder(this.Context);
+                    AlertDialog alert = dialog.Create();
+                    alert.SetTitle("Attention");
+                    alert.SetMessage("Les champs de texte seront vidés");
+                    alert.SetButton("OK", (c, ev) =>
+                    {
+                        //Vide les champs
+                        date.Text = "";
+                        quantite.Text = "";
+                        lot.Text = "";
+                        gef.Text = "";
+                        patient.Text = "";
+                        Toast.MakeText(Application.Context, "Champs réinitialisés", ToastLength.Short).Show();
+                    });
+                    alert.SetButton2("Annuler", (c, ev) =>
+                    {
+                        //Ne rien faire
+                    });
+                    alert.Show();
+                }
 
+               
+            };
             //Méthode suivant
             suivant.Click += async (s, e) =>
             {
                 if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text) || quantite.Text != "0")
-                    CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text, matricule.Text);
+                {
+                    if (CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text, matricule.Text))
+                    {
+                        Toast.MakeText(Application.Context, "Cette ligne existe déjà", ToastLength.Short).Show();
+                        
+
+
+                    }
+                }
                 else
                     Toast.MakeText(Application.Context, "Veuillez remplir les champs", ToastLength.Short).Show();
-
                 //Vide les champs d'entrée sauf celui patient
                 quantite.Text = "1";
-                
+
                 toptext = "Code GEF";
-                task = Scan();
+                Task<string> task = Scan();
                 gef.Text = await task;
             };
 
@@ -152,7 +192,7 @@ namespace PharmaTab.Fragments
         }
 
         //Méthode de création du fichier CSV
-        public void CreateCSV(string numpat, string codeGEF, string lotnum, string quant, string date, string matricule)
+        public bool CreateCSV(string numpat, string codeGEF, string lotnum, string quant, string date, string matricule)
         {
             //Création d'un dossier
             if (!Directory.Exists(directory))
@@ -161,7 +201,7 @@ namespace PharmaTab.Fragments
                 Toast.MakeText(Application.Context, "Dossier Pharmastock créé à la racine du stockage", ToastLength.Short).Show();
             }
 
-            //Ligne à ajouter lors de l'enregistrement. Reprend les entrées des champs EditText
+            //Lignes à ajouter lors de l'enregistrement. Reprend les entrées des champs EditText
             var newline = string.Format("{0};{1};{2};{3};{4};{5}", numpat, codeGEF, lotnum, quant, date, matricule);
             var geftext = string.Format(codeGEF);
             var lot = string.Format(lotnum);
@@ -184,24 +224,15 @@ namespace PharmaTab.Fragments
             {
                 listItems = lines[i].Split(';').ToList();
             
-
-
                 if (listItems[0] == patient && listItems[1] == geftext && listItems[2] == lot)
                 {
-                    Toast.MakeText(Application.Context, "Cette ligne existe déjà", ToastLength.Short).Show();
-                    newlinetrue = false;
-                    toptext = "Code GEF";
-                    Task<string> task = Scan();
-                    gef.Text = task.Result;
-                    break;
+                    return true;
                 }
 
             }
-            if (newlinetrue)
-            {
                 File.AppendAllText(fileName, newline + System.Environment.NewLine); // Ajout de la ligne contenant les champs
                 Toast.MakeText(Application.Context, "Données enregistrées", ToastLength.Short).Show();
-            }
+            return false;
         }
 
         //Méthode de création du scanner
