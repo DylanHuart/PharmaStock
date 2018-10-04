@@ -144,13 +144,13 @@ namespace PharmaTab.Fragments
                 gef.Text = await task;
             };
 
-           //Méthode selection date de délivrance
+            //Méthode selection date de délivrance
             date.Click += (s, e) =>
             {
                 DatePickerDialog datepick = new DatePickerDialog(this.Context, AlertDialog.ThemeDeviceDefaultLight, OnDateSet, DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-
                 datepick.DatePicker.DateTime = DateTime.Today;
                 datepick.Show();
+                
             };
 
             void OnDateSet(object sender, DatePickerDialog.DateSetEventArgs e)
@@ -206,8 +206,7 @@ namespace PharmaTab.Fragments
             var geftext = string.Format(codeGEF);
             var lot = string.Format(lotnum);
             var patient = string.Format(numpat);
-            bool newlinetrue = true;
-
+   
             //Si le fichier n'existe pas, créer les entêtes et aller à la ligne. 
             if (!File.Exists(fileName))
             {
@@ -223,7 +222,7 @@ namespace PharmaTab.Fragments
             for (int i = 1; i < lines.Length; i++)
             {
                 listItems = lines[i].Split(';').ToList();
-            
+                //Si la condition retourne true reprend le la création du csv a partir du code GEF en gardant le code patient
                 if (listItems[0] == patient && listItems[1] == geftext && listItems[2] == lot)
                 {
                     return true;
