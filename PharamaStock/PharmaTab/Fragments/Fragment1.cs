@@ -114,7 +114,8 @@ namespace PharmaTab.Fragments
                 {
                     //Options de l'appareil photo : pas de rotation, pas de caméra frontale
                     AutoRotate = false,
-                    UseFrontCameraIfAvailable = false
+                    UseFrontCameraIfAvailable = false,
+                    TryHarder = true
                 };
                 scanner = new MobileBarcodeScanner()
                 {
@@ -123,9 +124,10 @@ namespace PharmaTab.Fragments
 
                 //Cette variable attend un scan pour obtenir la valeur lue dans le code barre
                 var result = await scanner.Scan(options);
+                
                 Android.Media.Stream str = Android.Media.Stream.Music;
                 ToneGenerator tg = new ToneGenerator(str, 100);
-                tg.StartTone(Tone.PropBeep2);
+                tg.StartTone(Tone.PropAck);
 
                 if (result == null)
                 {
@@ -149,8 +151,7 @@ namespace PharmaTab.Fragments
 
                 return;
             }
-
-
+            
             //Méthode dd fonction des boutons
             void Button_Click(object sender, EventArgs e)
             {
