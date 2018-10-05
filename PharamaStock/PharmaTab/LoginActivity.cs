@@ -94,7 +94,7 @@ namespace PharmaTab
                         Settings.Adminstate = "";
                     }
                     Settings.Username = username.Text;
-                    Toast.MakeText(Application.Context, "Connexion réussie !", ToastLength.Long).Show();
+                    Toast.MakeText(Application.Context, "Connexion réussie !", ToastLength.Short).Show();
                     StartActivity(typeof(MainActivity));
                 }
                 else
