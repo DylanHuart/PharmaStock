@@ -40,7 +40,7 @@
 		android:textColorHint="#ffdfd6d6"/>
 	<EditText
 		android:hint="N° de lot"
-		android:layout_width="300dp"
+		android:layout_width="250dp"
 		android:layout_height="wrap_content"
 		android:layout_marginTop="95dp"
 		android:id="@+id/numlot2"
@@ -82,4 +82,11 @@
 		android:id="@+id/buttonreset"
 		android:background="@drawable/btreset"
 		/>
+	<ImageButton		
+		android:layout_width="80dp"
+		android:layout_height="70dp"
+		android:layout_marginLeft="270dp"
+		android:layout_marginTop="100dp"
+		android:id="@+id/buttonplusLot"
+		android:background="@drawable/btnext"/>
 </RelativeLayout>

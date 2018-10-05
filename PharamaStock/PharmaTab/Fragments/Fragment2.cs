@@ -40,8 +40,9 @@ namespace PharmaTab.Fragments
         //création des variables des ImageButton de fragment1.axml
         ImageButton suivant = new ImageButton(Application.Context);
         ImageButton savebt = new ImageButton(Application.Context);
-        ImageButton raz = new ImageButton(Application.Context); 
-        
+        ImageButton raz = new ImageButton(Application.Context);
+        ImageButton plusLot = new ImageButton(Application.Context);
+
         //On instancie le fragment 2
         public static Fragment2 NewInstance()
         {
@@ -66,6 +67,7 @@ namespace PharmaTab.Fragments
             patient = view.FindViewById<EditText>(Resource.Id.numpat2);
             gef = view.FindViewById<EditText>(Resource.Id.codgef2);
             lot = view.FindViewById<EditText>(Resource.Id.numlot2);
+            plusLot = view.FindViewById<ImageButton>(Resource.Id.buttonplusLot);
             quantite = view.FindViewById<EditText>(Resource.Id.qtedel2);
             date = view.FindViewById<EditText>(Resource.Id.datedel2);
             matricule = new EditText(this.Context);
@@ -87,7 +89,7 @@ namespace PharmaTab.Fragments
                 else
                     Toast.MakeText(Application.Context, "Veuillez remplir les champs", ToastLength.Short).Show();
                 //Vide les champs d'entrée sauf celui patient
-                quantite.Text = "1";
+                quantite.Text = "";
 
                 toptext = "N° du patient";
                 task = Scan();
@@ -121,6 +123,29 @@ namespace PharmaTab.Fragments
 
                
             };
+
+            plusLot.Click += async (s, e) =>
+            {
+                if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text) || quantite.Text != "0")
+                {
+                    if (CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text, matricule.Text))
+                    {
+                        Toast.MakeText(Application.Context, "Cette ligne existe déjà", ToastLength.Short).Show();
+
+
+
+                    }
+                }
+                else
+                    Toast.MakeText(Application.Context, "Veuillez remplir les champs", ToastLength.Short).Show();
+                //Vide les champs d'entrée sauf celui patient
+                quantite.Text = "";
+
+                toptext = "Numéro de lot";
+                Task<string> task = Scan();
+                lot.Text = await task;
+            };
+
             //Méthode suivant
             suivant.Click += async (s, e) =>
             {
