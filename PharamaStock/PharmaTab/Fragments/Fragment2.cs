@@ -22,7 +22,6 @@ namespace PharmaTab.Fragments
     {
         //Variables
         string toptext = "";
-        string resultscan = "";
 
         //Chemin d'accès au fichier
         string fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock" + Java.IO.File.Separator + "Pharmastock_" + DateTime.Now.ToString("ddMMyyy") + ".csv";

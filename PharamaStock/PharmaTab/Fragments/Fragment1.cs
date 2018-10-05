@@ -30,7 +30,6 @@ namespace PharmaTab.Fragments
 
         //Chemin d'accès au fichier
         string fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock" + Java.IO.File.Separator + "Pharmastock_" + DateTime.Now.ToString("ddMMyyy") + ".csv";
-        bool isLinePresent;
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var ignored = base.OnCreateView(inflater, container, savedInstanceState);
@@ -168,8 +167,13 @@ namespace PharmaTab.Fragments
 
                     //Enregistre les champs textes sous format CSV
                     case Resource.Id.buttonenr:
-                        if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text))
-                            CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text, matricule.Text);
+                        if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text) || quantite.Text != "0")
+                        {
+                            if (CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text, matricule.Text))
+                            {
+                                Toast.MakeText(Application.Context, "Cette ligne existe déjà", ToastLength.Short).Show();
+                            }
+                        }
                         else
                             Toast.MakeText(Application.Context, "Veuillez remplir les champs", ToastLength.Short).Show();
 
@@ -182,8 +186,13 @@ namespace PharmaTab.Fragments
 
                     //Enregistre les champs textes sous format CSV, mais garde le numéro du patient
                     case Resource.Id.buttonnext:
-                        if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text))
-                            CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text, matricule.Text);
+                        if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text) || quantite.Text != "0")
+                        {
+                            if (CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text, matricule.Text))
+                            {
+                                Toast.MakeText(Application.Context, "Cette ligne existe déjà", ToastLength.Short).Show();
+                            }
+                        }
                         else
                             Toast.MakeText(Application.Context, "Veuillez remplir les champs", ToastLength.Short).Show();
 
@@ -240,9 +249,9 @@ namespace PharmaTab.Fragments
         }
         //Nom du dossier + chemin
         string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
-        
+
         //Méthode de création du fichier CSV
-        public void CreateCSV(string numpat, string codeGEF, string lotnum, string quant, string date, string matricule)
+        public bool CreateCSV(string numpat, string codeGEF, string lotnum, string quant, string date, string matricule)
         {
             //Création d'un dossier
             if (!Directory.Exists(directory))
@@ -251,12 +260,11 @@ namespace PharmaTab.Fragments
                 Toast.MakeText(Application.Context, "Dossier Pharmastock créé à la racine du stockage", ToastLength.Short).Show();
             }
 
-            //Ligne à ajouter lors de l'enregistrement. Reprend les entrées des champs EditText
+            //Lignes à ajouter lors de l'enregistrement. Reprend les entrées des champs EditText
             var newline = string.Format("{0};{1};{2};{3};{4};{5}", numpat, codeGEF, lotnum, quant, date, matricule);
-            var gef = string.Format(codeGEF);
+            var geftext = string.Format(codeGEF);
             var lot = string.Format(lotnum);
             var patient = string.Format(numpat);
-            bool newlinetrue = true;
 
             //Si le fichier n'existe pas, créer les entêtes et aller à la ligne. 
             if (!File.Exists(fileName))
@@ -269,25 +277,20 @@ namespace PharmaTab.Fragments
 
             //Création d'un tableau qui évite les doublons
             string[] lines = File.ReadLines(fileName).ToArray<string>();
-            for (int i=1; i<lines.Length; i++) //commence à 1 pour passer le header
+            List<string> listItems = new List<string>();
+            for (int i = 1; i < lines.Length; i++)
             {
-                List<string> listItems = lines[i].Split(';').ToList();
-
-
-                if (listItems[0] == patient && listItems[1] == gef && listItems[2] == lot)
+                listItems = lines[i].Split(';').ToList();
+                //Si la condition retourne true reprend le la création du csv a partir du code GEF en gardant le code patient
+                if (listItems[0] == patient && listItems[1] == geftext && listItems[2] == lot)
                 {
-                    Toast.MakeText(Application.Context, "Cette commande existe déjà", ToastLength.Short).Show();
-                    newlinetrue = false; //bool méthode
-                    isLinePresent = true; //bool global
-                    break;
+                    return true;
                 }
+
             }
-            if (newlinetrue)
-            {
-                File.AppendAllText(fileName, newline + System.Environment.NewLine); // Ajout de la ligne contenant les champs
-                Toast.MakeText(Application.Context, "Données enregistrées", ToastLength.Short).Show();
-                isLinePresent = false; //bool global
-            }
+            File.AppendAllText(fileName, newline + System.Environment.NewLine); // Ajout de la ligne contenant les champs
+            Toast.MakeText(Application.Context, "Données enregistrées", ToastLength.Short).Show();
+            return false;
         }
 
 
