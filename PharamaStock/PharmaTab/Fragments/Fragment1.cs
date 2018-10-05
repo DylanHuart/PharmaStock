@@ -284,6 +284,7 @@ namespace PharmaTab.Fragments
             }
             if (newlinetrue)
             {
+
                 File.AppendAllText(fileName, newline + System.Environment.NewLine); // Ajout de la ligne contenant les champs
                 Toast.MakeText(Application.Context, "Données enregistrées", ToastLength.Short).Show();
                 isLinePresent = false; //bool global

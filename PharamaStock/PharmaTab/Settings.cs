@@ -46,5 +46,13 @@ namespace PharmaTab
             set { AppSettings.AddOrUpdateValue(AdminKey, value); }
         }
 
+
+        private const string Filename = "userpassword_key";
+        private static readonly string filedefault = string.Empty;
+        public static string FilePath
+        {
+            get { return AppSettings.GetValueOrDefault(Filename, filedefault); }
+            set { AppSettings.AddOrUpdateValue(Filename, value); }
+        }
     }
 }

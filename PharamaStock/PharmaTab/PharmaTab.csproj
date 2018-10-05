@@ -31,8 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-    <AndroidLinkMode>None</AndroidLinkMode>
+    <AndroidLinkMode>Full</AndroidLinkMode>
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+    <EnableProguard>false</EnableProguard>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -42,7 +43,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
-    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+    <AndroidLinkMode>Full</AndroidLinkMode>
+    <EnableProguard>false</EnableProguard>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FastAndroidCamera, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -163,10 +165,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EditActivity.cs" />
     <Compile Include="Fragments\Fragment1.cs" />
     <Compile Include="Fragments\Fragment2.cs" />
-    <Compile Include="Fragments\Fragment3.cs" />
-    <Compile Include="Fragments\Fragment4.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Historique.cs" />
     <Compile Include="LoginActivity.cs" />
@@ -227,12 +228,6 @@
     <AndroidResource Include="Resources\drawable\exceptionelle.png" />
     <AndroidResource Include="Resources\drawable\simple.png" />
     <AndroidResource Include="Resources\xml\provider_paths.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\fragment3.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\fragment4.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Historique.axml">
@@ -308,6 +303,20 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\supprfocus.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\editlayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\btprev.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\prev.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\prevfocus.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
