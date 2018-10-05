@@ -4,6 +4,8 @@ using Android.Support.V7.App;
 using Android.Widget;
 using Plugin.SecureStorage;
 using Android.Views;
+using System.Threading.Tasks;
+using ZXing.Mobile;
 
 namespace PharmaTab
 {
@@ -25,8 +27,10 @@ namespace PharmaTab
             
             //On créer des variables en appelant les ID de LoginLayout.axml            
             ImageButton connexion = FindViewById<ImageButton>(Resource.Id.buttonco);
+            ImageButton mdpscan = FindViewById<ImageButton>(Resource.Id.btnPwd);
             EditText username = FindViewById<EditText>(Resource.Id.idmatr);
             EditText password = FindViewById<EditText>(Resource.Id.idmdp);
+
             
             //On créer l'évenment password du Edit Text de LoginLayout.axml
             password.KeyPress += (object sender, View.KeyEventArgs e) => {
@@ -37,6 +41,39 @@ namespace PharmaTab
                     connexion.PerformClick();
                 }
             };
+
+
+            mdpscan.Click += async (s, e) =>
+            {
+                Task<string> task = Scan();
+                password.Text = await task;
+            };
+
+            async Task<string> Scan()
+            {
+                MobileBarcodeScanner scanner;
+                MobileBarcodeScanner.Initialize(Application);
+
+                var options = new MobileBarcodeScanningOptions
+                {
+                    AutoRotate = false,
+                    UseFrontCameraIfAvailable = false,
+                };
+
+                scanner = new MobileBarcodeScanner()
+                {
+                    TopText = "Scannez le code barre de votre carte"
+                };
+
+                var result = await scanner.Scan(options);
+
+                if (result == null)
+                {
+                    return "";
+                }
+                return result.Text;
+            }
+
             //On créer l'évenement connexion de l'image button de LoginLayout.axml
             connexion.Click += (s, e) =>
             {
