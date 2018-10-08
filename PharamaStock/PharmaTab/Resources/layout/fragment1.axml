@@ -6,88 +6,118 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:background="@drawable/Fonddneutre">
+	<android.support.design.widget.TextInputLayout
+    android:id="@+id/text_input_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+		android:layout_marginLeft="5dp"
+		android:layout_marginTop="5dp"
+		app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+		android:textColorHint="@android:color/white">
 	<EditText
 		android:hint="N° Patient"
 		android:layout_width="300dp"
 		android:layout_height="wrap_content"
 		android:id="@+id/numpat"
-		android:layout_marginLeft="5dp"
-		android:layout_marginTop="5dp"
+		android:imeOptions="actionNext"
 		android:focusableInTouchMode="true"
 		android:textColor="#ffdfd6d6"
-		android:backgroundTint="#ffdfd6d6"
-		android:textColorHint="#ffdfd6d6" />
+		android:background="@drawable/customedittext"
+		 />
+		</android.support.design.widget.TextInputLayout>
 	<ImageButton
 		android:layout_width="32dp"
 		android:layout_height="32dp"
-		android:layout_marginTop="20dp"
-		android:layout_marginLeft="310dp"
+		android:layout_marginTop="30dp"
+		android:layout_marginLeft="315dp"
 		android:id="@+id/button1"
 		android:background="@drawable/photobt" />
+	<android.support.design.widget.TextInputLayout
+    android:id="@+id/text_input_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+		android:layout_marginLeft="5dp"
+		android:layout_marginTop="60dp"
+		app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+		android:textColorHint="@android:color/white">
 	<EditText
 		android:hint="Code GEF"
 		android:layout_width="300dp"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="50dp"
 		android:id="@+id/codgef"
-		android:layout_marginLeft="5dp"
 		android:textColor="#ffdfd6d6"
-		android:backgroundTint="#ffdfd6d6"
-		android:textColorHint="#ffdfd6d6"/>
+		android:background="@drawable/customedittext"/>
+		</android.support.design.widget.TextInputLayout>
 	<ImageButton
 		android:layout_width="32dp"
 		android:layout_height="32dp"
-		android:layout_marginTop="65dp"
-		android:layout_marginLeft="310dp"
+		android:layout_marginTop="85dp"
+		android:layout_marginLeft="315dp"
 		android:id="@+id/button2"
 		android:background="@drawable/photobt"/>
+	<android.support.design.widget.TextInputLayout
+    android:id="@+id/text_input_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+		android:layout_marginTop="170dp"
+		android:layout_marginLeft="5dp"
+		app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+		android:textColorHint="@android:color/white">
 	<EditText
 		android:hint="Quantité délivrée"
 		android:layout_width="300dp"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="140dp"
+		
 		android:id="@+id/qtedel"
 		android:inputType="number"
-		android:layout_marginLeft="5dp"
+		
 		android:textColor="#ffdfd6d6"
-		android:backgroundTint="#ffdfd6d6"
-		android:textColorHint="#ffdfd6d6"/>
+		android:background="@drawable/customedittext"/>
+		</android.support.design.widget.TextInputLayout>
 	<ImageButton
 		android:layout_width="32dp"
 		android:layout_height="32dp"
-		android:layout_marginTop="110dp"
-		android:layout_marginLeft="310dp"
+		android:layout_marginTop="140dp"
+		android:layout_marginLeft="315dp"
 		android:id="@+id/button3"
 		android:background="@drawable/photobt"/>
+	<android.support.design.widget.TextInputLayout
+    android:id="@+id/text_input_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+		android:layout_marginLeft="5dp"
+		android:layout_marginTop="115dp"
+		app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+		android:textColorHint="@android:color/white">
 	<EditText
 		android:hint="N° de lot"
 		android:layout_width="300dp"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="95dp"
+		
 		android:id="@+id/numlot"
 		
-		android:layout_marginLeft="5dp"
+		
 		android:textColor="#ffdfd6d6"
-		android:backgroundTint="#ffdfd6d6"
-		android:textColorHint="#ffdfd6d6"/>
+		android:background="@drawable/customedittext"/>
+		</android.support.design.widget.TextInputLayout>
+	<android.support.design.widget.TextInputLayout
+    android:id="@+id/text_input_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+		android:layout_marginTop="225dp"
+		android:layout_marginLeft="5dp"
+		app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+		android:textColorHint="@android:color/white">
 	<EditText
 		android:hint="Date de délivrance"
 		android:layout_width="300dp"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="185dp"
 		
 		android:id="@+id/datedel"
-		android:layout_marginLeft="5dp"
+		
 		android:textColor="#ffdfd6d6"
-		android:backgroundTint="#ffdfd6d6"
-		android:textColorHint="#ffdfd6d6"/>
-	<ImageButton
-		android:layout_width="32dp"
-		android:layout_height="32dp"
-		android:layout_marginTop="200dp"
-		android:layout_marginLeft="310dp"
-		android:id="@+id/button5"
-		android:background="@drawable/calbt"/>
+		android:background="@drawable/customedittext"/>
+		</android.support.design.widget.TextInputLayout>
 	<ImageButton
 		android:layout_width="200dp"
 		android:layout_height="40dp"

@@ -42,6 +42,13 @@
 		android:id="@+id/buttonco"
 		android:background="@drawable/btco"
 		/>
+	<Button
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+		android:layout_marginTop="450dp"
+		
+    android:text="action_click_me"
+    android:theme="@style/PrimaryButton" />
 	<ImageButton
 		android:layout_width="32dp"
 		android:layout_height="32dp"

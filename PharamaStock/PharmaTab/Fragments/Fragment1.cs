@@ -49,7 +49,6 @@ namespace PharmaTab.Fragments
 
             //création des variables des ImageButton de fragment1.axml
             ImageButton savebt = view.FindViewById<ImageButton>(Resource.Id.buttonenr);
-            ImageButton selectdate = view.FindViewById<ImageButton>(Resource.Id.button5);
             ImageButton historique = view.FindViewById<ImageButton>(Resource.Id.buttonhist);
             ImageButton scan1 = view.FindViewById<ImageButton>(Resource.Id.button1);
             ImageButton scan2 = view.FindViewById<ImageButton>(Resource.Id.button2);
@@ -68,6 +67,13 @@ namespace PharmaTab.Fragments
                 settings.Visibility = ViewStates.Invisible;
             //}
 
+            date.Click += (s, e) =>
+            {
+                DatePickerDialog datepick = new DatePickerDialog(this.Context, AlertDialog.ThemeDeviceDefaultLight, OnDateSet, DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+                datepick.DatePicker.DateTime = DateTime.Today;
+                datepick.Show();
+
+            };
             //Evenements d'affichage du scanner lors des clics sur les boutons
             MobileBarcodeScanner scanner;
             scan1.Click += async (s, e) =>
@@ -84,7 +90,7 @@ namespace PharmaTab.Fragments
 
             };
 
-            selectdate.Click += Button_Click;   //Evenement bouton "Date"
+            
             savebt.Click += Button_Click;       //Evenement bouton "Enregistrer"
             suivant.Click += Button_Click;      //Evenement bouton "Suivant"
             historique.Click += Button_Click;   //Evenement bouton "Historique"
@@ -157,13 +163,13 @@ namespace PharmaTab.Fragments
                 ImageButton btn = (ImageButton)sender;
                 switch (btn.Id)
                 {
-                    // Affiche un calendrier en dialogue pour y sélectionner la date
-                    case Resource.Id.button5:
-                        DatePickerDialog datepick = new DatePickerDialog(this.Context, AlertDialog.ThemeDeviceDefaultLight, OnDateSet, DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+                    //// Affiche un calendrier en dialogue pour y sélectionner la date
+                    //case Resource.Id.button5:
+                    //    DatePickerDialog datepick = new DatePickerDialog(this.Context, AlertDialog.ThemeDeviceDefaultLight, OnDateSet, DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
 
-                        datepick.DatePicker.DateTime = DateTime.Today;
-                        datepick.Show();
-                        break;
+                    //    datepick.DatePicker.DateTime = DateTime.Today;
+                    //    datepick.Show();
+                    //    break;
 
                     //Enregistre les champs textes sous format CSV
                     case Resource.Id.buttonenr:
