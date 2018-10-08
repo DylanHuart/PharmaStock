@@ -59,15 +59,20 @@ namespace PharmaTab.Fragments
             ImageButton raz = view.FindViewById<ImageButton>(Resource.Id.buttonreset);
 
             //Evenement d'acces aux pages
-            //if (Settings.Adminstate == "admin")
-            //{
-            //    settings.Visibility = ViewStates.Visible;
-            //}
-            //else
-            //{
+            if (Settings.Adminstate == "admin")
+            {
+                settings.Visibility = ViewStates.Visible;
+            }
+            else
+            {
                 settings.Visibility = ViewStates.Invisible;
-            //}
+            }
 
+            settings.Click += (s, e) =>
+            {
+                Intent userActivity = new Intent(this.Context, typeof(UserActivity));
+                StartActivity(userActivity);
+            };
             //Evenements d'affichage du scanner lors des clics sur les boutons
             MobileBarcodeScanner scanner;
             scan1.Click += async (s, e) =>
