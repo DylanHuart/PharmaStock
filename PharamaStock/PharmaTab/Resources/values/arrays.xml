@@ -4,8 +4,8 @@
     <item>Manuel</item>
     <item>Auto</item>
   </string-array>
-  <string-array name="histsections">
-    <item>Simple</item>
-    <item>Exceptionnelle</item>
+  <string-array name="usersections">
+    <item>Ajouter</item>
+    <item>Modifier</item>
   </string-array>
 </resources>
