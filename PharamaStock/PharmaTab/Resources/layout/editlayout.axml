@@ -139,13 +139,15 @@
 		android:layout_marginTop="290dp"
 		android:id="@+id/buttonprev3"
 		android:background="@drawable/btprev"/>
-	<ImageButton
+	<Button
 		android:layout_width="60dp"
 		android:layout_height="60dp"
 		android:layout_marginTop="470dp"
 		android:layout_marginLeft="150dp"
 		android:id="@+id/buttonreset2"
-		android:background="@drawable/btreset"
+		android:paddingTop="12dp"
+		android:drawableTop="@drawable/baseline_replay_white_36dp"
+		android:background="@drawable/circlebt"
 		/>
 	<ImageButton
 		android:layout_width="130dp"

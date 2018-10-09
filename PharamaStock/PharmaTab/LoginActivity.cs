@@ -26,7 +26,7 @@ namespace PharmaTab
            
             
             //On créer des variables en appelant les ID de LoginLayout.axml            
-            ImageButton connexion = FindViewById<ImageButton>(Resource.Id.buttonco);
+            Button connexion = FindViewById<Button>(Resource.Id.buttonco);
             ImageButton mdpscan = FindViewById<ImageButton>(Resource.Id.btnPwd);
             EditText username = FindViewById<EditText>(Resource.Id.idmatr);
             EditText password = FindViewById<EditText>(Resource.Id.idmdp);

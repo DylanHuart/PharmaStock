@@ -48,14 +48,14 @@ namespace PharmaTab.Fragments
             matricule.Text = Settings.Username;
 
             //création des variables des ImageButton de fragment1.axml
-            ImageButton savebt = view.FindViewById<ImageButton>(Resource.Id.buttonenr);
-            ImageButton historique = view.FindViewById<ImageButton>(Resource.Id.buttonhist);
+            Button savebt = view.FindViewById<Button>(Resource.Id.buttonenr);
+            Button historique = view.FindViewById<Button>(Resource.Id.buttonhist);
             ImageButton scan1 = view.FindViewById<ImageButton>(Resource.Id.button1);
             ImageButton scan2 = view.FindViewById<ImageButton>(Resource.Id.button2);
             ImageButton scan3 = view.FindViewById<ImageButton>(Resource.Id.button3);
             ImageButton settings = view.FindViewById<ImageButton>(Resource.Id.buttonsettings);
-            ImageButton suivant = view.FindViewById<ImageButton>(Resource.Id.buttonnext);
-            ImageButton raz = view.FindViewById<ImageButton>(Resource.Id.buttonreset);
+            Button suivant = view.FindViewById<Button>(Resource.Id.buttonnext);
+            Button raz = view.FindViewById<Button>(Resource.Id.buttonreset);
 
             //Evenement d'acces aux pages
             //if (Settings.Adminstate == "admin")
@@ -160,7 +160,7 @@ namespace PharmaTab.Fragments
             //Méthode dd fonction des boutons
             void Button_Click(object sender, EventArgs e)
             {
-                ImageButton btn = (ImageButton)sender;
+                Button btn = (Button)sender;
                 switch (btn.Id)
                 {
                     //// Affiche un calendrier en dialogue pour y sélectionner la date

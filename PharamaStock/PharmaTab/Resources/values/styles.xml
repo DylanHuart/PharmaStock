@@ -31,6 +31,10 @@
     <item name="colorButtonNormal">@color/colorPrimary</item>
     <item name="colorControlHighlight">@color/colorAccent</item>
   </style>
+  <style name="PrimaryButtonHistorique" parent="Theme.AppCompat">
+    <item name="colorButtonNormal">#729E3F</item>
+    <item name="colorControlHighlight">#A1C979</item>
+  </style>
   <style name="Theme.MyTheme.ActionBar" parent="style/Widget.AppCompat.Light.ActionBar.Solid">
     <!-- remove shadow below action bar -->
     <!-- <item name="android:elevation">0dp</item> -->

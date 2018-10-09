@@ -100,33 +100,40 @@
 		android:background="@drawable/customedittext"/>
 		</android.support.design.widget.TextInputLayout>
 	
-	<ImageButton
+	<Button
 		android:layout_width="200dp"
-		android:layout_height="40dp"
+		android:layout_height="wrap_content"
 		android:layout_marginLeft="40dp"
 		android:layout_marginTop="320dp"
 		android:id="@+id/buttonenr2"
-		android:background="@drawable/btsave"/>
-	<ImageButton
-		android:layout_width="80dp"
-		android:layout_height="70dp"
+		android:theme="@style/PrimaryButton"
+	android:text="Enregistrer"/>
+	<Button
+		android:layout_width="50dp"
+		android:layout_height="50dp"
 		android:layout_marginLeft="270dp"
-		android:layout_marginTop="310dp"
+		android:layout_marginTop="315dp"
 		android:id="@+id/buttonnext2"
-		android:background="@drawable/btnext"/>
-	<ImageButton
+		android:background="@drawable/circlebt"
+        android:drawableTop="@drawable/baseline_arrow_right_alt_white_36dp"
+        android:paddingTop="8dp"/>
+	<Button
 		android:layout_width="60dp"
 		android:layout_height="60dp"
 		android:layout_marginTop="400dp"
 		android:layout_marginLeft="150dp"
 		android:id="@+id/buttonreset"
-		android:background="@drawable/btreset"
+		android:paddingTop="12dp"
+		android:drawableTop="@drawable/baseline_replay_white_36dp"
+		android:background="@drawable/circlebt"
 		/>
-	<ImageButton		
-		android:layout_width="80dp"
-		android:layout_height="70dp"
-		android:layout_marginLeft="270dp"
+	<Button
+		android:layout_width="50dp"
+		android:layout_height="50dp"
+		android:layout_marginLeft="300dp"
 		android:layout_marginTop="130dp"
 		android:id="@+id/buttonplusLot"
-		android:background="@drawable/btnext"/>
+		android:background="@drawable/circlebt"
+        android:drawableTop="@drawable/baseline_arrow_right_alt_white_36dp"
+        android:paddingTop="8dp"/>
 </RelativeLayout>

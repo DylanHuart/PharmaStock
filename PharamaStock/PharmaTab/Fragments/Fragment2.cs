@@ -37,10 +37,10 @@ namespace PharmaTab.Fragments
         EditText matricule = new EditText(Application.Context);
 
         //création des variables des ImageButton de fragment1.axml
-        ImageButton suivant = new ImageButton(Application.Context);
-        ImageButton savebt = new ImageButton(Application.Context);
-        ImageButton raz = new ImageButton(Application.Context);
-        ImageButton plusLot = new ImageButton(Application.Context);
+        Button suivant = new Button(Application.Context);
+        Button savebt = new Button(Application.Context);
+        Button raz = new Button(Application.Context);
+        Button plusLot = new Button(Application.Context);
 
         //On instancie le fragment 2
         public static Fragment2 NewInstance()
@@ -59,14 +59,14 @@ namespace PharmaTab.Fragments
             matricule.Text = Settings.Username;
 
             //création des variables des ImageButton de fragment2.axml
-            suivant = view.FindViewById<ImageButton>(Resource.Id.buttonnext2);
-            savebt = view.FindViewById<ImageButton>(Resource.Id.buttonenr2);
-            raz = view.FindViewById<ImageButton>(Resource.Id.buttonreset);
+            suivant = view.FindViewById<Button>(Resource.Id.buttonnext2);
+            savebt = view.FindViewById<Button>(Resource.Id.buttonenr2);
+            raz = view.FindViewById<Button>(Resource.Id.buttonreset);
             //création des variables des EditText de fragment2.axml
             patient = view.FindViewById<EditText>(Resource.Id.numpat2);
             gef = view.FindViewById<EditText>(Resource.Id.codgef2);
             lot = view.FindViewById<EditText>(Resource.Id.numlot2);
-            plusLot = view.FindViewById<ImageButton>(Resource.Id.buttonplusLot);
+            plusLot = view.FindViewById<Button>(Resource.Id.buttonplusLot);
             quantite = view.FindViewById<EditText>(Resource.Id.qtedel2);
             date = view.FindViewById<EditText>(Resource.Id.datedel2);
             matricule = new EditText(this.Context);
