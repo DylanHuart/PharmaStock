@@ -18,8 +18,8 @@ namespace PharmaTab
             CrossSecureStorage.Current.SetValue("AdminToken", "admin");
             CrossSecureStorage.Current.SetValue("AdmpwdToken", "admin");
 
-            CrossSecureStorage.Current.SetValue("SessionToken", "01682286");
-            CrossSecureStorage.Current.SetValue("passwordToken", "recette0");
+            CrossSecureStorage.Current.SetValue("SessionToken", "123456");
+            CrossSecureStorage.Current.SetValue("passwordToken", "700523N");
 
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Loginlayout);

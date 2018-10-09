@@ -58,14 +58,14 @@ namespace PharmaTab.Fragments
             Button raz = view.FindViewById<Button>(Resource.Id.buttonreset);
 
             //Evenement d'acces aux pages
-            //if (Settings.Adminstate == "admin")
-            //{
-            //    settings.Visibility = ViewStates.Visible;
-            //}
-            //else
-            //{
+            if (Settings.Adminstate == "admin")
+            {
+                settings.Visibility = ViewStates.Visible;
+            }
+            else
+            {
                 settings.Visibility = ViewStates.Invisible;
-            //}
+            }
 
             date.Click += (s, e) =>
             {
@@ -73,6 +73,11 @@ namespace PharmaTab.Fragments
                 datepick.DatePicker.DateTime = DateTime.Today;
                 datepick.Show();
 
+            };
+            settings.Click += (s, e) =>
+            {
+                Intent userActivity = new Intent(this.Context, typeof(UserActivity));
+                StartActivity(userActivity);
             };
             //Evenements d'affichage du scanner lors des clics sur les boutons
             MobileBarcodeScanner scanner;
