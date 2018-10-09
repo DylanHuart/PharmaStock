@@ -165,6 +165,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cryptage.cs" />
     <Compile Include="EditActivity.cs" />
     <Compile Include="Fragments\Fragment1.cs" />
     <Compile Include="Fragments\Fragment2.cs" />
@@ -179,6 +180,7 @@
     <Compile Include="Settings.cs" />
     <Compile Include="SplashScreen.cs" />
     <Compile Include="userActivity.cs" />
+    <Compile Include="XML.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
