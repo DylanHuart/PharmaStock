@@ -50,7 +50,7 @@
 		android:layout_below="@id/idmatr"
 		android:layout_toRightOf="@id/idmdp"
 		android:background="@drawable/photobt"
-		android:id="@+id/btnPwd" />
+		android:id="@+id/btnscan" />
 
 
 </RelativeLayout>

@@ -33,6 +33,34 @@ namespace PharmaTab.Fragments
             var ignored = base.OnCreateView(inflater, container, savedInstanceState);
             var view = inflater.Inflate(Resource.Layout.fragment3, null);
 
+            //Chemin du fichier xml
+            string path = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "PharmastockXML"  + Java.IO.File.Separator + "Config.xml";
+
+            EditText matricule = view.FindViewById<EditText>(Resource.Id.idmatr);
+            EditText mdp = view.FindViewById<EditText>(Resource.Id.idmdp);
+            ImageButton enr = view.FindViewById<ImageButton>(Resource.Id.buttonuser);
+            ImageButton scan = view.FindViewById<ImageButton>(Resource.Id.btnscan);
+
+            //Bouton enregistrer
+            enr.Click += (s, e) =>
+            {
+                try
+                {
+                    if (!string.IsNullOrEmpty(matricule.Text) && !string.IsNullOrEmpty(mdp.Text))
+                    {
+                        XML.CreateUser(path, matricule.Text, mdp.Text);
+                        Toast.MakeText(Application.Context, string.Format("Utilisateur {0} créé", matricule.Text), ToastLength.Long).Show();
+
+                    }
+
+                    else
+                        Toast.MakeText(Application.Context, "Veuillez remplir les champs", ToastLength.Long).Show();
+                }
+                catch (Exception ex)
+                {
+                    Toast.MakeText(Application.Context, ex.Message, ToastLength.Long).Show();
+                }
+            };
             return view;
         }
     }
