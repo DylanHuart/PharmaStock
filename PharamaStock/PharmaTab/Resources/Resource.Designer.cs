@@ -111,11 +111,11 @@ namespace PharmaTab
 		public partial class Array
 		{
 			
-			// aapt resource value: 0x7f0f0001
-			public const int histsections = 2131689473;
-			
 			// aapt resource value: 0x7f0f0000
 			public const int sections = 2131689472;
+			
+			// aapt resource value: 0x7f0f0001
+			public const int usersections = 2131689473;
 			
 			static Array()
 			{
