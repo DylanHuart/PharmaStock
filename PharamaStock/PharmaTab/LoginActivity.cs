@@ -14,19 +14,16 @@ namespace PharmaTab
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            string path = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "PharmastockXML" + Java.IO.File.Separator + "Config.xml";
+
             //On appelle les classe du using plugin.SecureStorage
-            CrossSecureStorage.Current.SetValue("AdminToken", "admin");
-            CrossSecureStorage.Current.SetValue("AdmpwdToken", "admin");
-
-            CrossSecureStorage.Current.SetValue("SessionToken", "123456");
-            CrossSecureStorage.Current.SetValue("passwordToken", "700523N");
-
+           
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Loginlayout);
            
             
             //On créer des variables en appelant les ID de LoginLayout.axml            
-            ImageButton connexion = FindViewById<ImageButton>(Resource.Id.buttonco);
+            Button connexion = FindViewById<Button>(Resource.Id.buttonco);
             ImageButton mdpscan = FindViewById<ImageButton>(Resource.Id.btnPwd);
             EditText username = FindViewById<EditText>(Resource.Id.idmatr);
             EditText password = FindViewById<EditText>(Resource.Id.idmdp);
@@ -47,8 +44,14 @@ namespace PharmaTab
             {
                 Task<string> task = Scan();
                 password.Text = await task;
+                if (!string.IsNullOrEmpty(password.Text))
+                {
+                    connexion.PerformClick();
+                }
             };
 
+            
+            
             async Task<string> Scan()
             {
                 MobileBarcodeScanner scanner;
@@ -77,15 +80,13 @@ namespace PharmaTab
             //On créer l'évenement connexion de l'image button de LoginLayout.axml
             connexion.Click += (s, e) =>
             {
-                var AdminToken = CrossSecureStorage.Current.GetValue("AdminToken");
-                var AdmpwdToken = CrossSecureStorage.Current.GetValue("AdmpwdToken");
-
-                var sessionToken = CrossSecureStorage.Current.GetValue("SessionToken");
-                var passwordToken = CrossSecureStorage.Current.GetValue("passwordToken");
-
-                if (username.Text == sessionToken || username.Text == AdminToken && password.Text == passwordToken || password.Text == AdmpwdToken)
+                //Lit le fichier XML pour voir si les identifiants sont valides
+                var conn = XML.LitXml(path, username.Text, password.Text);
+                
+                if (conn)
                 {
-                    if(username.Text == "admin")
+                    Settings.Username = username.Text;
+                    if (username.Text == "admin")
                     {
                         Settings.Adminstate = "admin";
                     }
@@ -93,14 +94,12 @@ namespace PharmaTab
                     {
                         Settings.Adminstate = "";
                     }
-                    Settings.Username = username.Text;
                     Toast.MakeText(Application.Context, "Connexion réussie !", ToastLength.Short).Show();
                     StartActivity(typeof(MainActivity));
                 }
                 else
-                {
-                    Toast.MakeText(Application.Context, "Echec de la connexion, vérifiez vos identifiants !", ToastLength.Long).Show();
-                }
+                    Toast.MakeText(Application.Context, "Identifiants invalides !", ToastLength.Short).Show();
+                
             };
         }
     }

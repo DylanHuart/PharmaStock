@@ -165,6 +165,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cryptage.cs" />
     <Compile Include="EditActivity.cs" />
     <Compile Include="Fragments\Fragment1.cs" />
     <Compile Include="Fragments\Fragment2.cs" />
@@ -179,6 +180,7 @@
     <Compile Include="Settings.cs" />
     <Compile Include="SplashScreen.cs" />
     <Compile Include="userActivity.cs" />
+    <Compile Include="XML.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -211,25 +213,10 @@
     <AndroidResource Include="Resources\drawable-hdpi\Icon.png" />
     <AndroidResource Include="Resources\drawable-mdpi\Icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\Icon.png" />
-    <AndroidResource Include="Resources\drawable\AUTO.jpg" />
-    <AndroidResource Include="Resources\drawable\AUTO_selection.jpg" />
     <AndroidResource Include="Resources\drawable\calendar.png" />
-    <AndroidResource Include="Resources\drawable\ENREGISTRER.jpg" />
-    <AndroidResource Include="Resources\drawable\ENVOYER.jpg" />
-    <AndroidResource Include="Resources\drawable\Fond.jpg" />
     <AndroidResource Include="Resources\drawable\fondtab.jpg" />
-    <AndroidResource Include="Resources\drawable\Historique.png" />
-    <AndroidResource Include="Resources\drawable\MANUEL.jpg" />
-    <AndroidResource Include="Resources\drawable\MANUEL_selection.jpg" />
     <AndroidResource Include="Resources\drawable\photo.png" />
-    <AndroidResource Include="Resources\drawable\chu.png" />
-    <AndroidResource Include="Resources\drawable\CHR.png" />
     <AndroidResource Include="Resources\drawable\Icon.png" />
-    <AndroidResource Include="Resources\drawable\deletext.png" />
-    <AndroidResource Include="Resources\drawable\CONNEXION.PNG" />
-    <AndroidResource Include="Resources\drawable\fondchoix.jpg" />
-    <AndroidResource Include="Resources\drawable\exceptionelle.png" />
-    <AndroidResource Include="Resources\drawable\simple.png" />
     <AndroidResource Include="Resources\xml\provider_paths.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -239,43 +226,10 @@
     <AndroidResource Include="Resources\layout\Loginlayout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\settings.png" />
-    <AndroidResource Include="Resources\drawable\Suivant.png" />
-    <AndroidResource Include="Resources\drawable\resetbt.png" />
     <AndroidResource Include="Resources\drawable\fondlogin.jpg" />
     <AndroidResource Include="Resources\drawable\fonddneutre.jpg" />
     <AndroidResource Include="Resources\drawable\splash.jpg" />
     <AndroidResource Include="Resources\drawable\splash_screen.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\btco.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\connexionfocus.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\btsave.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\enregistrerfocus.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\historiquefocus.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\resetbtfocus.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Suivantfocus.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\bthist.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\btnext.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\btreset.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\photobt.xml" />
@@ -290,42 +244,48 @@
     <AndroidResource Include="Resources\drawable\photofocus.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Openbt.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\delbt.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\openfocus.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ouvrir.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\suppr.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\supprfocus.bmp" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\layout\editlayout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\btprev.xml" />
+    <AndroidResource Include="Resources\drawable\CustomEditText.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\prev.png" />
+    <AndroidResource Include="Resources\drawable\bg_edittext_focused.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\prevfocus.png" />
+    <AndroidResource Include="Resources\drawable\bg_edittext_normal.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Circlebt.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\baseline_arrow_right_alt_white_36dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\baseline_replay_white_36dp.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\fragment3.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\fragment4.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\newUser.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\baseline_arrow_right_alt_white_36dpprev.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Fonduseradd.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\fondedituser.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\baseline_settings_white_36dp.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
