@@ -5,20 +5,18 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="@drawable/fonddneutre">
-	<ListView
-		android:minWidth="25px"
-		android:minHeight="25px"
+	android:background="@drawable/fondedituser">
+	<Spinner
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:choiceMode="singleChoice" 
-		android:background="@android:color/white"
-		android:id="@+id/listView1" />
+		android:layout_marginTop="200dp"
+		android:layout_marginLeft="100dp"
+		android:id="@+id/spinner1" />
 	<EditText
 		android:layout_height="wrap_content"
 		android:layout_width="250dp"
 		android:layout_marginLeft="50dp"
-		android:layout_below="@id/listView1"
+		android:layout_below="@id/spinner1"
 		android:id="@+id/idpwd"
 		android:password="true"
 		android:textColor="#ffdfd6d6"
@@ -35,6 +33,7 @@
 		android:layout_marginTop="50dp"
 		android:layout_below="@id/idpwd"
 		android:id="@+id/btnModif"
+		android:theme="@style/PrimaryButton"
 	 />
 	<Button
 		android:text="Supprimer"
@@ -44,12 +43,17 @@
 		android:layout_marginTop="50dp"
 		android:layout_below="@id/idpwd"
 		android:layout_toRightOf="@id/btnModif" 
+		android:theme="@style/PrimaryButton"
 		android:id="@+id/btnSuppr"
 	 />
-
-
-
-
-
-
+	
+	<ImageButton
+		android:layout_width="32dp"
+		android:layout_height="32dp"
+		android:layout_marginLeft="310dp"
+		android:layout_marginTop="230dp"
+		android:layout_below="@id/idmatr"
+		android:layout_toRightOf="@id/idmdp"
+		android:background="@drawable/photobt"
+		android:id="@+id/btnscan15" />
 </RelativeLayout>

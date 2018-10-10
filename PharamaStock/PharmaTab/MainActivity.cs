@@ -17,14 +17,21 @@ namespace PharmaTab
   
     public class MainActivity : AppCompatActivity
     {
-
+        public static bool Fragmentauto;
        
         ViewPager pager;
         TabsAdapter adapter;
         TabLayout tabs;
-        
+        public override void OnBackPressed()
+        {
+            base.OnBackPressed();
+            
+        }
+
         protected override void OnCreate(Bundle bundle)
         {
+            Fragmentauto = true;
+
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.main);
             var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
@@ -35,12 +42,7 @@ namespace PharmaTab
                 SupportActionBar.SetHomeButtonEnabled(false);
             }
 
-            // Affiche une boîte de dialogue pour accorder l'autorisation d'accès au stockage
-            var permissionSto = Manifest.Permission.WriteExternalStorage;
-            var permissionCam = Manifest.Permission.Camera;
-
-            if (ContextCompat.CheckSelfPermission(this, permissionSto) != Android.Content.PM.Permission.Granted || ContextCompat.CheckSelfPermission(this, permissionCam) != Android.Content.PM.Permission.Granted)
-                ActivityCompat.RequestPermissions(this, new String[] { Manifest.Permission.WriteExternalStorage, Manifest.Permission.Camera, Manifest.Permission.ReadExternalStorage }, 0);
+            
 
             adapter = new TabsAdapter(this, SupportFragmentManager);
             pager = FindViewById<ViewPager>(Resource.Id.pager);

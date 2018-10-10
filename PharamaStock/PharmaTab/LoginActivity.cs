@@ -17,12 +17,7 @@ namespace PharmaTab
             string path = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "PharmastockXML" + Java.IO.File.Separator + "Config.xml";
 
             //On appelle les classe du using plugin.SecureStorage
-            CrossSecureStorage.Current.SetValue("AdminToken", "admin");
-            CrossSecureStorage.Current.SetValue("AdmpwdToken", "admin");
-
-            CrossSecureStorage.Current.SetValue("SessionToken", "123456");
-            CrossSecureStorage.Current.SetValue("passwordToken", "700523N");
-
+           
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Loginlayout);
            
@@ -49,8 +44,14 @@ namespace PharmaTab
             {
                 Task<string> task = Scan();
                 password.Text = await task;
+                if (!string.IsNullOrEmpty(password.Text))
+                {
+                    connexion.PerformClick();
+                }
             };
 
+            
+            
             async Task<string> Scan()
             {
                 MobileBarcodeScanner scanner;
@@ -81,41 +82,24 @@ namespace PharmaTab
             {
                 //Lit le fichier XML pour voir si les identifiants sont valides
                 var conn = XML.LitXml(path, username.Text, password.Text);
-
+                
                 if (conn)
                 {
+                    Settings.Username = username.Text;
+                    if (username.Text == "admin")
+                    {
+                        Settings.Adminstate = "admin";
+                    }
+                    else
+                    {
+                        Settings.Adminstate = "";
+                    }
                     Toast.MakeText(Application.Context, "Connexion réussie !", ToastLength.Short).Show();
                     StartActivity(typeof(MainActivity));
                 }
                 else
                     Toast.MakeText(Application.Context, "Identifiants invalides !", ToastLength.Short).Show();
-
                 
-
-                //var AdminToken = CrossSecureStorage.Current.GetValue("AdminToken");
-                //var AdmpwdToken = CrossSecureStorage.Current.GetValue("AdmpwdToken");
-
-                //var sessionToken = CrossSecureStorage.Current.GetValue("SessionToken");
-                //var passwordToken = CrossSecureStorage.Current.GetValue("passwordToken");
-
-                //if (username.Text == sessionToken || username.Text == AdminToken && password.Text == passwordToken || password.Text == AdmpwdToken)
-                //{
-                //    if(username.Text == "admin")
-                //    {
-                //        Settings.Adminstate = "admin";
-                //    }
-                //    else
-                //    {
-                //        Settings.Adminstate = "";
-                //    }
-                //    Settings.Username = username.Text;
-                //    Toast.MakeText(Application.Context, "Connexion réussie !", ToastLength.Short).Show();
-                //    StartActivity(typeof(MainActivity));
-                //}
-                //else
-                //{
-                //    Toast.MakeText(Application.Context, "Echec de la connexion, vérifiez vos identifiants !", ToastLength.Long).Show();
-                //}
             };
         }
     }

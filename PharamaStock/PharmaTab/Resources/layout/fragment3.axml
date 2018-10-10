@@ -5,52 +5,65 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="@drawable/Fondlogin">
-
+	android:background="@drawable/Fonduseradd">
+	<android.support.design.widget.TextInputLayout
+    android:id="@+id/text_input_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+		android:layout_marginLeft="50dp"
+		android:layout_marginTop="200dp"
+		app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+		android:textColorHint="@android:color/white">
 		<EditText
 		android:hint="Matricule"
 		android:layout_width="250dp"
 		android:layout_height="wrap_content"
-		android:layout_marginLeft="50dp"
-		android:layout_marginTop="200dp"
+		android:background="@drawable/customedittext"
 		android:id="@+id/idmatr"
 		android:textColor="#ffdfd6d6"
-		android:backgroundTint="#ffdfd6d6"
 		android:textColorHint="#ffdfd6d6"
 		android:singleLine="true"
 		android:lines="1"
 		android:maxLines="1"/>
+		</android.support.design.widget.TextInputLayout>
+	<android.support.design.widget.TextInputLayout
+    android:id="@+id/text_input_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+	android:layout_marginLeft="50dp"
+		android:layout_marginTop="270dp"
+		app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+		android:textColorHint="@android:color/white">
 	<EditText
 		android:hint="Mot de passe"
 		android:layout_width="250dp"
 		android:layout_height="wrap_content"
-		android:layout_marginLeft="50dp"
-		android:layout_marginTop="270dp"
+		android:background="@drawable/customedittext"
 		android:id="@+id/idmdp"
 		android:textColor="#ffdfd6d6"
-		android:backgroundTint="#ffdfd6d6"
 		android:textColorHint="#ffdfd6d6"
 		android:inputType="textPassword"
 		android:singleLine="true"
 		android:lines="1"
 		android:maxLines="1"	/>
-	<ImageButton
+		</android.support.design.widget.TextInputLayout>
+	<Button
+			android:text="Enregistrer"
 		android:layout_width="200dp"
-		android:layout_height="40dp"
+    android:layout_height="wrap_content"
 		android:layout_marginLeft="80dp"
-		android:layout_marginTop="400dp"
+		android:layout_marginTop="380dp"
 		android:id="@+id/buttonuser"
-		android:background="@drawable/btsave"
+		android:theme="@style/PrimaryButton"
 		/>
 		<ImageButton
 		android:layout_width="32dp"
 		android:layout_height="32dp"
-		android:layout_marginLeft="10dp"
-		android:layout_marginTop="30dp"
+		android:layout_marginLeft="310dp"
+		android:layout_marginTop="290dp"
 		android:layout_below="@id/idmatr"
 		android:layout_toRightOf="@id/idmdp"
 		android:background="@drawable/photobt"
 		android:id="@+id/btnscan" />
-
 
 </RelativeLayout>

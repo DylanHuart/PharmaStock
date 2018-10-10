@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using Android;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Support.V4.Content;
@@ -67,18 +68,18 @@ namespace PharmaTab
                 fichiers = Directory.GetFiles(directory).ToList();
 
                 foreach (var item in fichiers)
-                    fichierstxt.Add("Fichier du " + item.Substring(12,14)+ "/" + item.Substring(14, 16) + "/" + item.Substring(16, 18));
+                    fichierstxt.Add("Fichier du " + item.Substring(44, 2) + "/" + item.Substring(46, 2) + "/" + item.Substring(48, 2));
 
                 fichierstxtAdapter.AddAll(fichierstxt);
             }
 
 
             //On appelle les boutons ouvrir et supprimer de fragment3.axml et on déclare la méthode utilisée lors de l'évement Click
-            ImageButton btnOuvrir = FindViewById<ImageButton>(Resource.Id.button2);
+            Button btnOuvrir = FindViewById<Button>(Resource.Id.button2);
             btnOuvrir.Click += BtnOuvrir_Click;
-            ImageButton btnSuppr = FindViewById<ImageButton>(Resource.Id.button1);
+            Button btnSuppr = FindViewById<Button>(Resource.Id.button1);
             btnSuppr.Click += BtnSuppr_Click;
-            ImageButton btedit = FindViewById<ImageButton>(Resource.Id.buttonmodifier);
+            Button btedit = FindViewById<Button>(Resource.Id.buttonmodifier);
 
             btedit.Click += (s, e) =>
             {
@@ -126,7 +127,7 @@ namespace PharmaTab
                 if (listehisto.CheckedItemCount > 0)
                 {
                     var position = listehisto.CheckedItemPositions;
-                    Android.App.AlertDialog.Builder alert = new Android.App.AlertDialog.Builder(Application.Context);
+                    Android.App.AlertDialog.Builder alert = new Android.App.AlertDialog.Builder(this);
                     alert.SetTitle("Suppression");
                     alert.SetMessage("Voulez-vous vraiment supprimer ?");
                     alert.SetPositiveButton("Supprimer", (senderAlert, args) =>

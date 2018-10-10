@@ -18,29 +18,32 @@
 		android:id="@+id/listehisto"
 		android:choiceMode="multipleChoice" 
 		 />
-	<ImageButton
-		android:layout_width="130dp"
+	<Button
+		android:text="Ouvrir"
+		android:layout_width="200dp"
 		android:layout_height="wrap_content"
-		android:layout_marginLeft="20dp"
-		android:background="@drawable/openbt"
+		android:layout_marginLeft="80dp"
+		android:theme="@style/PrimaryButton"
 		android:layout_below="@id/listehisto"
 		android:id="@+id/button2"
 	 />
-	<ImageButton
-		android:layout_width="130dp"
+	<Button
+		android:text="Supprimer"
+		android:layout_width="200dp"
 		android:layout_height="wrap_content"
-		android:layout_marginLeft="210dp"
+		android:layout_marginLeft="80dp"
 		android:layout_marginRight="20dp"
-		android:background="@drawable/delbt"
+		android:theme="@style/PrimaryButton"
 		android:id="@+id/button1"
-		android:layout_below="@id/listehisto"/>
-	<ImageButton
-		android:layout_width="130dp"
-		android:layout_height="50dp"
-		android:layout_marginTop="50dp"
-		android:layout_marginLeft="210dp"
+		android:layout_below="@id/button2"/>
+	<Button
+		android:text="Modifier"
+		android:layout_width="200dp"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="80dp"
 		android:layout_marginRight="20dp"
+		android:theme="@style/PrimaryButton"
 		android:id="@+id/buttonmodifier"
-		android:layout_below="@id/listehisto"/>
+		android:layout_below="@id/button1"/>
 	 />
 </RelativeLayout>

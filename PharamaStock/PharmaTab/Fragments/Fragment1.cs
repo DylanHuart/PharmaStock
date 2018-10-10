@@ -32,6 +32,7 @@ namespace PharmaTab.Fragments
         string fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock" + Java.IO.File.Separator + "Pharmastock_" + DateTime.Now.ToString("ddMMyyy") + ".csv";
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
+            MainActivity.Fragmentauto = false;
             var ignored = base.OnCreateView(inflater, container, savedInstanceState);
             var view = inflater.Inflate(Resource.Layout.fragment1, null);
 
@@ -42,8 +43,7 @@ namespace PharmaTab.Fragments
             EditText quantite = view.FindViewById<EditText>(Resource.Id.qtedel);
             EditText date = view.FindViewById<EditText>(Resource.Id.datedel);
             EditText matricule = new EditText(this.Context);
-
-            quantite.Text = "1";
+            
             //le matricule reste celui indiqué en page de connexion
             matricule.Text = Settings.Username;
 
@@ -53,7 +53,7 @@ namespace PharmaTab.Fragments
             ImageButton scan1 = view.FindViewById<ImageButton>(Resource.Id.button1);
             ImageButton scan2 = view.FindViewById<ImageButton>(Resource.Id.button2);
             ImageButton scan3 = view.FindViewById<ImageButton>(Resource.Id.button3);
-            ImageButton settings = view.FindViewById<ImageButton>(Resource.Id.buttonsettings);
+            Button settings = view.FindViewById<Button>(Resource.Id.buttonsettings);
             Button suivant = view.FindViewById<Button>(Resource.Id.buttonnext);
             Button raz = view.FindViewById<Button>(Resource.Id.buttonreset);
 
@@ -178,7 +178,7 @@ namespace PharmaTab.Fragments
 
                     //Enregistre les champs textes sous format CSV
                     case Resource.Id.buttonenr:
-                        if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text) || quantite.Text != "0")
+                        if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && (!string.IsNullOrEmpty(date.Text) || quantite.Text != "0"))
                         {
                             if (CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text, matricule.Text))
                             {
@@ -189,7 +189,7 @@ namespace PharmaTab.Fragments
                             Toast.MakeText(Application.Context, "Veuillez remplir les champs", ToastLength.Short).Show();
 
                         //Vide les champs d'entrée                       
-                        quantite.Text = "1";
+                        quantite.Text = "";
                         lot.Text = "";
                         gef.Text = "";
                         patient.Text = "";
@@ -197,7 +197,7 @@ namespace PharmaTab.Fragments
 
                     //Enregistre les champs textes sous format CSV, mais garde le numéro du patient
                     case Resource.Id.buttonnext:
-                        if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text) || quantite.Text != "0")
+                        if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && (!string.IsNullOrEmpty(date.Text) || quantite.Text != "0"))
                         {
                             if (CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text, matricule.Text))
                             {
@@ -208,7 +208,7 @@ namespace PharmaTab.Fragments
                             Toast.MakeText(Application.Context, "Veuillez remplir les champs", ToastLength.Short).Show();
 
                         //Vide les champs d'entrée sauf celui patient
-                        quantite.Text = "1";
+                        quantite.Text = "";
                         lot.Text = "";
                         gef.Text = "";
                         gef.RequestFocus();
@@ -224,7 +224,7 @@ namespace PharmaTab.Fragments
                     case Resource.Id.buttonreset:
                         if (!string.IsNullOrEmpty(patient.Text) || !string.IsNullOrEmpty(gef.Text) || !string.IsNullOrEmpty(lot.Text) || !string.IsNullOrEmpty(quantite.Text) || quantite.Text != "0" || !string.IsNullOrEmpty(date.Text))
                         {
-                            Android.App.AlertDialog.Builder dialog = new AlertDialog.Builder(this.Context);
+                            Android.App.AlertDialog.Builder dialog = new AlertDialog.Builder(this.Activity);
                             AlertDialog alert = dialog.Create();
                             alert.SetTitle("Attention");
                             alert.SetMessage("Les champs de texte seront vidés");

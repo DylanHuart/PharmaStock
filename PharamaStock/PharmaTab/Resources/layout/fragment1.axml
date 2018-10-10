@@ -112,7 +112,8 @@
 		android:hint="Date de délivrance"
 		android:layout_width="300dp"
 		android:layout_height="wrap_content"
-		
+			android:focusable="false"
+		android:editable="false"
 		android:id="@+id/datedel"
 		
 		android:textColor="#ffdfd6d6"
@@ -155,13 +156,13 @@
 		android:drawableTop="@drawable/baseline_replay_white_36dp"
 		android:background="@drawable/circlebt"
 		/>
-	<ImageButton
-		android:layout_width="60dp"
-		android:layout_height="80dp"
-		android:layout_marginTop="540dp"
-		android:layout_marginLeft="160dp"
+	<Button
+		android:layout_width="40dp"
+		android:layout_height="40dp"
+		android:layout_marginTop="460dp"
+		android:layout_marginLeft="40dp"
 		android:id="@+id/buttonsettings"
-
-		android:background="@android:color/transparent"
-		android:src="@drawable/settings"/>
+		android:paddingTop="2dp"
+		android:drawableTop="@drawable/baseline_settings_white_36dp"
+		android:background="@drawable/circlebt"/>
 </RelativeLayout>

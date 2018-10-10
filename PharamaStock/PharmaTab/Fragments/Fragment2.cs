@@ -1,4 +1,5 @@
 using Android.App;
+using Android.Media;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Views;
@@ -27,7 +28,7 @@ namespace PharmaTab.Fragments
         string fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock" + Java.IO.File.Separator + "Pharmastock_" + DateTime.Now.ToString("ddMMyyy") + ".csv";
         string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
 
-        Task<string> task;
+        public Task<string> task;
 
         EditText patient = new EditText(Application.Context);
         EditText gef = new EditText(Application.Context);
@@ -48,9 +49,11 @@ namespace PharmaTab.Fragments
             var frag2 = new Fragment2 { Arguments = new Bundle() };
             return frag2;
         }
-        
+       
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
+            
+
             var ignored = base.OnCreateView(inflater, container, savedInstanceState);
             var view = inflater.Inflate(Resource.Layout.fragment2, null);
             var tabs = Activity.FindViewById<TabLayout>(Resource.Id.tabs);
@@ -71,12 +74,12 @@ namespace PharmaTab.Fragments
             date = view.FindViewById<EditText>(Resource.Id.datedel2);
             matricule = new EditText(this.Context);
             matricule.Text = Settings.Username;
-            quantite.Text = "1";
+            
            
 
             savebt.Click += async (s, e) =>
             {
-                if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text) || quantite.Text != "0")
+                if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && (!string.IsNullOrEmpty(date.Text) || quantite.Text != "0"))
                 {
                     if (CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text, matricule.Text))
                     {
@@ -88,6 +91,7 @@ namespace PharmaTab.Fragments
                 else
                     Toast.MakeText(Application.Context, "Veuillez remplir les champs", ToastLength.Short).Show();
                 //Vide les champs d'entrée sauf celui patient
+                MainActivity.Fragmentauto = true;
                 quantite.Text = "";
 
                 toptext = "N° du patient";
@@ -97,9 +101,9 @@ namespace PharmaTab.Fragments
             //Méthode raz
             raz.Click += (s, e) =>
             {
-                if (!string.IsNullOrEmpty(patient.Text) || !string.IsNullOrEmpty(gef.Text) || !string.IsNullOrEmpty(lot.Text) || !string.IsNullOrEmpty(quantite.Text) || quantite.Text != "0" || !string.IsNullOrEmpty(date.Text))
+                if (!string.IsNullOrEmpty(patient.Text) || !string.IsNullOrEmpty(gef.Text) || !string.IsNullOrEmpty(lot.Text) || !string.IsNullOrEmpty(quantite.Text) || (!string.IsNullOrEmpty(date.Text) || quantite.Text != "0"))
                 {
-                    Android.App.AlertDialog.Builder dialog = new AlertDialog.Builder(this.Context);
+                    Android.App.AlertDialog.Builder dialog = new AlertDialog.Builder(this.Activity);
                     AlertDialog alert = dialog.Create();
                     alert.SetTitle("Attention");
                     alert.SetMessage("Les champs de texte seront vidés");
@@ -119,59 +123,51 @@ namespace PharmaTab.Fragments
                     });
                     alert.Show();
                 }
-
-               
             };
 
             plusLot.Click += async (s, e) =>
             {
-                if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text) || quantite.Text != "0")
+                if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && (!string.IsNullOrEmpty(date.Text) || quantite.Text != "0"))
                 {
                     if (CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text, matricule.Text))
                     {
                         Toast.MakeText(Application.Context, "Cette ligne existe déjà", ToastLength.Short).Show();
-
-
-
                     }
                 }
                 else
                     Toast.MakeText(Application.Context, "Veuillez remplir les champs", ToastLength.Short).Show();
                 //Vide les champs d'entrée sauf celui patient
                 quantite.Text = "";
-
+                MainActivity.Fragmentauto = true;
                 toptext = "Numéro de lot";
-                Task<string> task = Scan();
+                task = Scan();
                 lot.Text = await task;
             };
 
             //Méthode suivant
             suivant.Click += async (s, e) =>
             {
-                if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && !string.IsNullOrEmpty(date.Text) || quantite.Text != "0")
+                if (!string.IsNullOrEmpty(patient.Text) && !string.IsNullOrEmpty(gef.Text) && !string.IsNullOrEmpty(lot.Text) && !string.IsNullOrEmpty(quantite.Text) && (!string.IsNullOrEmpty(date.Text) || quantite.Text != "0"))
                 {
                     if (CreateCSV(patient.Text, gef.Text, lot.Text, quantite.Text, date.Text, matricule.Text))
                     {
                         Toast.MakeText(Application.Context, "Cette ligne existe déjà", ToastLength.Short).Show();
-                        
-
-
                     }
                 }
                 else
                     Toast.MakeText(Application.Context, "Veuillez remplir les champs", ToastLength.Short).Show();
                 //Vide les champs d'entrée sauf celui patient
-                quantite.Text = "1";
-
+                quantite.Text = "0";
+                MainActivity.Fragmentauto = true;
                 toptext = "Code GEF";
-                Task<string> task = Scan();
+                task = Scan();
                 gef.Text = await task;
             };
 
             //Méthode selection date de délivrance
             date.Click += (s, e) =>
             {
-                DatePickerDialog datepick = new DatePickerDialog(this.Context, AlertDialog.ThemeDeviceDefaultLight, OnDateSet, DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+                DatePickerDialog datepick = new DatePickerDialog(this.Activity, AlertDialog.ThemeDeviceDefaultLight, OnDateSet, DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
                 datepick.DatePicker.DateTime = DateTime.Today;
                 datepick.Show();
                 
@@ -189,7 +185,8 @@ namespace PharmaTab.Fragments
                var text = tab.Text;
                if (text == "Auto")
                {
-                   toptext = "N° du patient";
+                    MainActivity.Fragmentauto = true;
+                    toptext = "N° du patient";
                    
                    task = Scan();
                    patient.Text = await task;
@@ -198,23 +195,29 @@ namespace PharmaTab.Fragments
             //lecture code barre suivant aprés écriture du code barre précèdent
             patient.AfterTextChanged += async (s, e) =>
             {
+                if(MainActivity.Fragmentauto)
+                {
                 //Vide les champs d'entrée sauf celui patient
                 toptext = "Code GEF";
                 task = Scan();
                 gef.Text = await task;
+                }
             };
 
 
             gef.AfterTextChanged += async (s, e) =>
             {
-                toptext = "Numéro de lot";
-                task = Scan();
-                lot.Text = await task;
+                if (MainActivity.Fragmentauto)
+                {
+                    toptext = "Numéro de lot";
+                    task = Scan();
+                    lot.Text = await task;
+                }
             };
             
             return view;
         }
-
+        
         //Méthode de création du fichier CSV
         public bool CreateCSV(string numpat, string codeGEF, string lotnum, string quant, string date, string matricule)
         {
@@ -235,7 +238,7 @@ namespace PharmaTab.Fragments
             if (!File.Exists(fileName))
             {
                 string header = "Patient n° :" + ";" + "code GEF :" + ";" + "Lot n° :" + ";" + "Quantité :" + ";" + "Délivré le :" + ";" + "Matricule :";
-                File.WriteAllText(fileName, header, Encoding.UTF8);       // Création de la ligne + Encodage pour les caractères spéciaux
+                File.WriteAllText(fileName, header, System.Text.Encoding.UTF8);       // Création de la ligne + Encodage pour les caractères spéciaux
                 File.AppendAllText(fileName, System.Environment.NewLine); // Aller à la ligne
                 Toast.MakeText(Application.Context, "Nouveau fichier créé pour la date du jour", ToastLength.Short).Show();
             }
@@ -277,9 +280,13 @@ namespace PharmaTab.Fragments
             };
 
             var result = await scanner.Scan(options);
+            Android.Media.Stream str = Android.Media.Stream.Music;
+            ToneGenerator tg = new ToneGenerator(str, 100);
+            tg.StartTone(Tone.PropAck);
 
             if (result == null)
             {
+                MainActivity.Fragmentauto = false;
                 return "";
             }
 
