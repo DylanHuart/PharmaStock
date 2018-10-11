@@ -7,7 +7,6 @@ using Android.Support.V4.Content;
 using Android.Support.V7.App;
 using System;
 using System.IO;
-using System.Threading.Tasks;
 
 namespace PharmaTab
 {
