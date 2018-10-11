@@ -31,7 +31,7 @@ namespace PharmaTab.Fragments
             Button modif = view.FindViewById<Button>(Resource.Id.btnModif);
             Button supp = view.FindViewById<Button>(Resource.Id.btnSuppr);
             EditText pwd = view.FindViewById<EditText>(Resource.Id.idpwd);
-            ListView list = view.FindViewById<ListView>(Resource.Id.listView1);
+            ListView list = view.FindViewById<ListView>(Resource.Id.spinner1);
 
             //Contenu des balises user du fichier xml chargé dans l'adapter 
             var users = XML.ListeUser(path);
