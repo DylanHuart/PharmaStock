@@ -1,9 +1,9 @@
 ﻿using Android.App;
 using Android.OS;
 using Android.Support.V7.App;
+using Android.Views;
 using Android.Widget;
 using Plugin.SecureStorage;
-using Android.Views;
 using System.Threading.Tasks;
 using ZXing.Mobile;
 

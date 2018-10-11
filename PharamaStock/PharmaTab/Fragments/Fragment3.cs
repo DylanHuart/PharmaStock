@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Android;
-using Android.App;
-using Android.Content;
-using Android.Media;
+﻿using Android.App;
 using Android.OS;
-using Android.Runtime;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
-using ZXing.Mobile;
+using System;
 
 namespace PharmaTab.Fragments
 {
@@ -41,13 +31,9 @@ namespace PharmaTab.Fragments
 
             EditText matricule = view.FindViewById<EditText>(Resource.Id.idmatr);
             EditText mdp = view.FindViewById<EditText>(Resource.Id.idmdp);
-            Button enr = view.FindViewById<Button>(Resource.Id.buttonuser);
+            ImageButton enr = view.FindViewById<ImageButton>(Resource.Id.buttonuser);
             ImageButton scan = view.FindViewById<ImageButton>(Resource.Id.btnscan);
 
-            scan.Click += async (s, e) =>
-            {
-                mdp.Text = await Scan();
-            };
             //Bouton enregistrer
             enr.Click += (s, e) =>
             {
@@ -69,36 +55,6 @@ namespace PharmaTab.Fragments
                 }
             };
             return view;
-        }
-
-        async Task<string> Scan()
-        {
-            MobileBarcodeScanner scanner;
-            MobileBarcodeScanner.Initialize(Activity.Application);
-
-            var options = new MobileBarcodeScanningOptions
-            {
-                AutoRotate = false,
-                UseFrontCameraIfAvailable = false,
-                DelayBetweenContinuousScans = 1500,
-            };
-
-            scanner = new MobileBarcodeScanner()
-            {
-                TopText = "Mot de passe"
-            };
-
-            var result = await scanner.Scan(options);
-            Android.Media.Stream str = Android.Media.Stream.Music;
-            ToneGenerator tg = new ToneGenerator(str, 100);
-            tg.StartTone(Tone.PropAck);
-
-            if (result == null)
-            {
-                return "";
-            }
-
-            return result.Text;
         }
     }
 }
