@@ -171,7 +171,6 @@
     <Compile Include="Fragments\Fragment2.cs" />
     <Compile Include="Fragments\Fragment3.cs" />
     <Compile Include="Fragments\Fragment4.cs" />
-    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Historique.cs" />
     <Compile Include="LoginActivity.cs" />
     <Compile Include="MainActivity.cs" />
