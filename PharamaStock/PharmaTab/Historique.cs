@@ -38,8 +38,8 @@ namespace PharmaTab
             //On crée une liste qui va afficher une ligne personnalisée pour chaque éléments du tableau
             List<string> fichierstxt = new List<string>();
             foreach (var item in fichiers)
-                fichierstxt.Add("Fichier du " + item.Substring(44, 2) + "/" + item.Substring(46, 2) + "/" + item.Substring(48, 2));
-
+                fichierstxt.Add("Fichier du " + item.Substring(44, 2) + "/" + item.Substring(46, 2) + "/" + item.Substring(50, 2));
+            
             //On met en place les "adapters" qui prennent en charge les éléments du tableau et de la liste
             ArrayAdapter<string> fichiersAdapter = new ArrayAdapter<string>(this.ApplicationContext, Android.Resource.Layout.SimpleListItemActivated1, fichiers);
             ArrayAdapter<string> fichierstxtAdapter = new ArrayAdapter<string>(this.ApplicationContext, Android.Resource.Layout.SimpleListItemActivated1, fichierstxt);
