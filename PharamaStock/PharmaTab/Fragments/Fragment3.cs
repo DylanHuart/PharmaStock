@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Android;
-using Android.App;
-using Android.Content;
+﻿using Android.App;
 using Android.Media;
 using Android.OS;
-using Android.Runtime;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
+using System;
+using System.Threading.Tasks;
 using ZXing.Mobile;
 
 namespace PharmaTab.Fragments
@@ -37,7 +30,7 @@ namespace PharmaTab.Fragments
             var view = inflater.Inflate(Resource.Layout.fragment3, null);
 
             //Chemin du fichier xml
-            string path = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "PharmastockXML"  + Java.IO.File.Separator + "Config.xml";
+            string path = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "PharmatrackXML" + Java.IO.File.Separator + "Config.xml";
 
             EditText matricule = view.FindViewById<EditText>(Resource.Id.idmatr);
             EditText mdp = view.FindViewById<EditText>(Resource.Id.idmdp);

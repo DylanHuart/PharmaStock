@@ -1,10 +1,8 @@
-﻿using Android;
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Support.V4.Content;
 using Android.Support.V7.App;
-using Android.Views;
 using Android.Widget;
 using System;
 using System.Collections.Generic;
@@ -17,14 +15,13 @@ namespace PharmaTab
     
     public class Historique : AppCompatActivity
     {
-       // /storage/emulated/0/Pharmastock/Pharmastock_01102018.csv
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.Historique);
 
-            string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
+            string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmatrack";
 
             //On crée un tableau qui contient les chemins d'accès aux fichiers du dossier
             List<string> fichiers = new List<string>();

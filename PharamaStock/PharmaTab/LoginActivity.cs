@@ -1,9 +1,8 @@
 ﻿using Android.App;
 using Android.OS;
 using Android.Support.V7.App;
-using Android.Widget;
-using Plugin.SecureStorage;
 using Android.Views;
+using Android.Widget;
 using System.Threading.Tasks;
 using ZXing.Mobile;
 
@@ -14,7 +13,7 @@ namespace PharmaTab
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            string path = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "PharmastockXML" + Java.IO.File.Separator + "Config.xml";
+            string path = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "PharmatrackXML" + Java.IO.File.Separator + "Config.xml";
 
             //On appelle les classe du using plugin.SecureStorage
            

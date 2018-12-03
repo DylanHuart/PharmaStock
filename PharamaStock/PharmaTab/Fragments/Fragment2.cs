@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using ZXing.Mobile;
 
@@ -25,8 +24,8 @@ namespace PharmaTab.Fragments
         string toptext = "";
 
         //Chemin d'accès au fichier
-        string fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock" + Java.IO.File.Separator + "Pharmastock_" + DateTime.Now.ToString("ddMMyyy") + ".csv";
-        string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmastock";
+        string fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmatrack" + Java.IO.File.Separator + "Pharmatrack_" + DateTime.Now.ToString("ddMMyyy") + ".csv";
+        string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmatrack";
 
         public Task<string> task;
 
@@ -225,7 +224,7 @@ namespace PharmaTab.Fragments
             if (!Directory.Exists(directory))
             {
                 Directory.CreateDirectory(directory);
-                Toast.MakeText(Application.Context, "Dossier Pharmastock créé à la racine du stockage", ToastLength.Short).Show();
+                Toast.MakeText(Application.Context, "Dossier Pharmatrack créé à la racine du stockage", ToastLength.Short).Show();
             }
 
             //Lignes à ajouter lors de l'enregistrement. Reprend les entrées des champs EditText

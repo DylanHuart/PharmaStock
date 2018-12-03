@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 
 namespace PharmaTab
 {
@@ -68,7 +60,7 @@ namespace PharmaTab
 
         public static void CreateUser(string path, string matricule, string mdp)
         {
-            if (File.Exists(Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "PharmastockXML" + Java.IO.File.Separator + "Config.xml"))
+            if (File.Exists(Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "PharmatrackXML" + Java.IO.File.Separator + "Config.xml"))
             {
                 xdoc.Load(path);
                 XmlNode rootNode = xdoc.SelectSingleNode("//root");

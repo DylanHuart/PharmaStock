@@ -1,14 +1,11 @@
-﻿using System;
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Support.Design.Widget;
 using Android.Support.V4.App;
 using Android.Support.V4.View;
-using PharmaTab.Fragments;
-using Android.Support.Design.Widget;
 using Android.Support.V7.App;
-using Android;
-using Android.Support.V4.Content;
+using PharmaTab.Fragments;
 
 namespace PharmaTab
 {
