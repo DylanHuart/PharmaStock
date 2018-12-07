@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using ZXing.Mobile;
 
@@ -182,20 +183,29 @@ namespace PharmaTab
             {
                 //Options de l'appareil photo : pas de rotation, pas de caméra frontale
                 AutoRotate = false,
-                UseFrontCameraIfAvailable = false,
-                TryHarder = true
+                UseFrontCameraIfAvailable = false
             };
             scanner = new MobileBarcodeScanner()
             {
                 TopText = toptext //Valeur du toptext
             };
 
-            //Cette variable attend un scan pour obtenir la valeur lue dans le code barre
-            var result = await scanner.Scan(options);
+            ZXing.Result result = null;
+
+            new Thread(new ThreadStart(delegate
+            {
+                while (result is null)
+                {
+                    scanner.AutoFocus();
+                    Thread.Sleep(2000);
+                }
+            })).Start();
+
+            result = await scanner.Scan(options);
 
             Android.Media.Stream str = Android.Media.Stream.Music;
             ToneGenerator tg = new ToneGenerator(str, 100);
-            tg.StartTone(Tone.PropAck);
+            
 
             if (result == null)
             {
@@ -203,6 +213,7 @@ namespace PharmaTab
             }
             else
             {
+                tg.StartTone(Tone.PropAck);
                 switch (btn.Id) //Les champs de texte prennent la valeur lue par le scan
                 {
                     case Resource.Id.button10:

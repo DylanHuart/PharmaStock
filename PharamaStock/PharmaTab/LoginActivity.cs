@@ -1,8 +1,10 @@
 ﻿using Android.App;
 using Android.OS;
 using Android.Support.V7.App;
+using Android.Text;
 using Android.Views;
 using Android.Widget;
+using System.Threading;
 using System.Threading.Tasks;
 using ZXing.Mobile;
 
@@ -27,7 +29,7 @@ namespace PharmaTab
             EditText username = FindViewById<EditText>(Resource.Id.idmatr);
             EditText password = FindViewById<EditText>(Resource.Id.idmdp);
 
-            
+            username.SetFilters(new IInputFilter[] { new InputFilterLengthFilter(8) });
             //On créer l'évenment password du Edit Text de LoginLayout.axml
             password.KeyPress += (object sender, View.KeyEventArgs e) => {
                 e.Handled = false;
@@ -38,6 +40,7 @@ namespace PharmaTab
                 }
             };
 
+            
 
             mdpscan.Click += async (s, e) =>
             {
@@ -67,7 +70,18 @@ namespace PharmaTab
                     TopText = "Scannez le code barre de votre carte"
                 };
 
-                var result = await scanner.Scan(options);
+                ZXing.Result result = null;
+
+                new Thread(new ThreadStart(delegate
+                {
+                    while (result is null)
+                    {
+                        scanner.AutoFocus();
+                        Thread.Sleep(2000);
+                    }
+                })).Start();
+
+                result = await scanner.Scan(options);
 
                 if (result == null)
                 {

@@ -2,12 +2,14 @@ using Android.App;
 using Android.Content;
 using Android.Media;
 using Android.OS;
+using Android.Text;
 using Android.Views;
 using Android.Widget;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using ZXing.Mobile;
 
@@ -42,7 +44,33 @@ namespace PharmaTab.Fragments
             EditText quantite = view.FindViewById<EditText>(Resource.Id.qtedel);
             EditText date = view.FindViewById<EditText>(Resource.Id.datedel);
             EditText matricule = new EditText(this.Context);
-            
+
+            patient.SetFilters(new IInputFilter[] { new InputFilterLengthFilter(10) });
+            quantite.SetFilters(new IInputFilter[] { new InputFilterLengthFilter(5) });
+            gef.TextChanged += (s, e) =>
+            {
+                if(gef.Text.Length > 30)
+                {
+                    gef.TextSize = 15;
+                }
+                else
+                {
+                    gef.TextSize = 19;
+                }
+            };
+
+            lot.TextChanged += (s, e) =>
+            {
+                if (lot.Text.Length > 30)
+                {
+                    lot.TextSize = 15;
+                }
+                else
+                {
+                    lot.TextSize = 19;
+                }
+            };
+
             //le matricule reste celui indiqué en page de connexion
             matricule.Text = Settings.Username;
 
@@ -123,20 +151,30 @@ namespace PharmaTab.Fragments
                 {
                     //Options de l'appareil photo : pas de rotation, pas de caméra frontale
                     AutoRotate = false,
-                    UseFrontCameraIfAvailable = false,
-                    TryHarder = true
+                    UseFrontCameraIfAvailable = false
                 };
                 scanner = new MobileBarcodeScanner()
                 {
                     TopText = toptext //Valeur du toptext
+                    
                 };
 
+                ZXing.Result result = null;
+                
+                new Thread(new ThreadStart(delegate
+                {
+                    while (result is null)
+                    {
+                        scanner.AutoFocus();
+                        Thread.Sleep(2000);
+                    }
+                })).Start();
                 //Cette variable attend un scan pour obtenir la valeur lue dans le code barre
-                var result = await scanner.Scan(options);
+                result = await scanner.Scan(options);
                 
                 Android.Media.Stream str = Android.Media.Stream.Music;
                 ToneGenerator tg = new ToneGenerator(str, 100);
-                tg.StartTone(Tone.PropAck);
+                
 
                 if (result == null)
                 {
@@ -144,6 +182,7 @@ namespace PharmaTab.Fragments
                 }
                 else
                 {
+                    tg.StartTone(Tone.PropAck);
                     switch (btn.Id) //Les champs de texte prennent la valeur lue par le scan
                     {
                         case Resource.Id.button1:
@@ -156,6 +195,7 @@ namespace PharmaTab.Fragments
                             lot.Text = result.Text;
                             break;
                     }
+                    
                 }
 
                 return;

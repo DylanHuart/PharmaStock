@@ -1,9 +1,11 @@
 ﻿using Android.App;
 using Android.Media;
 using Android.OS;
+using Android.Text;
 using Android.Views;
 using Android.Widget;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using ZXing.Mobile;
 
@@ -36,6 +38,8 @@ namespace PharmaTab.Fragments
             EditText mdp = view.FindViewById<EditText>(Resource.Id.idmdp);
             Button enr = view.FindViewById<Button>(Resource.Id.buttonuser);
             ImageButton scan = view.FindViewById<ImageButton>(Resource.Id.btnscan);
+
+            matricule.SetFilters(new IInputFilter[] { new InputFilterLengthFilter(8) });
 
             scan.Click += async (s, e) =>
             {
@@ -81,14 +85,30 @@ namespace PharmaTab.Fragments
                 TopText = "Mot de passe"
             };
 
-            var result = await scanner.Scan(options);
+            ZXing.Result result = null;
+
+
+            new Thread(new ThreadStart(delegate
+            {
+                while (result is null)
+                {
+                    scanner.AutoFocus();
+                    Thread.Sleep(2000);
+                }
+            })).Start();
+
+            result = await scanner.Scan(options);
             Android.Media.Stream str = Android.Media.Stream.Music;
             ToneGenerator tg = new ToneGenerator(str, 100);
-            tg.StartTone(Tone.PropAck);
+            
 
             if (result == null)
             {
                 return "";
+            }
+            else
+            {
+                tg.StartTone(Tone.PropAck);
             }
 
             return result.Text;
