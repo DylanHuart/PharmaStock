@@ -87,6 +87,9 @@
     <Reference Include="SQLitePCLRaw.provider.e_sqlite3, Version=1.1.11.121, Culture=neutral, PublicKeyToken=9c301db686d0bd12, processorArchitecture=MSIL">
       <HintPath>..\packages\SQLitePCLRaw.provider.e_sqlite3.android.1.1.11\lib\MonoAndroid\SQLitePCLRaw.provider.e_sqlite3.dll</HintPath>
     </Reference>
+    <Reference Include="Symbol.XamarinEMDK, Version=4.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Symbol.XamarinEMDK.4.0.0.3\lib\MonoAndroid\Symbol.XamarinEMDK.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
