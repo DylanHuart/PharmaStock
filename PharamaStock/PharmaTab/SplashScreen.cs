@@ -46,39 +46,39 @@ namespace PharmaTab
             if (!File.Exists(path + Java.IO.File.Separator + "Config.xml"))
                 XML.CreateXml(path+ Java.IO.File.Separator + "Config.xml");
 
-            if (Directory.Exists(Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmatrack"))
-            {
-                var files = Directory.GetFiles(Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmatrack");
-                if (files.Length > 0)
-                {
-                    foreach (var file in files)
-                    {
-                        var datefile = file.Substring(44,8);
-                        var jour = datefile.Substring(0, 2);
-                        var mois = datefile.Substring(2, 2);
-                        var annee = datefile.Substring(4);
+            //if (Directory.Exists(Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmatrack"))
+            //{
+            //    var files = Directory.GetFiles(Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmatrack");
+            //    if (files.Length > 0)
+            //    {
+            //        foreach (var file in files)
+            //        {
+            //            var datefile = file.Substring(44,8);
+            //            var jour = datefile.Substring(0, 2);
+            //            var mois = datefile.Substring(2, 2);
+            //            var annee = datefile.Substring(4);
 
-                        if(annee == DateTime.Now.Year.ToString())
-                        {
-                            if(mois == DateTime.Now.Month.ToString())
-                            {
-                                if(Convert.ToInt32(jour) < DateTime.Now.Day - 15)
-                                {
-                                    File.Delete(file);
-                                }
-                            }
-                            else
-                            {
-                                File.Delete(file);
-                            }
-                        }
-                        else
-                        {
-                            File.Delete(file);
-                        }
-                    }
-                }
-            }
+            //            if(annee == DateTime.Now.Year.ToString())
+            //            {
+            //                if(mois == DateTime.Now.Month.ToString())
+            //                {
+            //                    if(Convert.ToInt32(jour) < DateTime.Now.Day - 15)
+            //                    {
+            //                        File.Delete(file);
+            //                    }
+            //                }
+            //                else
+            //                {
+            //                    File.Delete(file);
+            //                }
+            //            }
+            //            else
+            //            {
+            //                File.Delete(file);
+            //            }
+            //        }
+            //    }
+            //}
             StartActivity(new Intent(Application.Context, typeof(LoginActivity)));
         }
     }
