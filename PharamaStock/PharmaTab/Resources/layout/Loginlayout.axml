@@ -16,7 +16,7 @@
 		android:textColorHint="@android:color/white">
 	<EditText
 		android:hint="Matricule"
-		android:layout_width="250dp"
+		android:layout_width="280dp"
 		android:layout_height="wrap_content"
 		android:id="@+id/idmatr"
 		android:textColor="#ffdfd6d6"
@@ -36,7 +36,7 @@
 		android:textColorHint="@android:color/white">
 	<EditText
 		android:hint="Mot de passe"
-		android:layout_width="250dp"
+		android:layout_width="280dp"
 		android:layout_height="wrap_content"
 		android:background="@drawable/customedittext"
 		android:id="@+id/idmdp"
@@ -51,16 +51,8 @@
     android:layout_width="200dp"
     android:layout_height="wrap_content"
 		android:layout_marginTop="400dp"
-		android:layout_marginLeft="80dp"
+		android:layout_marginLeft="90dp"
     android:text="Connexion"
     android:theme="@style/PrimaryButton" 
 	android:id="@+id/buttonco"/>
-	<ImageButton
-		android:layout_width="32dp"
-		android:layout_height="32dp"
-		android:layout_marginLeft="315dp"
-		android:layout_marginTop="290dp"
-		android:layout_below="@id/idmatr"
-		android:background="@drawable/photobt"
-		android:id="@+id/btnPwd" />
 </RelativeLayout>

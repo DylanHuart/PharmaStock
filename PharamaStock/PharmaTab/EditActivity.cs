@@ -1,14 +1,10 @@
 ﻿using Android.App;
-using Android.Media;
 using Android.OS;
 using Android.Widget;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using ZXing.Mobile;
 
 namespace PharmaTab
 {
@@ -40,11 +36,7 @@ namespace PharmaTab
         {
             base.OnCreate(savedInstanceState);
             this.SetContentView(Resource.Layout.editlayout);
-
-            scan1 = FindViewById<ImageButton>(Resource.Id.button10);
-            scan2 = FindViewById<ImageButton>(Resource.Id.button11);
-            scan3 = FindViewById<ImageButton>(Resource.Id.button12);
-
+            
             patient = FindViewById<EditText>(Resource.Id.numpat3);
              gef = FindViewById<EditText>(Resource.Id.codgef3);
              lot = FindViewById<EditText>(Resource.Id.numlot3);
@@ -97,19 +89,6 @@ namespace PharmaTab
 
 
             };
-            scan1.Click += async (s, e) =>
-            {
-                await Scan(s, e);
-            };
-            scan2.Click += async (s, e) =>
-            {
-                await Scan(s, e);
-            };
-            scan3.Click += async (s, e) =>
-            {
-                await Scan(s, e);
-
-            };
 
             suivant.Click += (s, e) =>
             {
@@ -160,76 +139,7 @@ namespace PharmaTab
             date.Text = e.Date.ToLongDateString();
         }
         //Méthode d'affichage dans les zones de texte par le biais du scanner
-        async Task Scan(object s, EventArgs e)
-        {
-            MobileBarcodeScanner scanner;
-            ImageButton btn = (ImageButton)s;
-            var toptext = "";
-            switch (btn.Id) //Changer le toptext selon le bouton cliqué
-            {
-                case Resource.Id.button10:
-                    toptext = "N° du patient";
-                    break;
-                case Resource.Id.button11:
-                    toptext = "Code GEF";
-                    break;
-                case Resource.Id.button12:
-                    toptext = "N° du lot";
-                    break;
-            }
-
-            MobileBarcodeScanner.Initialize(this.Application);
-            var options = new MobileBarcodeScanningOptions
-            {
-                //Options de l'appareil photo : pas de rotation, pas de caméra frontale
-                AutoRotate = false,
-                UseFrontCameraIfAvailable = false
-            };
-            scanner = new MobileBarcodeScanner()
-            {
-                TopText = toptext //Valeur du toptext
-            };
-
-            ZXing.Result result = null;
-
-            new Thread(new ThreadStart(delegate
-            {
-                while (result is null)
-                {
-                    scanner.AutoFocus();
-                    Thread.Sleep(2000);
-                }
-            })).Start();
-
-            result = await scanner.Scan(options);
-
-            Android.Media.Stream str = Android.Media.Stream.Music;
-            ToneGenerator tg = new ToneGenerator(str, 100);
-            
-
-            if (result == null)
-            {
-                return;
-            }
-            else
-            {
-                tg.StartTone(Tone.PropAck);
-                switch (btn.Id) //Les champs de texte prennent la valeur lue par le scan
-                {
-                    case Resource.Id.button10:
-                        patient.Text = result.Text;
-                        break;
-                    case Resource.Id.button11:
-                        gef.Text = result.Text;
-                        break;
-                    case Resource.Id.button12:
-                        lot.Text = result.Text;
-                        break;
-                }
-            }
-
-            return;
-        }
+       
 
         public static void Readdelete(int ligne)
         {

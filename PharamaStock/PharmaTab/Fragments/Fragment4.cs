@@ -1,13 +1,9 @@
 ﻿using Android.App;
-using Android.Media;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
 using System;
-using System.Threading;
-using System.Threading.Tasks;
-using ZXing.Mobile;
 
 namespace PharmaTab.Fragments
 {
@@ -37,13 +33,8 @@ namespace PharmaTab.Fragments
             Button supp = view.FindViewById<Button>(Resource.Id.btnSuppr);
             EditText pwd = view.FindViewById<EditText>(Resource.Id.idpwd);
             Spinner list = view.FindViewById<Spinner>(Resource.Id.spinner1);
-            ImageButton scan = view.FindViewById<ImageButton>(Resource.Id.btnscan15);
             var tabs = Activity.FindViewById<TabLayout>(Resource.Id.tabs);
 
-            scan.Click += async (s, e) =>
-            {
-                pwd.Text = await Scan();
-            };
             //Contenu des balises user du fichier xml chargé dans l'adapter 
             var users = XML.ListeUser(path);
             ArrayAdapter<string> adapter = new ArrayAdapter<string>(Application.Context, Android.Resource.Layout.SimpleListItemActivated1, users);
@@ -116,59 +107,7 @@ namespace PharmaTab.Fragments
 
                 }
             };
-
-
-
-
-
-
             return view;
-        }
-
-        async Task<string> Scan()
-        {
-            MobileBarcodeScanner scanner;
-            MobileBarcodeScanner.Initialize(Activity.Application);
-
-            var options = new MobileBarcodeScanningOptions
-            {
-                AutoRotate = false,
-                UseFrontCameraIfAvailable = false,
-                DelayBetweenContinuousScans = 1500,
-            };
-
-            scanner = new MobileBarcodeScanner()
-            {
-                TopText = "Mot de passe"
-            };
-
-            ZXing.Result result = null;
-
-
-            new Thread(new ThreadStart(delegate
-            {
-                while (result is null)
-                {
-                    scanner.AutoFocus();
-                    Thread.Sleep(2000);
-                }
-            })).Start();
-
-            result = await scanner.Scan(options);
-            Android.Media.Stream str = Android.Media.Stream.Music;
-            ToneGenerator tg = new ToneGenerator(str, 100);
-            
-
-            if (result == null)
-            {
-                return "";
-            }
-            else
-            {
-                tg.StartTone(Tone.PropAck);
-            }
-
-            return result.Text;
         }
     }
 }

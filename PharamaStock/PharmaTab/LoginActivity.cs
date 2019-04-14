@@ -6,7 +6,6 @@ using Android.Views;
 using Android.Widget;
 using System.Threading;
 using System.Threading.Tasks;
-using ZXing.Mobile;
 
 namespace PharmaTab
 {
@@ -25,7 +24,6 @@ namespace PharmaTab
             
             //On créer des variables en appelant les ID de LoginLayout.axml            
             Button connexion = FindViewById<Button>(Resource.Id.buttonco);
-            ImageButton mdpscan = FindViewById<ImageButton>(Resource.Id.btnPwd);
             EditText username = FindViewById<EditText>(Resource.Id.idmatr);
             EditText password = FindViewById<EditText>(Resource.Id.idmdp);
 
@@ -42,53 +40,19 @@ namespace PharmaTab
 
             
 
-            mdpscan.Click += async (s, e) =>
-            {
-                Task<string> task = Scan();
-                password.Text = await task;
-                if (!string.IsNullOrEmpty(password.Text))
-                {
-                    connexion.PerformClick();
-                }
-            };
+            //mdpscan.Click += async (s, e) =>
+            //{
+            //    Task<string> task = Scan();
+            //    password.Text = await task;
+            //    if (!string.IsNullOrEmpty(password.Text))
+            //    {
+            //        connexion.PerformClick();
+            //    }
+            //};
 
             
             
-            async Task<string> Scan()
-            {
-                MobileBarcodeScanner scanner;
-                MobileBarcodeScanner.Initialize(Application);
-
-                var options = new MobileBarcodeScanningOptions
-                {
-                    AutoRotate = false,
-                    UseFrontCameraIfAvailable = false,
-                };
-
-                scanner = new MobileBarcodeScanner()
-                {
-                    TopText = "Scannez le code barre de votre carte"
-                };
-
-                ZXing.Result result = null;
-
-                new Thread(new ThreadStart(delegate
-                {
-                    while (result is null)
-                    {
-                        scanner.AutoFocus();
-                        Thread.Sleep(2000);
-                    }
-                })).Start();
-
-                result = await scanner.Scan(options);
-
-                if (result == null)
-                {
-                    return "";
-                }
-                return result.Text;
-            }
+          
 
             //On créer l'évenement connexion de l'image button de LoginLayout.axml
             connexion.Click += (s, e) =>
