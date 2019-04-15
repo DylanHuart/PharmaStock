@@ -6,8 +6,6 @@ using Android.Text;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
-using Symbol.XamarinEMDK;
-using Symbol.XamarinEMDK.Barcode;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,14 +16,8 @@ namespace PharmaTab
     [Activity(Label = "@string/app_name", MainLauncher = false, LaunchMode = Android.Content.PM.LaunchMode.SingleTop, Icon = "@drawable/icon")]
 
 
-    public class MainActivity : AppCompatActivity, EMDKManager.IEMDKListener
+    public class MainActivity : AppCompatActivity
     {
-        EMDKManager emdkManager = null;
-        BarcodeManager barcodeManager = null;
-        Scanner scanner = null;
-
-        private TextView statusView = null;
-
         string fileName = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmatrack" + Java.IO.File.Separator + "Pharmatrack_" + DateTime.Now.ToString("ddMMyyy") + ".csv";
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -40,25 +32,33 @@ namespace PharmaTab
             EditText quantite = FindViewById<EditText>(Resource.Id.qtedel);
             EditText date = FindViewById<EditText>(Resource.Id.datedel);
             EditText matricule = new EditText(this);
-            statusView = FindViewById<TextView>(Resource.Id.statusView);
-
-
-            EMDKResults results = EMDKManager.GetEMDKManager(Android.App.Application.Context, this);
-
-            if (results.StatusCode != EMDKResults.STATUS_CODE.Success)
-            {
-                statusView.Text = "Status: EMDKManager object creation failed ...";
-            }
-            else
-            {
-                statusView.Text = "Status: EMDKManager object creation succeeded ...";
-            }
-
-
+            ToggleButton btauto = FindViewById<ToggleButton>(Resource.Id.buttonauto);
+            
             patient.SetFilters(new IInputFilter[] { new InputFilterLengthFilter(10) });
             quantite.SetFilters(new IInputFilter[] { new InputFilterLengthFilter(5) });
+            patient.TextChanged += (s, e) =>
+            {
+                if(btauto.Checked)
+                {
+                    if(!string.IsNullOrEmpty(patient.Text))
+                    {
+                        patient.ClearFocus();
+                        gef.RequestFocus();
+                        gef.SetCursorVisible(true);
+                    }
+                }
+            };
             gef.TextChanged += (s, e) =>
             {
+                if (btauto.Checked)
+                {
+                    if (!string.IsNullOrEmpty(gef.Text))
+                    {
+                        gef.ClearFocus();
+                        lot.RequestFocus();
+                        lot.SetCursorVisible(true);
+                    }
+                }
                 if (gef.Text.Length > 30)
                 {
                     gef.TextSize = 15;
@@ -71,6 +71,15 @@ namespace PharmaTab
 
             lot.TextChanged += (s, e) =>
             {
+                if (btauto.Checked)
+                {
+                    if (!string.IsNullOrEmpty(lot.Text))
+                    {
+                        lot.ClearFocus();
+                        quantite.RequestFocus();
+                        quantite.SetCursorVisible(true);
+                    }
+                }
                 if (lot.Text.Length > 30)
                 {
                     lot.TextSize = 15;
@@ -143,6 +152,13 @@ namespace PharmaTab
                         lot.Text = "";
                         gef.Text = "";
                         patient.Text = "";
+
+                        quantite.ClearFocus();
+                        lot.ClearFocus();
+                        gef.ClearFocus();
+
+                        patient.RequestFocus();
+                        patient.SetCursorVisible(true);
                         break;
 
                     //Enregistre les champs textes sous format CSV, mais garde le numéro du patient
@@ -206,174 +222,7 @@ namespace PharmaTab
                 date.Text = e.Date.ToLongDateString();
             }
         }
-
-        protected override void OnResume()
-        {
-            base.OnResume();
-            InitScanner();
-        }
-
-
-        protected override void OnPause()
-        {
-            base.OnPause();
-            DeinitScanner();
-        }
-
-
-
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-
-            //Clean up the emdkManager
-            if (emdkManager != null)
-            {
-                //EMDK: Release the EMDK manager object
-                emdkManager.Release();
-                emdkManager = null;
-            }
-        }
-
-        void EMDKManager.IEMDKListener.OnOpened(EMDKManager emdkManager)
-        {
-            this.emdkManager = emdkManager;
-
-            InitScanner();
-        }
-
-        void EMDKManager.IEMDKListener.OnClosed()
-        {
-            if (emdkManager != null)
-            {
-                emdkManager.Release();
-                emdkManager = null;
-            }
-        }
-
-        void scanner_Data(object sender, Scanner.DataEventArgs e)
-        {
-
-        }
-
-
-        void scanner_Status(object sender, Scanner.StatusEventArgs e)
-        {
-
-        }
-        void InitScanner()
-        {
-            if (emdkManager != null)
-            {
-
-                if (barcodeManager == null)
-                {
-                    try
-                    {
-
-                        //Get the feature object such as BarcodeManager object for accessing the feature.
-                        barcodeManager = (BarcodeManager)emdkManager.GetInstance(EMDKManager.FEATURE_TYPE.Barcode);
-
-                        scanner = barcodeManager.GetDevice(BarcodeManager.DeviceIdentifier.Default);
-
-                        if (scanner != null)
-                        {
-
-                            //Attahch the Data Event handler to get the data callbacks.
-                            scanner.Data += scanner_Data;
-
-                            //Attach Scanner Status Event to get the status callbacks.
-                            scanner.Status += scanner_Status;
-
-                            scanner.Enable();
-
-                            //EMDK: Configure the scanner settings
-                            ScannerConfig config = scanner.GetConfig();
-                            config.SkipOnUnsupported = ScannerConfig.SkipOnUnSupported.None;
-                            config.ScanParams.DecodeLEDFeedback = true;
-                            config.ScanParams.DecodeLEDTime = 75;
-                            config.
-                            // Set beam timer for camera"
-                            config.ReaderParams.ReaderSpecific.CameraSpecific.BeamTimer = 4000;
-                            //Set beam timer for imager
-                            config.ReaderParams.ReaderSpecific.ImagerSpecific.BeamTimer = 4000;
-                            //Set beam timer for laser
-                            config.ReaderParams.ReaderSpecific.LaserSpecific.BeamTimer = 4000;
-                            //config.ReaderParams.ReaderSpecific.ImagerSpecific.BeamTimer = 4000;
-                            //config.ReaderParams.ReaderSpecific.ImagerSpecific.ch
-                            //config.DecoderParams.Code39.Enabled = true;
-                            //config.DecoderParams.Code128.Enabled = false;
-
-                            scanner.SetConfig(config);
-
-                        }
-                        else
-                        {
-                            //displayStatus("Failed to enable scanner.\n");
-                        }
-                    }
-                    catch (ScannerException e)
-                    {
-                        Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
-                        Android.App.AlertDialog alert = dialog.Create();
-                        alert.SetTitle("Erreur");
-                        alert.SetMessage("Error: " + e.Message);
-                        alert.SetButton("OK", (c, ev) =>
-                        {
-                            alert.Hide();
-                        });
-                        alert.Show();
-                    }
-                    catch (Exception ex)
-                    {
-                        Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
-                        Android.App.AlertDialog alert = dialog.Create();
-                        alert.SetTitle("Erreur");
-                        alert.SetMessage("Error: " + ex.Message);
-                        alert.SetButton("OK", (c, ev) =>
-                        {
-                            alert.Hide();
-                        });
-                        alert.Show();
-                    }
-                }
-            }
-        }
-
-        void DeinitScanner()
-        {
-            if (emdkManager != null)
-            {
-
-                if (scanner != null)
-                {
-                    try
-                    {
-
-                        scanner.Data -= scanner_Data;
-                        scanner.Status -= scanner_Status;
-
-                        scanner.Disable();
-
-
-                    }
-                    catch (ScannerException e)
-                    {
-                        Log.Debug(this.Class.SimpleName, "Exception:" + e.Result.Description);
-                    }
-                }
-
-                if (barcodeManager != null)
-                {
-                    emdkManager.Release(EMDKManager.FEATURE_TYPE.Barcode);
-                }
-                barcodeManager = null;
-                scanner = null;
-            }
-
-
-
-        }
+        
         string directory = Android.OS.Environment.ExternalStorageDirectory + Java.IO.File.Separator + "Pharmatrack";
 
         //Méthode de création du fichier CSV

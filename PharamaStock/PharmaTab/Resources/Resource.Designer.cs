@@ -5274,6 +5274,9 @@ namespace PharmaTab
 			// aapt resource value: 0x7f090063
 			public const int buttonPanel = 2131296355;
 			
+			// aapt resource value: 0x7f0900be
+			public const int buttonauto = 2131296446;
+			
 			// aapt resource value: 0x7f0900b5
 			public const int buttonco = 2131296437;
 			
@@ -5298,8 +5301,8 @@ namespace PharmaTab
 			// aapt resource value: 0x7f0900a3
 			public const int buttonprev3 = 2131296419;
 			
-			// aapt resource value: 0x7f0900be
-			public const int buttonreset = 2131296446;
+			// aapt resource value: 0x7f0900bf
+			public const int buttonreset = 2131296447;
 			
 			// aapt resource value: 0x7f0900a4
 			public const int buttonreset2 = 2131296420;
@@ -5792,9 +5795,6 @@ namespace PharmaTab
 			
 			// aapt resource value: 0x7f09004b
 			public const int start = 2131296331;
-			
-			// aapt resource value: 0x7f0900bf
-			public const int statusView = 2131296447;
 			
 			// aapt resource value: 0x7f0900e5
 			public const int status_bar_latest_event_content = 2131296485;
@@ -7007,8 +7007,8 @@ namespace PharmaTab
 			// aapt resource value: 0x7f0c0191
 			public const int PrimaryButton = 2131493265;
 			
-			// aapt resource value: 0x7f0c0192
-			public const int PrimaryButtonHistorique = 2131493266;
+			// aapt resource value: 0x7f0c0193
+			public const int PrimaryButtonHistorique = 2131493267;
 			
 			// aapt resource value: 0x7f0c003a
 			public const int RtlOverlay_DialogWindowTitle_AppCompat = 2131492922;
@@ -7052,8 +7052,8 @@ namespace PharmaTab
 			// aapt resource value: 0x7f0c0047
 			public const int RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = 2131492935;
 			
-			// aapt resource value: 0x7f0c0194
-			public const int TextAppearance_App_TextInputLayout = 2131493268;
+			// aapt resource value: 0x7f0c0195
+			public const int TextAppearance_App_TextInputLayout = 2131493269;
 			
 			// aapt resource value: 0x7f0c00d6
 			public const int TextAppearance_AppCompat = 2131493078;
@@ -7364,14 +7364,14 @@ namespace PharmaTab
 			// aapt resource value: 0x7f0c018f
 			public const int Theme_MyTheme = 2131493263;
 			
-			// aapt resource value: 0x7f0c0193
-			public const int Theme_MyTheme_ActionBar = 2131493267;
+			// aapt resource value: 0x7f0c0194
+			public const int Theme_MyTheme_ActionBar = 2131493268;
 			
 			// aapt resource value: 0x7f0c0190
 			public const int Theme_MyTheme_Base = 2131493264;
 			
-			// aapt resource value: 0x7f0c0195
-			public const int Theme_Splash = 2131493269;
+			// aapt resource value: 0x7f0c0196
+			public const int Theme_Splash = 2131493270;
 			
 			// aapt resource value: 0x7f0c0116
 			public const int ThemeOverlay_AppCompat = 2131493142;
@@ -7399,6 +7399,9 @@ namespace PharmaTab
 			
 			// aapt resource value: 0x7f0c0008
 			public const int ThemeOverlay_MediaRouter_Light = 2131492872;
+			
+			// aapt resource value: 0x7f0c0192
+			public const int ToggleButton = 2131493266;
 			
 			// aapt resource value: 0x7f0c011d
 			public const int Widget_AppCompat_ActionBar = 2131493149;

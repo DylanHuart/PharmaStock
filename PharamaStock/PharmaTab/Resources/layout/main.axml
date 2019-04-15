@@ -116,10 +116,20 @@
 		android:layout_width="145dp"
 		android:layout_height="50dp"
 		android:layout_marginTop="380dp"
-		android:layout_marginLeft="110dp"
+		android:layout_marginLeft="190dp"
 		android:id="@+id/buttonhist"
 		android:theme="@style/PrimaryButtonHistorique"
 	android:text="Historique"/>
+	<ToggleButton
+		android:layout_width="145dp"
+		android:layout_height="50dp"
+		android:layout_marginTop="380dp"
+		android:layout_marginLeft="10dp"
+		android:textOff = "Auto OFF"
+		android:textOn = "Auto ON"
+		android:disabledAlpha= "1.9"
+		android:id="@+id/buttonauto"
+		android:theme="@style/ToggleButton"/>
 	<Button
 		android:layout_width="60dp"
 		android:layout_height="60dp"
@@ -130,13 +140,6 @@
 		android:drawableTop="@drawable/baseline_replay_white_36dp"
 		android:background="@drawable/circlebt"
 		/>
-	<TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="statusView_text"
-      android:layout_marginTop="550dp"
-		android:layout_marginLeft="150dp"
-      android:id="@+id/statusView" />
 	<Button
 		android:layout_width="40dp"
 		android:layout_height="40dp"
